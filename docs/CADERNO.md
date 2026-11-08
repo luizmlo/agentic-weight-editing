@@ -915,3 +915,23 @@ x ~10 B ≈ 2.5 GB). Perfil depois da correção: T=4096 com pico 2.3 GB só no 
 - Revisão de estilo do caderno: notas operacionais (estado de filas, horários de lançamento, reinícios de servidor)
   foram removidas ou neutralizadas. Números, previsões, desvios e datas das entradas ficaram intactos; o texto
   original está no primeiro commit do repositório.
+
+## 2026-11-08 — E4.1 dados: resultado (`data/ft/sft_stats.json`)
+
+| fase A (600 amostras, teto 6144) | n | % |
+|---|---|---|
+| natural (fechou sozinho, sem loop duro, correto) | 57 | 9,5% |
+| loop duro com onset ≥ 128 (vai para a excisão) | 279 | 46,5% |
+| outros (cortado no teto sem loop duro detectado, onset < 128, ou fechou e errou) | 264 | 44,0% |
+
+- Na parcial, 90% das amostras bateram no teto de 6144 e só 11% fecharam o `</think>`.
+- Fase B (excisão): 118 dos 279 prefixos de loop levaram a uma resposta correta (42%), ou seja 19,7% das 600.
+- **Conjunto de SFT:** 175 sequências (57 naturais + 118 excised), todas ≤ 8192 tokens, então nenhuma foi
+  descartada. São 777 mil tokens de resposta: naturais com mediana de 3619 tokens, excised com mediana de 4964
+  (máximo 6398).
+- **Previsão (1):**
+  - natural: 9,5%, dentro da faixa de 5–10%;
+  - excised: 19,7%, **abaixo** dos 25–40% previstos.
+  O conjunto ficou menor que o esperado (175 contra ~200–300).
+- **E4.2:** o treino começou com 3 épocas e 66 passos de otimização (acumulação de 8). O tempo do E4.0 (~9,4 s por
+  mil tokens) dá cerca de 2 h por época.
