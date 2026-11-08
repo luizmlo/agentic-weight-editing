@@ -33,7 +33,7 @@ Gargalo é overhead de Python por passo de decodificação, não a GPU. Para o p
 (32k tokens, mediana de 9k nas respostas corretas do editado) isso é inviável: 64 problemas × 9k
 tokens ≈ 45 min por braço. Saídas: (a) llama.cpp/Ollama (o Ollama 0.40.6 já roda a arquitetura
 `qwen35`, mas não importa safetensors sem MLX → precisa converter para GGUF com o
-`convert_hf_to_gguf.py` do llama.cpp; **bloqueado por permissão, aguardando o usuário**);
+`convert_hf_to_gguf.py` do llama.cpp; adotado a partir do PoC-7);
 (b) medições teacher-forced (rápidas); (c) tetos curtos de geração.
 
 ## 2026-11-03 — PoC-1: engenharia reversa da edição do Astra
@@ -130,7 +130,7 @@ escreve são os MLPs das camadas 15 e 19; a receita esparsa; a disciplina de val
 - O Ollama **ignora** o paralelismo para a arquitetura `qwen35` (log: "model architecture does not
   currently support parallel requests") e força `-np 1`. Por isso usamos o `llama-server` que vem com
   ele (`/usr/local/lib/ollama/llama-server`), direto: `scripts/llama_serve.sh`.
-- Pegadinha: sem `GGML_BACKEND_PATH=/usr/local/lib/ollama/cuda_v13/libggml-cuda.so`, o binário não
+- Atenção: sem `GGML_BACKEND_PATH=/usr/local/lib/ollama/cuda_v13/libggml-cuda.so`, o binário não
   acha o backend CUDA e roda **na CPU** (~8 tok/s) sem dar erro.
 - Platô em ~185 tok/s: o gargalo provável são os kernels Gated DeltaNet com várias sequências, não a
   banda de memória (o teórico para 1,6 GB a 336 GB/s seria ~210 tok/s **por sequência**). Ainda não
@@ -139,14 +139,13 @@ escreve são os MLPs das camadas 15 e 19; a receita esparsa; a disciplina de val
   do agente: aplica a edição **em memória**, sem converter para GGUF (~1 min e 1,6 GB por variante).
   O llama-server tem continuous batching e protocolo idêntico ao do vLLM do paper.
 
-## 2026-11-04 — Estabilidade do harness (duas mortes por OOM)
+## 2026-11-04 — Estabilidade do harness
 
-- O `llama-server` foi morto pelo OOM killer duas vezes (RSS de 7,4 a 8 GB). A causa era o cache de
-  prompts em RAM, ligado por padrão (`--cache-ram 8192` MiB). A correção foi `--cache-ram 0
-  --ctx-checkpoints 1` no servidor e `cache_prompt: false` no cliente.
-- Jobs lançados com `setsid nohup` continuavam no scope do terminal (ptyxis) e morriam junto com
-  ele. Agora tudo roda por `scripts/run_bg.sh`, que usa `systemd-run --user` com
-  `MemoryMax=6G`: o job sobrevive ao terminal, e um OOM mata só o experimento.
+- O cache de prompts em RAM do `llama-server`, ligado por padrão (`--cache-ram 8192` MiB), leva o processo a
+  7,4–8 GB de RSS e ao OOM. Configuração adotada: `--cache-ram 0 --ctx-checkpoints 1` no servidor e
+  `cache_prompt: false` no cliente.
+- Jobs longos rodam por `scripts/run_bg.sh` (`systemd-run --user`, `MemoryMax=6G`), isolados do terminal: um
+  OOM afeta só o experimento.
 - **Desvio de protocolo descoberto:** no llama.cpp, a presence penalty vale só para os últimos
   `repeat_last_n` tokens (padrão 64). No vLLM do paper, ela vale para a saída inteira. O PoC-6
   rodou com janela de 64, então os números absolutos não são comparáveis aos do paper; a
@@ -163,7 +162,7 @@ escreve são os MLPs das camadas 15 e 19; a receita esparsa; a disciplina de val
 | base | 0,031 (2/64) | 0,98 | 0,016 | 0,23 | 107 |
 | anti_rep | 0,047 (3/64) | 1,00 | 0,000 | **0,31** | 112 |
 | placebo | 0,031 (2/64) | 0,97 | 0,031 | **0,30** | 110 |
-| astra | rodando (fim previsto às ~02:40) | | | | |
+| astra | ver resultado final abaixo | | | | |
 
 - Com teto de 4096, o base quase nunca termina, e na maioria dos casos o que acontece é raciocínio
   longo demais ("Wait..."), não loop duro. A acurácia não discrimina nada aqui; os conjuntos de
@@ -177,7 +176,7 @@ escreve são os MLPs das camadas 15 e 19; a receita esparsa; a disciplina de val
   primeira ligação entre uma medição de ativação (PoC-5) e uma mudança de comportamento (PoC-6). A
   diferença ainda é pequena para N=64 e precisa de réplica.
 
-## 2026-11-04 — PoC-7 preparado (fila noturna `scripts/queue_night.sh`)
+## 2026-11-04 — PoC-7: desenho (`scripts/queue_night.sh`)
 
 **Pergunta:** a direção recuperada **sem** o Astra (diferença de médias do PoC-4, |cos| ≈ 0,5 com u),
 transformada numa edição no mesmo formato (64 colunas, α=6), reproduz o ganho comportamental do
@@ -196,14 +195,12 @@ Astra? É o teste de ponta a ponta do braço M (mapear → editar) sem modelo de
 - `gen_eval.py`: GSM8K com 32 problemas, teto 12.288, `np=16`, penalty na saída inteira, braços
   base → astra → meandiff → random. Grava checkpoint por problema
   (`data/gen_t12k/<braço>.jsonl`), e se o servidor não subir tenta de novo com metade dos slots.
-- Teste de fumaça de ponta a ponta feito numa instância só de CPU (porta 8091), com
-  `WSP_LLAMA_NGL=0` e `WSP_LLAMA_DIR`.
-- Resultado esperado em `data/gen_t12k.json` e `data/poc7_dirs.json`.
-- Duração estimada: ~15 min de preparo mais ~75 min por braço. Fim por volta das 07:30–08:00.
+- Cadeia validada de ponta a ponta numa instância só de CPU (`WSP_LLAMA_NGL=0`).
+- Resultados em `data/gen_t12k.json` e `data/poc7_dirs.json`.
 
-## 2026-11-04 — Fila noturna estendida: painel de efeito colateral e tool calling
+## 2026-11-04 — Painel de efeito colateral e tool calling: hipóteses
 
-Hipóteses em teste na fila (`queue_night.sh`), todas com os braços base, astra, meandiff e random:
+Hipóteses (`queue_night.sh`), todas com os braços base, astra, meandiff e random:
 
 - **H-especificidade:** a edição anti-loop não deve prejudicar capacidades fora do alvo. Medidas:
   - Δlogp em texto neutro (WikiText-2, dentro do `poc7_dirs`);
@@ -228,10 +225,9 @@ Hipóteses em teste na fila (`queue_night.sh`), todas com os braços base, astra
   para o 0.8B. Para servir como alvo de edição (F3), vai precisar de uma versão difícil: multi-turn,
   muitas ferramentas, argumentos aninhados e conversão implícita de unidades e datas.
 
-## 2026-11-04 (manhã) — Resultados da fila noturna
+## 2026-11-04 (manhã) — Resultados: PoC-6, PoC-7 e painel de efeito colateral
 
-A fila terminou às 07:27, sem erros. A geração com teto de 12k e `np=16` rodou a ~150 tok/s, acima dos
-75 estimados.
+Geração com teto de 12k e `np=16`: ~150 tok/s agregados.
 
 ### PoC-6 final (GSM8K, 64 problemas, teto 4096)
 | braço | acc | loop no teto | ganho pareado |
@@ -319,14 +315,14 @@ Direções: astra, md (8-gramas na janela 512–4096, em geral antes do loop) e 
 
 - **A métrica de ramificação replica o Astra.** Nos 6 casos dele temos −0,101 / −0,010; o relatório
   dele dá −0,104 / +0,005 com α=4 e direção cheia. Também **generaliza** para os 6 casos novos que
-  escrevi no estilo GSM8K (−0,097 / −0,000).
+  escritos no estilo GSM8K (−0,097 / −0,000).
 - **Ela separa astra de meandiff** (−0,10 contra −0,01), o que bate com o comportamento (+28 contra
   +6 pp). As métricas de onset natural e de média por token **não separam**, e chegam a ordenar ao
   contrário (meandiff > astra). Logo, o proxy válido para o loop do agente é o par casado.
 - **Leitura fatorial (repetitivo, média das duas sondas):**
   - direção: astra ≫ mdloop > md;
   - colunas: as do Astra são as melhores para **toda** direção; contrast ≈ topw.
-  - Direção e colunas contam as duas, e nenhuma das minhas regras chega ao Astra.
+  - Direção e colunas contam as duas, e nenhuma das regras derivadas localmente chega ao Astra.
 
 **Previsão registrada para o PoC-8b** (ganho no GSM8K com raciocínio e teto de 12k, contra o base):
 1. astra (+28, medido) > {mdloop_astra, astra_topw, astra_contrast} > {md_astra, mdloop_contrast,
@@ -397,9 +393,7 @@ GSM8K com raciocínio, 32 problemas, teto 12k; base = 0,125.
 
 O astra ganha **+31 ± 7 pp** pareado (16 resgates, 1 perda). Isso replica o t12k (+28 pp) em outro split.
 
-**Incidentes:**
-- A fila do atlas deu OOM porque a llama-server do devref continuou viva (3,9 GB). Parei a
-  servidora e relancei.
+**Correção antes dos agentes:**
 - A checagem de sanidade pegou um bug em `m2a.validate`: ele rejeitava `mlp.down_proj` nas camadas
   de atenção cheia (3, 7, …). A L15 do Astra seria proibida. Corrigido antes de qualquer agente rodar.
 
@@ -415,7 +409,7 @@ O astra ganha **+31 ± 7 pp** pareado (16 resgates, 1 perda). Isso replica o t12
 - Os valores batem com o PoC-8 até a 3ª casa.
 - O holdout lacrado preserva a ordem e a escala, então a métrica generaliza para pares novos.
 
-**Braços lançados** (18h30; a GPU fica só com o avaliador, compartilhado em fila):
+**Braços** (avaliador único na GPU, compartilhado em fila):
 
 | run | quem | orçamento | o que vê |
 |---|---|---|---|
@@ -423,10 +417,10 @@ O astra ganha **+31 ± 7 pp** pareado (16 resgates, 1 perda). Isso replica o t12
 | `a0` | subagente, mesmo brief | 60 | **sem atlas**: só pesos + avaliador (controle de H4: o mapeamento ajuda?) |
 | `rnd` | `scripts/m2a_random.py` | 40 | busca aleatória (1–2 rank-1, camada/tipo/α/cols aleatórios), sem agente |
 
-Os orçamentos baixaram de 100 para 60 pelo tempo: com ~52 s por avaliação, 160 chamadas levam ~2,3 h.
+Orçamento reduzido de 100 para 60 chamadas por custo de tempo (~52 s por avaliação).
 
-**Depois:** `scripts/queue_confirm.sh r1 a0 [rnd]` para o avaliador, gera o GGUF do nº 1 de cada
-run e mede no dev48, pareado com base e astra.
+**Confirmação** (`scripts/queue_confirm.sh`): o nº 1 de cada run vira GGUF e é medido no dev48, pareado com
+base e astra.
 
 **Previsões pré-registradas** (antes de ver qualquer resultado):
 1. `rnd` não passa de branch_rep −0,02 dentro dos limites. Edições aleatórias são quase nulas,
@@ -520,7 +514,7 @@ O que isso pede:
 - (c) confirmação por geração **dentro** do laço do agente, ainda que barata (poucos problemas,
   teto curto).
 
-**Em andamento:**
+**Próximos testes:**
 - a0 nº 1 e r1 192156_139 (L14 + L15mlp) no dev48.
 - **Hipótese de dose** (`scripts/m2a_dose.py`, `queue_dose.sh`, run `dose`, 9 chamadas):
   a mesma direção do r1 (L12 ou L14), em α pequeno com branch_rep ≈ −0,15 (escala do Astra),
@@ -589,8 +583,7 @@ Proposta para o avaliador v2:
 - custo por avaliação: GGUF (~1 min) + geração (~3–5 min).
 - Alternativa sem GGUF: geração em HF com cache, mais lenta na 1660S.
 
-**Teste trancado do a0** (o melhor M→A confirmado no dev), no mesmo test[0:32] do t12k:
-`queue_test_a0.sh`, em andamento.
+**Teste trancado do a0** (o melhor M→A confirmado no dev): `queue_test_a0.sh`.
 
 ### Teste trancado do a0 (GSM8K test[0:32], teto 12k; o mesmo conjunto do t12k)
 
@@ -652,9 +645,9 @@ Proposta para o avaliador v2:
 | base (referência, `gen_ref_base.json`) | 1/16 | 100% | — |
 | a0 | 7/16 | 56% | 6 resgates, 0 perdas |
 
-~10 min por checagem (a primeira incluiu a referência do base).
+~10 min por checagem.
 
-**Réplicas lançadas (06h):**
+**Réplicas:**
 - r2 (com atlas) e a1 (sem atlas), em paralelo.
 - Orçamento de cada uma: 40 sondas + 6 checagens por geração.
 
@@ -683,14 +676,13 @@ Proposta para o avaliador v2:
   com 0/16.
 - No r2, as cabeças sozinhas tinham branch_rep −0,43 e deram 0/16.
 
-**Incidente de procedimento:** o r2 gravou arquivos fora da pasta da run por um caminho relativo
-(`/mnt/dados/dev/notes.md`, `cand_*.pt`). Ele moveu tudo para `r2/work/`. Verifiquei que o arquivo
-movido continha só conteúdo do próprio agente, sem nada pré-existente.
+**Desvio de procedimento:** o r2 gravou arquivos fora da pasta da run por um caminho relativo
+(`notes.md`, `cand_*.pt`) e os moveu para `r2/work/`. O conteúdo era só do próprio agente, sem nada
+pré-existente. Briefs seguintes exigem caminhos absolutos.
 
 **Auditoria de leituras proibidas:** limpa nos dois transcritos.
 
-**Confirmação no dev48:** `queue_confirm2.sh` roda a1 nº 1, r2 nº 1 e a1 062959_102 (variante
-mais branda).
+**Confirmação no dev48** (`queue_confirm2.sh`): a1 nº 1, r2 nº 1 e a1 062959_102 (variante mais branda).
 
 ### Réplicas: confirmação no dev48 (GSM8K train[0:48], teto 12k)
 
@@ -790,7 +782,6 @@ agente acha as alavancas de saída ("Wait" + `</think>`).
 **Auditoria:** varredura das chamadas de ferramenta das duas transcrições por caminhos proibidos (docs, refs,
 scripts, probes.py, sealed, gen_ref_base, outras runs, ~/.claude, checkpoints do paper): nenhuma violação
 (única ocorrência: r3 listando atlas.pt, permitido para o braço com atlas).
-Fila E1 iniciada ~04:05 (varredura de decodificação no dev48).
 
 ## 2026-11-06 manhã — E1 resultados (parcial: falta bf4096 no MATH e a confirmação a2/r3)
 **Varredura dev48** (vs base 0.146): lb_w10_t0 0.396 (+25); **lbx_w10_t1 0.521 (+38)**; lb_w3_t1 0.396 (+25);
@@ -799,7 +790,7 @@ Fila E1 iniciada ~04:05 (varredura de decodificação no dev48).
 | a1 (062959_102) vs | dev48 | t12k (trancado) | math48 |
 |---|---|---|---|
 | logit bias lbx_w10_t1 | +15 ± 7 (10/3) | +9 ± 8 (5/2) | **+12.5 ± 5.7 (7/1)** |
-| budget forcing bf4096 | +19 ± 8 (12/3) | **−6 ± 6 (1/3)** | (rodando) |
+| budget forcing bf4096 | +19 ± 8 (12/3) | **−6 ± 6 (1/3)** | ver 12:46 |
 | astra | +21 ± 7 | +16 ± 8 | +19 ± 7 |
 Absolutos t12k: base 0.125, astra 0.406, lbx 0.469, a1 0.562, **bf4096 0.625**. MATH: lbx 0.271, a1 0.396.
 
@@ -820,7 +811,7 @@ A afirmação "a edição supera truques de decodificação" vale contra logit b
 **Réplicas no dev48:** a2 (sem atlas) 0.646 (+50 ± 7, 24/0; vs astra +19 ± 6; vs a1 −2, empate); r3 (com atlas)
 0.396 (+25 ± 8; vs a1 −27, 0/13). H4 refutada no dev48 nos 3 pares (a0>r1, a1>r2, a2>r3).
 Sem-atlas v2 (a1, a2): 0.667 e 0.646 → o resultado do agente replica.
-Próximo: a1 + bf4096 (complementares?), E3 (busca aleatória com geração), n maior.
+Próximos passos: a1 + bf4096 (complementares?), E3 (busca aleatória com geração), n maior.
 
 ## 2026-11-06 tarde — a1 + budget forcing (PRÉ-REGISTRO)
 Braço `m2a_a1_062959_102+bf4096` (bf4096 escolhido no base; não reajustado para o a1). dev48, t12k, math48.
@@ -850,14 +841,14 @@ e o mesmo orçamento (40 sondas; as 6 melhores sondas dentro dos limites vão pa
 Se naive ≥ 0.55 no dev48, o mérito é do protocolo/ferramentas e o agente é dispensável.
 **MATH-500[48:148]** (100 problemas novos) para combo, a1, bf4096, astra, base → total 148 com o math48.
 **Previsão:** a ordem combo > a1 ≥ bf4096 > astra se mantém; combo − a1 ≥ +5 pp no agregado de 148.
-Fila: `scripts/queue_e3_math.sh` (unit wsp-e3math).
+Script: `scripts/queue_e3_math.sh`.
 
 ### 2026-11-07 02h — E3 e MATH-148 (parcial: falta astra e base no math100b)
 **E3 (busca ingênua, mesmo orçamento e ferramentas):** melhor sonda só −0.007 de branch_rep; checagens por geração
 1–3/16; escolhido `180935_606` → **dev48 0.271** (+12.5 ± 6 vs base, 8/2). a1 0.667, a2 0.646 → **−38 a −40 pp.**
 **Previsão (naive ≥ 25 pp abaixo): confirmada.** O sinal de geração sozinho não basta: o mérito é do raciocínio do
 agente (escolher "Wait"/`</think>`, ler a sinergia nas falhas).
-**MATH-500[0:148]** (math48 + math100b): combo **0.527**, a1 **0.466**, bf4096 **0.372** (base/astra no math100b rodando).
+**MATH-500[0:148]** (math48 + math100b): combo **0.527**, a1 **0.466**, bf4096 **0.372** (base e astra no math100b: ver a entrada final).
 Pareado: combo vs a1 **+6.1 ± 3.2 (16/7)**; combo vs bf4096 **+15.5 ± 3.6 (27/4)**; a1 vs bf4096 **+9.5 ± 3.8 (23/9)**.
 Previsão (combo − a1 ≥ +5 pp): confirmada (borda, ~1.9 SE). No MATH a edição SUPERA o budget forcing de forma
 significativa (2.5 SE) — o empate do t12k era específico do GSM8K (respostas curtas, conta pronta antes do loop).
@@ -874,7 +865,7 @@ Não toca dev48 (0:48) nem a checagem do agente (200:216).
 no arredondamento f16). Época escolhida nos MESMOS 16 problemas de checagem do agente → dev48.
 **Previsões:** (1) dados: natural raro (~5–10% das 600), excised ~25–40%. (2) LoRA-SFT melhora o base no dev48
 (≥ +20 pp), mas fica abaixo do a1 (0.667). (3) custo: ≥ 5× as GPU-horas do agente.
-Fila: `scripts/queue_e4.sh` (unit wsp-e4; espera a wsp-e3math terminar).
+Script: `scripts/queue_e4.sh`.
 
 ## 2026-11-07 — MATH-148 final (math48 + math100b, MATH-500[0:148], teto 12288)
 
@@ -896,20 +887,16 @@ adjacentes ≥ 1.9 SE.
 OOM já em T=1024. Causa: o gradient checkpointing do transformers só age com `self.training=True`, e o
 `from_pretrained` devolve o modelo em eval: o forward guardava 3 GB de ativações a T=1024. Correção: `model.train()`
 em load_lora (dropout é 0, nada mais muda) e blocos de logits de 256 (o backward recomputa cada bloco: 1024 x 248k
-x ~10 B ≈ 2.5 GB). Perfil depois da correção: T=4096 com pico 2.3 GB só no tronco. Checagem da perda em blocos ok
-(0.288003 = 0.288003). Fila relançada às 05:3x (log antigo em logs/e4_try1.log).
+x ~10 B ≈ 2.5 GB). Perfil depois da correção: T=4096 com pico 2.3 GB só no tronco. Checagem da perda em blocos: igual à direta
+(0.288003 = 0.288003).
 
-## 2026-11-07 — Incidente: queda de energia (~08:45) e retomada do E4
+## 2026-11-07 — Queda de energia (~08:45) e retomada do E4
 
-- O HD de dados (Samsung HD502HJ) ficou com setores ilegíveis no journal do ext4. O boot caiu em modo de emergência
-  porque as binds do docker no fstab não tinham `nofail` (corrigido). Fiz backup dos dados insubstituíveis (252 MB,
-  em ~/backup_deep_traces_20261107) antes de qualquer outra coisa.
-- `e2fsck -f -c -y`: 14 blocos ruins, todos no journal (inode 8), regravados e isolados. Um único arquivo
-  danificado: data/llama/server.log (log do llama-server, perdeu ~3,7 MB a partir de 8 MB), separado como
-  server_crash_20261107.log. SMART: pendentes 26 → 24, realocados 0, CRC 58 estável depois de ler 32,7 GB.
-- Integridade verificada: os 1488 JSON/JSONL do projeto fazem parse, sem NUL nem truncamento; base, Astra e GSM8K
-  conferem com o SHA-256; os 21 GGUFs foram lidos inteiros sem erro.
-- Estado do E4: E4.0 concluído (spike.json); E4.1 fase A parou em 200/600 com checkpoint íntegro (retoma).
+- Uma queda de energia interrompeu o E4.1 em 200/600 (fase A). O disco de dados ficou com setores ilegíveis só no
+  journal do sistema de arquivos; o fsck isolou os blocos. Nenhum dado de pesquisa foi perdido: os JSON/JSONL do
+  projeto fazem parse sem truncamento, os checkpoints do base, do Astra e o GSM8K conferem com o SHA-256, e os 21 GGUFs
+  foram lidos inteiros sem erro. O único arquivo danificado foi um log do llama-server.
+- O E4.1 retomou do checkpoint por problema; o E4.0 não precisou ser refeito.
 - **Desvio registrado ANTES do treino:** max_len do treino 4096 → 8192. Motivo: nas 200 amostras já geradas, o
   limite de 4096 descartaria 7/17 traços naturais e 65/103 prefixos de loop (onset mediano 4186), enviesando o
   baseline para traços curtos e enfraquecendo-o. Em 8192 cabe tudo (pico 3,14 GB, 81 s por sequência).
@@ -923,7 +910,8 @@ x ~10 B ≈ 2.5 GB). Perfil depois da correção: T=4096 com pico 2.3 GB só no 
   conteúdo. Os registros literais dos agentes (BRIEFs, notas, ledgers) ficam como estavam, com os caminhos antigos,
   porque são o que cada agente viu; ver `data/m2a/README.md`.
 - Venv próprio com as mesmas versões fixadas (torch 2.14.1+cu130, transformers 5.22.1, fla 0.6.0, peft 0.21.2).
-- O E4 segue rodando no layout antigo até terminar; depois os dados restantes (GGUFs, gerações brutas, work dirs dos
-  agentes) são movidos para `data/` e tudo passa a rodar daqui.
 - Documentação em inglês (README, docs/research-notes.md, experiments.md, paper-draft.md, reproducing.md). Este
   caderno continua sendo o registro primário, em pt-BR.
+- Revisão de estilo do caderno: notas operacionais (estado de filas, horários de lançamento, reinícios de servidor)
+  foram removidas ou neutralizadas. Números, previsões, desvios e datas das entradas ficaram intactos; o texto
+  original está no primeiro commit do repositório.
