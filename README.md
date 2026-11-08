@@ -9,6 +9,9 @@ edited 0.016% of the weights of Qwen3.5-0.8B and lifted MATH-500 from 7.9% to 48
 sustains repetition loops in the model's reasoning. Here we ask whether this is reproducible, whether it is more than a
 decoding trick, and what part of the agent's process matters, all on a single consumer GPU (GTX 1660 SUPER, 6 GB).
 
+> **New here?** Start with [notebooks/results.ipynb](notebooks/results.ipynb): a plain-language, visual tour of the
+> results, with hover tooltips explaining every number.
+
 > Status: **pre-paper research notes**. All numbers are small-n (32–148 problems per evaluation) and come from one
 > model and one defect. See [docs/research-notes.md](docs/research-notes.md).
 
@@ -87,6 +90,8 @@ What we have learned so far:
 ```
 src/wsp/            library: model I/O, probes, generation (llama-server client), evaluation runner, agent scorer API
 scripts/            experiments (poc*, m2a_*, ft_*), evaluation (gen_eval, math_eval, tool_eval), queues (queue_*.sh)
+notebooks/
+  results.ipynb       visual, plain-language tour of the results (plotly; static PNG copies for GitHub)
 docs/
   research-notes.md   findings, with evidence and caveats (start here)
   experiments.md      registry of every experiment: question, pre-registered prediction, outcome, data

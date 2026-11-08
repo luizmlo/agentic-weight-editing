@@ -97,6 +97,18 @@ WSP_MEM_MAX=12G scripts/run_bg.sh e4 scripts/queue_e4.sh
 #   -> ft_export.py (merge LoRA -> GGUF) per epoch -> pick the epoch on the 16 gen-check problems -> dev48
 ```
 
+## Results notebook
+
+```bash
+uv sync --group analysis                      # plotly, kaleido, jupyter kernel
+uv run jupyter nbconvert --to notebook --execute --inplace notebooks/results.ipynb
+```
+
+The notebook reads only `data/` (small versioned summaries). Each chart is saved twice: as an interactive plotly
+figure with tooltips (JupyterLab, VS Code) and as a static PNG (GitHub). The PNG needs kaleido and a Chrome or
+Chromium. With a snap-confined Chromium, the notebook points kaleido at `~/snaptmp`, because snaps can't read `/tmp`
+or hidden folders in `$HOME`. Without a browser, the PNGs are skipped and the interactive charts still work.
+
 ## Gotchas we hit (in order of pain)
 
 1. **HF gradient checkpointing only acts in train mode.** `from_pretrained` returns the model in eval mode, and LoRA
