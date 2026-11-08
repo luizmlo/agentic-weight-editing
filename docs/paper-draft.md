@@ -1,4 +1,4 @@
-# Agents as Weight-Space Programmers: Fixing a Small Model's Reasoning Loops with Four Rank-1 Edits
+# Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models
 
 **Authors:** [TBD] · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 8, 2026
 
@@ -100,7 +100,7 @@ Then we added the 6 test runs. **Two agents, working independently, converged on
 stronger: 67% and 65% on the practice set.**
 
 | agent | what the edit does (≤ 4 rank-1 edits) | practice set |
-|---|---|---|
+|------|----------------------------------------------|--------------|
 | a1 | weakens the urge to say "Wait" in 3 neurons (L17n1915, L18n881, L22n573) and strengthens the `</think>` signal in the last layer | **67%** (26 rescued, 1 lost) |
 | a2 | removes "Wait" from 3 neurons (two of them the same as a1's) and strengthens `</think>` in layer 22 | **65%** (24 rescued, 0 lost) |
 
@@ -146,17 +146,15 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 **Figure 4:** Share of problems solved by each method on the three problem sets (error bars: ±1 standard error).
 
 | method | practice set (48) | locked test (32) | harder math (148) |
-|---|---|---|---|
+|--------------------------------|-----------|-----------|-----------|
 | original model | 15% | 13% | 8% |
 | published edit (Astra) | 46% | 41% | 21% |
-| ban the word "Wait" (best of 3 settings) | 52% | 47% | 27%* |
+| ban the word "Wait" (best of 3 settings) | 52% | 47% | 27% (first 48) |
 | thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 37% |
 | automated search, no agent | 27% | — | — |
 | fine-tuning (LoRA) | 29% | — | — |
 | **agent's edit (a1)** | **67%** | 56% | **47%** |
 | **agent's edit + time limit** | **69%** | **63%** | **53%** |
-
-\* first 48 problems only.
 
 *Experiment 4*
 
@@ -254,7 +252,7 @@ levers: the word "Wait" and the `</think>` signal. Three pairs make this suggest
 ## What did it cost?
 
 | | practice set | GPU-hours (1660 SUPER) | agent usage |
-|---|---|---|---|
+|---------------------|---------|----------|-------------------------------|
 | **agent's edit (one run)** | **67%** | **1.3** | 5.4 M tokens read, 48 k written (≈ $5–7 at API prices) |
 | automated search | 27% | 1.6 | — |
 | tuning the decoding tricks | 48–52% | 4.4 | — |
@@ -340,7 +338,7 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 ## Status of this draft and plan to submission
 
 | | status |
-|---|---|
+|------------------------------------------------|----------------------------|
 | Reproduction and dissection of the published edit | done |
 | 6 agent runs (2 protocols, 3 with/without-atlas pairs) | done |
 | Decoding baselines, naive search, fine-tuning baseline | done |
@@ -354,8 +352,8 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 **Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
 main-track conference if the second defect works.
 
-**Alternative titles:** *Agentic Weight Editing as a Fine-Tuning Substitute for Specific Behavioral Defects*;
-*Generation in the Loop: What Makes Agentic Weight Editing Work*.
+**Alternative titles:** *Agents as Weight-Space Programmers: Fixing Reasoning Loops in Small Language Models*;
+*Generation in the Loop: What Makes Agentic Weight-Space Programming Work*.
 
 ## References (to verify and complete)
 

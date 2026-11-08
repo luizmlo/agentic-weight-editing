@@ -54,7 +54,7 @@ def anchor_h2(m):
 body = re.sub(r"<h2>(.*?)</h2>", anchor_h2, body)
 toc_html = "".join(f'<li><a href="#{s}">{html.escape(t)}</a></li>' for s, t in toc)
 
-page = f"""<title>Agents as Weight-Space Programmers</title>
+page = f"""<title>Agentic Weight-Space Programming</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
