@@ -42,3 +42,5 @@
 {"ts": "2026-11-06 20:28:12", "kind": "math_eval", "tag": "math100b", "split": "math500[48:148]", "arms": ["m2a_a1_062959_102+bf4096", "m2a_a1_062959_102", "bf4096", "astra", "base"], "max_new": 12288}
 {"ts": "2026-11-07 05:39:17", "kind": "ft_data", "split": "gsm8k_train[300:900]", "cap": 6144}
 {"ts": "2026-11-07 21:58:28", "kind": "ft_data", "split": "gsm8k_train[300:900]", "cap": 6144}
+{"ts": "2026-11-08 11:21:12", "kind": "gen_eval", "tag": "ftsel", "split": "gsm8k_train[200:216]", "arms": ["base", "ft_sft_ep1", "ft_sft_ep2", "ft_sft_ep3"], "max_new": 6144}
+{"ts": "2026-11-08 11:59:45", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "ft_sft_ep2"], "max_new": 12288}
