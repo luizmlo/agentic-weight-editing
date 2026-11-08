@@ -9,33 +9,6 @@ OUT.parent.mkdir(parents=True, exist_ok=True)
 
 src = (REPO / "docs/paper-draft.md").read_text()
 
-# figures from the executed notebook, in output order
-nb = json.load(open(REPO / "notebooks/results.ipynb"))
-pngs = [o["data"]["image/png"] for c in nb["cells"] for o in c.get("outputs", []) if "image/png" in o.get("data", {})]
-FIG = {  # notebook figure index (1-based) -> caption; inserted after the paragraph/table that starts with the anchor
-    1: "F1. Length of each of the 48 dev answers. Base model: 85% hit the 12,288-token cap without answering. Agent edit a1: 17%.",
-    2: "T1 (chart). Accuracy per arm on the three evaluation sets (±1 SE).",
-    3: "T2 (chart). Paired comparison: problems solved only by a1 (right) vs only by the competitor (left), same problems and seeds.",
-    4: "F2. Accuracy vs share of generations cut at the cap, all 20 arms evaluated on dev48 (r = −0.99).",
-    6: "F4. Goodhart: the probe score each agent's chosen edit achieved vs its real dev48 accuracy.",
-    7: "F5. Atlas vs no-atlas agents, paired by protocol.",
-    8: "F6. Agent search timelines: each generation check (16 problems) and the best so far.",
-    10: "F8. Cost to produce each fix (GPU-hours) and tokens generated per answer.",
-}
-ANCHOR = {  # figure -> unique text that ends the block after which the figure goes
-    1: "both slightly *raise* the loop rate (0.31 / 0.30 vs 0.23).",
-    2: "\\* MATH-500[0:48] only.",
-    3: "+15.5 ± 3.6 (27/4).",
-    4: "Excised traces teach the model what to write after a cut, not when to cut.",
-    6: "Probes are\nuseful as constraints, not as targets.",
-    7: "Three pairs make this suggestive, not conclusive.",
-    8: "The tools and the generation signal are not sufficient; the agent's choices are what\nmatter.",
-    10: "On MATH-148, a1 generates 29% fewer tokens than the base. This saving recurs on every query.",
-}
-for k, anchor in ANCHOR.items():
-    assert src.count(anchor) == 1, anchor
-    src = src.replace(anchor, anchor + f"\n\n@@FIG{k}@@\n")
-
 # protect math from markdown
 maths = []
 def keep(m):
@@ -46,19 +19,28 @@ src = re.sub(r"(?<![\\$])\$(?!\s)[^$\n]+?(?<!\s)\$", keep, src)
 md = mistune.create_markdown(plugins=["table", "strikethrough", "task_lists"], escape=False)
 body = md(src)
 body = re.sub(r"\$(?=\d)", '<span class="usd">$</span>', body)  # money, so KaTeX doesn't read it as math
-for i, m in enumerate(maths):
-    body = body.replace(f"@@MATH{i}@@", html.escape(m, quote=False))
-for k, cap in FIG.items():
-    img = f'<figure><img src="data:image/png;base64,{pngs[k-1]}" alt="{html.escape(cap)}" loading="lazy"><figcaption>{html.escape(cap)}</figcaption></figure>'
-    body = re.sub(rf"<p>@@FIG{k}@@</p>", img, body)
-assert "@@" not in body, re.findall(r"@@\w+@@", body)[:5]
-
+from latex2mathml.converter import convert as tex2mml
+for i, m in enumerate(maths):  # pre-rendered MathML: no JavaScript, so it also works in the PDF and in e-mail
+    block = m.startswith("$$")
+    body = body.replace(f"@@MATH{i}@@", tex2mml(m.strip("$").strip(), display="block" if block else "inline"))
+# figures: embed docs/figures/*.png and pair each image with its "**Figure N:**" caption paragraph
+def figure(m):
+    path, cap = m.group(1), m.group(2)
+    b64 = base64.b64encode((REPO / "docs" / path).read_bytes()).decode()
+    alt = html.escape(re.sub("<.*?>", "", cap))
+    return f'<figure><img src="data:image/png;base64,{b64}" alt="{alt}"><figcaption>{cap}</figcaption></figure>'
+body = re.sub(r'<p><img src="(figures/[\w-]+\.png)" alt="[^"]*" ?/?></p>\s*<p>(<strong>Figure \d+:</strong>.*?)</p>', figure, body, flags=re.S)
+assert "figures/" not in body, re.findall(r".{40}figures/.{40}", body)[:3]
+body = re.sub(r"<p><em>(Experiment \d+)</em></p>", r'<p class="exp">\1</p>', body)
+body = re.sub(r"<p><strong>TL;DR</strong></p>\s*(<ul>.*?</ul>)", r'<section class="tldr"><div class="exp">TL;DR</div>\1</section>', body, count=1, flags=re.S)
 # split off the H1 + status line into a header; wrap tables for horizontal scroll
 h1 = re.search(r"<h1>(.*?)</h1>", body, re.S)
 title = h1.group(1)
 body = body.replace(h1.group(0), "", 1)
-byline = re.search(r"<p><em>(Pre-paper draft.*?)</em></p>", body, re.S)
+byline = re.search(r"<p>(<strong>Authors:</strong>.*?)</p>", body, re.S)
 body = body.replace(byline.group(0), "", 1)
+note = re.search(r"<p><em>(Working draft.*?)</em></p>", body, re.S)
+body = body.replace(note.group(0), "", 1)
 body = re.sub(r"<table>", '<div class="tw"><table>', body).replace("</table>", "</table></div>")
 body = body.replace('<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled checked/>', '<li class="task done">')
 body = body.replace('<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>', '<li class="task">')
@@ -120,7 +102,18 @@ figure {{ margin: 24px 0; }}
 figure img {{ display: block; width: 100%; height: auto; background: var(--fig); border: 1px solid var(--rule); border-radius: 6px; }}
 figcaption {{ font: 400 13.5px/1.5 var(--sans); color: var(--ink-2); margin-top: 8px; }}
 hr {{ border: 0; border-top: 1px solid var(--rule); margin: 48px 0; }}
-.katex-display {{ overflow-x: auto; overflow-y: hidden; padding: 4px 0; }}
+.note {{ color: var(--ink-2); font: italic 400 14px/1.5 var(--serif); margin: 6px 0 0; }}
+.exp {{ break-after: avoid; font: 600 12px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 36px 0 -4px; }}
+.tldr {{ background: var(--tint); border-radius: 8px; padding: 18px 22px 8px; margin: 24px 0 8px; }}
+.tldr .exp {{ margin: 0 0 6px; }} .tldr ul {{ margin: 0; padding-left: 20px; }} .tldr li {{ margin-bottom: 10px; }}
+h2 + .exp {{ margin-top: 16px; }}
+@media print {{
+  nav {{ display: none !important; }} .wrap {{ display: block; max-width: none; padding: 0; }} main {{ max-width: none; }}
+  body {{ font-size: 10.5pt; background: #fff; color: #000; }} h2 {{ break-after: avoid; }} h3 {{ break-after: avoid; }}
+  figure, .tw, .tldr {{ break-inside: avoid; }} a {{ color: inherit; }} math[display="block"], .tw {{ overflow: visible; }}
+  @page {{ size: A4; margin: 18mm 16mm; }}
+}}
+math[display="block"] {{ overflow-x: auto; padding: 6px 0; font-size: 1.1em; }}
 :focus-visible {{ outline: 2px solid var(--accent); outline-offset: 2px; }}
 </style>
 <div class="wrap">
@@ -130,15 +123,11 @@ hr {{ border: 0; border-top: 1px solid var(--rule); margin: 48px 0; }}
       <div class="kicker">Pre-paper · working draft</div>
       <h1>{title}</h1>
       <p class="byline">{byline.group(1)}</p>
+      <p class="note">{note.group(1)}</p>
     </header>
     {body}
   </main>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
-<script>
-try {{ renderMathInElement(document.querySelector("main"), {{ delimiters: [{{left: "$$", right: "$$", display: true}}, {{left: "$", right: "$", display: false}}], throwOnError: false, output: "mathml", ignoredClasses: ["usd"] }}); }} catch (e) {{}}
-</script>
 """
 OUT.write_text(page)
-print(OUT, len(page) // 1024, "KB", "figs", len(FIG), "toc", len(toc))
+print(OUT, len(page) // 1024, "KB", "figs", body.count("<figure>"), "toc", len(toc))

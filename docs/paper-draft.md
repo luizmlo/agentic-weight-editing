@@ -1,434 +1,378 @@
-# Agents as Weight-Space Programmers: Repairing Reasoning Loops in a Small Language Model with Four Rank-1 Edits
+# Agents as Weight-Space Programmers: Fixing a Small Model's Reasoning Loops with Four Rank-1 Edits
 
-*Pre-paper draft, 2026-11-08. Authors and affiliation: [TBD], Universidade do Sul de Santa Catarina (Unisul).*
+**Authors:** [TBD] · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 8, 2026
 
-> **Status for readers of this draft.**
-> - **Done:** the core experiments. That covers the reference-edit analysis, 6 agent runs under two protocols, the
->   decoding baselines, the naive-search control, the LoRA fine-tuning baseline, out-of-distribution transfer, side
->   effects and cost.
-> - **Not yet:** the larger-n confirmation on GSM8K test, more agent replicates, and a second defect and model
->   (Section 10).
-> - **Where the numbers come from:** every number below traces to a summary file in `data/` and a dated entry in the
->   lab notebook (`docs/CADERNO.md`).
-> - **Figures:** the notebook `notebooks/results.ipynb` renders every figure referenced here, with plain-language
->   explanations.
-> - **Citations:** marked [verify] still need checking against the original papers.
+*Working draft for discussion with our advisor. The status of each result and the remaining work are listed at the
+end.*
 
-## Abstract
+**TL;DR**
 
-Recent work showed that a frontier model can improve a small language model by editing its weights directly, without
-gradients ("weight-space programming"). We study this in a controlled, low-budget setting:
-- **Model and defect:** Qwen3.5-0.8B, whose reasoning frequently collapses into repetition loops. 85% of its GSM8K
-  generations exhaust a 12k-token budget without an answer.
-- **Agents:** Claude Opus 5.5, limited to four rank-1 output-side edits and a budgeted scorer.
-- **Hardware:** a single consumer GPU.
+- **The defect.** Small "thinking" models often get stuck repeating themselves: *"Wait, let me check… Yes… Wait…"*.
+  Out of every 100 grade-school math problems, Qwen3.5-0.8B runs out of space on 85 before writing an answer.
+- **The fix.** We gave Claude agents the model's weights and a small testing budget, and asked them to fix this by
+  editing the weights directly, with no training. **With four tiny edits, the model went from solving 15% to 67% of
+  our practice problems, and from 8% to 47% on harder competition math it never saw during the search.**
+- **The comparison.** The edit beats the one published in *Sparks of Weight-Space Programming*, beats banning the word
+  "Wait", and beats fine-tuning. Fine-tuning reached 29%, using 13× more GPU time. The edited model also writes 60%
+  shorter answers, so it is cheaper to run.
+- **What mattered.** Two independent agents found the same fix. A script with the same tools and budget, but no agent
+  reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
+  them honest. Surprisingly, giving agents more interpretability data made their fixes worse.
 
-Two independent agents converge on the same interpretable mechanism. They suppress the "Wait" token through three MLP
-neurons and strengthen the `</think>` write in the last layer. This lifts GSM8K accuracy from 15% to 65–67% on a dev
-set and 13% to 56% on a locked test, and it transfers to MATH-500 (8% → 47%). The edit outperforms:
-- the published reference edit (21% on MATH-500);
-- tuned logit biasing;
-- LoRA fine-tuning on self-distilled, loop-excised traces (29% on dev, at 13× the GPU time).
-
-It also composes with budget forcing (53% on MATH-500). The edited model generates 60% fewer tokens per problem, and
-it shows no measurable damage on unrelated tasks.
-
-Controls isolate what matters:
-- **The agent's reasoning:** a naive search with the same tools, budget and feedback reaches only 27%.
-- **Generation in the loop:** every cheap proxy we tried (teacher-forced log-probabilities, branch-point probes,
-  n-gram loop detectors) was exploited by at least one optimizer, and only real generation checks prevented this.
-- **Less context, not more:** agents given a richer activation atlas found mechanistically interesting but behaviorally
-  weaker edits, in 3 of 3 paired replicates.
-
-## 1. Introduction
-
-Small open models are increasingly deployed with "thinking" modes, and they inherit a characteristic failure. The
-reasoning trace degenerates into loops ("Wait, … Yes, … Wait, …") and never reaches an answer. The standard remedies
-both have costs:
-- **Decoding constraints** (repetition penalties, budget forcing) are blunt: they cut productive reasoning too.
-- **Fine-tuning** needs data, compute and care. For a looping model, even generating the training data is expensive,
-  because most samples run to the token limit.
-
-Takehi et al. (2026) proposed an alternative. A frontier agent (GPT-6 "Astra") inspected the weights of Qwen3.5-0.8B
-and edited 0.016% of them, lifting MATH-500 from 7.9% to 48.1% by inverting a direction that sustains repetition. The
-result is striking, but it leaves three questions open:
-1. Is it reproducible, and how specific is the edit?
-2. Is it more than a decoding trick in disguise, and how does it compare with fine-tuning?
-3. What in the agent's process actually matters?
-
-We answer them on a single 6 GB consumer GPU, with Claude Opus 5.5 agents supervised by an automated research
-harness. We pre-registered predictions and kept a locked test split.
-
-**Contributions.**
-1. **Replication and dissection of the reference edit.** It is exactly rank-1 per layer, with one direction shared
-   across two layers. It reproduces behaviorally on our stack (Section 4).
-2. **A stronger, interpretable and replicated edit.**
-   - Two independent agents find the same two-part mechanism: a "Wait" suppressor plus a `</think>` lever.
-   - Ablations show the two parts are synergistic: the loop needs "a way back in and no way out".
-   - It transfers to harder, unseen problems (Section 5).
-3. **Baselines that rule out "just decoding" and "just fine-tuning".**
-   - The edit beats tuned logit biasing everywhere and beats budget forcing on long problems; the two compose.
-   - LoRA fine-tuning on self-distilled data lags by 37.5 pp at 13× the GPU time (Section 6).
-4. **Process findings for agentic model editing.**
-   - Cheap proxy objectives are Goodharted by strong optimizers, and generation in the loop is necessary.
-   - The agent's reasoning, not the toolkit, carries the result.
-   - More interpretability context (an activation atlas) can hurt (Section 7).
-5. **Cost accounting.** We report GPU-hours, agent tokens and serving cost for every arm, and compare token usage with
-   the original agent (Section 8).
-
-## 2. Background and related work
-
-**Weight-space programming.** Takehi et al. (2026) gave a frontier agent a CPU kernel over the weights of a small model
-and a budget of forward passes, and asked it to improve benchmark performance. In their run with the largest budget,
-the agent found a rank-1 inversion in two MLP layers. We use their published edit as our reference and their public
-logs for the cost comparison.
-
-**Model editing.** Rank-one and low-rank edits have been used to insert or modify factual associations: ROME (Meng et
-al., 2022) and MEMIT (Meng et al., 2023). Directional ablation removes behaviors such as refusal (Arditi et al., 2024).
-Our edit space, rank-1 updates to output projections along a chosen residual direction, belongs to this family. The
-difference is that the edit is chosen by an agent that reasons about behavior, not by a closed-form objective.
-
-**Activation steering.** Adding vectors to the residual stream at inference time steers behavior: ActAdd (Turner et
-al., 2023) and representation engineering (Zou et al., 2023). Steering acts at run time, whereas our edits are
-permanent weight changes, but the two share the residual-direction view.
-
-**Overthinking and loops in reasoning models.** Long chains of thought often contain redundant self-verification
-(Chen et al., 2024 [verify]). Interventions include suppressing reflection tokens such as "Wait" ("NoWait", Wang et
-al., 2025 [verify]) and budget forcing (Muennighoff et al., 2025), which caps or extends thinking at decode time. We
-use both as baselines.
-
-**Agents doing interpretability.** Automated interpretability agents run experiments on models to explain components,
-for example MAIA (Shaham et al., 2024). Our agents go one step further: they intervene on the weights to change
-behavior, with a budget and a fixed evaluation protocol.
-
-**Goodhart's law in optimization.** Optimizing a proxy diverges from the true objective under strong optimization
-pressure, as shown for reward models (Gao et al., 2023) and formalized as reward hacking (Skalse et al., 2022). We
-observe the same phenomenon with interpretability-derived proxies.
-
-## 3. Setup
-
-**Model and defect.**
-- **Model:** Qwen3.5-0.8B at the same revision as the reference work. It is a hybrid with 24 layers: full attention
-  in layers 3, 7, 11, 15, 19 and 23, Gated DeltaNet linear attention elsewhere, d = 1024, vocabulary 248k.
-- **Defect:** with thinking enabled and a 12,288-token cap, 85% of its GSM8K generations end without closing
-  `</think>`, and it solves 14.6% of our dev problems.
-- **Prompting does not help.** Anti-repetition system prompts perform the same as a placebo prompt, both in
-  teacher-forced measurements and in generation. In fact both slightly *raise* the loop rate (0.31 / 0.30 vs 0.23).
-
-**Edit space.** An agent may apply at most four edits. Each targets one output projection: MLP `down_proj`, linear
-attention `out_proj` or attention `o_proj`. Column $w_j$ is what unit $j$ writes into the residual stream. An edit
-chooses a unit direction $u$, a column set $S$ and a strength $\alpha$:
-$$
-w_j \leftarrow w_j - \alpha\,(u^\top w_j)\,u \quad (j\in S),\qquad |\alpha|\le 10.
-$$
-- Each edit is a rank-1 update that scales the selected units' write along $u$ by $(1-\alpha)$.
-- $\alpha = 1$ removes the write and $\alpha > 1$ inverts it. The reference edit has $\alpha = 6$. A negative
-  $\alpha$ amplifies it.
-- Embedding, unembedding and the final norm are off-limits, and so is scaling a whole tensor.
-
-**Scorer and protocols.** Agents never run the model directly. They submit edits to a budgeted scorer daemon.
-- **Protocol v1:** teacher-forced *branch-point probes*, 60 calls. Each probe compares the log-probability of a
-  repetitive vs a productive continuation after an identical prefix, on reasoning traces where the base model loops.
-- **Protocol v2:** 40 probe calls plus **6 generation checks**. A generation check runs the edited model on 16 held-out
-  GSM8K training problems with a 6k cap and returns accuracy and the share of generations cut at the cap. We
-  introduced it after observing Goodhart under v1 (Section 7).
-
-**Agents.**
-- Each run is one Claude Opus 5.5 subagent with a written brief, its own directory and budget, and roughly 2 hours of
-  wall-clock time.
-- Agents may not read the reference artifacts, the project documentation, other runs, the sealed holdout or the
-  scorer's source. Compliance is on the honor system; the supervisor audits every tool call afterwards and found no
-  violations.
-- *Atlas* arms additionally receive an activation atlas: residual-stream statistics on looping vs productive
-  continuations under several system prompts.
-
-**Supervisor protocol.**
-1. Each agent submits a ranked list of candidates.
-2. The supervisor confirms the top candidate on a separate dev set: dev48, GSM8K train[0:48], 12k cap.
-3. A single pre-registered candidate per arm is evaluated once on the locked test: t12k, GSM8K test[0:32], opened only
-   through an explicit unlock that is logged.
-4. Out-of-distribution transfer is measured on MATH-500[0:148]. The agents' search used GSM8K only.
-
-**Generation and statistics.**
-- **Engine:** llama.cpp server on f16 GGUFs.
-- **Sampling:** the model's recommended thinking settings (temperature 0.6, top-p 0.95, top-k 20), with a presence
-  penalty of 1.5 applied over the whole output. Every problem uses the same seed in every arm.
-- **Comparisons:** paired by problem. We report the mean difference ± one standard error and the counts of rescues
-  (wrong → right) and losses (right → wrong).
-- **Uncertainty:** with n = 32–48, one SE is about 7–10 pp; on MATH-148 it is about 3–4 pp.
-
-## 4. Dissecting the reference edit
-
-**The edit.**
-- Only `layers.15.mlp.down_proj` and `layers.19.mlp.down_proj` differ from the base model.
-- Each difference is rank-1 to 0.99999 of its energy: the update above with $\alpha = 6$ on 64 columns, with
-  reconstruction error below 0.3%.
-- The selected columns' component along $u$ becomes −5× the original: the edit inverts and amplifies that component;
-  it does not ablate it.
-- The two layers' directions have |cos| = 0.85, essentially one "repetition direction", but are written by almost
-  disjoint neurons (3 of 64 shared).
-- Rebuilding the edit from the base model and the recovered parameters reproduces the published checkpoint to bf16
-  rounding.
-
-**It reproduces behaviorally** (Table 1).
-- dev48: 0.146 → 0.458, a paired gain of +31 ± 7 pp (16 rescues, 1 loss).
-- MATH-148: 0.081 → 0.209.
-- Our absolute MATH numbers are lower than the paper's (7.9% → 48.1%) because our cap is 12k rather than 32k and the
-  sampler differs. All arms share our sampler.
-
-**Proxies and behavior come apart.**
-- A mean-difference direction beat the reference edit on teacher-forced Δlog-prob over loop tokens, yet gained only
-  +6 pp in generation against +28 pp for the reference edit.
-- Branch-point probes rank edits correctly *within* the reference edit's family: Spearman 0.89 with accuracy over 10
-  variants. They fail across families (Section 7).
-
-This dissociation motivated the v2 scorer.
-
-## 5. Agents find a stronger edit
-
-**Protocol v1 (probes only).** Agent a0, without the atlas, found a token-level anti-copy edit that inverts the "Yes",
-"?" and "Wait" unembedding directions in two attention output projections. It matches the reference edit on the locked
-test: 0.438 vs 0.406, with 10 rescues and 0 losses against the base.
-
-**Protocol v2 (generation in the loop).** Two independent no-atlas agents converged on the same two-part mechanism:
-
-| run | mechanism (≤ 4 rank-1 edits) | gen-check | dev48 |
-|---|---|---|---|
-| a1 (`062959_102`) | amplify the "Wait"-unembedding component of 3 MLP neurons (L17n1915, L18n881, L22n573; α = −6) + amplify the `</think>` write of the L23 MLP (α = −0.8) | 8/16 | **0.667** (+52 ± 8; 26/1) |
-| a2 (`015739_897`) | remove the "Wait" direction from L16n998, L17n1915, L22n573 (α = 10) + a `</think>` boost on L22 linear attention (α = −4) | 11/16 | 0.646 (+50 ± 7; 24/0) |
-
-- **Convergence.** Both agents found L17n1915 and L22n573 independently, using a weights-only logit lens over MLP
-  columns.
-- **Mechanism: a way back in, and no way out.** Ablations in generation (n = 16) show the two parts are synergistic:
-
-  | edit | accuracy | cut at cap |
-  |---|---|---|
-  | `</think>` boost alone | 0.19 | 0.81 |
-  | "Wait" suppression alone | 0.44–0.50 | 0.50 |
-  | both | 0.69 | 0.06–0.13 |
-
-  With re-checking suppressed, closing the thought becomes the model's natural alternative. The effect is superadditive
-  on probes as well.
-- **Transfer.** a1 scores 0.562 on the locked test (+44 ± 10 vs base, +16 ± 8 vs the reference edit) and 0.466 on
-  MATH-148 (+25.7 ± 4.3 vs the reference edit; 44 rescues, 6 losses).
-- **Thinking becomes useful again.** At 0.667, a1 exceeds the base model's GSM8K score *without* thinking (about 0.48).
-
-## 6. Baselines and controls
-
-**Table 1. Accuracy, thinking on, 12,288-token cap.**
-
-| arm | GSM8K dev48 | GSM8K locked test (32) | MATH-500[0:148] |
-|---|---|---|---|
-| base | 0.146 | 0.125 | 0.081 |
-| reference edit (Astra) | 0.458 | 0.406 | 0.209 |
-| logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.271* |
-| budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.372 |
-| naive search, same tools and budget (E3) | 0.271 | — | — |
-| LoRA-SFT on self-distilled traces (E4) | 0.292 | — | — |
-| **agent edit a1** | **0.667** | 0.562 | **0.466** |
-| **a1 + budget forcing** | **0.688** | **0.625** | **0.527** |
-
-\* MATH-500[0:48] only.
-
-**Decoding baselines (E1).** We tuned three logit-bias settings (penalizing "Wait" variants and boosting `</think>`)
-and two budget-forcing caps on dev48. That is 48 problems against the agents' 16, which favors the baselines.
-- **Logit bias:** a1 beats the best setting everywhere: +15 ± 7 pp on dev48, +9 ± 8 on the locked test, +12.5 ± 5.7 on
-  MATH-48. The edit is context-conditional: it acts through neurons that fire in loop contexts, not through a global
-  logit shift.
-- **Budget forcing:** a strong baseline on GSM8K, and the best on the locked test (a1 −6 ± 6), because the answer is
-  often computed before the loop begins. On the longer MATH problems the edit wins clearly: +9.5 ± 3.8 on MATH-148,
-  with 23 rescues and 9 losses.
-- **The two compose.** a1 + budget forcing beats a1 by +6.1 ± 3.2 on MATH-148 (16/7) and budget forcing alone by
-  +15.5 ± 3.6 (27/4).
-- **MATH-148 ordering:** combo > a1 > budget forcing > reference edit > base, with every adjacent gap ≥ 1.9 SE.
-
-**Naive search (E3).** A script sampled edits from the toolkit the winning agents used:
-- logit-lens directions of the 300 most frequent output tokens;
-- columns chosen by alignment;
-- layers 12–23;
-- α uniform in [−10, 10].
-
-It had the same budget, 40 probes plus 6 generation checks. Its best generation check was 3/16 and it reached 0.271 on
-dev48, 38–40 pp below a1 and a2. The tools and the generation signal are not sufficient; the agent's choices are what
-matter.
-
-**Fine-tuning (E4).**
-- **Data:** we self-distilled training data from GSM8K train[300:900], disjoint from all evaluation and search sets.
-  Of 600 samples (6k cap), 57 closed `</think>` without looping and were correct ("natural"). For 279 hard loops, we
-  cut the trace at the loop onset, injected `</think>` and let the base model answer; 118 of those answers were
-  correct ("excised").
-- **Training:** LoRA (r = 16, all linear layers, lr 1e-4, 3 epochs) on these 175 sequences, with the loss on the
-  completion only.
-- **Selection:** we picked the epoch on the agents' 16 generation-check problems (epoch 2, 7/16).
-- **Result:** 0.292 on dev48. That is +14.6 ± 5.9 over the base, but **−37.5 ± 7.1 vs a1, with 0 rescues and 18
-  losses**, and below every decoding baseline.
-- **Why:** the LoRA barely changes the looping behavior; the cut rate goes from 0.85 to 0.71, against 0.17 for a1.
-  Excised traces teach the model what to write after a cut, not when to cut.
-- **Scope:** this is one reasonable SFT configuration. More samples per problem, more data or RL might do better, at a
-  higher cost (Section 8).
-
-## 7. Process findings
-
-**Cheap proxies are Goodharted.** Every inexpensive objective we tried was eventually exploited:
-1. **Teacher-forced Δlog-prob:** the mean-difference direction (Section 4).
-2. **Branch-point probes:** agent r1 (v1, with atlas) found an edit with a branch score of −2.03, 20× the reference
-   edit's, that *hurts* accuracy (0.042 vs base 0.146). The edit blocks *literal* copying, and the model routes around
-   it with non-literal loops (alternating values, growing sequences). A sealed holdout in the same probe format did not
-   catch this.
-3. **8-gram loop detector:** an edit with 0% literal loops at the cap still had 77% of its generations cut.
-4. **Dose:** r1's directions at Astra-scale probe values gave −2 / +6 pp, while the reference edit at the same probe
-   value gave +31 pp.
-
-Generation checks caught the problem immediately. Under v2, both agents' best-probe candidates scored 0/16 in
-generation; for example, negating the "Wait" neurons produced "wait wait wait…". The agents dropped those candidates.
-We conclude that an agent's objective must come from generation, even a cheap one (16 problems, 6k cap). Probes are
-useful as constraints, not as targets.
-
-**More interpretability context hurt.**
-
-| pair | with atlas | without atlas |
-|---|---|---|
-| v1 | r1: 0.042 | a0: 0.375 |
-| v2 | r2: 0.354 | a1: 0.667 |
-| v2 | r3: 0.396 | a2: 0.646 |
-
-- **With the atlas,** agents pursued internal-state mechanisms, such as a re-checking state in the DeltaNet layers
-  L10–L15 and "loop heads". These reduce literal copying and look clean on probes, but they do not close the
-  reasoning.
-- **Without it,** agents read the weights through the vocabulary and found output levers ("Wait", `</think>`) that
-  control the behavior directly.
-- **Hypothesis:** richer interpretability context biases agents toward mechanistically interesting targets rather than
-  behaviorally causal ones. Three pairs make this suggestive, not conclusive.
-
-## 8. Cost
-
-| method | dev48 | GPU-hours (GTX 1660 SUPER) | agent tokens (context / output) | API-equivalent |
-|---|---|---|---|---|
-| agent edit (a1) | 0.667 | 1.31 | 5.39 M / 47.5 k | $5–7 |
-| naive search | 0.271 | 1.63 | — | — |
-| decoding baselines (tuning 5 settings) | 0.48–0.52 | 4.41 | — | — |
-| LoRA-SFT (E4) | 0.292 | 17.1 | — | — |
-
-- **GPU time.** The agent edit used 13× less GPU time than fine-tuning, or 8× counting the scorer's full residency on
-  the GPU. Fine-tuning cost is dominated by data generation (10.2 of 17.1 GPU-hours), which the defect itself makes
-  expensive.
-- **Dollars.** At API list prices, the agent's tokens cost $5–7. The agent is also cheaper in dollars whenever a GPU-hour
-  of this class costs more than about $0.32–0.44. The runs actually used a subscription, so the dollar figures are a
-  reference only.
-- **Serving cost.** Tokens generated per problem on dev48:
-
-  | | tokens per problem | vs base |
-  |---|---|---|
-  | base | 11,714 | — |
-  | LoRA | 9,915 | −15% |
-  | budget forcing | 8,073 | −31% |
-  | **a1** | **4,729** | **−60%** |
-
-  On MATH-148, a1 generates 29% fewer tokens than the base. This saving recurs on every query.
-- **Comparison with the original agent.** The published Astra run used 86.8 M input and 2.9 M output tokens over 20.3
-  hours (from its public logs). a1 used 16× fewer input tokens, 60× fewer output tokens and about a tenth of the
-  wall-clock time. The harnesses and hardware differ, so this is not a controlled comparison.
-
-## 9. Specificity
-
-Without thinking, no edit (reference, a0, a1) significantly changes GSM8K accuracy (n = 200) or tool-calling accuracy
-(n = 300): all differences are within about 2 SE. The effect exists only with thinking on, consistent with the
-mechanism. With thinking on, the reference edit slightly improves "irrelevance" tool-calling tasks, where the correct
-action is to call no tool (16/16 vs 11/16). A plausible reading is that fewer reasoning tokens leave less room for
-hallucinated calls.
-
-## 10. Limitations and next steps
-
-- **Small n.** Dev and test numbers carry SEs of 7–10 pp; MATH-148 is the strongest evidence. *Next:* GSM8K test with
-  n ≥ 200 for base, reference, budget forcing, a1 and the combo.
-- **One model, one defect.** "Wait" is a lexical marker, which may make loops unusually easy to target. *Next:* a
-  defect without a lexical marker (tool-call format errors, premature stopping, invalid JSON) and a second small
-  reasoning model.
-- **Replicates.** The winning protocol has 2 replicates and the atlas comparison has 3 pairs. *Next:* two more of each.
-- **One fine-tuning recipe.** A stronger SFT or RL baseline could narrow the gap. Our cost comparison shows each such
-  step costs more GPU time.
-- **Protocol advantage.** Agents saw 16 generation-check problems that the reference agent did not have. E3 controls
-  for the signal, and E4 shows that seeing far more data does not help a standard method.
-- **Sampler.** llama.cpp vs vLLM, and 12k vs 32k caps, shift absolute numbers relative to the reference work.
-  Comparisons between arms share the sampler.
-- **Honor system.** Agent restrictions were audited, not enforced.
-- **Grading.** MATH answers are extracted from `\boxed{}` and compared numerically. *Next:* re-grade the saved
-  generations with a symbolic checker.
-
-## 11. Conclusion
-
-An agent with a budgeted scorer, generation checks and four rank-1 edits repaired a specific behavioral defect in a
-small reasoning model better than decoding constraints and a standard fine-tuning recipe. It used an order of magnitude
-less compute than the fine-tuning recipe and produced a model that is cheaper to serve. The resulting edit is
-interpretable, it replicates across independent agents, and it transfers to harder problems. The process lessons may
-matter as much as the edit itself:
-- optimize against behavior, not proxies;
-- the agent's judgment carries the result;
-- more interpretability context is not automatically better.
+Everything ran on one gaming graphics card (GTX 1660 SUPER, 6 GB).
 
 ---
 
-## Figures and tables
+A small model that loops is usually treated as a training problem: collect examples of good reasoning and fine-tune.
+That works, but for a looping model even collecting the examples is expensive, because most of its attempts never end.
 
-All figures are produced by `notebooks/results.ipynb`.
+Recently, Takehi et al. showed something different. A frontier model (GPT-6 "Astra") read the raw weights of this same
+model and edited 0.016% of them, and MATH-500 accuracy went from 7.9% to 48.1%. We wanted to know three things:
 
-| # | content | notebook section |
+1. **Does it reproduce,** on a cheap setup, and what exactly did that edit do?
+2. **Is it more than a trick?** Could a decoding setting or ordinary fine-tuning do the same?
+3. **What in the agent's process actually matters?**
+
+## The defect: a model that can't stop thinking
+
+Qwen3.5-0.8B "thinks" in a scratchpad before answering and ends its thinking with a special `</think>` marker. With a
+budget of 12,288 tokens (about 9,000 words), most of its answers never get there.
+
+![Figure 1](figures/defect.png)
+
+**Figure 1:** Length of each of 48 practice answers. Most of the original model's answers hit the space limit; with the
+agent's edit, most finish early.
+
+Prompting does not help. A system prompt telling the model not to repeat itself does no better than a meaningless
+placebo prompt. Both actually *raise* the loop rate slightly (31% and 30%, against 23% without a prompt). The loop
+lives in the model's habits, not in its instructions.
+
+## The rules of the game
+
+**Setup**
+- **Model:** Qwen3.5-0.8B, the same revision as the original study.
+- **Task:** grade-school math (GSM8K) with thinking on and a 12,288-token budget.
+- **Edits allowed:** at most 4. Each edit picks a group of "neurons" (columns of an output matrix in one layer), a
+  direction in the model's internal space, and a strength. It then changes only how strongly those neurons write
+  along that direction:
+
+  $$w_j \leftarrow w_j - \alpha\,(u^\top w_j)\,u, \qquad |\alpha| \le 10.$$
+
+  In words: $\alpha = 1$ deletes that part of what the neurons write, $\alpha > 1$ flips it, and $\alpha < 0$ makes it
+  stronger. Each edit is a rank-1 change.
+- **Agents get:** the weights, a written brief, and a scorer with a fixed budget. The scorer offers 40 "quick scores",
+  which measure how much the model *wants* to repeat itself without letting it write. It also offers 6 "test runs",
+  in which the edited model really solves 16 practice problems.
+- **Not allowed:** training, running the model outside the scorer, editing the vocabulary layers, or reading the
+  original study's edit, our notes, other agents' work or the scorer's code. These rules were not enforced in software:
+  we audited every action in every agent's log afterwards and found no violations.
+- **Agents:** Claude Opus 5.5, one per run, about 2 hours each. Some runs also got an **atlas**: a detailed scan of the
+  model's internal activity while looping.
+- **How we judge:**
+  - **Practice set:** we confirm each agent's pick on 48 other problems (dev48).
+  - **Locked test:** we run one pre-registered pick per method, once, on 32 sealed test problems.
+  - **Harder math:** we check transfer to 148 competition problems (MATH-500) that no search ever touched.
+- **Fair comparisons:** every method answers the same problems with the same random seeds, so we can count, problem
+  by problem, who solved what.
+
+## Can an agent fix the loops by editing weights?
+
+*Experiment 1*
+
+### Can we reproduce the published edit?
+
+The published edit changes only two matrices, in layers 15 and 19. We recovered it exactly. Each change is a single
+rank-1 edit with strength 6: it takes the part of 64 neurons' output that lies along one "repetition direction" and
+flips it to −5× its original size. Both layers use almost the same direction, written by different neurons.
+
+**On our setup, the published edit lifts the practice set from 15% to 46%, and harder math from 8% to 21%.** Our
+absolute MATH numbers are lower than the paper's because our token budget is 12k rather than 32k. All methods here share
+our budget.
+
+*Experiment 2*
+
+### Can a Claude agent find its own fix?
+
+Our first agent (a0) only had quick scores. It found a different edit, one that discourages the model from copying
+"Yes", "?" and "Wait" in two attention layers, and it matched the published edit on the locked test (44% vs 41%).
+
+Then we added the 6 test runs. **Two agents, working independently, converged on the same fix, and it is much
+stronger: 67% and 65% on the practice set.**
+
+| agent | what the edit does (≤ 4 rank-1 edits) | practice set |
 |---|---|---|
-| T1 | Main results (Table 1 above) | §2 |
-| T2 | Paired rescues/losses vs each competitor | §3 |
-| T3 | Agent runs: protocol, atlas, calls, mechanism, gen-check, dev48 | to build from `data/m2a/runs/*/final.json` |
-| F1 | Response-length distribution, base vs a1 (the defect) | §1 |
-| F2 | Accuracy vs cut rate across all 20 evaluated arms (r = −0.99) | §4 |
-| F3 | Accuracy by MATH difficulty level | §5 |
-| F4 | Proxy score vs real accuracy for each agent's pick (Goodhart) | §6 |
-| F5 | Atlas vs no-atlas pairs | §7 |
-| F6 | Agent search timelines (generation checks over time) | §8 |
-| F7 | LoRA training loss and epoch selection | §9 |
-| F8 | Cost: GPU-hours to produce, tokens per answer; token usage vs Astra | §10 |
-| F9 | Side effects on unrelated tasks | §11 |
-| — | Edit anatomy diagram (neurons, layers, logit-lens readouts) | to draw |
+| a1 | weakens the urge to say "Wait" in 3 neurons (L17n1915, L18n881, L22n573) and strengthens the `</think>` signal in the last layer | **67%** (26 rescued, 1 lost) |
+| a2 | removes "Wait" from 3 neurons (two of them the same as a1's) and strengthens `</think>` in layer 22 | **65%** (24 rescued, 0 lost) |
 
-## Plan to submission
+**How does it do it:** both agents read the weights "through the vocabulary". For each neuron, they asked which word
+it pushes the model to say. That is how they found neurons that push "Wait". Their notes show they learned from their
+failures. Negating those neurons outright made the model say "wait wait wait…" and solve nothing, which told them the
+neurons work in the opposite way from what they had first assumed.
 
-**Working title.** Title 1 above is the safe choice. Alternatives:
-- *Agentic Weight Editing as a Fine-Tuning Substitute for Specific Behavioral Defects*. E4 supports it, but only for
-  one SFT recipe.
-- *Generation in the Loop: What Makes Agentic Weight Editing Work*, a process-centric framing.
+The two parts only work together. Our ablations, each a test run on 16 problems:
+- the `</think>` boost alone solves 19%;
+- the "Wait" suppression alone solves 44–50%;
+- both together solve 69%, and almost nothing runs out of space.
 
-**Remaining work, in order of value:**
-- [ ] Larger-n locked test (GSM8K test ≥ 200) for the main arms. About 1 GPU-hour per arm.
-- [ ] Two more replicates of the winning protocol and of the atlas arm.
-- [ ] A second defect without a lexical marker. This is the step that would justify a main-track submission.
-- [ ] A second model, if compute allows.
-- [ ] Re-grade MATH with a symbolic checker.
-- [ ] Table T3 and the edit-anatomy figure.
-- [ ] Verify every citation; write related work in full.
-- [ ] Release: edit parameters (`data/m2a/runs/*/done/*.pt`), raw generations, agent briefs and transcripts (after
-      review).
-- [x] Core experiments E1–E4, MATH-148 transfer, side effects, cost accounting, results notebook.
+A loop needs a way back in ("Wait, let me check") and no way out. The edit closes the first and opens the second.
 
-**Venue.**
-- arXiv preprint first.
-- Then an interpretability or LLM-agents workshop with the current results.
-- A main-track venue if the second defect works.
+![Figure 2](figures/why.png)
+
+**Figure 2:** Across all 20 models and methods we tested, the fewer answers that run out of space, the more are correct
+(r = −0.99).
+
+*Experiment 3*
+
+### Does it hold on problems it never saw?
+
+**On the locked test, the agent's edit solves 56% (the original: 13%; the published edit: 41%). On harder competition
+math, which was never used in any search, it solves 47%, against 21% for the published edit.** Compared problem by
+problem with the published edit on MATH, it rescued 44 problems and lost 6.
+
+![Figure 3](figures/difficulty.png)
+
+**Figure 3:** The agent's edit (alone or with a thinking time limit) stays ahead at every difficulty level.
+
+With the edit, thinking pays off again: at 67%, the edited model beats the original model with thinking switched off
+(about 48%).
+
+## Is it just a trick?
+
+A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, tuned on
+48 problems (three times what the agents saw), which favors them.
+
+![Figure 4](figures/headline.png)
+
+**Figure 4:** Share of problems solved by each method on the three problem sets (error bars: ±1 standard error).
+
+| method | practice set (48) | locked test (32) | harder math (148) |
+|---|---|---|---|
+| original model | 15% | 13% | 8% |
+| published edit (Astra) | 46% | 41% | 21% |
+| ban the word "Wait" (best of 3 settings) | 52% | 47% | 27%* |
+| thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 37% |
+| automated search, no agent | 27% | — | — |
+| fine-tuning (LoRA) | 29% | — | — |
+| **agent's edit (a1)** | **67%** | 56% | **47%** |
+| **agent's edit + time limit** | **69%** | **63%** | **53%** |
+
+\* first 48 problems only.
+
+*Experiment 4*
+
+### Could a decoding setting do the same?
+
+**Setup**
+- **Word ban:** while the model writes, make "Wait" (and variants) nearly impossible and nudge `</think>`. No weight
+  change.
+- **Time limit ("budget forcing"):** after N tokens of thinking, cut it off and force an answer. No weight change.
+
+**Banning the word is worse everywhere.** The edit is not a global ban. It works through neurons that fire *when the
+model is looping*, so it leaves "Wait" alone when it is useful.
+
+**The time limit is a strong baseline on grade-school math and is the best on the locked test (63% vs 56%; 32 problems
+are too few to separate them).** On longer problems it hurts, because it also cuts off reasoning that was going
+somewhere. On harder math the edit wins by 9.5 points, rescuing 23 problems and losing 9. **Together they do best of
+all (53%)**: the edit breaks loops from the inside, and the time limit catches what is left.
+
+![Figure 5](figures/paired.png)
+
+**Figure 5:** Problem by problem, same problems and seeds: problems only the agent's edit solved (right) against
+problems only the other method solved (left).
+
+*Experiment 5*
+
+### Could ordinary fine-tuning do the same?
+
+**Setup**
+- **Data:** the model's own reasoning on 600 *other* GSM8K problems. Only 57 attempts finished cleanly and correctly.
+  For 279 that looped, we cut the reasoning where the loop began, closed the thinking and let the model answer: 118
+  answers were correct. That gives 175 training examples.
+- **Training:** LoRA, a standard and cheap fine-tuning method (rank 16, all layers, 3 rounds). We picked the best round
+  on the same 16 problems the agents used for test runs.
+
+**Fine-tuning reached 29% on the practice set. That is better than the original (15%), but problem by problem the
+agent's edit rescued 18 problems that fine-tuning missed and lost 0.** The fine-tuned model still ran out of space on
+71% of its answers (the edit: 17%). It learned what to write *after* a cut, not *when* to stop. This is one standard
+recipe. More data or reinforcement learning might do better, but each costs more GPU time (see below).
+
+*Experiment 6*
+
+### Is the agent needed, or just its tools?
+
+We wrote a script that tries edits from the same toolbox the winning agents used: "word directions" for the 300 most
+common words, the neurons most aligned with them, random strengths. It had the same budget, 40 quick scores plus 6
+test runs on the most promising candidates.
+
+**The script's best test run solved 3 of 16, and its pick reached 27% on the practice set, 40 points below the agents.**
+The tools and the feedback are not enough. What matters is what the agent chooses to try.
+
+![Figure 6](figures/search.png)
+
+**Figure 6:** Each searcher's 6 test runs (16 problems each). The two agents without the atlas reached 11 of 16; the
+agents with the atlas 5–7; the script 3.
+
+## What we learned about the process
+
+*Experiment 7*
+
+### Can a cheap score stand in for real tests?
+
+Real test runs are slow (16 problems take about 10 minutes on our GPU), so the obvious move is a fast proxy. Every proxy
+we tried broke once a strong optimizer pushed on it:
+- an edit that scored better than the published edit on the model's "surprise" at loop words gained 6 points in real
+  use, against 28 for the published edit;
+- an edit with no word-for-word loops at all still ran out of space 77% of the time;
+- **agent r1 drove the quick score to 20× the published edit's value, and its edit solved 4% of problems, worse than
+  doing nothing.** It blocked word-for-word copying, and the model simply looped in other ways (alternating values,
+  growing lists).
+
+![Figure 7](figures/goodhart.png)
+
+**Figure 7:** The quick score each agent's chosen edit achieved (left = looked better) against how often it actually
+solved problems.
+
+Six real test runs fixed this. Under that protocol, both agents' best-scoring early ideas solved 0 of 16 in a test run,
+and the agents dropped them. **Our takeaway: an agent's objective must come from real behavior, even a small sample of
+it. Proxies are useful as guard rails, not as goals.**
+
+*Experiment 8*
+
+### Does more interpretability data help?
+
+We ran three pairs of agents with identical instructions; in each pair, one agent also had the atlas.
+
+**In all three pairs, the agent without the atlas found the better edit (38% vs 4%; 67% vs 35%; 65% vs 40%).** With
+the atlas, agents chased intricate internal mechanisms, such as a "re-checking" state in the middle layers and
+"loop heads". These looked convincing in the data but did not stop the loops. Without it, agents went for the direct
+levers: the word "Wait" and the `</think>` signal. Three pairs make this suggestive, not proven.
+
+![Figure 8](figures/atlas.png)
+
+**Figure 8:** Each pair of agents had identical instructions; the agent without the atlas did better every time.
+
+## What did it cost?
+
+| | practice set | GPU-hours (1660 SUPER) | agent usage |
+|---|---|---|---|
+| **agent's edit (one run)** | **67%** | **1.3** | 5.4 M tokens read, 48 k written (≈ $5–7 at API prices) |
+| automated search | 27% | 1.6 | — |
+| tuning the decoding tricks | 48–52% | 4.4 | — |
+| fine-tuning (LoRA) | 29% | 17.1 | — |
+
+- **One-time cost.** One agent run took about 2 hours, which is roughly the electricity of a microwave running for 15
+  minutes. Fine-tuning took 17 GPU-hours, 10 of them just to generate training data from a model that wastes most of its
+  attempts.
+- **Running cost.** The edited model's answers are **60% shorter** on the practice set and 29% shorter on harder math.
+  This saving repeats on every question it answers.
+- **Compared with the original agent.** The published run used 86.8 M tokens read and 2.9 M written over 20 hours
+  (from its public logs). Our agent used 16× and 60× less, in about 2 hours. The tools differ, so this is not a
+  controlled comparison.
+- **The fine print.** We ran on a subscription, so the dollar figures are list-price estimates. On a very cheap rented
+  GPU, fine-tuning could cost a few dollars less than the agent's usage, for less than half the improvement.
+
+![Figure 9](figures/cost.png)
+
+**Figure 9:** Left: GPU-hours to produce each fix. Right: average answer length, which sets the cost of every future
+answer.
+
+## Did the surgery break anything?
+
+With thinking switched off, none of the edits changes math accuracy (200 problems) or tool-calling accuracy (300
+requests) beyond about two standard errors. The edit acts where the loops happen, during thinking, and leaves other
+skills alone. One side effect is positive: with thinking on, the published edit gets better at declining irrelevant
+tool calls (16 of 16 vs 11 of 16), probably because shorter thinking leaves less room to hallucinate a call.
+
+![Figure 10](figures/side-effects.png)
+
+**Figure 10:** Accuracy on unrelated tasks for the original model, the published edit and the agent's edit.
+
+## Background and related work
+
+**Weight-space programming.** Takehi et al. (2026) showed that frontier models can read and write neural network
+weights directly, including the loop-fixing edit we reproduce. We use their edit as our reference and their public logs
+for the cost comparison.
+
+**Model editing.** Rank-one edits have been used to change facts stored in a model (ROME, Meng et al., 2022; MEMIT,
+Meng et al., 2023). Deleting a single direction can remove a behavior such as refusal (Arditi et al., 2024). Our edits
+belong to this family. The difference is that an agent chooses them by reasoning about behavior, instead of a fixed
+formula.
+
+**Steering.** Adding a vector to the model's internal state at run time can steer its behavior (ActAdd, Turner et al.,
+2023; representation engineering, Zou et al., 2023). Our edits are permanent instead of applied at run time.
+
+**Overthinking.** Reasoning models often re-check more than they need to (Chen et al., 2024 [verify]). Known fixes
+include suppressing words like "Wait" (Wang et al., 2025 [verify]) and capping thinking time (Muennighoff et al., 2025).
+We use both as baselines.
+
+**Agents and Goodhart.** Agents already run interpretability experiments (MAIA, Shaham et al., 2024). Strong
+optimizers are known to game proxy objectives (Gao et al., 2023; Skalse et al., 2022). We see the same with proxies
+derived from interpretability.
+
+## What can't we claim yet, and what comes next?
+
+- **Small samples:** most numbers rest on 32–148 problems (±7–10 points on the smaller sets). **Next:** a locked test
+  with at least 200 problems for the main methods.
+- **One model, one defect:** "Wait" is an easy word to target. **Next:** a defect with no obvious keyword (broken
+  tool-call formats, stopping too early, invalid JSON) and a second model.
+- **Few replicates:** the winning protocol has 2 agents, and the atlas comparison has 3 pairs. **Next:** two more of
+  each.
+- **One fine-tuning recipe:** a stronger recipe could close part of the gap, at a higher cost.
+- **Honor system:** the agents' restrictions were audited, not enforced.
+- **Different sampler from the original study:** absolute numbers shift, but every comparison here uses the same
+  settings.
+
+**If the second defect works, the claim becomes general: for specific behavioral defects, an agent editing weights can
+be a faster, cheaper and more interpretable alternative to fine-tuning.**
+
+## Data, code and logs
+
+Everything is in the project repository:
+- **Lab notebook:** dated, with predictions written before results (`docs/CADERNO.md`).
+- **Records of every agent run:** briefs, notes, scorer logs, and every edit submitted (267).
+- **Figures:** the notebook that draws every chart here (`notebooks/results.ipynb`).
+- **Cost:** a detailed study (`docs/cost.md`).
+
+The agents' full transcripts and the raw generations (~210 MB) will be released after review.
+
+---
+
+## Status of this draft and plan to submission
+
+| | status |
+|---|---|
+| Reproduction and dissection of the published edit | done |
+| 6 agent runs (2 protocols, 3 with/without-atlas pairs) | done |
+| Decoding baselines, naive search, fine-tuning baseline | done |
+| Transfer to harder math, side effects, cost | done |
+| Locked test with ≥ 200 problems | to do (about 1 GPU-hour per method) |
+| More replicates (2 + 2 agents) | to do |
+| Second defect without a keyword; second model | to do (needed for a main-track venue) |
+| Re-grade MATH with a symbolic checker | to do |
+| Verify citations; edit-anatomy diagram | to do |
+
+**Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
+main-track conference if the second defect works.
+
+**Alternative titles:** *Agentic Weight Editing as a Fine-Tuning Substitute for Specific Behavioral Defects*;
+*Generation in the Loop: What Makes Agentic Weight Editing Work*.
 
 ## References (to verify and complete)
 
-- Takehi, R., Teoh, J., Zhang, M., Khattab, O. (2026). *Sparks of Weight-Space Programming.* MIT CSAIL blog.
+- Takehi, R., Teoh, J., Zhang, M., Khattab, O. (2026). *Sparks of Weight-Space Programming.* MIT CSAIL.
   <https://rikiyat.github.io/blog/weight-space-programming/>. Logs: <https://github.com/RikiyaT/lm_understand-logs>.
-- Meng, K., Bau, D., Andonian, A., Belinkov, Y. (2022). Locating and Editing Factual Associations in GPT (ROME). NeurIPS.
-- Meng, K., Sen Sharma, A., Andonian, A., Belinkov, Y., Bau, D. (2023). Mass-Editing Memory in a Transformer (MEMIT). ICLR.
+- Meng, K., Bau, D., Andonian, A., Belinkov, Y. (2022). Locating and Editing Factual Associations in GPT. NeurIPS.
+- Meng, K., Sen Sharma, A., Andonian, A., Belinkov, Y., Bau, D. (2023). Mass-Editing Memory in a Transformer. ICLR.
 - Arditi, A., et al. (2024). Refusal in Language Models Is Mediated by a Single Direction. NeurIPS.
-- Turner, A. M., et al. (2023). Steering Language Models With Activation Engineering (ActAdd). arXiv.
+- Turner, A. M., et al. (2023). Steering Language Models With Activation Engineering. arXiv.
 - Zou, A., et al. (2023). Representation Engineering: A Top-Down Approach to AI Transparency. arXiv.
 - Muennighoff, N., et al. (2025). s1: Simple Test-Time Scaling. arXiv.
 - Chen, X., et al. (2024). Do NOT Think That Much for 2+3=? On the Overthinking of o1-like LLMs. arXiv. [verify]
 - Wang, C., et al. (2025). Wait, We Don't Need to "Wait"! Removing Thinking Tokens Improves Reasoning Efficiency. arXiv. [verify]
-- Shaham, T. R., et al. (2024). A Multimodal Automated Interpretability Agent (MAIA). ICML.
+- Shaham, T. R., et al. (2024). A Multimodal Automated Interpretability Agent. ICML.
 - Gao, L., Schulman, J., Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML.
 - Skalse, J., et al. (2022). Defining and Characterizing Reward Hacking. NeurIPS.
 - Hu, E. J., et al. (2022). LoRA: Low-Rank Adaptation of Large Language Models. ICLR.
-- Cobbe, K., et al. (2021). Training Verifiers to Solve Math Word Problems (GSM8K). arXiv.
+- Cobbe, K., et al. (2021). Training Verifiers to Solve Math Word Problems. arXiv.
 - Hendrycks, D., et al. (2021). Measuring Mathematical Problem Solving With the MATH Dataset. NeurIPS.
-- Lightman, H., et al. (2023). Let's Verify Step by Step (MATH-500 subset). arXiv.
-- Qwen Team (2026). Qwen3.5 model card. [verify]
+- Lightman, H., et al. (2023). Let's Verify Step by Step. arXiv.

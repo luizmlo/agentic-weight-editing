@@ -34,6 +34,7 @@ build-backend = "uv_build"
 analysis = [
     "ipykernel>=7.4.0",
     "kaleido>=1.5.0",
+    "latex2mathml>=3.81.1",
     "nbconvert>=7.17.2",
     "nbformat>=5.11.1",
     "plotly>=7.1.0",

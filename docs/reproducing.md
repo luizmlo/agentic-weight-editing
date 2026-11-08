@@ -109,6 +109,14 @@ figure with tooltips (JupyterLab, VS Code) and as a static PNG (GitHub). The PNG
 Chromium. With a snap-confined Chromium, the notebook points kaleido at `~/snaptmp`, because snaps can't read `/tmp`
 or hidden folders in `$HOME`. Without a browser, the PNGs are skipped and the interactive charts still work.
 
+## Pre-paper (HTML and PDF)
+
+```bash
+uv run python scripts/export_figures.py                  # notebook charts -> docs/figures/*.png (used by paper-draft.md)
+uv run python scripts/build_prepaper_page.py out.html    # self-contained page: figures embedded, math as MathML
+chromium --headless --no-pdf-header-footer --print-to-pdf=docs/pre-paper.pdf file://$PWD/out.html
+```
+
 ## Gotchas we hit (in order of pain)
 
 1. **HF gradient checkpointing only acts in train mode.** `from_pretrained` returns the model in eval mode, and LoRA
