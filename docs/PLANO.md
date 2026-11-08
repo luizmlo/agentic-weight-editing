@@ -118,7 +118,7 @@ src/wsp/probes.py        sondas de ramificação (pares casados), onset de loop
 src/wsp/m2a.py           API do agente: validate / apply / submit / submit_gen / history / atlas
 src/wsp/evalrun.py       avaliação por geração com checkpoint por item, braços de decodificação, ledger, pareamento
 src/wsp/llama_gen.py     cliente do llama-server (amostragem THINK35, budget forcing)
-src/wsp/gen.py           extração e checagem de respostas (\boxed{})
+src/wsp/gen.py           geração em HF, extração de respostas (\boxed{}), estatísticas de loop
 src/wsp/toolbench.py     benchmark sintético de tool calling
 scripts/poc*.py          PoC 1–8 (diff do Astra, numérica, teacher forcing, geração, fatorial)
 scripts/m2a_*.py         atlas, avaliador (daemon), busca aleatória, busca ingênua, dose
