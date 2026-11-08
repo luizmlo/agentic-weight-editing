@@ -1190,3 +1190,43 @@ Por que este defeito:
   `data/ifeval/`, `src/wsp/ifeval/`, `sealed/`, refs).
 - **Desvio:** o agente parou cedo "por tempo de relógio" (o prompt dizia ~2 h; ele usou 45 min). O orçamento não foi
   esgotado.
+
+## 2026-11-08 (19h45) — Confirmação IFEval dev152: nenhum braço supera o base
+
+IFEval dev[48:200], 152 prompts, sem raciocínio, teto 2048, pareado contra o base (mesmas sementes):
+
+| braço | prompt strict | inst strict | cortes | tokens | vs base (ganho ± EP; resgates/perdas) |
+|---|---|---|---|---|---|
+| base | **0,553** | 0,686 | 0,099 | 483 | — |
+| b1 (EOS ×2,5 em 64 neurônios de L23) | 0,520 | 0,657 | 0,066 | 383 | −3,3 ± 4,1 (17/22) |
+| a1 (edição dos loops) | 0,513 | 0,669 | 0,118 | 478 | −3,9 ± 4,3 (18/24) |
+| P (system prompt) | 0,487 | 0,653 | 0,184 | 571 | −6,6 ± 4,2 (16/26) |
+
+**Leitura:**
+- A previsão principal **falhou**. Eu previa +5 a +9 pp para o agente; ele ficou em −3,3 ± 4,1. Aconteceu o cenário
+  "nenhum ganho" (25% na previsão).
+- O ganho do b1 e da a1 na checagem (0,625 contra 0,500) era ruído. A previsão de que a a1 não muda o IFEval
+  acabou certa.
+- O b1 reduziu os cortes (0,066 contra 0,099) e encurtou as respostas, mas perdeu em cumprimento.
+- O system prompt **piorou**: mais cortes (0,18). No paper 1, prompts também pioraram os loops.
+
+**Por que a busca não teve sinal: ruído de amostragem por prompt.**
+- Duas amostras do **próprio base** com sementes diferentes discordam em **35 de 152 prompts (23%)**. Com a mesma
+  semente, discordam em 3 de 48.
+- Qualquer edição muda a trajetória da amostragem, então cada checagem de 48 prompts vira ~10–16 prompts por puro
+  acaso. Foi o que o b1 relatou.
+- O EP pareado de uma checagem de 48 prompts é ~8–9 pp, maior que qualquer efeito plausível de 4 edições num defeito
+  difuso.
+- No defeito dos loops, os efeitos eram de +40 a +50 pp, e uma checagem de 16 problemas bastava. **O alcance do
+  protocolo depende da razão sinal/ruído da checagem**, não só da capacidade do agente.
+
+**Próximos passos (para decidir com o Luiz; nada disto roda antes do t200):**
+1. **b2, réplica com checagem mais forte** (desvio declarado e motivado pela medida acima): a checagem passa de 48
+   prompts do IFEval para 128 prompts sintéticos (`wsp.ifsynth`, mesmas famílias de instrução, sementes fixas). Isso
+   dá EP pareado ~4–5 pp. Mantém as 40 sondas e 6 checagens. Pergunta: com sinal melhor, o agente acha uma edição
+   que se confirma no dev152? Se não achar, o limite é o defeito (difuso demais para ≤ 4 edições rank-1), não o
+   ruído.
+2. **Baseline de fine-tuning** (`scripts/queue_if_ft.sh`, ~3 GPU-h): diz se o defeito é corrigível nesta escala. Se
+   o SFT ganhar e as edições não, é um limite honesto do método, a reportar no paper.
+3. O teste trancado do IFEval só abre se algum braço passar na confirmação. Hoje nenhum passou, então ele continua
+   fechado.
