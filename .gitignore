@@ -10,6 +10,8 @@ __pycache__/
 !/data/*.json
 !/data/ledger.jsonl
 !/data/e1_picks.txt
+!/data/poc7_dirs.pt
+!/data/poc8_cells.pt
 !/data/ft/
 /data/ft/*
 !/data/ft/*.json
@@ -31,6 +33,7 @@ __pycache__/
 !/data/m2a/runs/*/gen_ledger.jsonl
 !/data/m2a/runs/*/log.jsonl
 !/data/m2a/runs/*/pick.txt
+!/data/m2a/runs/*/done/
 !/data/gguf/
 /data/gguf/*
 !/data/gguf/*.json

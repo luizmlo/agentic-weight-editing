@@ -49,7 +49,9 @@ uv run python scripts/poc7_build.py astra_check                              # r
 uv run python scripts/poc7_build.py m2a_a1_062959_102 data/m2a/runs/a1/done/062959_102.pt   # an agent's candidate -> data/gguf/
 ```
 
-The edit parameters (`runs/<run>/done/<id>.pt`) are not versioned yet; they will be released with the paper.
+Every candidate an agent submitted is versioned as `data/m2a/runs/<run>/done/<id>.pt` (267 files); the PoC edit
+families are in `data/poc7_dirs.pt` and `data/poc8_cells.pt`. The Astra edit itself is recovered from the public
+checkpoints by `scripts/poc1_diff.py` (writes `data/edit_dirs.pt`).
 
 ## Evaluation
 
