@@ -1,0 +1,609 @@
+{
+ "tag": "ftsel",
+ "N": 16,
+ "max_new": 6144,
+ "np": 16,
+ "penalty_last_n": 6656,
+ "split": "train[200:216]",
+ "thinking": true,
+ "engine": "llama-server",
+ "sampling": {
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "presence_penalty": 1.5,
+  "min_p": 0.0
+ },
+ "arms": {
+  "base": {
+   "model": "wsp-base",
+   "summary": {
+    "secs_this_run": 583,
+    "tok_s_this_run": 164.1,
+    "acc": 0.0625,
+    "cut": 0.9375,
+    "closed_think": 0.0625,
+    "loop_at_cap": 0.75,
+    "mean_tokens": 5973.5625,
+    "median_tokens_finished": 3417
+   },
+   "rows": [
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.291015625,
+     "tail": " earning.\n            *   So, earnings over 3 days.\n            *   Answer = 195.\n\n    *   **Wait, let's look at the wording one more time.**\n        *   \"Sells an 8-inch portrait for $5...\"\n        *"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.572265625,
+     "tail": "    *   \"Over the next three weeks, he eats the same number of apples as the total of the first two weeks.\" -> 2 apples.\n    *   \"Over the next two weeks, he eats 3 apples a day.\" -> 6 apples.\n    *  "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3359375,
+     "tail": "e calculation.*\n    *   $200 \\times 1.2 = 240$.\n\n    *   *Is there any other way to read \"20% more money\"?*\n    *   Could it mean \"She puts 20% more money than she had\"?\n    *   No, that would be \"She"
+    },
+    {
+     "n_tokens": 3417,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.10546875,
+     "tail": "\\text{Cost per candy bar} = \\frac{\\text{Total Cost of candy bars}}{\\text{Number of candy bars}} $$\n$$ \\text{Cost per candy bar} = \\frac{\\$20}{5} = \\$4 $$\n\nTherefore, each candy bar cost $4.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "rage?\"\n                            *   Wait, \"each one\" might refer to \"each one\" in \"how many pages is each one on average?\"\n                            *   Wait, \"each one\" might refer to \"each one\""
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                           *   Yes.\n                                                                        *   So, if 15 guests bring a plus one, that means 15 guests are in the \"plus"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s negative, it would make sense.\n        *   But here it is 5.\n        *   Wait, maybe the question implies the population *lost* lions because the death rate was higher?\n        *   If the birth rate"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.791015625,
+     "tail": "twice a month\" means \"twice a month *in a year*\"?*\n        *   No.\n\n    *   *Wait, is it possible \"twice a month\" means \"twice a month *at a time*\"?*\n        *   No.\n\n    *   *Wait, is it possible \"tw"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "bank?\"*\n    *   Is it possible the question implies the $400 was the *only* thing he spent *on* the car?\n    *   Yes.\n    *   *Wait, what if the question implies the $400 was the *only* thing he spent"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "l girls = 28.\n    *   Then total boys = 60.\n    *   Then total students = 88.\n    *   Then total girls = 28.\n    *   Then total boys = 60.\n    *   Then total students = 88.\n    *   Then total girls = "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.626953125,
+     "tail": "s 1.5 = 54$.\n                                *   Wait, is it possible that it means \"increases by 50%\" means \"adds 50% of the *current* amount\"?\n                                *   Wait, if I have 16."
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.900390625,
+     "tail": "900.\n    *   Wait, 1300 + 300 + 300 = 1900.\n    *   Wait, 1300 + 300 + 300 = 1900.\n    *   Wait, 1300 + 300 + 300 = 1900.\n    *   Wait, 1300 + 300 + 300 = 1900.\n    *   Wait, 1300 + 300 + 300 = 1900.\n"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "he takes 2 weeks off, he effectively has 5 days a week - 2 weeks = 3 days a week?\n            *   Wait, if he takes 2 weeks off, he effectively has 5 days a week - 2 weeks = 3 days a week?\n           "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.37109375,
+     "tail": "eds while Ted planted 20 fewer tomato seeds than Mike.\"\n    *   This reads as:\n    *   Event: Afternoon.\n    *   Action 1: Mike planted 60 seeds.\n    *   Action 2: Ted planted 20 fewer seeds than Mike"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.841796875,
+     "tail": "he 2nd anniversary.\n        *   Let $u$ be the time elapsed from the 4th anniversary.\n        *   If they celebrate the 4th anniversary in 6 months (from now), then $u = 6$ months.\n        *   If they"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": ".\n\n    *   Wait, let me check if the question meant \"How many children are there *more* than adults?\"\n    *   Let's assume the question is asking for the difference.\n\n    *   Wait, let me check if the"
+    }
+   ]
+  },
+  "ft_sft_ep1": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/ft_sft_ep1.gguf",
+   "summary": {
+    "secs_this_run": 604,
+    "tok_s_this_run": 133.7,
+    "acc": 0.25,
+    "cut": 0.75,
+    "closed_think": 0.3125,
+    "loop_at_cap": 0.75,
+    "mean_tokens": 5045.8125,
+    "median_tokens_finished": 1639
+   },
+   "rows": [
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.7421875,
+     "tail": "rns $65 *per day*, and asks for the total over 3 days?\n            *   Yes.\n            *   Is it possible the question implies she earns $65 *per day*, and asks for the total over 3 days?\n           "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " eats 1 apple a day for 2 weeks, then he eats 2 apples in 3 weeks.\n                                                                                            *   Wait, if he eats 2 apples in 3 weeks,"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "k, she has 200 + 0.2(200).\n        Wait, if she puts 20% of the *new* amount into the bank, she has 200 + 0.2(200).\n        Wait, if she puts 20% of the *new* amount into the bank, she has 200 + 0.2(2"
+    },
+    {
+     "n_tokens": 918,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.02734375,
+     "tail": "e had $\\$28 - \\$8 = \\$20$ left over.\n\n3.  **Calculate the cost per candy bar:**\n    He bought 5 candy bars out of the remaining $\\$20$.\n    $$\\$20 \\div 5 = \\$4$$\n\nEach candy bar cost $\\$4$.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ges is $12 * 80 = 960$.\n    Wait, if each book was 1 inch thick, then the total pages would be $12 * 80 = 960$.\n    But the question says \"80 pages is one inch thick\".\n    So 1 inch = 80 pages.\n    If"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ates needed.\n        - If the answer is 3, it's a very simple answer.\n        - If the answer is 18, it involves calculating the number of guests who bring plates.\n        - Let's check if there's any"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "repeatedly.\n    Wait, I am seeing the same expression $148 - 48 = 100$ repeatedly.\n    \n    Wait, I am seeing the same expression $148 - 48 = 100$ repeatedly.\n    Wait, I am seeing the same expression"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "means \"two times a month\" (as in, two events)?\n    Yes.\n    What if \"twice a month\" means \"two times a month\" (as in, two events)?\n    Yes.\n    What if \"twice a month\" means \"two times a month\" (as in"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "mes 2 = 600$.\n    Wait, $25 \\times 12 \\times 2 = 600$.\n    Wait, $25 \\times 12 \\times 2 = 600$.\n    Wait, $25 \\times 12 \\times 2 = 600$.\n    Wait, $25 \\times 12 \\times 2 = 600$.\n    Wait, $25 \\times 1"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.95703125,
+     "tail": "                                                                                                                      *   Wait, maybe the prompt is: \"Each van carries 28 students, 60 of which are boys"
+    },
+    {
+     "n_tokens": 1307,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.142578125,
+     "tail": "\\times 1.5 = 36$\n*   Third year: $36 \\times 1.5 = 54$\n\nAlternatively, you can multiply the initial amount by 1.5 three times:\n$$16 \\times 1.5 \\times 1.5 \\times 1.5 = 16 \\times 3.375 = 54$$\n\n\\boxed{54}"
+    },
+    {
+     "n_tokens": 3141,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.087890625,
+     "tail": "e the difference in annual expenses**\nSubtract the total for Last Year from the total for This Year.\nDifference = $22,800 - $15,600 = **$7,200**\n\nJessica pays $7,200 more than last year.\n\n\\boxed{7200}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "rs per day.\n                *   Let's try to calculate the number of hours needed to reach 20.\n                *   Let's assume the average speed is related to the years.\n                *   Let's try"
+    },
+    {
+     "n_tokens": 1639,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.134765625,
+     "tail": "eeds.**\nAdd the seeds from both days together:\n$$50 \\text{ (Morning)} + 100 \\text{ (Morning Ted)} + 60 \\text{ (Afternoon Mike)} + 40 \\text{ (Afternoon Ted)}$$\n$$50 + 100 + 60 + 40 = 250$$\n\n\\boxed{250}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "nniversary happens in 6 months from now, then the current date is 5 years ago? No.\nIf the 4th anniversary happens in 6 months from now, then the current date is 5 years ago? No.\nIf the 4th anniversary"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "re* than adults?\"\n    *   Maybe \"How many children are there *more* than adults?\"\n    *   Maybe \"How many children are there *more* than adults?\"\n    *   Maybe \"How many children are there *more* than"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.1875,
+    "se": 0.10077822185373188,
+    "rescues": 3,
+    "losses": 0
+   }
+  },
+  "ft_sft_ep2": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/ft_sft_ep2.gguf",
+   "summary": {
+    "secs_this_run": 539,
+    "tok_s_this_run": 145.3,
+    "acc": 0.4375,
+    "cut": 0.5625,
+    "closed_think": 0.5,
+    "loop_at_cap": 0.4375,
+    "mean_tokens": 4897.875,
+    "median_tokens_finished": 3994
+   },
+   "rows": [
+    {
+     "n_tokens": 5714,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": "ys} $$\n$$ \\text{Total Earnings} = 65 \\times 3 = 195 $$\n\nAlternatively, you can add the daily earnings for both sizes:\n$$ 3 \\times 5 + 5 \\times 10 = 15 + 50 = 65 $$\n$$ 65 \\times 3 = 195 $$\n\n\\boxed{195}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.720703125,
+     "tail": "                                        *   \"Over the next two weeks, he eats 3 apples a day.\"\n                                                                                                *   \"Over"
+    },
+    {
+     "n_tokens": 1002,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.10546875,
+     "tail": "times 0.20 = 40$$\nSo, she adds $\\$40$.\n\n**Step 3: Calculate the total amount.**\nAdd the added amount to the original amount.\n$$200 + 40 = 240$$\n\nSusie will have $\\$240$ in her piggy bank.\n\n\\boxed{240}"
+    },
+    {
+     "n_tokens": 1278,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.046875,
+     "tail": " sides to isolate the term with $c$:\n$$ 5c = \\$28 - \\$8 $$\n$$ 5c = \\$20 $$\n\nDivide by 5 to solve for $c$:\n$$ c = \\frac{\\$20}{5} $$\n$$ c = \\$4 $$\n\n**Conclusion:**\nEach candy bar costs $\\$4$.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 4511,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.544921875,
+     "tail": "ooks:\n$$ \\text{Average Pages per Book} = \\frac{\\text{Total Pages}}{\\text{Number of Books}} $$\n$$ \\text{Average Pages per Book} = \\frac{960}{6} $$\n$$ \\text{Average Pages per Book} = 160 $$\n\n\\boxed{160}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ng a plus one.\n        *   If I have 30 people. 15 bring a plus one.\n        *   If I have 30 people. 15 bring a plus one.\n        *   If I have 30 people. 15 bring a plus one.\n        *   If I have 3"
+    },
+    {
+     "n_tokens": 4052,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.099609375,
+     "tail": "al number of lions ($L_{initial}$).**\nSubtract 48 from both sides of the equation:\n$$L_{initial} = 148 - 48$$\n$$L_{initial} = 100$$\n\nTherefore, there were 100 lions in Londolozi at first.\n\n\\boxed{100}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.837890625,
+     "tail": "*every* month.\n        Wait, if he volunteers 3 hours *twice* a month, he volunteers 3 hours *every* month.\n        Wait, if he volunteers 3 hours *twice* a month, he volunteers 3 hours *every* month."
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.30078125,
+     "tail": " No.\n\n    *   Is there any ambiguity about \"dollars\"?\n    *   No.\n\n    *   Is there any ambiguity about \"2 years\"?\n    *   No.\n\n    *   Is there any ambiguity about \"every month\"?\n    *   No.\n\n    *  "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "      *   Wait, if a van carries 28 students, and 60 are boys, that's impossible.\n                                                    *   Wait, maybe it means \"Each van carries 28 students [and] 60 of"
+    },
+    {
+     "n_tokens": 2519,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.171875,
+     "tail": "ence where each term is multiplied by 1.5:\n*   Year 1: $16 \\times 1.5 = 24$\n*   Year 2: $24 \\times 1.5 = 36$\n*   Year 3: $36 \\times 1.5 = 54$\n\nSo, Bobby has **54** toy cars in three years.\n\n\\boxed{54}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.22265625,
+     "tail": "1 + 0.50) = 200 \\times 1.50 = 300 \\text{ dollars} $$\n*   **Car Insurance:** Triples (multiplies by 3).\n    $$ \\text{Insurance}_{\\text{new}} = 100 \\times 3 = 300 \\text{ dollars} $$\n\nNow, find the total"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                *   So he works 50 days a year?\n                                *   Wait, if he works every day Mon-Fri, he works 5 days a week.\n                                *   So he works 50 days"
+    },
+    {
+     "n_tokens": 3994,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.306640625,
+     "tail": "g direct summation:\n$$ \\text{Morning} = 50 (\\text{Mike}) + 100 (\\text{Ted}) = 150 $$\n$$ \\text{Afternoon} = 60 (\\text{Mike}) + 40 (\\text{Ted}) = 100 $$\n$$ \\text{Total} = 150 + 100 = 250 $$\n\n\\boxed{250}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "y celebrate the 4th anniversary, they have reached the 4th milestone.\n    *   If they celebrate the 2nd anniversary, they have reached the 2nd milestone.\n    *   So, $E_4$ is the time elapsed to reach"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "n are there than adults?\"\n            *   Maybe it's a typo for \"How many children are there [in total]?\"\n            *   Let's try to interpret the question as \"How many children are there [in total]"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.375,
+    "se": 0.125,
+    "rescues": 6,
+    "losses": 0
+   }
+  },
+  "ft_sft_ep3": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/ft_sft_ep3.gguf",
+   "summary": {
+    "secs_this_run": 578,
+    "tok_s_this_run": 149.4,
+    "acc": 0.1875,
+    "cut": 0.8125,
+    "closed_think": 0.25,
+    "loop_at_cap": 0.75,
+    "mean_tokens": 5401.375,
+    "median_tokens_finished": 1276
+   },
+   "rows": [
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 3 days?\n    *   Yes.\n    *   Is it possible the question is asking for the total earnings in 3 days?\n    *   Yes.\n    *   Is it possible the question is asking for the total earnings in 3 days?\n    *"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": ".\n                                                                                                            *   Wait, the prompt says \"Over the next three weeks, he eats the same number of apples as"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "money, she adds 20% of the *current* balance.\n    Wait, if she adds 20% of the *total* money, she adds 20% of the *current* balance.\n    Wait, if she adds 20% of the *total* money, she adds 20% of the"
+    },
+    {
+     "n_tokens": 942,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.005859375,
+     "tail": "ars, and the total cost for those was $20. To find the price per candy bar, divide the total cost by the number of candy bars.\n$$\\$20 / 5 \\text{ candy bars} = \\$4$$\n\nEach candy bar cost $4.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.642578125,
+     "tail": " what if the question meant \"Jack has 6 books, each 12 inches thick\"?\n                            *   If the books were 12 inches thick, the stack would be 72 inches thick.\n                           "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.794921875,
+     "tail": "Do the 15 people bring a plate?\n                                                                                *   If they bring a plate, then I need 3 plates for the courses + 15 plates for the plus"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "umber of lions at first is $N_0$.\n        Wait, if the initial population was only lions, then cubs are not present.\n        If the initial population was only lions, then the number of lions at first"
+    },
+    {
+     "n_tokens": 4332,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.171875,
+     "tail": " To find the total hours, we multiply the total number of events by the duration of each event.\n$$ \\text{Total hours} = 24 \\text{ events} \\times 3 \\text{ hours/event} = 72 \\text{ hours} $$\n\n\\boxed{72}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "e spent $\\$400$ *after* the 2-year period? No, \"last week\" is past tense.\n            *   Does it mean he spent $\\$400$ *before* the 2-year period? No, \"puts $25... every month\".\n        *   Okay, let"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "ys.\nThis implies the van has 28 boys and 60 girls? No, 28 < 60.\n\nLet's try to assume the van carries 28 *students* (total), and 60 are boys.\nThis implies the van has 28 boys and 60 girls? No, 28 < 60."
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "6 \\times 1.5 = 54$.\n        \n        Wait, $36 \\times 1.5 = 54$.\n        \n        Wait, $36 \\times 1.5 = 54$.\n        \n        Wait, $36 \\times 1.5 = 54$.\n        \n        Wait, $36 \\times 1.5 = 54$.\n"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.359375,
+     "tail": "300 (sum of monthlys), and the current year's total spent is $1900 (sum of monthlys), then the difference is $600.\n    Wait, I'm looping. Let's clarify.\n    Scenario 1:\n    Last Year: Monthly Rent = $"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " *   Wait, if he practices every day, Mon-Fri, and takes 2 weeks off, he practices 5 days a year.\n            *   Wait, if he practices every day, Mon-Fri, and takes 2 weeks off, he practices 5 days a"
+    },
+    {
+     "n_tokens": 1276,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": " \\text{Mike}_{\\text{morning}} + \\text{Ted}_{\\text{morning}} + \\text{Mike}_{\\text{afternoon}} + \\text{Ted}_{\\text{afternoon}}$$\n$$\\text{Total} = 50 + 100 + 60 + 40$$\n$$\\text{Total} = 250$$\n\n\\boxed{250}"
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "and the 2nd anniversary was 6 months ago, then the 4th anniversary is 12 months later.\n                        *   This seems to imply the 2nd anniversary was 6 months ago.\n                        *  "
+    },
+    {
+     "n_tokens": 6144,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "   Wait, let's consider the possibility that the question is asking for the *number of children* minus the *number of adults*.\n                        *   Wait, let's consider the possibility that the"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.125,
+    "se": 0.08539125638299665,
+    "rescues": 2,
+    "losses": 0
+   }
+  }
+ }
+}

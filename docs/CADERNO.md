@@ -935,3 +935,70 @@ x ~10 B ≈ 2.5 GB). Perfil depois da correção: T=4096 com pico 2.3 GB só no 
   O conjunto ficou menor que o esperado (175 contra ~200–300).
 - **E4.2:** o treino começou com 3 épocas e 66 passos de otimização (acumulação de 8). O tempo do E4.0 (~9,4 s por
   mil tokens) dá cerca de 2 h por época.
+
+## 2026-11-08 — E4.2 resultado: LoRA-SFT fica muito abaixo do a1
+
+**Treino:** 66 passos em 372 min. A perda média por época foi 0,420, 0,389 e 0,376, sem instabilidade (grad_norm entre
+0,2 e 0,6, scale final 16384). Os adaptadores das três épocas foram mesclados e exportados para GGUF f16
+(`data/gguf/ft_sft_ep{1,2,3}.gguf`).
+
+**Escolha da época** nos mesmos 16 problemas de checagem do agente (GSM8K train[200:216], teto 6144):
+
+| | acc | cut | fechou `</think>` |
+|---|---|---|---|
+| base | 1/16 (0,062) | 0,94 | 0,06 |
+| ep1 | 4/16 (0,250) | 0,75 | 0,31 |
+| **ep2** | **7/16 (0,438)** | 0,56 | 0,50 |
+| ep3 | 3/16 (0,188) | 0,81 | 0,25 |
+
+ep3 piora em relação à ep2 com perda menor. Com 16 problemas a diferença está dentro do ruído (SE ≈ 12 pp), mas é
+coerente com sobreajuste a 175 sequências.
+
+**dev48** (GSM8K train[0:48], teto 12288), pareado com as mesmas sementes:
+
+| braço | acc | cut | ft_sft_ep2 − braço |
+|---|---|---|---|
+| base | 0,146 | 0,85 | **+14,6 ± 5,9** (8/1) |
+| m2a_naive (E3) | 0,271 | 0,73 | +2,1 ± 5,6 (4/3) |
+| **ft_sft_ep2** | **0,292** | 0,71 | — |
+| astra | 0,458 | 0,48 | −16,7 ± 6,2 (1/9) |
+| bf4096 | 0,479 | 0,46 | −18,8 ± 7,1 (2/11) |
+| lbx_w10_t1 | 0,521 | 0,35 | −22,9 ± 7,4 (2/13) |
+| a2 | 0,646 | 0,08 | −35,4 ± 7,0 (0/17) |
+| **a1 (062959_102)** | **0,667** | 0,17 | **−37,5 ± 7,1 (0/18)** |
+| a1 + bf4096 | 0,688 | 0,08 | −39,6 ± 7,1 (0/19) |
+
+- A LoRA quase não tira o modelo do loop: cut 0,85 → 0,71, contra 0,17 do a1. Um conjunto de SFT em que 2/3 das
+  sequências ensinam "fechar depois de um prefixo pré-loop" não ensina o modelo a reconhecer quando cortar.
+- A queda de 0,438 na seleção para 0,292 no dev48 é o viés de escolher a melhor de 3 em 16 problemas. Com o a1
+  acontece o mesmo: 0,688 na checagem e 0,667 no dev48.
+
+**Previsões:**
+- **(1) dados:** natural 9,5%, confirmada. Excised: a previsão "~25–40%" foi escrita sem dizer a base. Se for sobre as 600
+  amostras, deu 19,7%, abaixo. Se for sobre os loops, deu 42%, um pouco acima. Fica registrada como ambígua. A entrada
+  anterior a tratou como % das 600.
+- **(2) melhora ≥ +20 pp e fica abaixo do a1:** parcialmente confirmada. Melhorou +14,6, abaixo do limiar de +20, e ficou
+  muito abaixo do a1 (0/18).
+- **(3) custo ≥ 5× as GPU-horas do agente:** confirmada (estimativa preliminar, sem contar o dev48 de nenhum dos dois).
+
+| | GPU-h (relógio, GPU ocupada) |
+|---|---|
+| E4.0 viabilidade | 0,2 |
+| E4.1 fase A (600 amostras, teto 6144; 90% batem no teto) | 9,0 (3,1 antes da queda de energia + 5,9 depois) |
+| E4.1 fase B (279 respostas pós-excisão) | 1,2 |
+| E4.2 treino + exportação | 6,3 |
+| escolha da época (3 × 16 problemas) | 0,5 |
+| **total E4** | **≈ 17** |
+| run de agente v2 sem atlas (avaliador residente; a1: 06:03–08:04, a2: 01:23–03:21) | ≈ 2 (≈ 1,3 de GPU ativa: 17–18 sondas × 52 s + 6 checagens × ~10 min) |
+
+A razão é de ≈ 8× em GPU-hora. A contabilidade não inclui os tokens do agente (Claude Opus 5.5 via Claude Code, sem
+custo de API medido) nem o tempo humano. O custo da LoRA é dominado pela geração dos dados, que é cara justamente por
+causa do defeito: 90% das amostras batem no teto.
+
+**Decisão:** o E4.3 (avaliação completa da LoRA: t12k, MATH-148, colaterais) não é necessário para a conclusão
+principal, porque no dev48 a LoRA está 37,5 pp abaixo do a1 e abaixo até dos baselines de decodificação. Fica
+**opcional**: o t12k custaria uma abertura do teste trancado para um braço que já perdeu no dev.
+
+**Limites desta comparação:** uma única configuração de SFT (r16, lr 1e-4, 3 épocas, 175 sequências, 1 amostra por
+problema). Mais amostras por problema, um conjunto maior ou RL (GRPO, o braço G original) poderiam fazer melhor, a um
+custo ainda maior.

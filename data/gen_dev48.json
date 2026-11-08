@@ -7703,6 +7703,411 @@
     "rescues": 8,
     "losses": 2
    }
+  },
+  "ft_sft_ep2": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/ft_sft_ep2.gguf",
+   "summary": {
+    "secs_this_run": 3259,
+    "tok_s_this_run": 146.0,
+    "acc": 0.2916666666666667,
+    "cut": 0.7083333333333334,
+    "closed_think": 0.3541666666666667,
+    "loop_at_cap": 0.7083333333333334,
+    "mean_tokens": 9915.166666666666,
+    "median_tokens_finished": 3045
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " imply $C_{May} = 0.5 \\times C_{Apr}$? Yes.\n        *   Does it imply $C_{May} = 0.5 \\times C_{Apr}$? Yes.\n        *   Does it imply $C_{May} = 0.5 \\times C_{Apr}$? Yes.\n        *   Does it imply $C_{"
+    },
+    {
+     "n_tokens": 1095,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.181640625,
+     "tail": "ultiplying:\n$$ \\text{Earnings} = 12 \\times \\left(\\frac{5}{6}\\right) $$\n$$ \\text{Earnings} = \\left(12 \\div 6\\right) \\times 5 $$\n$$ \\text{Earnings} = 2 \\times 5 $$\n$$ \\text{Earnings} = 10 $$\n\n\\boxed{10}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "/2` more.\n        *   Wait, if she needs $N`, she needs $N/2` more.\n        *   Wait, if she needs $N`, she needs $N/2` more.\n        *   Wait, if she needs $N`, she needs $N/2` more.\n        *   Wait"
+    },
+    {
+     "n_tokens": 1160,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.064453125,
+     "tail": "aining.\n\n**Step 5: Calculate the pages she needs to read tomorrow.**\nShe wants to read half of the remaining pages.\n$$\\frac{1}{2} \\times 84 = 42$$\n\nJulie should read **42** pages tomorrow.\n\n\\boxed{42}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " week, but he writes *two hundred-thirty-twenty-twenty-twenty-twenty-twenty-twenty-twenty-twenty-twenty-twenty-twenty-twenty-four* letters per week? No.\n    *   Maybe he writes 2 letters per week, but"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "  Wait, 100 + 80 = 180.\n    Wait, 100 + 80 = 180.\n    Wait, 100 + 80 = 180.\n    Wait, 100 + 80 = 180.\n    Wait, 100 + 80 = 180.\n    Wait, 100 + 80 = 180.\n    Wait, 100 + 80 = 180.\n    Wait, 100 + 80 ="
+    },
+    {
+     "n_tokens": 11568,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.470703125,
+     "tail": "izzas $\\times$ Slices per large pizza) + (Number of small pizzas $\\times$ Slices per small pizza)\nTotal slices = $(2 \\times 16) + (2 \\times 8)$\nTotal slices = $32 + 16$\nTotal slices = $48$\n\n\\boxed{48}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " was 2 lbs, and he added brownies, the weight became 6 lbs.\n        *   If the weight was 0 lbs, and he added brownies, the weight became 6 lbs.\n        *   If the weight was 2 lbs, and he added brown"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "114 + 11 = 125$.\n    *   $125 + 18 = 143$.\n    *   $200 - 16 = 184$.\n    *   $184 - 143 = 41$.\n    *   The calculation is solid.\n\n    *   Wait, I'm going to double check the addition.\n    *   $30 + 46"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "hours per day.\n    *   Wait, does the prompt imply she works 10 hours *per shift*?\n    *   If the shift is 8 hours, she works 10 hours per day.\n    *   Wait, does the prompt imply she works 10 hours *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "it, if the monster eats the people, then the total people eaten is the sum of the populations.\n    *   Wait, if the monster eats the people, then the total people eaten is the sum of the populations.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 15 in change, and he spent 95 on shoes, he has 15 left.\n            *   But maybe the \"change\" is the money he has *left* after paying for the shoes?\n            *   Wait, if he has 15 in change, and"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                        *   Total = 85.\n                                                                                    *   Or maybe"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "cuts\" refers to a specific quantity of cold cuts *per pound*?\n        *   No.\n        *   Let's check the possibility that \"a pack of cold cuts\" refers to a specific quantity of cold cuts *per pound*?"
+    },
+    {
+     "n_tokens": 8706,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.30859375,
+     "tail": "ours. Since there are 60 minutes in an hour, we divide the total minutes by 60.\n$$ \\text{Hours} = \\frac{300 \\text{ minutes}}{60 \\text{ minutes/hour}} $$\n$$ \\text{Hours} = 5 \\text{ hours} $$\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "             *   If he sells 500 movies a day.\n                *   Wait, if he creates a movie for $2000, and sells it for 2.5 times that much ($5000).\n                *   If he sells 500 movies a day"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "\\$200$.\n    If he spends *all* his share, he has $\\$0$.\n    But the shirt cost is $\\$200$.\n    If he spends *all* his share, he has $\\$0$.\n    But the shirt cost is $\\$200$.\n    If he spends *all* his"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "hat he removed\".\nWait, if John removes 6 pink hard hats, then he removes $2 \\times (\\text{number of pink hard hats removed by Carl})$.\nWait, if John removes 6 pink hard hats, then he removes $2 \\times"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "to work (2h), then return (2h), that's 4h.\n    *   If I walk to work (2h), then return (2h), that's 4h.\n    *   Wait, if I walk to work (2h), then return (2h), that's 4h.\n    *   If I walk to work (2h"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "o Home, he is at work again.\n        *   Wait, if he goes Home $\\to$ Work (20 miles), he is at work.\n        *   If he goes Home $\\to$ Work (20 miles) and returns to Home, he is at work again.\n       "
+    },
+    {
+     "n_tokens": 1386,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": " of stamp found above.\n$$ \\text{Total Stamps} = \\text{Snowflake Stamps} + \\text{Truck Stamps} + \\text{Rose Stamps} $$\n$$ \\text{Total Stamps} = 11 + 20 + 7 $$\n$$ \\text{Total Stamps} = 38 $$\n\n\\boxed{38}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s, and Birds eat Beetles, then Snakes must be eaten by Birds.\n                    *   Wait, if Snakes eat Birds, and Birds eat Beetles, then Snakes must be eaten by Birds.\n                    *   Wait"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " based on the assumption that the name is \"Jamie Grey\" and the last name is \"Jamie\".\n            *   Wait, if the name is \"Jamie Grey\", then the last name is \"Jamie\".\n            *   Wait, I think the"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 20 / 4 = 5.\n    *   Wait, let's check 20 / 4 again.\n    *   20 / 4 = 5.\n    *   Wait, let's check 20 / 4 again.\n    *   20 / 4 = 5.\n    *   Wait, let's check 20 / 4 again.\n    *   20 / 4 = 5.\n    *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "it limit ($100) on Tuesday and Thursday, then the total spent is $100.\n                        *   But she paid $15 on Tuesday and $23 on Thursday.\n                        *   This implies she spent $"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ining balls are 110.\n    Wait, if he hits 25 balls from the next 75, does he remove them?\n    If he removes them, the remaining balls are 110.\n    If he doesn't remove them, the remaining balls are 11"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "the solute.\nIf the salt is dissolved, the volume of salt is negligible.\nIf the salt is solid, the volume of salt is significant.\nLet's assume the question is asking for the mass of salt.\nThe answer is"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                            *   No, \"realized that 3/5 of them were irrelevant\".\n                                                *   Wait, is it possible that the 400 files were *added* to the list of"
+    },
+    {
+     "n_tokens": 8253,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.240234375,
+     "tail": "e fifth house.\n    *   Equation: $3 + 3 + 3 + 3 + x = 20$\n    *   Simplifying: $12 + x = 20$\n    *   Solving for $x$: $x = 20 - 12$\n    *   $x = 8$\n\nTherefore, the fifth house has 8 gnomes.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ncreased, the rent/utilities *must* decrease?\n            *   Wait, if the salary increased, the rent/utilities *must* decrease?\n            *   Wait, if the salary increased, the rent/utilities *must"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "50% of the pizza, you eat 2 pieces.\n    *   Wait, if you eat 50% of the pizza, you eat 2 pieces.\n    *   Wait, if you eat 50% of the pizza, you eat 2 pieces.\n    *   Wait, if you eat 50% of the pizza,"
+    },
+    {
+     "n_tokens": 1630,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.193359375,
+     "tail": " \\text{Total Sales}_{\\text{this month}} = (16 \\times 60) + (8 \\times 30) $$\n$$ \\text{Total Sales}_{\\text{this month}} = 960 + 240 $$\n$$ \\text{Total Sales}_{\\text{this month}} = \\$1200 $$\n\n\\boxed{1200}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.578125,
+     "tail": ", 8, 358, 5 sums to 376.\n    *   Let's check if 5, 8, 359, 5 sums to 377.\n    *   Let's check if 5, 8, 360, 5 sums to 378.\n    *   Let's check if 5, 8, 361, 5 sums to 379.\n    *   Let's check if 5, 8,"
+    },
+    {
+     "n_tokens": 7383,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.212890625,
+     "tail": "} = \\text{Water} + \\text{Flour} + \\text{Salt}$$\n$$\\text{Total} = 10 + 16 + 8$$\n$$\\text{Total} = 34$$\n\nThus, Kimber needs a combined total of 34 cups of water, flour, and teaspoons of salt.\n\n\\boxed{34}"
+    },
+    {
+     "n_tokens": 1916,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.060546875,
+     "tail": ".\n$$\\text{Total Amount} = \\text{Ken's Share} + \\text{Tony's Share}$$\n$$\\text{Total Amount} = \\$1750 + \\$3500$$\n$$\\text{Total Amount} = \\$5250$$\n\nTherefore, the money shared was $\\$5250$.\n\n\\boxed{5250}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ow B? No.\n        *   Wait, if I have a grade B. Is it below B? No.\n        *   Wait, if I have a grade B. Is it below B? No.\n        *   Wait, if I have a grade B. Is it below B? No.\n        *   Wait"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s 75.\n                    *   If Jack earned 30, then the total is 75.\n                    *   If Jack earned 30, then the total is 75.\n                    *   If Jack earned 30, then the total is 75."
+    },
+    {
+     "n_tokens": 5210,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.115234375,
+     "tail": "*Step 3: Divide by the number of friends.**\n\nThere are 5 friends, so we divide the total bill by 5 to find the cost per person.\n$$\\frac{25.00}{5} = 5.00$$\n\nEach friend will pay $\\$5.00$.\n\n\\boxed{5.00}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 3743,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.21484375,
+     "tail": " more pieces of candy Anna gets compared to Billy. We subtract Billy's total from Anna's total.\n$$Difference = Total_{Anna} - Total_{Billy}$$\n$$Difference = 840 - 825$$\n$$Difference = 15$$\n\n\\boxed{15}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "to the *price* only if the *ticket* was bought *and* *exceeded* 10?\n    *   Yes.\n    *   Is it possible that the discount is applied to the *price* only if the *ticket* was bought *and* *exceeded* 10?"
+    },
+    {
+     "n_tokens": 3045,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.181640625,
+     "tail": "t\". This means we multiply Sara's total spending by 2:\n    $$ \\text{Rachel's Budget} = 2 \\times \\$250 $$\n    $$ \\text{Rachel's Budget} = \\$500 $$\n\nTherefore, Rachel should budget $\\$500$.\n\n\\boxed{500}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ananas)? No, that's circular.\n            *   Let's try to interpret \"hand\" as \"banana\" AND the remaining piles had 12 *hands* (meaning 12 hands, which are bananas)? No, that's circular.\n            *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "     *   Wait, let's check the possibility that the question is asking for the number of collapsed buildings *after* three more earthquakes.\n                                                        *  "
+    },
+    {
+     "n_tokens": 1842,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.212890625,
+     "tail": "\\%$.\nSo the remainder is indeed $30\\%$.\nAnd $30\\%$ of $1000$ is $300$.\n\nLet's double check the math.\n$30+15+25 = 70$. Correct.\n$100-70=30$. Correct.\n$30/100 \\times 1000 = 300$. Correct.\n\n\\boxed{\\$300}"
+    },
+    {
+     "n_tokens": 1199,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0078125,
+     "tail": "xt{Skittles}) = \\$86$$\n\n**Step 3: Calculate the total cost.**\nAdd the cost of the pi\u00f1ata ($13) to the total cost of the treats ($86):\n$$\\$13 (\\text{Pi\u00f1ata}) + \\$86 (\\text{Treats}) = \\$99$$\n\n\\boxed{99}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": ", that's 60 mins/day? No.\n                *   If she practices the violin 6 days a week, that's 60 mins/day? No.\n                *   If she practices the violin 6 days a week, that's 60 mins/day? No.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "e* is 5 MB/s *for the first 60 MB*?\n    Yes.\n    Does it mean the *rate* is 5 MB/s *for the first 60 MB*?\n    Yes.\n\n    Wait, is there any possibility that \"for its first 60 megabytes\" means the *rate"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.14583333333333334,
+    "se": 0.05947154493714117,
+    "rescues": 8,
+    "losses": 1
+   }
   }
  }
 }

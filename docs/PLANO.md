@@ -33,7 +33,7 @@ supervisionados pelo Claude Code) que raciocina sobre pesos e ativações melhor
 | **M→A** | mapeia com variantes de prompt + ativações (atlas), edita guiado pelo mapa | r1 (protocolo v1), r2 e r3 (v2) |
 | **A0** | agente edita sem o mapa | a0 (v1), a1 e a2 (v2); a1 é a edição principal |
 | **R** | busca cega no mesmo subespaço de edições | rnd (aleatória, v1) e naive (E3: ferramentas dos agentes vencedores + sinal de geração, v2) |
-| **G** | GRPO + TinyLoRA/LoRA rank-1 | substituído por **LoRA-SFT em dados autodestilados** (E4, em andamento): mais barato na 1660S e um baseline direto para o mesmo defeito |
+| **G** | GRPO + TinyLoRA/LoRA rank-1 | substituído por **LoRA-SFT em dados autodestilados** (E4, feito: dev48 0,292, 37,5 pp abaixo do a1, ≈ 17 GPU-h): mais barato na 1660S e um baseline direto para o mesmo defeito |
 | — | (não planejado) | baselines de decodificação (E1: logit bias, budget forcing) e a combinação edição + budget forcing |
 
 Protocolos do avaliador:
@@ -58,8 +58,8 @@ Protocolos do avaliador:
 3. **Caderno versionado:** `docs/CADERNO.md` no git, com previsões registradas antes dos resultados e desvios
    declarados.
 4. **Réplicas:** subagentes independentes, sem acesso às notas uns dos outros (3 pares com/sem atlas até agora).
-5. **Custo:** sem dólares de API; registrar wall-time, nº de chamadas, nº de avaliações e GPU-hora (contabilidade
-   completa junto com o E4).
+5. **Custo:** sem dólares de API; registrar wall-time, nº de chamadas, nº de avaliações e GPU-hora (E4: ≈ 17 GPU-h
+   contra ≈ 2 por run de agente; tokens do agente ainda não contabilizados).
 6. **Restrições dos agentes** (como no paper): sem gradiente/treino, sem rodar o modelo fora do avaliador, sem editar
    embedding/lm_head/norma final, sem escalar um tensor inteiro. Proibido ler os artefatos do Astra, `docs/`,
    referências, outras runs, o holdout lacrado e o código do avaliador. Conformidade por honra, com auditoria das
@@ -100,10 +100,10 @@ Protocolos do avaliador:
 | combo | edição a1 + budget forcing | feito |
 | E3 | busca ingênua com as ferramentas dos agentes | feito |
 | MATH-148 | MATH-500[0:148] para todos os braços principais | feito |
-| E4 | baseline LoRA-SFT (dados autodestilados com excisão do loop) | em andamento |
+| E4 | baseline LoRA-SFT (dados autodestilados com excisão do loop) | feito: 0,292 no dev48 (a1 0,667) |
 
 Próximos passos (detalhes em [paper-draft.md](paper-draft.md)):
-1. concluir o E4 e fazer a contabilidade de custo (agente vs fine-tuning);
+1. contabilizar os tokens dos agentes a partir dos transcritos (o custo em GPU-hora já foi medido);
 2. aumentar o n no GSM8K test (≥ 200);
 3. mais réplicas do protocolo vencedor e do braço com atlas;
 4. um segundo defeito sem marcador lexical (formato de tool call, parada precoce, JSON) e, se der, um segundo modelo.

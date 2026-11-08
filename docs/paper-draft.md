@@ -5,12 +5,13 @@ file holds the framing, the structure and the plan to submission.
 
 ## Working title
 
-The claim in the title depends on E4 (the fine-tuning baseline). Candidates:
+E4 came out in favor of the edit: 0.667 vs 0.292 on dev48, at ≈ 1/8 of the GPU time. That makes title 2 defensible,
+but only one SFT configuration was tested, so title 1 stays the safe choice. Candidates:
 
 1. **Agents as Weight-Space Programmers: Repairing Reasoning Loops in a Small Language Model with Four Rank-1 Edits**
    (safe whatever E4 shows).
 2. *Agentic Weight Editing as a Fine-Tuning Substitute for Specific Behavioral Defects* (only if E4 shows the edit
-   ≥ LoRA-SFT at a fraction of the cost; otherwise "complement", not "substitute").
+   ≥ LoRA-SFT at a fraction of the cost: **met** for the one SFT configuration tested).
 3. *Generation in the Loop: What Makes Agentic Weight Editing Work* (process-centric, if E4 is a wash).
 
 ## Abstract (draft, numbers as of 2026-11-08)
@@ -25,8 +26,8 @@ The claim in the title depends on E4 (the fine-tuning baseline). Candidates:
 > with the same tools and budget reaches only 27%. Every cheap proxy we tried (teacher-forced log-probabilities,
 > branch-point probes, n-gram loop detectors) was exploited by at least one agent, and only generation in the loop
 > prevented this. Surprisingly, giving agents a richer activation atlas led them to mechanistically interesting but
-> behaviorally weaker edits in 3 of 3 paired replicates. [E4: comparison with LoRA fine-tuning on self-distilled data,
-> at X× the compute.]
+> behaviorally weaker edits in 3 of 3 paired replicates. LoRA fine-tuning on self-distilled, loop-excised traces reaches
+> only 29% at roughly 8× the GPU time of an agent run.
 
 ## Contributions
 
@@ -35,7 +36,7 @@ The claim in the title depends on E4 (the fine-tuning baseline). Candidates:
 2. **A stronger, interpretable, replicated edit.** Two independent agents find it; it is analyzed by ablation (the
    "way back in / way out" synergy) and transfers out of distribution.
 3. **Baselines that rule out "just decoding."** The edit beats logit bias everywhere and beats budget forcing on long
-   problems, and the two compose. [+ the fine-tuning baseline, E4.]
+   problems, and the two compose. LoRA-SFT on self-distilled data (E4) lags by 37.5 pp at ≈ 8× the GPU time.
 4. **Process findings for agentic model editing.** (a) Proxy objectives are Goodharted by strong optimizers;
    generation in the loop is necessary. (b) The agent's reasoning, not the toolkit, carries the result (naive-search
    control). (c) More interpretability context (an activation atlas) can hurt.
@@ -73,13 +74,13 @@ The claim in the title depends on E4 (the fine-tuning baseline). Candidates:
 | F2 | Ablation: close-only / NoWait-only / both → accuracy and cut rate | a1/a2 notes (gen-checks) |
 | F3 | Scatter of proxy score vs dev accuracy, colored by family (shows Goodhart) | as above |
 | F4 | Token-length distributions (base, Astra, a1, bf4096, combo) on MATH-148 | raw generations |
-| F5 | Cost: GPU-hours + agent tokens vs LoRA data generation + training | to be computed after E4 |
+| F5 | Cost: GPU-hours + agent tokens vs LoRA data generation + training | CADERNO 2026-11-08 (GPU-h done; tokens pending) |
 
 ## To do before submission
 
-- [ ] **E4** completes (LoRA-SFT); E4.3 full evaluation if it is competitive.
-- [ ] **Cost accounting:** GPU-hours per agent run (scorer + gen-checks) and agent token usage, vs E4 data generation
-      and training.
+- [x] **E4** (LoRA-SFT): 0.292 on dev48, not competitive. E4.3 is optional (MATH-148 only).
+- [ ] **Cost accounting:** GPU-hours are done (≈ 2 per agent run vs ≈ 17 for E4). Agent token usage from the
+      transcripts is still to do.
 - [ ] **Larger n on GSM8K** (test ≥ 200) for base, Astra, bf4096, a1 and combo, to tighten the GSM8K comparison
       (currently n = 32).
 - [ ] **More replicates** of the winning protocol (a3, a4) and of the atlas arm, to firm up H4 (currently 3 pairs).

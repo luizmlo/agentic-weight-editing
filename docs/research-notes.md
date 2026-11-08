@@ -201,6 +201,32 @@ Without thinking, no edit (Astra, a0, a1) significantly changes GSM8K or tool ca
 exists only with thinking on, which matches the mechanism. Astra (but not a1) also improves "irrelevance" tool-calling
 tasks with thinking (16/16 vs 11/16): fewer reasoning tokens means fewer hallucinated calls.
 
+## F11. LoRA fine-tuning on self-distilled data falls far short of the edit (E4)
+
+The baseline is LoRA-SFT (r16 on all linear layers, lr 1e-4, 3 epochs) on 175 correct self-distilled traces from GSM8K
+train[300:900]:
+- 57 "natural" traces, where the model closed `</think>` itself without a loop;
+- 118 "excised" traces, cut at the loop onset with `</think>` injected, after which the base model answers.
+
+The epoch was picked on the agents' 16 gen-check problems (epoch 2, 7/16).
+
+| | dev48 | cut | vs ft (paired) | GPU-h to produce |
+|---|---|---|---|---|
+| base | 0.146 | 0.85 | ft +14.6 ± 5.9 (8/1) | — |
+| **LoRA-SFT (ep2)** | **0.292** | 0.71 | — | ≈ 17 |
+| Astra | 0.458 | 0.48 | ft −16.7 ± 6.2 | — |
+| bf4096 | 0.479 | 0.46 | ft −18.8 ± 7.1 | 0 (tuning: 2 dev48 runs) |
+| a1 | 0.667 | 0.17 | ft **−37.5 ± 7.1 (0/18)** | ≈ 2 |
+
+- **The LoRA barely changes the looping.** The cut rate only drops from 0.85 to 0.71. Excised traces teach the model
+  what to write after a cut, not when to cut.
+- **Its cost is mostly data generation, which the defect itself makes expensive.** About 9 of the 17 GPU-hours went to
+  sampling 600 traces, 90% of which ran into the 6k cap.
+- **What the comparison covers.** It is a single, reasonable SFT configuration. More samples per problem, more data or
+  RL (GRPO) could do better, at an even higher cost.
+- **What the costs exclude.** They are GPU wall-clock hours on the 1660S. They leave out agent tokens (Claude Opus 5.5
+  through Claude Code, with no metered API cost) and the dev48 confirmation runs of both arms.
+
 ---
 
 ## Open questions and threats to validity
@@ -210,18 +236,16 @@ tasks with thinking (16/16 vs 11/16): fewer reasoning tokens means fewer halluci
 - **One model, one defect.** The output-lever story may be specific to loops ("Wait" is a lexical marker). A second
   defect with no lexical marker (for example, tool-call format errors or premature stopping) is the obvious next test,
   and so is a second model.
-- **Protocol advantage.** Agents had 16 generation-check problems. E3 controls for the generation signal; E4 (the
-  fine-tuning baseline) controls for "any method that sees the defect in data".
+- **Protocol advantage.** Agents had 16 generation-check problems. E3 controls for the generation signal. E4 shows that a
+  method that sees 600 problems' worth of the defect in data does much worse. The epoch pick used the same 16 problems.
 - **Sampler differences** from the paper (llama.cpp vs vLLM, 12k vs 32k cap) shift absolute numbers. Comparisons
   between arms share the same sampler.
 - **Honor-system restrictions** on agents. Audits found no violations, but this is a limitation to state.
-- **Cost accounting** (agent tokens + GPU-hours vs LoRA data generation + training) is pending until E4 finishes.
+- **Cost accounting** is GPU-hours only (F11). Agent token usage was not metered; it should be estimated from the
+  transcripts.
 
 ## Pending
 
-- **E4, LoRA-SFT baseline (running).** Self-distilled data from GSM8K train[300:900]: "natural" traces (closed without
-  a loop, correct) and "excised" traces (cut at the loop onset, `</think>` injected, the base answers; kept if correct).
-  LoRA r16 on all linear layers, 3 epochs, epoch chosen on the agents' 16 gen-check problems, then dev48.
-  Pre-registered predictions: natural ~5–10% (partial: 10% at 301/600); LoRA ≥ +20 pp on dev48 but below a1;
-  cost ≥ 5× the agent's.
-- E4.3 (if E4 is competitive): full evaluation of the chosen LoRA (t12k, MATH-148, collateral checks).
+- E4.3 (optional, since E4 was not competitive on dev48): MATH-148 for the LoRA. The locked test is not worth opening
+  for an arm that already lost on dev.
+- Agent token accounting from the transcripts.

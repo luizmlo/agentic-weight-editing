@@ -1,0 +1,10 @@
+{
+ "name": "ft_sft_ep1",
+ "adapter": "data/wsp/ft/sft/ep1",
+ "scale": 2.0,
+ "tensors": 150,
+ "f16_rel_err_of_update": 0.05213737629269695,
+ "mean_rel_change": 0.0043947784117905385,
+ "max_rel_change": 0.007774676922424103,
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/ft_sft_ep1.gguf"
+}

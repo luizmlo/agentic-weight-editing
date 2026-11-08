@@ -10,7 +10,7 @@ sustains repetition loops in the model's reasoning. Here we ask whether this is 
 decoding trick, and what part of the agent's process matters, all on a single consumer GPU (GTX 1660 SUPER, 6 GB).
 
 > Status: **pre-paper research notes**. All numbers are small-n (32–148 problems per evaluation) and come from one
-> model and one defect. The fine-tuning baseline (E4) is still running. See [docs/research-notes.md](docs/research-notes.md).
+> model and one defect. See [docs/research-notes.md](docs/research-notes.md).
 
 ## The defect
 
@@ -52,6 +52,7 @@ Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning a
 |---|---|---|---|
 | base | 0.146 | 0.125 | 0.081 |
 | Astra edit (paper) | 0.458 | 0.406 | 0.209 |
+| LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | — |
 | logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.271¹ |
 | budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.372 |
 | **agent edit a1** | **0.667** | 0.562 | **0.466** |
@@ -74,7 +75,9 @@ What we have learned so far:
    signal reaches 0.271 on dev48 (−38 pp).
 4. **Generation in the loop is essential.** Every cheap proxy (teacher-forced Δlog-prob, branch probes, the 8-gram loop
    detector) was Goodharted by a strong optimizer at least once.
-5. **More interpretability context hurt.** Agents given an activation atlas found "internal-state" mechanisms that looked
+5. **It beats fine-tuning at a fraction of the compute.** LoRA-SFT on 175 self-distilled traces (about 17 GPU-hours)
+   reaches 0.292 on dev48, 37.5 pp below a1 (0 rescues, 18 losses). An agent run takes about 2 GPU-hours.
+6. **More interpretability context hurt.** Agents given an activation atlas found "internal-state" mechanisms that looked
    good on probes and generalized worse in generation. This held in 3 of 3 paired replicates.
 
 ## Repository layout
