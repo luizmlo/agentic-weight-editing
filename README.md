@@ -100,6 +100,7 @@ docs/
   cost.md             cost study: GPU-hours, agent tokens, serving cost, comparison with Astra
   CADERNO.md          original lab notebook (pt-BR), timestamped pre-registrations; the primary record
   PLANO.md            original experiment plan (pt-BR)
+  linhas-futuras.md   future research lines to mature (editor ladder, small-edits-large, self-editing; pt-BR)
 data/               only small records are versioned (see .gitignore): result summaries (*.json), agent briefs,
                     per-run scorer ledgers / final picks / agent notes, every submitted edit
                     (`m2a/runs/*/done/*.pt`), E4 configs and logs

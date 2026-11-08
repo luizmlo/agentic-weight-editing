@@ -107,6 +107,9 @@ Próximos passos (detalhes em [paper-draft.md](paper-draft.md)):
 2. mais réplicas do protocolo vencedor e do braço com atlas;
 3. um segundo defeito sem marcador lexical (formato de tool call, parada precoce, JSON) e, se der, um segundo modelo.
 
+Linhas depois do paper 1 (escada de editores, editor menor que o alvo, autoedição), com as perguntas de hardware e
+orçamento para 2027/1: [linhas-futuras.md](linhas-futuras.md).
+
 ## Código
 
 ```
