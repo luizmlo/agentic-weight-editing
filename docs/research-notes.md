@@ -227,6 +227,22 @@ The epoch was picked on the agents' 16 gen-check problems (epoch 2, 7/16).
 - **What the costs exclude.** They are GPU wall-clock hours on the 1660S. They leave out agent tokens (Claude Opus 5.5
   through Claude Code, with no metered API cost) and the dev48 confirmation runs of both arms.
 
+## F12. Cost: an order of magnitude less GPU, and cheaper to serve ([cost.md](cost.md))
+
+| | dev48 | GPU-h (1660S) | agent tokens (context / output) | API-equivalent |
+|---|---|---|---|---|
+| agent edit a1 | 0.667 | 1.31 (≤ 2.1 wall-clock) | 5.39 M / 47.5 k | $5–7 |
+| LoRA-SFT (E4) | 0.292 | 17.1 | — | — |
+| Astra p50c (paper, GPT-6) | — | — | 86.8 M / 2.9 M, 20.3 h | — |
+
+- **Repair cost:** 13× less GPU time than LoRA-SFT, or 8× counting the scorer's full residency. In dollars, the agent is
+  also cheaper whenever a 1660S-class GPU-hour costs more than about $0.32–0.44. It used 16× fewer input tokens and 60×
+  fewer output tokens than the published Astra run.
+- **Serving cost:** a1 cuts the tokens generated per problem by 60% on dev48 and by 29% on MATH-148. LoRA-SFT cuts them
+  by 15% on dev48. This saving recurs on every query.
+- **Overhead:** the supervisor session behind all arms, fine-tuning included, came to about $45–56 API-equivalent for
+  the whole project.
+
 ---
 
 ## Open questions and threats to validity
@@ -241,11 +257,10 @@ The epoch was picked on the agents' 16 gen-check problems (epoch 2, 7/16).
 - **Sampler differences** from the paper (llama.cpp vs vLLM, 12k vs 32k cap) shift absolute numbers. Comparisons
   between arms share the same sampler.
 - **Honor-system restrictions** on agents. Audits found no violations, but this is a limitation to state.
-- **Cost accounting** is GPU-hours only (F11). Agent token usage was not metered; it should be estimated from the
-  transcripts.
+- **Cost accounting** (F12) uses API list prices as a reference: the runs used a Claude Code subscription. GPU-hours
+  are for a 6 GB Turing card and may not transfer to faster GPUs.
 
 ## Pending
 
 - E4.3 (optional, since E4 was not competitive on dev48): MATH-148 for the LoRA. The locked test is not worth opening
   for an arm that already lost on dev.
-- Agent token accounting from the transcripts.

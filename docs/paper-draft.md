@@ -27,7 +27,8 @@ but only one SFT configuration was tested, so title 1 stays the safe choice. Can
 > branch-point probes, n-gram loop detectors) was exploited by at least one agent, and only generation in the loop
 > prevented this. Surprisingly, giving agents a richer activation atlas led them to mechanistically interesting but
 > behaviorally weaker edits in 3 of 3 paired replicates. LoRA fine-tuning on self-distilled, loop-excised traces reaches
-> only 29% at roughly 8× the GPU time of an agent run.
+> only 29% at 13× the GPU time of an agent run. An agent run costs about $5–7 in tokens at API prices, 16× fewer input
+> tokens than the original agent, and the edited model generates 60% fewer tokens per problem.
 
 ## Contributions
 
@@ -36,7 +37,7 @@ but only one SFT configuration was tested, so title 1 stays the safe choice. Can
 2. **A stronger, interpretable, replicated edit.** Two independent agents find it; it is analyzed by ablation (the
    "way back in / way out" synergy) and transfers out of distribution.
 3. **Baselines that rule out "just decoding."** The edit beats logit bias everywhere and beats budget forcing on long
-   problems, and the two compose. LoRA-SFT on self-distilled data (E4) lags by 37.5 pp at ≈ 8× the GPU time.
+   problems, and the two compose. LoRA-SFT on self-distilled data (E4) lags by 37.5 pp at 13× the GPU time, and the edit cuts serving tokens by 60%.
 4. **Process findings for agentic model editing.** (a) Proxy objectives are Goodharted by strong optimizers;
    generation in the loop is necessary. (b) The agent's reasoning, not the toolkit, carries the result (naive-search
    control). (c) More interpretability context (an activation atlas) can hurt.
@@ -74,13 +75,13 @@ but only one SFT configuration was tested, so title 1 stays the safe choice. Can
 | F2 | Ablation: close-only / NoWait-only / both → accuracy and cut rate | a1/a2 notes (gen-checks) |
 | F3 | Scatter of proxy score vs dev accuracy, colored by family (shows Goodhart) | as above |
 | F4 | Token-length distributions (base, Astra, a1, bf4096, combo) on MATH-148 | raw generations |
-| F5 | Cost: GPU-hours + agent tokens vs LoRA data generation + training | CADERNO 2026-11-08 (GPU-h done; tokens pending) |
+| F5 | Cost: GPU-hours + agent tokens vs LoRA data generation + training; serving tokens per arm | `data/cost.json`, [cost.md](cost.md) |
 
 ## To do before submission
 
 - [x] **E4** (LoRA-SFT): 0.292 on dev48, not competitive. E4.3 is optional (MATH-148 only).
-- [ ] **Cost accounting:** GPU-hours are done (≈ 2 per agent run vs ≈ 17 for E4). Agent token usage from the
-      transcripts is still to do.
+- [x] **Cost accounting** ([cost.md](cost.md)): 1.3 vs 17.1 GPU-h, $5–7 of agent tokens, 60% fewer serving tokens,
+      16× fewer input tokens than Astra.
 - [ ] **Larger n on GSM8K** (test ≥ 200) for base, Astra, bf4096, a1 and combo, to tighten the GSM8K comparison
       (currently n = 32).
 - [ ] **More replicates** of the winning protocol (a3, a4) and of the atlas arm, to firm up H4 (currently 3 pairs).

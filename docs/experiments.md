@@ -55,7 +55,7 @@ Scorer v2 adds `submit_gen`: GGUF + llama-server on GSM8K train[200:216], 6k cap
 | MATH-148 | Larger OOD evaluation (MATH-500[0:148]) | combo > a1 ≥ bf > Astra; combo − a1 ≥ +5 pp | **confirmed**: 0.527 > 0.466 > 0.372 > 0.209 > 0.081; combo − a1 +6.1 ± 3.2 (borderline) | `queue_e3_math.sh` → `gen_math48.json`, `gen_math100b.json` |
 | E4.0 | Is LoRA-SFT feasible on a 6 GB 1660S? | — | yes after a fix (`model.train()` for gradient checkpointing): T = 8192 peaks at 3.14 GB, 81 s/sequence | `ft_spike.py` → `ft/spike.json` |
 | E4.1 | Self-distilled SFT data (GSM8K train[300:900]) | natural ~5–10%; excised ~25–40% of loops | 175 sequences: natural 57 (9.5%, confirmed); excised 118 (19.7% of 600, 42% of loops; the prediction did not state the base) | `ft_data.py` → `ft/sft_stats.json` |
-| E4.2 | LoRA-SFT baseline vs the agent edit | ≥ +20 pp on dev48, below a1 (0.667); cost ≥ 5× the agent's | epoch 2 (picked on gen-check, 7/16). dev48 **0.292**: +14.6 ± 5.9 vs base (below +20), **−37.5 ± 7.1 vs a1 (0/18)**, below Astra, logit bias and bf4096; cut 0.71. Cost ≈ 17 GPU-h vs ≈ 2 per agent run (≈ 8×), **confirmed** | `ft_train.py`, `ft_export.py`, `queue_e4.sh` |
+| E4.2 | LoRA-SFT baseline vs the agent edit | ≥ +20 pp on dev48, below a1 (0.667); cost ≥ 5× the agent's | epoch 2 (picked on gen-check, 7/16). dev48 **0.292**: +14.6 ± 5.9 vs base (below +20), **−37.5 ± 7.1 vs a1 (0/18)**, below Astra, logit bias and bf4096; cut 0.71. Cost 17.1 GPU-h vs 1.31 per agent run (13×; 8× counting the scorer's full residency), **confirmed** ([cost.md](cost.md)) | `ft_train.py`, `ft_export.py`, `queue_e4.sh` |
 
 ## Deviations from pre-registration
 

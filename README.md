@@ -75,8 +75,10 @@ What we have learned so far:
    signal reaches 0.271 on dev48 (−38 pp).
 4. **Generation in the loop is essential.** Every cheap proxy (teacher-forced Δlog-prob, branch probes, the 8-gram loop
    detector) was Goodharted by a strong optimizer at least once.
-5. **It beats fine-tuning at a fraction of the compute.** LoRA-SFT on 175 self-distilled traces (about 17 GPU-hours)
-   reaches 0.292 on dev48, 37.5 pp below a1 (0 rescues, 18 losses). An agent run takes about 2 GPU-hours.
+5. **It beats fine-tuning at a fraction of the compute.** LoRA-SFT on 175 self-distilled traces (17 GPU-hours)
+   reaches 0.292 on dev48, 37.5 pp below a1 (0 rescues, 18 losses). An agent run uses 1.3 GPU-hours plus about $5–7
+   of agent tokens at API prices. The edited model also generates 60% fewer tokens per problem. See
+   [docs/cost.md](docs/cost.md).
 6. **More interpretability context hurt.** Agents given an activation atlas found "internal-state" mechanisms that looked
    good on probes and generalized worse in generation. This held in 3 of 3 paired replicates.
 
@@ -90,6 +92,7 @@ docs/
   experiments.md      registry of every experiment: question, pre-registered prediction, outcome, data
   paper-draft.md      pre-paper outline: framing, contributions, sections, figures, TODO
   reproducing.md      environment, hardware gotchas, how to run each stage
+  cost.md             cost study: GPU-hours, agent tokens, serving cost, comparison with Astra
   CADERNO.md          original lab notebook (pt-BR), timestamped pre-registrations; the primary record
   PLANO.md            original experiment plan (pt-BR)
 data/               only small records are versioned (see .gitignore): result summaries (*.json), agent briefs,

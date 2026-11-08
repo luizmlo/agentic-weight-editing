@@ -1002,3 +1002,50 @@ principal, porque no dev48 a LoRA está 37,5 pp abaixo do a1 e abaixo até dos b
 **Limites desta comparação:** uma única configuração de SFT (r16, lr 1e-4, 3 épocas, 175 sequências, 1 amostra por
 problema). Mais amostras por problema, um conjunto maior ou RL (GRPO, o braço G original) poderiam fazer melhor, a um
 custo ainda maior.
+
+## 2026-11-08 — Estudo de custo (`scripts/cost_accounting.py` → `data/cost.json`, `docs/cost.md`)
+
+**Método:**
+- Tokens: o `usage` de cada mensagem dos transcritos dos subagentes, deduplicado por id.
+- Preço de referência: tabela da API para Claude Opus 5.5 (US$ 4 / 20 por milhão de tokens de entrada / saída, US$ 0,20
+  por leitura de cache). A escrita de cache foi calculada a 1,25× (TTL de 5 min) e a 2× (TTL de 1 h), porque o
+  transcrito não registra o TTL. Nada foi cobrado de fato: as runs usaram assinatura do Claude Code.
+- GPU dos agentes: sondas × 52 s + checagens × 10,5 min. As duas taxas foram calibradas na run naive, sozinha na GPU,
+  com orçamento cheio: 40 sondas e 6 checagens em 97,8 min.
+- Fica de fora de todos os braços: o dev48 de confirmação, o trabalho do supervisor (contado à parte) e a construção do
+  atlas, que é feita uma vez só.
+
+| braço | dev48 | GPU-h | tokens (contexto / saída) | US$ equivalente |
+|---|---|---|---|---|
+| a1 | 0,667 | 1,31 | 5,39 M / 47,5 k | 5,08–6,99 |
+| a2 | 0,646 | 1,30 | 6,86 M / 44,8 k | 5,95–8,26 |
+| r2 / r3 (com atlas) | 0,458 / 0,396 | 1,34 / 1,38 | 10,4 M / 73 k; 10,7 M / 57 k | 9,07–12,52 / 3,88–4,25 |
+| a0 / r1 (v1, só sondas) | 0,375 / 0,042 | 0,69 / 0,68 | 5,9 M / 58 k; 5,9 M / 64 k | 2,94–3,32 / 3,10–3,50 |
+| naive (E3) | 0,271 | 1,63 | — | — |
+| LoRA-SFT (E4) | 0,292 | 17,1 | — | — |
+| ajuste da decodificação (5 configurações no dev48) | 0,479–0,521 | 4,41 | — | — |
+
+- **Razão de GPU, E4 contra a1:** 13× pela GPU ativa; 8× contando a janela inteira do avaliador residente (2,1 h). A
+  entrada anterior falava em ≈ 8×; a medida principal passa a ser a GPU ativa, e o 8× fica como limite conservador.
+- **Ponto de equilíbrio em dólar:** US$ 5–7 de tokens contra ~16 GPU-h a mais na 1660S. O agente sai mais barato
+  sempre que a GPU-hora custar mais de ~US$ 0,32–0,44. Em GPU própria, o custo marginal é energia: ~0,26 kWh contra
+  ~3,4 kWh, supondo ~200 W na tomada.
+- **Custo de servir** (tokens gerados por problema, teto 12k):
+
+  | | dev48 | MATH-148 |
+  |---|---|---|
+  | base | 11.714 | 11.788 |
+  | LoRA | 9.915 (−15%) | — |
+  | bf4096 | 8.073 (−31%) | 9.245 (−22%) |
+  | **a1** | **4.729 (−60%)** | **8.399 (−29%)** |
+  | combo | 3.772 (−68%) | 7.089 (−40%) |
+
+  É uma economia recorrente, a cada consulta.
+- **Astra** (logs públicos, uso por turno): a run publicada p50c teve 158 turns, 20,3 h, 86,8 M tokens de entrada
+  (93% em cache) e 2,91 M de saída. O a1 usou 16× menos entrada e 60× menos saída, em cerca de 1/10 do tempo. Não é uma
+  comparação controlada: os harnesses diferem, e os passes do Astra eram gerações completas com teto de 32k.
+- **Totais:**
+  - todas as runs de agente, incluindo os 2 lançamentos mortos pelo OOM: 6,7 GPU-h e US$ 31–40;
+  - a sessão do supervisor no projeto inteiro (PoCs, harness, briefs, auditorias, E1–E4, documentação e recuperação
+    do disco): 78,2 M de contexto e 0,58 M de saída, US$ 45–56 equivalentes. É comum a todos os braços, inclusive o
+    fine-tuning.
