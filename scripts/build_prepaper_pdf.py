@@ -1,6 +1,7 @@
 """Typeset docs/paper-draft.md as a PDF with pandoc + pdfLaTeX (floating figures, proper page breaks).
 
-usage: uv run python scripts/build_prepaper_pdf.py [out.pdf]      (default: docs/pre-paper.pdf)
+usage: uv run python scripts/build_prepaper_pdf.py [--lang en|pt-BR] [out.pdf]
+       (default: docs/pre-paper.pdf from docs/paper-draft.md; pt-BR: docs/pre-paper.pt-BR.pdf from docs/paper-draft.pt-BR.md)
 needs: uv sync --group analysis (bundled pandoc), pdflatex with tcolorbox/titlesec/caption/newunicodechar, tgpagella, tgheros, mathpazo.
 Figures come from docs/figures/ (scripts/export_figures.py).
 """
@@ -14,28 +15,43 @@ from pathlib import Path
 import pypandoc
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / "docs" / "pre-paper.pdf"
-md = (ROOT / "docs" / "paper-draft.md").read_text()
+args = sys.argv[1:]
+LANG = args.pop(args.index("--lang") + 1) if "--lang" in args else "en"
+args = [a for a in args if a != "--lang"]
+L = {  # every language-specific marker the markdown uses, and the labels typeset around it
+    "en": dict(src="paper-draft.md", out="pre-paper.pdf", authors="Authors:", note="Working draft", fig="Figure",
+               exp="Experiment", setup="Setup", after_tldr="Everything ran on one gaming", pandoc_lang="en",
+               kicker="PRE-PAPER · WORKING DRAFT", header="Agentic Weight-Space Programming · pre-paper draft"),
+    "pt-BR": dict(src="paper-draft.pt-BR.md", out="pre-paper.pt-BR.pdf", authors="Autores:", note="Rascunho de trabalho",
+                  fig="Figura", exp="Experimento", setup="Configuração", after_tldr="Tudo rodou em uma única placa",
+                  pandoc_lang="pt-BR", kicker="PRÉ-PAPER · RASCUNHO",
+                  header="Programação Agêntica no Espaço de Pesos · rascunho"),
+}[LANG]
+OUT = Path(args[0]).resolve() if args else ROOT / "docs" / L["out"]
+md = (ROOT / "docs" / L["src"]).read_text()
 
 # --- title block: taken out of the body, typeset by hand
 title = re.search(r"^# (.+)$", md, re.M).group(1)
-authors = re.search(r"^\*\*Authors:\*\* (.+)$", md, re.M).group(1)
-note = re.search(r"^\*(Working draft.+?)\*$", md, re.M | re.S).group(1).replace("\n", " ")
+authors = re.search(rf"^\*\*{L['authors']}\*\* (.+)$", md, re.M).group(1)
+note = re.search(rf"^\*({L['note']}.+?)\*$", md, re.M | re.S).group(1).replace("\n", " ")
 md = md[md.index("**TL;DR**"):]
 
 # --- figures: image + "**Figure N:** caption" paragraph -> one captioned float
-md, nfig = re.subn(r"!\[[^\]]*\]\((figures/[\w-]+\.png)\)\n\n\*\*Figure \d+:\*\* (.+?)\n\n",
+md, nfig = re.subn(rf"!\[[^\]]*\]\((figures/[\w-]+\.png)\)\n\n\*\*{L['fig']} \d+:\*\* (.+?)\n\n",
                    lambda m: f"![{m.group(2).replace(chr(10), ' ')}]({ROOT / 'docs' / m.group(1)}){{width=94%}}\n\n", md, flags=re.S)
 # --- "Experiment N" labels, TL;DR box, money signs, decorative rules
-md = re.sub(r"^\*Experiment (\d+)\*\n\n### (.+)$", r"### \\texorpdfstring{\\expkicker{EXPERIMENT \1}}{} \2", md, flags=re.M)
-assert "*Experiment" not in md
+md = re.sub(rf"^\*{L['exp']} (\d+)\*\n\n### (.+)$", rf"### \\texorpdfstring{{\\expkicker{{{L['exp'].upper()} \1}}}}{{}} \2", md, flags=re.M)
+assert f"*{L['exp']}" not in md
 md = md.replace("**TL;DR**\n\n", "\\tldrbegin\n\n", 1)
-md = md.replace("\n\nEverything ran on one gaming", "\n\n\\tldrend\n\nEverything ran on one gaming", 1)
+md = md.replace(f"\n\n{L['after_tldr']}", f"\n\n\\tldrend\n\n{L['after_tldr']}", 1)
+assert "\\tldrend" in md
 md = re.sub(r"(?<![\\$])\$(?=\d)", r"\\$", md)
 md = re.sub(r"^---$", "", md, flags=re.M)
-md = re.sub(r"^\*\*Setup\*\*$", r"\\setuplabel", md, flags=re.M)  # keep "Setup" with its list
+md = re.sub(r"^(## (References|Referências).*)$", r"\1\n\n\\begingroup\\small", md, flags=re.M) + "\n\n\\endgroup\n"
+md = re.sub(rf"^\*\*{L['setup']}\*\*$", r"\\setuplabel", md, flags=re.M)  # keep "Setup" with its list
 
 HEADER = r"""
+\newcommand{\setupname}{@SETUP@}
 \usepackage{etoolbox}
 \usepackage{mathpazo}\renewcommand{\rmdefault}{qpl}\usepackage[scale=0.9]{tgheros}
 \usepackage{newunicodechar}
@@ -47,7 +63,7 @@ HEADER = r"""
 \newcommand{\tldrbegin}{\begin{tcolorbox}[enhanced,colback=tint,colframe=tint,arc=2mm,boxrule=0pt,left=4mm,right=4mm,top=3mm,bottom=2mm,before skip=6pt,after skip=10pt]{\sffamily\footnotesize\bfseries\color{accent}TL;DR}\par\smallskip}
 \newcommand{\tldrend}{\end{tcolorbox}}
 \makeatletter\@beginparpenalty=10000 \@secpenalty=0\makeatother
-\newcommand{\setuplabel}{\par\addvspace{4pt}\noindent\textbf{Setup}\par\nopagebreak[4]}
+\newcommand{\setuplabel}{\par\addvspace{4pt}\noindent\textbf{\setupname}\par\nopagebreak[4]}
 \DeclareRobustCommand{\expkicker}[1]{{\scriptsize\bfseries\color{accent}#1}\\*}
 \usepackage{titlesec}
 \titleformat{\section}{\sffamily\Large\bfseries\interlinepenalty=10000}{}{0pt}{}
@@ -67,7 +83,7 @@ HEADER = r"""
 \renewcommand{\floatpagefraction}{0.8}\setcounter{topnumber}{2}\setcounter{bottomnumber}{1}\setcounter{totalnumber}{3}
 \setlength{\textfloatsep}{14pt plus 4pt minus 4pt}\setlength{\floatsep}{12pt plus 3pt minus 3pt}
 \usepackage{fancyhdr}\pagestyle{fancy}\fancyhf{}
-\fancyhead[R]{\sffamily\scriptsize\color{ink2}Agentic Weight-Space Programming · pre-paper draft}
+\fancyhead[R]{\sffamily\scriptsize\color{ink2}@HEADER@}
 \fancyfoot[C]{\sffamily\footnotesize\color{ink2}\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\sffamily\footnotesize\color{ink2}\thepage}}
@@ -78,6 +94,9 @@ HEADER = r"""
 \AtBeginEnvironment{tabular}{\sffamily\small}
 """
 
+HEADER = HEADER.replace("@SETUP@", L["setup"]).replace("@HEADER@", L["header"])
+
+
 def tex_escape(s):
     s = re.sub(r"\*\*(.+?)\*\*", r"@B{\1}", s)
     s = s.replace("&", r"\&").replace("%", r"\%").replace("#", r"\#").replace("_", r"\_")
@@ -85,9 +104,9 @@ def tex_escape(s):
 
 BEFORE = rf"""
 \thispagestyle{{plain}}
-{{\sffamily\scriptsize\bfseries\color{{accent}}PRE-PAPER · WORKING DRAFT}}\par\medskip
+{{\sffamily\scriptsize\bfseries\color{{accent}}{L['kicker']}}}\par\medskip
 {{\raggedright\fontsize{{20}}{{25}}\selectfont\bfseries {tex_escape(title)}\par}}\medskip
-{{\sffamily\small\color{{ink2}} \textbf{{Authors:}} {tex_escape(authors)}\par}}\smallskip
+{{\sffamily\small\color{{ink2}} \textbf{{{L['authors']}}} {tex_escape(authors)}\par}}\smallskip
 {{\small\itshape\color{{ink2}} {tex_escape(note)}\par}}
 \medskip\noindent{{\color{{ink2!30}}\rule{{\linewidth}}{{0.4pt}}}}\par
 """
@@ -104,7 +123,7 @@ with tempfile.TemporaryDirectory() as td:
                     "-V", "geometry=top=24mm,bottom=24mm,left=26mm,right=26mm,headsep=8mm",
                     "-V", "fontfamily=tgpagella",
                     "-V", "colorlinks=true", "-V", "linkcolor=accent", "-V", "urlcolor=accent",
-                    "-V", "lang=en", "--pdf-engine=pdflatex"])
+                    "-V", f"lang={L['pandoc_lang']}", "--pdf-engine=pdflatex"])
     # short tables: pandoc's longtable mis-measures pages that also hold floats -> plain, unbreakable tabular
     tex = re.sub(r"\\bottomrule\\noalign\{\}\s*\\endlastfoot\s*", "", tex)
     tex = re.sub(r"\\end(first)?head\s*|\\endfoot\s*", "", tex)

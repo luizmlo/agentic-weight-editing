@@ -95,7 +95,7 @@ notebooks/
 docs/
   research-notes.md   findings, with evidence and caveats (start here)
   experiments.md      registry of every experiment: question, pre-registered prediction, outcome, data
-  paper-draft.md      pre-paper outline: framing, contributions, sections, figures, TODO
+  paper-draft.md      pre-paper (English; pt-BR version in paper-draft.pt-BR.md, PDFs in pre-paper*.pdf)
   reproducing.md      environment, hardware gotchas, how to run each stage
   cost.md             cost study: GPU-hours, agent tokens, serving cost, comparison with Astra
   CADERNO.md          original lab notebook (pt-BR), timestamped pre-registrations; the primary record

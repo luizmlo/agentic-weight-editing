@@ -113,7 +113,7 @@ or hidden folders in `$HOME`. Without a browser, the PNGs are skipped and the in
 
 ```bash
 uv run python scripts/export_figures.py                  # notebook charts -> docs/figures/*.png (used by paper-draft.md)
-uv run python scripts/build_prepaper_pdf.py               # docs/pre-paper.pdf: pandoc (bundled) + pdfLaTeX, floating figures
+uv run python scripts/build_prepaper_pdf.py [--lang pt-BR] # docs/pre-paper[.pt-BR].pdf: pandoc (bundled) + pdfLaTeX
 uv run python scripts/build_prepaper_page.py out.html    # self-contained HTML page: figures embedded, math as MathML
 ```
 
