@@ -1058,3 +1058,37 @@ custo ainda maior.
 - **Correção na entrada "Estudo de custo":** a tabela listava r2 com 0,458 no dev48. O valor correto é **0,354**
   (`gen_dev48.json`, `m2a_r2`), como em F7. Foi erro de transcrição; nada mais muda. O mesmo erro em `docs/cost.md`
   foi corrigido.
+
+## 2026-11-08 (17h) — Teste trancado ampliado (t200). PRÉ-REGISTRO
+
+Pedido do Luiz: aumentar o n do teste trancado antes de tudo. O t12k tem só 32 problemas (±8–9 pp), e é nele que o
+budget forcing aparece à frente do a1 (0,625 contra 0,562).
+
+**Conjunto:** GSM8K **test[200:400]**, 200 problemas, teto 12288, amostragem THINK35, `-np 16`, mesma semente por
+problema em todos os braços (`scripts/queue_t200.sh`, tag `t200`). Escolhi [200:400], e não [32:232], porque
+test[0:200] já foi usado (sem raciocínio) no painel de efeitos colaterais. Nenhum método foi escolhido nesse painel,
+mas [200:400] nunca foi tocado por nenhum braço, em nenhum modo.
+
+**Braços**, todos escolhidos antes, sem nenhuma escolha nova. Rodam nesta ordem de prioridade, para que um corte de
+tempo preserve as comparações principais:
+1. a1 (`m2a_a1_062959_102`, a mesma variante do t12k e do MATH);
+2. bf4096 (o melhor budget forcing no dev48);
+3. a1 + bf4096;
+4. astra;
+5. base;
+6. lbx_w10_t1 (o melhor logit bias no dev48);
+7. ft_sft_ep2 (a época do LoRA escolhida na checagem de geração).
+
+**Análise primária:** acerto por braço com EP binomial; comparações pareadas (resgates e perdas, ganho ± EP pareado)
+para a1 contra base, astra, bf4096 e LoRA, e para a1 + bf4096 contra a1 e contra bf4096. **Secundária:** t12k + t200
+juntos (232 problemas). Nada é reescolhido depois de ver o t200.
+
+**Previsões (antes de rodar):**
+- base ≈ 0,13; astra ≈ 0,42; a1 ≈ 0,60; bf4096 ≈ 0,55; a1 + bf4096 ≈ 0,65; lbx ≈ 0,47; LoRA ≈ 0,28.
+- a1 > base e a1 > astra, com folga (pareado, > 3 EP).
+- a1 contra bf4096: a1 à frente por ~5 pp, mas sem certeza. Prevejo que a diferença fique dentro de 2 EP. **Se o
+  bf4096 vencer por mais de 2 EP, o texto passa a dizer que, no GSM8K, o budget forcing é tão bom quanto a edição ou
+  melhor**, e a vantagem do a1 fica restrita a problemas longos (MATH) e ao custo de servir.
+- a1 + bf4096 ≥ max(a1, bf4096).
+
+**Custo previsto:** ~70 s por problema no base e ~40 s no a1. São ~14,5 h para os 5 primeiros braços e ~21 h para os 7.

@@ -9,6 +9,8 @@ uso: gen_eval.py TAG N MAX_NEW BRAÇOS [--np 16] [--plast MAX_NEW+512] [--nothin
 
 import argparse
 import json
+import os
+import sys
 
 from datasets import load_dataset
 from transformers import AutoTokenizer
@@ -28,6 +30,8 @@ ap.add_argument("--split", default="test", help="test (avaliação) ou train (de
 ap.add_argument("--offset", type=int, default=0)
 A = ap.parse_args()
 TAG, N, MAXN, ARMS = A.tag, A.n, A.max_new, A.arms.split(",")
+if A.split == "test" and os.environ.get("WSP_UNLOCK_TEST") != "1":
+    sys.exit("split de teste trancado: defina WSP_UNLOCK_TEST=1 (fica registrado no ledger)")
 SAMPLING = llama_gen.NOTHINK if A.nothink else llama_gen.THINK35
 SUFFIX = "\nPlease reason step by step, and put your final answer within \\boxed{}."
 SYSTEMS = {
