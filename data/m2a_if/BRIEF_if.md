@@ -61,9 +61,9 @@ m.history(RUN)                    # all your past results
     `rescues` and `losses`;
   - `fail_examples`: up to 4 failed prompts, with the instructions that failed and the start and end of the
     response, so you can **see** how the edited model fails.
-  It takes about 3–5 min and has its own small budget (see Rules). This is the closest signal to the final
+  It takes about 6–8 min and has its own small budget (see Rules). This is the closest signal to the final
   evaluation, so use it to decide between candidate families, not to fine-tune α.
-- **Probe scorer** (`m.submit`): each valid call costs 1 unit of budget and takes ~15–40 s. It uses matched pairs:
+- **Probe scorer** (`m.submit`): each valid call costs 1 unit of budget and takes ~80 s. It uses matched pairs:
   the same hand-written answer in two versions, one that follows an instruction and one that does not (for example
   the paragraph in lowercase vs. the original, with and without the requested final phrase). For each pair, the
   margin is the mean log-prob per token of the compliant version minus that of the non-compliant one. It returns,
@@ -72,7 +72,8 @@ m.history(RUN)                    # all your past results
     means the edit makes compliant answers relatively more likely.
   - `per_constraint`: the same, per instruction type (lowercase, uppercase, no_comma, end_phrase, json, quotation,
     title, postscript).
-  - `ctrl_margin`: the same pairs with the instruction **removed** from the prompt. It should stay near 0. A positive
+  - `ctrl_margin`: the same pairs (3 of the topics) with the instruction **removed** from the prompt. It should stay
+    near 0. A positive
     value means the edit applies the format whether or not it was asked for, which is not instruction following.
   - `if_sel` = `if_margin − ctrl_margin`.
   - `neutral`: Δlogp on generic text (WikiText). Keep it ≥ −0.01.

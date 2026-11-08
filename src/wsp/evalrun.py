@@ -18,7 +18,7 @@ import httpx
 from wsp import llama_gen
 from wsp.paths import DATA
 
-NAMED = {"base": "wsp-base", "astra": "wsp-astra", "anti_rep": "wsp-base", "placebo": "wsp-base"}
+NAMED = {"base": "wsp-base", "astra": "wsp-astra", "anti_rep": "wsp-base", "placebo": "wsp-base", "if_sys": "wsp-base"}
 LEDGER = DATA / "ledger.jsonl"
 
 

@@ -8,8 +8,9 @@ Sondas (wsp.ifprobes; Δ = editado − base, nats por token, média por par):
   if_margin       Δ(logp da versão que cumpre − logp da que não cumpre), prompt COM a instrução (8 tópicos × 8
                   instruções). Positivo = a edição passa a preferir cumprir.
   per_constraint  if_margin por instrução
-  ctrl_margin     o mesmo, com o prompt SEM a instrução. Deve ficar ~0 (positivo = aplica o formato sempre)
-  neutral         Δlogp em WikiText-2 (8 blocos de 1024 tokens)
+  ctrl_margin     o mesmo, com o prompt SEM a instrução (3 tópicos × 8). Deve ficar ~0 (positivo = aplica o formato
+                  sempre)
+  neutral         Δlogp em WikiText-2 (4 blocos de 1024 tokens)
   holdout_margin  if_margin em 3 tópicos novos, LACRADO (sealed/)
 Checagem por geração (submit_gen): IFEval dev[0:48] (split fixo de scripts/ifeval_eval.py), sem raciocínio, teto
 2048, amostragem TOOLS, verificador oficial. O HF sai da GPU, o candidato vira GGUF (poc7_build) e o llama-server
@@ -42,27 +43,52 @@ ife = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(ife)
 
 model, tok = modelio.load()
+PAD = tok.pad_token_id if tok.pad_token_id is not None else 0
+
+
+@torch.no_grad()
+def batch_mean_logp(seqs, bs=16):
+    """[(ids, mask)] -> [logp médio por token nas posições do mask], em lotes com padding à DIREITA (modelo causal:
+    as posições reais não enxergam o padding, então o resultado é o de cada sequência sozinha)."""
+    order = sorted(range(len(seqs)), key=lambda i: len(seqs[i][0]))
+    out = [0.0] * len(seqs)
+    for s in range(0, len(order), bs):
+        idx = order[s:s + bs]
+        L = max(len(seqs[i][0]) for i in idx)
+        x = torch.full((len(idx), L), PAD, dtype=torch.long)
+        for j, i in enumerate(idx):
+            x[j, :len(seqs[i][0])] = seqs[i][0]
+        h = model.model(input_ids=x.to(model.device), use_cache=False).last_hidden_state
+        for j, i in enumerate(idx):
+            ids, m = seqs[i]
+            pos = m.nonzero().squeeze(-1).to(model.device)
+            lp = model.lm_head(h[j, pos]).float().log_softmax(-1)
+            out[i] = lp.gather(-1, ids.to(model.device)[pos + 1, None]).mean().item()
+    return out
+
+
+def pair_margins(items):
+    lp = batch_mean_logp([it[k] for it in items for k in ("ok", "bad")])
+    return [lp[2 * i] - lp[2 * i + 1] for i in range(len(items))]
 
 
 def prep_pairs(items):
-    for it in items:
-        for k in ("ok", "bad"):
-            ids, m = it[k]
-            it[k + "_base"] = tf.read(model, ids)["logp"][m].mean().item()
+    for it, mg in zip(items, pair_margins(items)):
+        it["m_base"] = mg
     return items
 
 
 search = prep_pairs(ifprobes.pairs(tok, ifprobes.SEARCH_TOPICS, True))
-control = prep_pairs(ifprobes.pairs(tok, ifprobes.SEARCH_TOPICS, False))
+control = prep_pairs(ifprobes.pairs(tok, ifprobes.SEARCH_TOPICS[:3], False))  # 3 tópicos bastam e o forward é lento (~600 tok/s)
 hold = prep_pairs(ifprobes.pairs(tok, ifprobes.HOLDOUT_TOPICS, True))
 wt = "".join(load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="test")["text"])
 wt_ids = tok(wt, add_special_tokens=False)["input_ids"]
-neutral = [{"ids": torch.tensor(wt_ids[j * 1024:(j + 1) * 1024])} for j in range(8)]
+neutral = [{"ids": torch.tensor(wt_ids[j * 1024:(j + 1) * 1024])} for j in range(4)]
 for it in neutral:
     it["base"] = tf.read(model, it["ids"])["logp"]
 BASE_MARGIN = {}
 for it in search:
-    BASE_MARGIN.setdefault(it["constraint"], []).append(it["ok_base"] - it["bad_base"])
+    BASE_MARGIN.setdefault(it["constraint"], []).append(it["m_base"])
 BASE_MARGIN = {k: round(sum(v) / len(v), 4) for k, v in BASE_MARGIN.items()}
 
 GEN_ITEMS = ife.split("dev", 48, 0)
@@ -132,12 +158,7 @@ def handle_gen(rd, req):
 
 
 def margin_delta(items):
-    out = []
-    for it in items:
-        ok = tf.read(model, it["ok"][0])["logp"][it["ok"][1]].mean().item()
-        bad = tf.read(model, it["bad"][0])["logp"][it["bad"][1]].mean().item()
-        out.append((it["constraint"], (ok - bad) - (it["ok_base"] - it["bad_base"])))
-    return out
+    return [(it["constraint"], mg - it["m_base"]) for it, mg in zip(items, pair_margins(items))]
 
 
 def mean(xs):

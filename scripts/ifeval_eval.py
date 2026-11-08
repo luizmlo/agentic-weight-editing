@@ -23,6 +23,11 @@ from wsp.paths import BASE_REPO, BASE_REV, DATA, ROOT, snapshot
 ALL = ev.read_prompt_list(str(ROOT / "data" / "ifeval" / "input_data.jsonl"))
 PERM = random.Random(0).sample(range(len(ALL)), len(ALL))
 SPLITS = {"dev": PERM[:200], "test": PERM[200:]}
+SYSTEMS = {  # braço P (pré-registrado, CADERNO 2026-11-08 20h): o base com um system prompt pedindo para seguir as instruções
+    "if_sys": "You are a careful assistant. Before answering, read every instruction in the request and follow all of "
+              "them exactly: format, length, letter case, punctuation, and required or forbidden words. Your response "
+              "must satisfy every constraint in the request.",
+}
 
 
 def split(name, n=None, offset=0):
@@ -70,8 +75,11 @@ if __name__ == "__main__":
     MAXN = A.max_new or (6144 if A.think else 2048)
     items = split(SPLIT, A.n, A.offset)
     tok = AutoTokenizer.from_pretrained(snapshot(BASE_REPO, BASE_REV))
-    prompts = [tok.apply_chat_template([{"role": "user", "content": x.prompt}], tokenize=False,
-                                       add_generation_prompt=True, enable_thinking=A.think) for x in items]
+
+    def prompts_for(arm):
+        sysm = [{"role": "system", "content": SYSTEMS[arm]}] if arm in SYSTEMS else []
+        return [tok.apply_chat_template(sysm + [{"role": "user", "content": x.prompt}], tokenize=False,
+                                        add_generation_prompt=True, enable_thinking=A.think) for x in items]
     # sem presence penalty: o llama-server põe o prompt no sampler e puniria repetir palavras pedidas no prompt
     SAMPLING = llama_gen.THINK35 if A.think else llama_gen.TOOLS
     PLAST = MAXN + 512 if A.think else 64
@@ -85,7 +93,7 @@ if __name__ == "__main__":
             print(arm, "(já feito)", json.dumps(res["arms"][arm]["summary"]), flush=True)
             continue
         try:
-            outs, stats = evalrun.run(f"ifeval_{A.tag}", arm, prompts, MAXN, np=A.np, sampling=SAMPLING,
+            outs, stats = evalrun.run(f"ifeval_{A.tag}", arm, prompts_for(arm), MAXN, np=A.np, sampling=SAMPLING,
                                       penalty_last_n=PLAST, ctx_per_slot=MAXN + 1024)
         except Exception as e:
             print(arm, "ERRO:", repr(e), flush=True)
