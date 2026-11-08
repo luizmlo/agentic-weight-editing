@@ -1161,3 +1161,32 @@ Por que este defeito:
   aqui.
 - O system prompt muda pouco (no paper 1, prompts não ajudaram contra loops), mas aqui pode ajudar no descumprimento.
 - As sondas (if_margin) vão sofrer Goodhart: a correlação com o prompt_strict da checagem será fraca.
+
+## 2026-11-08 (18h40–19h25) — Sanidade do avaliador IF e run b1
+
+**Sanidade** (run `sanity`):
+- Sondas: uma edição aleatória dá ~0 em tudo. A edição a1 (loops) quase não mexe (if_margin −0,003, ctrl −0,001,
+  neutral −0,002).
+- O forward do Qwen3.5 neste stack faz só ~600 tok/s (fallback do `causal_conv1d`), mesmo em lote. Para manter
+  ~80 s por sonda, reduzi o controle para 3 tópicos e o WikiText para 4 blocos (mudança feita antes do b1).
+- Checagem por geração: base 0,500 (cortes 0,19).
+- **Surpresa: a a1 fez 0,625 (8 resgates / 2 perdas; cortes 0,06).** A previsão dizia que a a1 não mudaria o IFEval
+  sem raciocínio. É uma amostra de 48 prompts; a confirmação no dev152 (que já inclui a a1 como controle) decide.
+
+**Run b1** (Claude Opus 5.5, sem atlas, briefing IF; 45 min de relógio, 23 de 40 sondas e 4 de 6 checagens):
+- **Escolha nº 1** (`184512_099`): uma edição rank-1 em L23 `mlp.down_proj`. Direção `<|im_end|>` vista pela saída,
+  `(1+g_final)⊙E[eos]`, nos 64 neurônios que mais empurram o fim da resposta, α = −1,5 (amplifica 2,5×). Na
+  checagem: 0,625 contra 0,500 (8/2), cortes 0,125, neutral −0,0099.
+- Uma variante quase idêntica (+ L22) voltou a 0,50 (6/6). **O próprio agente julga o ganho fraco**, em nível de
+  ruído.
+- **Mecanismo proposto:** reforçar o fim de resposta para quebrar a repetição degenerada. É a mesma família de
+  alavanca do `</think>` da a1, agora no `<|im_end|>`.
+- **O que falhou:** direções de "instrução" estimadas dos pesos, direções singulares das camadas de atenção,
+  neurônios de entropia, cabeças de supressão de cópia e EOS em todos os neurônios (neutral −1 a −3). O
+  EOS-menos-quebra-de-linha fez 0,44: o modelo termina antes de escrever o P.S. ou a frase final.
+- **Sondas × geração:** as sondas não previram nada das edições de parada; só o `postscript` negativo sinalizou as
+  edições que cortam o P.S. Isso confirma a previsão de Goodhart/sondas fracas.
+- **Auditoria:** nenhuma chamada de ferramenta tocou caminhos proibidos (`docs/`, `scripts/`, `data/m2a/`,
+  `data/ifeval/`, `src/wsp/ifeval/`, `sealed/`, refs).
+- **Desvio:** o agente parou cedo "por tempo de relógio" (o prompt dizia ~2 h; ele usou 45 min). O orçamento não foi
+  esgotado.
