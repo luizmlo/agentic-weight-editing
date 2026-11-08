@@ -44,3 +44,13 @@
 {"ts": "2026-11-07 21:58:28", "kind": "ft_data", "split": "gsm8k_train[300:900]", "cap": 6144}
 {"ts": "2026-11-08 11:21:12", "kind": "gen_eval", "tag": "ftsel", "split": "gsm8k_train[200:216]", "arms": ["base", "ft_sft_ep1", "ft_sft_ep2", "ft_sft_ep3"], "max_new": 6144}
 {"ts": "2026-11-08 11:59:45", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "ft_sft_ep2"], "max_new": 12288}
+{"ts": "2026-11-08 17:07:05", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["m2a_a1_062959_102", "bf4096", "m2a_a1_062959_102+bf4096", "astra", "base", "lbx_w10_t1", "ft_sft_ep2"], "max_new": 12288}
+{"ts": "2026-11-08 17:11:43", "kind": "struct_eval", "tag": "screen_json", "family": "json", "split": "dev[0:120]", "arms": ["base", "m2a_a1_062959_102"], "think": false}
+{"ts": "2026-11-08 17:16:45", "kind": "struct_eval", "tag": "screen_tools", "family": "tools", "split": "dev[0:120]", "arms": ["base", "m2a_a1_062959_102"], "think": false}
+{"ts": "2026-11-08 17:26:05", "kind": "struct_eval", "tag": "screen_ifeval", "family": "ifeval", "split": "dev[0:120]", "arms": ["base", "m2a_a1_062959_102"], "think": false}
+{"ts": "2026-11-08 17:28:16", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["m2a_a1_062959_102", "bf4096", "m2a_a1_062959_102+bf4096", "astra", "base", "lbx_w10_t1", "ft_sft_ep2"], "max_new": 12288}
+{"ts": "2026-11-08 17:28:34", "kind": "struct_eval", "tag": "screen_lang", "family": "lang", "split": "dev[0:120]", "arms": ["base"], "think": false}
+{"ts": "2026-11-08 17:32:36", "kind": "struct_eval", "tag": "screen_lang_think", "family": "lang", "split": "dev[0:48]", "arms": ["base"], "think": true}
+{"ts": "2026-11-08 17:43:43", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["m2a_a1_062959_102", "bf4096", "m2a_a1_062959_102+bf4096", "astra", "base", "lbx_w10_t1", "ft_sft_ep2"], "max_new": 12288}
+{"ts": "2026-11-08 17:44:51", "kind": "ifeval_eval", "tag": "dev200", "split": "dev[0:200]", "arms": ["base"], "think": false}
+{"ts": "2026-11-08 17:52:14", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["m2a_a1_062959_102", "bf4096", "m2a_a1_062959_102+bf4096", "astra", "base", "lbx_w10_t1", "ft_sft_ep2"], "max_new": 12288}

@@ -24,6 +24,7 @@ ap.add_argument("--max-new", type=int, default=None)
 ap.add_argument("--np", type=int, default=16)
 ap.add_argument("--offset", type=int, default=0)
 ap.add_argument("--test", action="store_true")
+ap.add_argument("--sampling", default="tools", choices=["tools", "think35", "nothink"])
 A = ap.parse_args()
 SPLIT = "test" if A.test else "dev"
 if A.test and os.environ.get("WSP_UNLOCK_TEST") != "1":
@@ -33,7 +34,9 @@ tasks = structbench.split(A.family, SPLIT, A.n, A.offset)
 tok = AutoTokenizer.from_pretrained(snapshot(BASE_REPO, BASE_REV))
 prompts = [tok.apply_chat_template([{"role": "user", "content": t["user"]}], tools=t.get("tools"), tokenize=False,
                                    add_generation_prompt=True, enable_thinking=A.think) for t in tasks]
-SAMPLING = llama_gen.TOOLS  # sem presence penalty: o llama-server põe o prompt no sampler e puniria copiar valores
+# padrão sem presence penalty: o llama-server põe o prompt no sampler e puniria copiar valores
+SAMPLING = {"tools": llama_gen.TOOLS, "think35": llama_gen.THINK35, "nothink": llama_gen.NOTHINK}[A.sampling]
+PLAST = 64 if A.sampling == "tools" else MAXN + 512
 
 OUT = DATA / f"struct_{A.tag}.json"
 res = json.loads(OUT.read_text()) if OUT.exists() else {
@@ -45,7 +48,7 @@ for arm in A.arms.split(","):
         print(arm, "(já feito)", json.dumps(res["arms"][arm]["summary"]), flush=True)
         continue
     try:
-        outs, stats = evalrun.run(f"struct_{A.tag}", arm, prompts, MAXN, np=A.np, sampling=SAMPLING, penalty_last_n=64,
+        outs, stats = evalrun.run(f"struct_{A.tag}", arm, prompts, MAXN, np=A.np, sampling=SAMPLING, penalty_last_n=PLAST,
                                   ctx_per_slot=MAXN + 1536)
     except Exception as e:
         print(arm, "ERRO:", repr(e), flush=True)
@@ -64,6 +67,10 @@ for arm in A.arms.split(","):
     if A.family == "tools":
         summ["extra_optional_rate"] = sum(r["extra_optional"] > 0 for r in rows) / n
         summ["missing_required_rate"] = sum(r["missing_required"] > 0 for r in rows) / n
+    if A.family == "lang":
+        import collections
+        summ["lang"] = dict(collections.Counter(r["lang"] for r in rows))
+        summ["think_lang"] = dict(collections.Counter(r["think_lang"] for r in rows))
     if A.family == "ifeval":
         per = {}
         for r in rows:

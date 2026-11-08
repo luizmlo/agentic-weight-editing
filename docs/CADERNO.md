@@ -1092,3 +1092,72 @@ juntos (232 problemas). Nada é reescolhido depois de ver o t200.
 - a1 + bf4096 ≥ max(a1, bf4096).
 
 **Custo previsto:** ~70 s por problema no base e ~40 s no a1. São ~14,5 h para os 5 primeiros braços e ~21 h para os 7.
+
+## 2026-11-08 (18–19h) — Triagem do segundo defeito: saída estruturada e idioma
+
+Objetivo: achar um defeito do Qwen3.5-0.8B que o modelo base erre em 30–70% dos casos, que seja verificável
+automaticamente, que não tenha uma palavra-chave óbvia para mirar e que seja uma falha de elicitação (o modelo sabe
+fazer em outras condições). Benchmarks em `src/wsp/structbench.py`, avaliação com `scripts/struct_eval.py`, dev de
+120 itens por família, sem raciocínio, amostragem TOOLS (sem presence penalty). O t200 foi pausado e retomado por
+item para cada triagem. Custou ~15 min de GPU no total.
+
+| família | base | a1 | o que falha |
+|---|---|---|---|
+| JSON por schema (extração, tipos, enum, aninhado, null) | exato 0,833; JSON válido 1,00; schema 0,95 | 0,833 | quase só valores (ex.: "No prior experience" → null em vez de 0); estrutura e tipos ~sempre certos |
+| tool calling difícil (6 ferramentas, opcionais, listas, 2 chamadas) | exato 0,675; formato 1,00 | 0,692 | 21/39 falhas são parâmetros opcionais preenchidos sem pedido. Quase tudo em 2 parâmetros com enum: `currency=USD` (11/13; é o default documentado, então é artefato do verificador) e `repeat=daily` (10/12; erro real). O resto são valores ("Pay rent at 20:00" no campo de texto, músicas inventadas) |
+| restrições de formato (IFEval sintético) | 0,683 | — | o benchmark tinha combinações conflitantes (minúsculas + frase final com maiúscula); "sem vírgulas" é lexical |
+| idioma (pedido em pt-BR), sem raciocínio | 0,95 em português | — | 4% cortados no teto de 768 |
+| idioma, com raciocínio (teto 3072, n=48) | resposta em pt ~0,8 | — | pensa em inglês, mas responde em português; as falhas são os loops (cortes) |
+
+**Conclusão:** "JSON malformado" e "formato de tool call quebrado" não são defeitos deste modelo sem raciocínio. O
+JSON sai sempre válido e o formato de chamada sempre certo. O que falha são valores e parâmetros opcionais. O único
+defeito grande que vimos continua sendo o loop com raciocínio ligado. Próximo candidato: **IFEval** (Zhou et al.,
+2023), o benchmark padrão de seguir instruções de formato, com o verificador oficial (vendorizado em
+`src/wsp/ifeval/`) e um split fixo: dev = 200 prompts, test = 341, trancado.
+
+## 2026-11-08 (20h) — Segundo defeito: IFEval sem raciocínio. Triagem e PRÉ-REGISTRO
+
+**Triagem** (`scripts/ifeval_eval.py`, verificador oficial em `src/wsp/ifeval/`; split fixo dos 541 prompts por
+embaralhamento com semente 0: dev = 200, test = 341, trancado). Base, dev200, sem raciocínio, teto 2048, amostragem
+TOOLS:
+- prompt-level strict 0,530 (loose 0,570); instruction-level strict 0,697;
+- 14% das respostas batem no teto: são repetição degenerada de uma frase ou parágrafo, um loop sem raciocínio;
+- das 94 falhas, 28 são esses cortes e 66 são descumprimento puro, espalhado por muitos tipos. Os mais comuns:
+  sem vírgulas (11/21), repetir o pedido (8/17), palavra obrigatória (6/15), palavra proibida (6/15) e seções
+  destacadas (5/19).
+
+Por que este defeito:
+- está na faixa pedida (~50% de falha);
+- é verificável com o código oficial;
+- não tem palavra-chave única para mirar;
+- é um benchmark padrão, reconhecido pelos revisores;
+- é sobretudo elicitação: o modelo sabe escrever sem vírgulas e em minúsculas, mas não o faz quando pedido.
+
+**Protocolo** (o mesmo da run a1, só muda o defeito):
+- **Agente:** Claude Opus 5.5, sem atlas, briefing `data/m2a_if/BRIEF_if.md`, mesmo espaço de edições.
+- **Orçamento:** 40 sondas e 6 checagens por geração.
+- **Sondas** (`src/wsp/ifprobes.py`, avaliador `scripts/m2a_scorer_if.py`): pares casados com resposta escrita à mão,
+  uma versão que cumpre e outra que não cumpre a instrução (8 tipos × 8 tópicos de busca; 3 tópicos de holdout
+  lacrado), mais o controle sem a instrução no prompt e WikiText.
+- **Checagem por geração:** IFEval dev[0:48].
+- **Desvio declarado em relação à v2:** a checagem usa 48 prompts, não 16, porque aqui as respostas são curtas (~3–5
+  min por checagem).
+
+**Avaliação, decidida antes de rodar:**
+1. A escolha nº 1 do agente (`final.json`) é confirmada no IFEval dev[48:200] (152 prompts), pareada contra o base.
+   No mesmo conjunto rodam também os controles: a1 (a edição dos loops) e o base com um system prompt pedindo para
+   seguir as instruções à risca (braço P).
+2. Teste trancado (IFEval test, 341 prompts): uma escolha por braço, rodada uma vez só, depois da confirmação.
+3. Efeitos colaterais: GSM8K sem raciocínio (n=200, como no painel do paper 1) e o tool calling sintético.
+4. Fine-tuning (análogo ao E4): SFT LoRA nas próprias respostas do base que passam no verificador (amostragem de
+   rejeição em prompts sintéticos, não do IFEval). Fica para depois, se der tempo.
+
+**Previsões (antes de rodar o agente):**
+- A tarefa é bem mais difusa que os loops, que tinham uma alavanca lexical ("Wait") e um sinal de saída
+  (`</think>`). Prevejo um ganho modesto: escolha do agente no dev152 entre 0,58 e 0,62 (+5 a +9 pp sobre ~0,53).
+  Dou ~30% de chance para mais de +10 pp e ~25% para nenhum ganho significativo (< 2 EP pareados).
+- Se houver ganho, a fonte mais provável é a parte de repetição degenerada (14% de cortes), não o descumprimento puro.
+- O a1 (edição dos loops) não deve mudar o IFEval sem raciocínio: ele age em "Wait" e `</think>`, que não aparecem
+  aqui.
+- O system prompt muda pouco (no paper 1, prompts não ajudaram contra loops), mas aqui pode ajudar no descumprimento.
+- As sondas (if_margin) vão sofrer Goodhart: a correlação com o prompt_strict da checagem será fraca.

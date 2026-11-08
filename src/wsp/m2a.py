@@ -95,9 +95,9 @@ def apply(model, edits: list[dict]):
     return undo, rel
 
 
-def submit(run: str, edits: list[dict], note: str = "", timeout: float = 900) -> dict:
+def submit(run: str, edits: list[dict], note: str = "", timeout: float = 900, runs: Path | None = None) -> dict:
     """Envia um candidato ao avaliador e espera o resultado (debita 1 do orçamento da run)."""
-    d = RUNS / run
+    d = (runs or RUNS) / run
     if not (d / "config.json").exists():
         raise RuntimeError(f"run {run} não existe (o supervisor cria com config.json)")
     validate(edits)  # falha cedo, sem gastar orçamento
@@ -114,10 +114,10 @@ def submit(run: str, edits: list[dict], note: str = "", timeout: float = 900) ->
     return json.loads(out.read_text())
 
 
-def submit_gen(run: str, cid: str, timeout: float = 3600) -> dict:
+def submit_gen(run: str, cid: str, timeout: float = 3600, runs: Path | None = None) -> dict:
     """Checagem por GERAÇÃO de um candidato já avaliado (id devolvido por submit). Debita 1 do
     orçamento de geração (config.json "gen_budget"). Leva ~5–15 min."""
-    d = RUNS / run
+    d = (runs or RUNS) / run
     if not (d / "done" / f"{cid}.pt").exists():
         raise RuntimeError(f"candidato {cid} não foi avaliado nesta run (use submit primeiro)")
     gid = "gen_" + time.strftime("%H%M%S") + f"_{int(time.time() * 1000) % 1000:03d}"
@@ -133,9 +133,9 @@ def submit_gen(run: str, cid: str, timeout: float = 3600) -> dict:
     return json.loads(out.read_text())
 
 
-def history(run: str) -> list[dict]:
+def history(run: str, runs: Path | None = None) -> list[dict]:
     """Todos os resultados da run, em ordem."""
-    return [json.loads(p.read_text()) for p in sorted((RUNS / run / "outbox").glob("*.json"))]
+    return [json.loads(p.read_text()) for p in sorted(((runs or RUNS) / run / "outbox").glob("*.json"))]
 
 
 def load_atlas() -> dict:

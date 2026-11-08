@@ -38,3 +38,16 @@ __pycache__/
 !/data/gguf/
 /data/gguf/*
 !/data/gguf/*.json
+!/data/ifeval/
+!/data/m2a_if/
+/data/m2a_if/*
+!/data/m2a_if/BRIEF*.md
+!/data/m2a_if/gen_ref_base.json
+!/data/m2a_if/runs/
+/data/m2a_if/runs/*/*
+!/data/m2a_if/runs/*/config.json
+!/data/m2a_if/runs/*/final.json
+!/data/m2a_if/runs/*/notes.md
+!/data/m2a_if/runs/*/ledger.jsonl
+!/data/m2a_if/runs/*/gen_ledger.jsonl
+!/data/m2a_if/runs/*/done/

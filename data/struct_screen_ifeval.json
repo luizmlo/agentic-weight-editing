@@ -1,0 +1,2577 @@
+{
+ "tag": "screen_ifeval",
+ "family": "ifeval",
+ "split": "dev[0:120]",
+ "N": 120,
+ "think": false,
+ "max_new": 768,
+ "sampling": {
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "top_k": 20,
+  "presence_penalty": 0.0,
+  "min_p": 0.0
+ },
+ "arms": {
+  "base": {
+   "model": "wsp-base",
+   "summary": {
+    "secs_this_run": 58,
+    "tok_s_this_run": 163.9,
+    "exact": 0.6833333333333333,
+    "cut": 0.008333333333333333,
+    "mean_tokens": 78.74166666666666,
+    "per_constraint": {
+     "lower": 0.667,
+     "end_phrase": 0.824,
+     "max_words": 1.0,
+     "no_commas": 0.5,
+     "json_wrap": 0.862,
+     "bullets": 0.88
+    }
+   },
+   "rows": [
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 83,
+     "cut": false,
+     "text": "start by creating a study plan that fits your schedule. identify your weak areas and focus your effort there. break down the material into manageable chunks and use active recall to test yourself. take regular breaks to maintain energy levels, and review notes periodically to catch up on lost information. use flashcards to reinforce key concepts. ensure you are well-rested throughout the day. is there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 30,
+     "cut": false,
+     "text": "Master concepts, create flashcards, and test yourself daily. Prioritize active recall over passive reading. Focus on understanding, not just memorizing."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 40,
+     "cut": false,
+     "text": "Sleep restores vital energy levels for daily tasks. It strengthens the immune system and improves cognitive function.\n\nSleep is essential for physical recovery and emotional balance. Without it, your body cannot heal effectively."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "{\n  \"answer\": \"A good password is a random string of at least 12 characters that includes a mix of uppercase letters, lowercase letters, numbers, and special characters. It should be complex enough to resist brute-force attacks but short enough to be easy to remember. The goal is to balance security against usability.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 80,
+     "cut": false,
+     "text": "1.  Plan your study schedule by setting aside dedicated time each day.\n2.  Read the material at a speed that matches your own learning pace.\n3.  Review notes and flashcards to reinforce what you have learned.\n4.  Test yourself with short practice questions immediately after studying.\n5.  Sleep well to ensure your brain is refreshed during the exam period."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "json_wrap": true
+     },
+     "exact": false,
+     "n_tokens": 84,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Learning a second language opens doors to new opportunities, improves communication skills, and fosters a deeper understanding of the culture. It can also help in career advancement by opening up job markets in other countries. Additionally, it encourages creativity, enhances language proficiency, and supports personal growth through cultural exchange. Ultimately, mastering a second language expands horizons and enriches one's worldview.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 40,
+     "cut": false,
+     "text": "{\"answer\": \"sleep is essential for maintaining strong physical and mental health, aiding in immune function, and supporting cognitive clarity. without adequate rest, we risk fatigue and a weakened immune system.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": false
+     },
+     "exact": false,
+     "n_tokens": 99,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To save money on groceries, start by planning your shopping list in advance and sticking to a budget. Look for sales, coupons, and bulk discounts, and consider buying items in larger quantities to reduce the per-unit cost. Also, use a grocery store's \"buy nothing after\" plan or consider buying in bulk for items you rarely use. Finally, check your pantry for items you've already bought, as they may be cheaper than fresh produce.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 44,
+     "cut": false,
+     "text": "Learning a second language opens doors to new experiences. It allows you to communicate with people from different cultures. This exposure helps you understand local customs better. You can also travel more easily with the help of the language."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": false,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 768,
+     "cut": true,
+     "text": " to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce portion waste. Cook in larger containers or bags. Cook more meals at once to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce portion waste. Cook in larger containers or bags. Cook more meals at once to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce portion waste. Cook in larger containers or bags. Cook more meals at once to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce portion waste. Cook in larger containers or bags. Cook more meals at once to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce portion waste. Cook in larger containers or bags. Cook more meals at once to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce portion waste. Cook in larger containers or bags. Cook more meals at once to reduce portion waste. Cook less frequently and cook in larger batches. Cook more meals at once to reduce"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 117,
+     "cut": false,
+     "text": "To make a simple tomato sauce, start by chopping fresh tomatoes and cutting them into bite-sized pieces. In a large pot, add a splash of water or stock and bring it to a simmer. Add a pinch of salt and a splash of oil, then add the chopped tomatoes and cook for about 10 minutes until the liquid reduces slightly and the tomatoes are soft. Stir in a pinch of sugar if you want a sweeter flavor, and continue cooking until the sauce is thickened and no longer bubbling. Taste it and adjust the seasoning as needed. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 47,
+     "cut": false,
+     "text": "Save money by eating out for less, buying staples in bulk, and avoiding impulse purchases. Focus on meal planning to reduce waste and utilize discount programs. Shopping at the local market or grocery store often yields better value than online stores."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 83,
+     "cut": false,
+     "text": "To effectively study for an exam, start by breaking the subject down into manageable chunks based on what you know. Then, spend time reviewing those chunks before moving to the next, ensuring you understand the flow of ideas. Use active techniques like teaching concepts to yourself or writing them down in your own words. Finally, review the material again after the exam date to catch any gaps you might have missed. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 81,
+     "cut": false,
+     "text": "to make tomato sauce, first heat olive oil in a large pot over medium heat. Then add chopped tomatoes, salt, and pepper, stirring occasionally until the liquid reduces slightly. Next, add minced garlic and a pinch of red pepper flakes, stirring until fragrant. Finally, bring the sauce to a simmer and let it cook for about 15 minutes until it thickens. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 101,
+     "cut": false,
+     "text": "Learning a second language opens doors to new opportunities and expands your creative possibilities. It allows you to express yourself more naturally across different cultures and contexts. This proficiency also fosters better communication skills in an increasingly globalized world. Many individuals find joy in traveling and experiencing diverse environments while speaking the language they wish to learn. Furthermore, the ability to understand and appreciate foreign perspectives deepens personal growth significantly. Ultimately, mastering a second language enriches your life and leads to greater success in many areas of life."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 96,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Sleep is crucial for the brain to repair cellular damage, clear out waste products like cortisol and beta-amyloid, and consolidate memory. Without sufficient sleep, the brain cannot process new information effectively, leading to cognitive decline and increased risk of disease. Additionally, it regulates the body's stress response, helps maintain healthy blood pressure, and is essential for physical recovery and growth. Adequate sleep is a fundamental biological necessity for optimal health.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 57,
+     "cut": false,
+     "text": "A good password is unique, memorable, and easy to remember. It should not contain numbers, symbols, or spaces. The best passwords are long, contain at least one uppercase letter and one lowercase, and avoid common words. They must be random and strong enough to resist guessing."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 105,
+     "cut": false,
+     "text": "Start by building a consistent routine that includes a mix of cardio and strength training. Begin with short, manageable sessions (like 20 minutes) to build endurance and muscle, gradually increasing the duration and intensity as you get comfortable. Incorporate easy-to-follow movement options, such as jumping jacks, high knees, or running in place, to make it enjoyable rather than intimidating. Remember to listen to your body and listen to your coach or instructor, and prioritize rest and nutrition to support your recovery. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 127,
+     "cut": false,
+     "text": "start by cutting and peeling a tomato. soak it in water for 10 minutes to soften it. drain the water and remove the seeds. cut the tomato into small chunks, then chop the onion, garlic, and other aromatics. add them to the tomato chunks in a bowl. pour in a little water, then a little oil. stir everything together for 10 minutes. remove the tomatoes and set aside. add the cooked ingredients to a large pot. add salt, pepper, and sugar if desired. simmer for 20 minutes until the sauce thickens and the flavors are well integrated. serve immediately."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 132,
+     "cut": false,
+     "text": "* Start with a gentle walk or a 15-minute jog on flat ground to build your cardiovascular fitness and familiarize yourself with your body's rhythm.\n* Practice the core technique of the \"front crawl\" or the \"mountain climber\" to strengthen your legs, hips, and core for better endurance.\n* Consistency is key; aim to commit to a daily schedule, whether it's an hour of jogging or a steady walk, to maintain progress over time.\n* Listen to your body and adjust your pace based on how you feel; if you feel dizzy or weak, take a break to rest and rehydrate before continuing."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 100,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To save money on groceries, adopt a systematic approach: 1) Check for coupons and use store discounts; 2) Buy in bulk when possible; 3) Choose high-quality staples over frequent, small purchases; 4) Use the '2-in-1' rule: buy one item at full price and the other at a significant discount. Consistency in these habits can reduce spending by 15-25% over time.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 110,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Water them regularly to keep soil moist but not soggy. Place them in well-draining soil to prevent root rot. Keep them away from direct sunlight and water sources like saucers. Move them to a spot with bright, indirect light. Provide consistent watering to prevent overwatering. Remove any dead or drooping leaves and prune any weak stems. Place them in a cool, dry area away from drafts. Ensure adequate airflow around them to reduce humidity. These practices help maintain healthy plant life.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 110,
+     "cut": false,
+     "text": "Start by blending the tomato paste with a splash of water until smooth. Add a pinch of salt and fresh lemon juice to the mixture. Heat the pan over medium heat until the sauce thickens slightly. Pour in a small amount of oil and cook until the liquid evaporates completely. Stir in chopped onions and garlic, then return the pan to the heat. Add the chopped tomatoes, pepper, and red pepper flakes. Stir constantly until the sauce is thickened and bubbles stop. Serve immediately while hot. Is there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 115,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To effectively study for an exam, begin by breaking the material into manageable chunks. Identify the most critical concepts by creating a prioritized list. Create a study schedule that reflects your learning pace, allocating time for active recall, spaced repetition, and reviewing notes before the deadline. Use active recall techniques like self-testing to ensure you retain information, and consider using flashcards or mnemonic devices to memorize formulas or facts. Finally, take a short break to recharge before starting your next session. That is all.\"\n}\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 44,
+     "cut": false,
+     "text": "* It expands vocabulary and enhances language fluency.\n* It builds confidence in expressing oneself without fear.\n* It fosters deeper connections with other cultures.\n* It opens doors to new opportunities and careers."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 100,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To keep houseplants alive, follow these key steps: ensure they receive adequate light and water based on their specific needs (e.g., ferns prefer consistent moisture while succulents can sit in dry air), maintain their temperature within their preferred range (typically 65-85\u00b0F for most), provide proper drainage to prevent root rot, and gently remove any dead or diseased foliage. Regular pruning and fertilization can further enhance their health.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 64,
+     "cut": false,
+     "text": "Sleep is essential for the brain's recovery, memory consolidation, and immune system function. It reduces stress hormones, lowers blood pressure, and helps maintain mental clarity. Without adequate sleep, energy levels drop, reaction times slow, and decision-making becomes unreliable. Prioritizing sleep is crucial for physical health and cognitive function."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 65,
+     "cut": false,
+     "text": "Shopping in bulk, buying pre-cut produce, and using a grocery app can significantly reduce costs. Storing food in the fridge ensures freshness, while planning your meals beforehand helps you avoid impulse buys. By keeping a budget in mind and choosing items with lower margins, you can easily save money every week. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 61,
+     "cut": false,
+     "text": "* research the company thoroughly before the interview to understand their culture and mission.\n* prepare thoughtful questions about the role and the team to show genuine interest.\n* practice common interview questions like behavioral scenarios to improve your confidence.\n* dress professionally and bring a notebook with your answers to the interview."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 64,
+     "cut": false,
+     "text": "* Speaking the language improves fluency and social interaction.\n* It broadens your horizons and fosters cross-cultural understanding.\n* It enhances your vocabulary and creative thinking.\n* It can lead to career opportunities and professional advancement.\n* It helps build confidence and emotional intelligence.\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 30,
+     "cut": false,
+     "text": "Prepare by checking your itinerary and having snacks ready. Pack light essentials and stay hydrated. Take a moment to relax before the journey. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 43,
+     "cut": false,
+     "text": "Pack light, stay hydrated, and use the in-flight snack. Take extra time off for meals and rest. Keep your head up and your phone in your pocket. Finally, fly safe and enjoy your journey!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 83,
+     "cut": false,
+     "text": "Sleep is essential for physical recovery and mental clarity. It helps your body repair tissues and strengthens your mind.\n\nSleep allows you to forget daily worries and relax your muscles. It is also a crucial time for memory consolidation so you can learn new things easily. Without adequate sleep, you risk feeling tired and less capable of performing daily tasks effectively. Therefore, getting restorative sleep is vital for overall health and happiness."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 54,
+     "cut": false,
+     "text": "* choose a consistent daily routine to track your progress.\n* start with just 15 minutes of walking or jogging to build a habit.\n* maintain a supportive community to encourage you to keep going.\n* gradually increase your workout duration every single week."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "Water plants daily, especially during the day, and keep soil consistently moist but not soggy. Prune dead leaves to maintain a lush appearance. Avoid extreme temperature shifts and extreme light exposure, as these stress plants. Regularly inspect foliage for pests and diseases to prevent rot."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 46,
+     "cut": false,
+     "text": "* a password must be at least 8 characters long to increase difficulty.\n* it should contain a mix of uppercase letters, lowercase letters, and numbers.\n* any special characters or symbols should be used only once."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 35,
+     "cut": false,
+     "text": "Water your soil so it does not dry out. Keep the plant away from strong light. Water the soil frequently. Place the plant in a spot with good air circulation."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 59,
+     "cut": false,
+     "text": "water your plants regularly and keep them in bright light. avoid letting them dry out completely or overwater them too much. prune dead leaves to make room for new growth. protect them from strong wind or direct sun to prevent burn. keep soil moist but not soggy so roots breathe well."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 80,
+     "cut": false,
+     "text": "To make a simple tomato sauce, start by cooking tomatoes in a pot until they are soft and the liquid is reduced to a thick sauce. Add a pinch of salt and a splash of vinegar to balance the acidity. Stir in chopped fresh basil or parsley for flavor. You can add a splash of oil for richness and cook for a few more minutes until the sauce is smooth. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 43,
+     "cut": false,
+     "text": "{\n  \"answer\": \"A good password is complex, includes at least one uppercase letter, one number, and one special character, and is not easily guessable by common words or patterns.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 32,
+     "cut": false,
+     "text": "Learning a second language expands your vocabulary, improves communication skills, and opens doors to global opportunities. It fosters cultural understanding and boosts confidence in new situations."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 103,
+     "cut": false,
+     "text": "To succeed in a first job interview, focus on clarity and preparation. Start by researching the company and the role thoroughly to show genuine interest. Practice common questions like \"Tell me about yourself\" and \"What do you want to achieve?\" in front of a mirror or with a friend to build confidence. Dress professionally and arrive early to show enthusiasm. Be prepared to ask questions that show your genuine curiosity about the company and the team. Finally, keep your body language open and confident throughout the interview. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 62,
+     "cut": false,
+     "text": "* Rest allows the brain to repair damaged cells during the day.\n* Quality sleep helps the body regulate temperature efficiently.\n* It triggers the production of growth hormone which fuels growth.\n* Adequate rest improves mood and reduces stress levels.\n* Regular sleep schedules ensure consistent biological rhythms for health."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "bullets": false
+     },
+     "exact": false,
+     "n_tokens": 59,
+     "cut": false,
+     "text": "* wash and peel fresh tomatoes.\n* chop them into small bite-sized pieces.\n* saut\u00e9 onions until soft and golden.\n* add tomatoes and garlic to the pan.\n* cook until the sauce thickens nicely.\n* add water or stock to finish the flavor."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 78,
+     "cut": false,
+     "text": "{\n  \"answer\": \"A good password is strong because it is random, uses a mix of uppercase letters, lowercase letters, numbers, and special characters, and contains a minimum length of 12 characters. This complexity makes it difficult for anyone to guess or crack. Additionally, using a password manager to generate and store these random strings is highly recommended for security.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 68,
+     "cut": false,
+     "text": "Start by choosing a location that is safe and free of traffic, then walk to a park or a trail where you can start running at the same time as you start walking. Gradually increase your pace as your legs become stronger and more accustomed to the movement. This gradual approach helps build a habit without causing injury. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 42,
+     "cut": false,
+     "text": "{\"answer\": \"Sleep is essential for brain repair, memory consolidation, and hormone regulation. Without it, you risk cognitive decline and mood disorders. Prioritizing rest is vital for long-term health.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 46,
+     "cut": false,
+     "text": "Learning a second language enhances cultural understanding, opens doors to new opportunities, and fosters a deeper appreciation for the world. It also provides valuable skills for career advancement and personal growth. Is there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 43,
+     "cut": false,
+     "text": "Shopping lists are essential tools for saving money. You can also look for coupons at store discounts. Buying in bulk helps reduce the total cost. Use a budget calculator to plan your spending.\n\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 86,
+     "cut": false,
+     "text": "study with a focused plan and set a daily schedule.\nprepare questions for each topic you will encounter.\nreview material after you have completed the exam.\npractice different test formats to improve accuracy.\nconsistently track your time and effort throughout the day.\ndo not rush and maintain a calm mindset for the moment.\nensure you understand every concept before moving on.\nthis method helps you retain information effectively."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 71,
+     "cut": false,
+     "text": "* Speaking a second language boosts vocabulary and improves overall language fluency.\n* It fosters cross-cultural understanding and helps you communicate more effectively with diverse people.\n* Learning a second language often enhances creative problem-solving and adaptability in new situations.\n* Developing proficiency can lead to better career opportunities and increased professional confidence.\n* Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 94,
+     "cut": false,
+     "text": "Sleep is a fundamental biological necessity for maintaining the brain's ability to process information, repair cellular damage, and regulate mood. Without adequate rest, the body suffers from fatigue, reduced cognitive function, and increased risks of stress-related health issues. Furthermore, sleep promotes the release of endorphins and serotonin, which contribute to feelings of well-being and happiness. To achieve optimal health and longevity, it is essential to prioritize a consistent and sufficient sleep schedule.\n\nGood luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 46,
+     "cut": false,
+     "text": "To keep houseplants alive, you must water them only when the soil feels dry. Avoid letting the roots sit in wet soil for long periods. This simple routine ensures the plant receives water without causing damage. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 51,
+     "cut": false,
+     "text": "Plan a route with minimal stops. Check your cabin air pressure. Wear breathable, high-coverage gear. Drink water before leaving the airport. Keep a small first aid kit ready. Stay calm during takeoff. Avoid eating or drinking on the flight."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 86,
+     "cut": false,
+     "text": "A good password is strong because it uses a combination of length and complexity. You must ensure that it is at least sixteen characters long and contains at least one number, one special character, and one uppercase letter. Additionally, avoid using common words, numbers, or symbols, as these are often easily guessed by others. Finally, remember that even strong passwords can be stolen, so they must be stored securely in a password manager."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 50,
+     "cut": false,
+     "text": "Sleep restores your energy, clears your mind, and strengthens your immune system. Without it, you become more tired, less focused, and less able to fight off infections. Prioritizing sleep is essential for overall health and long-term well-being."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 32,
+     "cut": false,
+     "text": "{\n  \"answer\": \"sleep is vital because it restores physical energy, repairs damaged tissues, and enhances cognitive function for optimal daily performance.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 59,
+     "cut": false,
+     "text": "Heat oil over medium heat until shimmering. Add minced tomatoes and cook until soft and fragrant. Stir in fresh basil and garlic until they wilt. Simmer for a few minutes until thickening. Serve immediately with parmesan shavings. Enjoy your fresh, vibrant tomato sauce today."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 89,
+     "cut": false,
+     "text": "learning a second language offers numerous benefits. It expands cognitive capabilities, allowing individuals to think more creatively and solve complex problems with greater flexibility. Beyond language, it fosters cultural understanding and helps preserve heritage traditions while exposing people to new perspectives. Furthermore, proficiency in a second language can lead to career advancement, improved communication skills, and a broader sense of global citizenship. Ultimately, mastering another language is a powerful tool for personal growth and lifelong learning."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 80,
+     "cut": false,
+     "text": "start by securing your cabin crew and checking in at the gate to avoid delays. bring plenty of water and snacks to stay hydrated throughout the journey. carry your passport and any essential documents in your checked luggage. rest your legs in a chair while you read your flight plan, and ensure your oxygen mask is ready before boarding. make sure your seatbelt is fastened for safety. that is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 22,
+     "cut": false,
+     "text": "Water regularly, place in bright spots, avoid direct sun, prune dead leaves, and repot frequently."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 22,
+     "cut": false,
+     "text": "{\"answer\": \"Sleep restores energy and memory. Without it, we suffer from fatigue and forgetfulness.\""
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 76,
+     "cut": false,
+     "text": "bring your best smile to the table\nprepare your answers with confidence\nlisten carefully to what the interviewer says\nask questions about the company culture\npractice common interview questions\nfollow up for any questions you don't understand\nbe ready to answer about your skills\ndo not forget to bring your resume and cover letter\nfocus on being honest about your strengths\nthis is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 92,
+     "cut": false,
+     "text": "* Start by listening to a favorite song to build a baseline rhythm for your body.\n* Wear comfortable running shoes that offer cushioning and support for your joints.\n* Begin with short, gradual intervals in a running park or on the path rather than on a track.\n* Focus on form first by stretching and strengthening your core before increasing speed.\n* Consistently track your steps and heart rate to monitor your progress and adjust your routine."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 103,
+     "cut": false,
+     "text": "{\n  \"answer\": \"start by setting aside dedicated time each morning before studying to create a focused mindset. review previous questions to identify weak areas, then study specifically what you need to know. use active recall by creating flashcards or summarizing key concepts, and take short breaks to maintain concentration. practice writing answers on paper to improve speed and accuracy. remember to check for any important deadlines or questions on the day of the exam to ensure you have everything you need before leaving the study room.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 78,
+     "cut": false,
+     "text": "- choose a comfortable running pace that matches your current fitness level.\n- start with short intervals of 5 to 10 minutes at a moderate speed.\n- practice your form consistently so you can run more efficiently over time.\n- listen to your body and rest frequently to prevent injury and burnout.\n- gradually increase your distance and intensity every week to build stamina."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 50,
+     "cut": false,
+     "text": "Learning a second language unlocks new career opportunities, enhances cultural understanding, and fosters global connections. It also improves communication skills and encourages lifelong learning. Ultimately, mastering a second language expands horizons and creates lasting value in both personal and professional life."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 70,
+     "cut": false,
+     "text": "Begin by preparing a base of fresh tomato sauce.\nAdd water to the sauce and bring to a simmer.\nStir in chopped onions and garlic until softened.\nAdd canned tomatoes and cook for ten minutes.\nAdd diced tomatoes and cook for another five minutes.\nStir in fresh basil and salt.\nServe immediately while hot."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 51,
+     "cut": false,
+     "text": "To prepare for a long flight, start by booking tickets in advance and staying updated with airline schedules. Next, make sure to wear comfortable shoes and bring a water bottle. Finally, check your baggage allowance and bring your necessary documents. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 39,
+     "cut": false,
+     "text": "{\"answer\": \"Sleep restores brain function, clears metabolic waste, strengthens the immune system, and improves mood. Without it, we risk cognitive decline, emotional instability, and physical illness.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 96,
+     "cut": false,
+     "text": "{\n  \"answer\": \"sleep is essential for physical recovery, mental clarity, and emotional balance. without it, we risk fatigue and health issues. it helps the body repair tissues and strengthens the immune system. it also regulates our circadian rhythm, allowing us to function at peak productivity. a lack of sleep can lead to poor decision-making, increased stress, and a general sense of exhaustion. therefore, prioritizing sleep is crucial for long-term well-being.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 87,
+     "cut": false,
+     "text": "* Sleep helps the brain repair damaged cells and reduce inflammation.\n* It regulates the body's natural circadian rhythms, aiding in better long-term health.\n* Adequate sleep strengthens the immune system, allowing your body to fight off infections more effectively.\n* Sleep improves cognitive function, leading to sharper focus and better problem-solving abilities.\n* Consistent sleep schedules promote better mood and reduce the risk of anxiety and depression."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 70,
+     "cut": false,
+     "text": "* Use a mix of uppercase, lowercase, numbers, and symbols.\n* Avoid commonly used words, names, or personal information.\n* Keep it short and simple so it is easy to remember.\n* Do not use strong encryption keys or complex algorithms.\n* Remember to rotate it regularly to prevent future breaches.\n\nGood luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 20,
+     "cut": false,
+     "text": "water soil well\nplace in bright light\nair well\nkeep away from heat\nwater well"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 59,
+     "cut": false,
+     "text": "* Set aside dedicated time every single day to master the material you will study for the test.\n* Practice answering questions from memory and under timed conditions to build speed and confidence.\n* Review the test bank and past papers to identify common mistakes that you should avoid in your future work."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": false,
+      "json_wrap": true
+     },
+     "exact": false,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To prepare for a long flight, ensure your cabin is cool and dry, check your medications, and drink plenty of water. Arrange your flights and get familiar with the airport layout. Consider using a flight simulator or taking a short break before the flight. Is there anything else I can help with?\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 81,
+     "cut": false,
+     "text": "A good password is complex and strong. It must be long enough to be difficult for others to guess or crack. It should contain a mix of letters, numbers, and special characters so that no pattern exists. Furthermore, it must be unique to every account on your system so that it does not reveal which account you are using. Finally, it must be kept secret and never shared with anyone else."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 37,
+     "cut": false,
+     "text": "water them regularly and avoid extreme heat. place them in bright, indirect light and keep them away from drafts and direct sunlight. provide good air circulation and remove any pests or diseases."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 64,
+     "cut": false,
+     "text": "* Buy in bulk and buy items that are in-season to save on storage and shipping fees.\n* Use price tags, coupons, and loyalty programs to find discounts on popular grocery items.\n* Plan your meals and shop at local markets or farmers' markets to avoid the cost of pre-packaged convenience foods."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 139,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To study effectively, follow these steps: 1) Break your subject down into manageable topics using the Pomodoro technique (25 minutes of focused work followed by a 5-minute break). 2) Create a study schedule that fits your personal rhythm and energy levels. 3) Use active recall and spaced repetition to review material regularly, rather than just re-reading notes. 4) Create flashcards to test yourself against key concepts and definitions. 5) Take regular short breaks to prevent burnout and improve memory retention. Consistency is key; aim for 7-9 hours of sleep and regular exercise to sustain high performance.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 50,
+     "cut": false,
+     "text": "To save money on groceries, prioritize whole foods and buy in bulk whenever possible. Reduce shopping trips by shopping in bulk, and consider using coupons or store discounts. Finally, look for seasonal produce to avoid buying out-of-season items. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 65,
+     "cut": false,
+     "text": "* begin by setting a realistic time limit to manage your study session efficiently.\n* focus on understanding core concepts before moving on to new material to build strong foundations.\n* review key terms and formulas multiple times to ensure you retain important details.\n* practice similar problems under timed conditions to improve your speed and accuracy."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 113,
+     "cut": false,
+     "text": "saving money on groceries can start by checking the label on the box to see if it's a \"for you\" or \"for me\" package, which saves money. Look for sales signs on the packaging, such as \"bestsellers,\" \"bestsellers,\" or \"bestsellers\" to avoid buying duplicates. Also, look for coupons on the store's website or app, and consider using grocery apps like MyFoodie to see savings and tips. Finally, always ask a neighbor if they can help you find a discount on a specific item."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 173,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To keep houseplants alive, follow these simple steps: 1. Ensure they receive at least 6 hours of bright, indirect sunlight daily. 2. Provide adequate water, as they can go 48 hours without watering and may need it every 3-4 days. 3. Check for pests regularly with a sticky trap, as they can be aggressive towards some plants. 4. Maintain good air circulation to prevent fungal diseases. 5. Rotate plants weekly to prevent root rot. 6. Prune dead leaves and remove excess foliage to encourage healthy growth. 7. Keep the soil consistently moist but not waterlogged, allowing the soil to dry out slightly between waterings. 8. Protect plants from extreme temperature fluctuations by placing them in a cooler spot or using a plant warmer.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 53,
+     "cut": false,
+     "text": "Begin by choosing a safe trail or track. Start at the base camp and move toward the trailhead. Take a short walk to find your pace and start. Keep your feet planted and maintain a steady rhythm. Consistency is key to building a sustainable habit."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 130,
+     "cut": false,
+     "text": "* Begin by listening to your body and checking your feet for any pain or numbness before attempting any movement.\n* Start with a gentle walk or a short jog on a flat, well-maintained trail to build your base without putting too much strain on your joints.\n* Gradually increase your pace and distance by incorporating shorter, more frequent intervals into your routine over the next few weeks.\n* Incorporate stretching exercises to improve flexibility and reduce muscle tightness, which helps prevent injuries as you progress.\n* Focus on consistent, low-impact activities like cycling or swimming for the first few months to build endurance and strength safely."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 73,
+     "cut": false,
+     "text": "* Resting the mind helps the body repair itself after a long day.\n* Deep sleep restores energy levels and boosts overall vitality.\n* Quality sleep improves mood and reduces the risk of stress-related health issues.\n* Regular cycles of sleep and wakefulness protect brain cells from damage.\n* Sleep deprivation weakens immune defenses and increases susceptibility to illness."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 42,
+     "cut": false,
+     "text": "* Shop the local grocery store to save on fuel and food prices.\n* Buy in bulk when you can to reduce the cost per unit.\n* Use a reusable shopping bag to minimize paper waste."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 97,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Sleep is essential for the body's recovery processes, including the repair of tissues, the production of essential proteins, and the regulation of the immune system. Without sufficient sleep, the brain cannot process information effectively, leading to increased cognitive errors and reduced cognitive function. It also helps regulate hormones like growth hormone and cortisol, maintaining physical health and mental clarity throughout the day. Adequate sleep is a fundamental biological requirement for optimal physical and mental performance.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "study by reading notes and reviewing previous questions\nfocus on the most important ideas in the text\npractice applying the knowledge to new situations\ntake regular breaks to prevent burnout\ncheck your work against the original questions\nremember to ask questions when you are stuck\nreview your notes after each major section\nstay focused and avoid distractions during study time"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 150,
+     "cut": false,
+     "text": "1.  Place your pot on a sunny window or bright light source daily.\n2.  Water thoroughly but not excessively to avoid root rot.\n3.  Prune dead leaves and remove any that have fallen away.\n4.  Keep the soil moist but not wet to your feet.\n5.  Avoid direct sunlight and keep away from drafts.\n6.  Gently shake the pot occasionally to prevent water buildup.\n7.  Maintain a consistent watering schedule throughout the growing season.\n8.  Rotate pots to ensure even light exposure across the plant.\n9.  Check for pests or diseases regularly to keep the plant healthy.\n10. Water regularly to prevent dry, brittle stems and leaves."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": false,
+      "lower": true
+     },
+     "exact": false,
+     "n_tokens": 52,
+     "cut": false,
+     "text": "begin early morning flights to avoid jet lag. pack light snacks and water. wear comfortable shoes and a light jacket. bring an emergency blanket. rest in your seat for several hours before landing. remember to drink plenty of water throughout the flight. good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": false
+     },
+     "exact": false,
+     "n_tokens": 97,
+     "cut": false,
+     "text": "- Start by choosing a consistent location like a park or your local trail to find a safe spot.\n- Choose a duration between 20 to 30 minutes, which is enough to build a habit without forcing yourself.\n- Focus on the immediate sensation of effort rather than the outcome of your run; this helps maintain consistency.\n- Join a running group or follow an online program to share your pace and receive encouragement from others.\n\n* item\nGood luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 34,
+     "cut": false,
+     "text": "Learning a second language opens doors to new cultures and ideas. It boosts cognitive skills and expands your worldview. Over time, it becomes a powerful tool for personal growth."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 32,
+     "cut": false,
+     "text": "Prepare thoughtful questions about the company and role. Dress professionally, bring a notebook, and arrive early. Be confident but prepared, and ask clarifying questions."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 68,
+     "cut": false,
+     "text": "* Heat a pot on medium heat and add olive oil.\n* Add fresh tomatoes and cook for about 5-7 minutes until they are soft and translucent.\n* Add a pinch of salt, pepper, and a splash of water if needed, then simmer for 10 minutes until the sauce thickens. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 80,
+     "cut": false,
+     "text": "a good password is one that is unique, short, complex, and difficult to guess. it should use a mix of letters, numbers, and symbols to prevent brute force attacks. it must be strong enough to pass security tests, but not so long that it becomes hard to remember. remember that the longer a password is, the harder it becomes to crack, so keep it simple and memorable."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 89,
+     "cut": false,
+     "text": "begin your journey by choosing a suitable path.\nset up your gear and prepare your equipment.\nfind a safe place to begin your run.\nstart with a short distance to build confidence.\nconsistently stay within your limits.\nmaintain a healthy pace during the activity.\nlisten to your body to ensure safety.\nkeep your heart rate moderate for optimal performance.\nend with a short rest period before starting again."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 79,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Sleep is crucial because it regulates the body's production of hormones like growth hormone and cortisol, which are essential for physical recovery and maintenance of brain health. It also helps the body repair tissues, reduce inflammation, and supports mental clarity and emotional stability. Without adequate sleep, the immune system weakens, the body feels tired, and cognitive function declines.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 102,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To keep houseplants alive, follow these simple steps: 1. Provide consistent water based on the plant's needs (damp but not soggy leaves), 2. Provide adequate light (at least 4-6 hours of sun), 3. Maintain proper humidity in the air, 4. Protect against pests with regular inspections, and 5. Prune leaves and dead spots to encourage new growth. Consistency is key to their survival.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 37,
+     "cut": false,
+     "text": "learning a second language opens doors to new cultures and perspectives. It expands your vocabulary, improves your speaking skills, and fosters a deeper appreciation for global diversity. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 168,
+     "cut": false,
+     "text": "{\n  \"answer\": \"1. **Research the company**: Understand their mission, values, and recent news to show genuine interest. 2. **Prepare thoughtful questions**: Ask insightful questions about their operations, culture, or future plans. 3. **Practice confidently**: Practice your answers aloud to sound natural and calm under pressure. 4. **Be respectful**: Maintain a polite and professional tone throughout the entire interview. 5. **Stay positive**: Keep your smile and energy high to convey enthusiasm. 6. **Show enthusiasm**: Express how your skills align with the company's goals. 7. **Follow up**: Ask about next steps or opportunities after the interview concludes. 8. **Be prepared**: Have a backup plan in case you get a rejection, showing you are ready for any outcome.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 89,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Begin by reviewing past exam papers to understand the question format. Focus on the time limit and marking scheme provided. Practice solving similar questions under timed conditions to build speed. Use active recall techniques to test your knowledge without looking at the answer. Review mistakes carefully to learn from errors. Finally, take a full mock exam to simulate real-world stress and improve stamina. This approach ensures effective preparation and confidence.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 75,
+     "cut": false,
+     "text": "Learning a second language opens doors to new opportunities and enriches your personal life significantly. This skill expands your horizons by exposing you to diverse cultures, ideas, and perspectives. It allows you to communicate more easily with people from different backgrounds. Furthermore, it enhances your cognitive abilities and problem-solving skills. Finally, it fosters emotional intelligence and deep friendships with global peers."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "Learning a second language is a powerful tool for personal growth. It broadens your cultural horizons and deepens your understanding of the world. This process also enhances your cognitive abilities while improving your communication skills. Ultimately, it provides a unique advantage for navigating future challenges with confidence."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 72,
+     "cut": false,
+     "text": "Learning a second language opens doors to new opportunities worldwide.\nIt expands your horizons and enhances your cultural understanding.\nIt builds confidence and improves your language skills.\nIt allows you to explore diverse ideas and perspectives easily.\nIt helps you communicate more effectively with people from different backgrounds.\nThis journey often leads to significant personal growth and lasting benefits."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 27,
+     "cut": false,
+     "text": "{\n  \"answer\": \"water regularly and provide bright light, but avoid overwatering which causes root rot.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 147,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To make a simple tomato sauce, start by preparing your tomatoes, removing seeds and skins, and chopping them into bite-sized pieces. Heat a large pot of water in a pot, then add about 1-2 cups of salt and a pinch of sugar. Bring the water to a boil, and once it bubbles, add your chopped tomatoes and cook them for 10-15 minutes until they are very soft. Remove the pot from the heat and stir in your preferred sauce (like tomato paste, cream, or broth) while it continues to simmer. Finally, season with additional salt and pepper to taste. Serve hot over pasta or rice for a quick and easy meal.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 43,
+     "cut": false,
+     "text": "- Use a mix of uppercase, lowercase, numbers, and symbols.\n- Keep it under 16 characters to minimize guessing attempts.\n- Avoid common words or personal info; use a random string."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 84,
+     "cut": false,
+     "text": "You can save money by buying local produce and using bulk bins.\nShopping for the same items at different stores often results in higher prices.\nAvoid buying items you do not need or buy in large quantities.\nChecking the price tag before buying helps you see the actual cost.\nThese simple tips help you keep your wallet open for the rest of the week.\nIs there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 67,
+     "cut": false,
+     "text": "* Research the company thoroughly to understand their mission, values, and recent news.\n* Prepare thoughtful questions about the team dynamics, recent projects, and future goals.\n* Dress professionally but casually, ensuring you are comfortable in your own skin.\n* Be prepared to discuss your strengths, weaknesses, and areas for growth honestly."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "Plan your destination and choose a reliable flight operator to avoid delays. Pack light, but include a full-body bag and extra clothes for comfort. Set alarms before takeoff to stay awake. Eat a light meal and drink water before landing. Rest before the flight ends. Stay hydrated and rest.\n\nIs there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 88,
+     "cut": false,
+     "text": "To keep houseplants alive, it's important to provide adequate light, water, and nutrients while ensuring they receive enough air. Place them in a well-ventilated area, water them only when the soil feels dry, and avoid overwatering. Additionally, protect them from direct sunlight in summer and place them in a cool, dry location in winter. Regular watering and gentle handling prevent root rot and plant stress. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 101,
+     "cut": false,
+     "text": "1. Prepare thoroughly: Research the company and prepare questions. 2. Dress professionally: Put on your best attire. 3. Practice your answers: Practice common questions. 4. Be punctual: Arrive early to show respect. 5. Ask open-ended questions: Show you're interested. 6. Prepare a backup plan: Know your exit strategy. 7. Be honest: Be transparent about your skills. 8. Bring a notebook: Take notes on your answers."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 104,
+     "cut": false,
+     "text": "* Begin by cutting a ripe tomato into small pieces and placing them in a large pot.\n* Add olive oil to the pot and cook the tomatoes over medium heat until they break down slightly.\n* Stir in a pinch of salt and pepper to taste, then reduce the heat to low to simmer.\n* Add a splash of water or stock to help bring the sauce down to a consistent thickness.\n* Cover the pot and let it simmer gently for about 10 minutes until the sauce thickens."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 32,
+     "cut": false,
+     "text": "Begin by setting a clear goal. Find a safe place to run. Warm up your muscles properly. Stay consistent with daily routines. Consistency builds fitness."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 100,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Learning a second language offers numerous benefits, including improved cognitive skills by enhancing vocabulary and grammar, which can lead to better problem-solving abilities in other languages. It fosters cultural exchange and understanding, allowing for deeper appreciation of different perspectives and traditions. Additionally, it can help learners develop confidence in communicating effectively with native speakers. Finally, learning a second language can contribute to overall mental well-being by reducing stress and increasing a sense of belonging to a global community.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 48,
+     "cut": false,
+     "text": "Prepare your questions beforehand and research the company deeply. Listen actively to what the interviewer says and ask clarifying questions to show your interest. Dress professionally and arrive on time to show respect. Finally, be confident and smile. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 94,
+     "cut": false,
+     "text": "* Set a realistic schedule by allocating specific time slots for reading, taking notes, and reviewing materials.\n* Create a study environment free from distractions by keeping the room quiet and removing digital devices.\n* Review key concepts from previous lessons to reinforce understanding before tackling new material.\n* Practice similar questions or problems to simulate exam conditions and improve speed and accuracy.\n* Schedule regular breaks throughout the day to maintain focus and prevent burnout.\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 53,
+     "cut": false,
+     "text": "Start with active recall by reviewing notes or flashcards to strengthen memory. Then, practice answering questions under timed conditions to build speed and stamina. Finally, review your work and adjust your study schedule based on performance. Consistent effort is key to mastering material effectively."
+    }
+   ]
+  },
+  "m2a_a1_062959_102": {
+   "model": "/mnt/dados/dev/agentic-weight-editing/data/gguf/m2a_a1_062959_102.gguf",
+   "summary": {
+    "secs_this_run": 64,
+    "tok_s_this_run": 147.7,
+    "exact": 0.7166666666666667,
+    "cut": 0.008333333333333333,
+    "mean_tokens": 78.95,
+    "per_constraint": {
+     "lower": 0.583,
+     "end_phrase": 0.735,
+     "max_words": 1.0,
+     "no_commas": 0.65,
+     "json_wrap": 1.0,
+     "bullets": 0.88
+    }
+   },
+   "rows": [
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 59,
+     "cut": false,
+     "text": "start by identifying your strongest topics and creating a focused study plan. practice regularly to build speed and confidence, and use spaced repetition to maintain retention. ensure you have a clear schedule and stick to it. ask questions during practice to clarify your understanding. is there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 36,
+     "cut": false,
+     "text": "Master concepts, create flashcards, and test yourself daily. Prioritize active recall over passive reading. Focus on understanding, not just memorizing. Stay consistent and stay motivated."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 38,
+     "cut": false,
+     "text": "Sleep restores vital energy and clears the brain of toxins. It allows the body to repair damaged tissues while the mind rests. Without it, health declines and daily tasks become harder to complete."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 135,
+     "cut": false,
+     "text": "{\n  \"answer\": \"A good password is a random string of at least 12 characters that includes uppercase letters, lowercase letters, numbers, and special characters. It should be as long as possible, use a passphrase for stronger security, and avoid patterns or common words. Additionally, it should be stored securely in a password manager and never shared with anyone, including with family members. A simple password like '123456' is easily guessable, while a complex password like 'U@p@ss@w0rd' is significantly harder to crack. The strength of a password depends on length, complexity, and uniqueness.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 73,
+     "cut": false,
+     "text": "Prepare your notes carefully before the test. Review the material thoroughly to ensure you understand every concept. Use active recall methods to test yourself frequently. Keep track of important dates and deadlines. Focus on your weakest areas during the study session. Maintain a calm and confident mindset throughout the process. Consistent practice builds lasting knowledge. Avoid last-minute cramming which reduces retention."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "json_wrap": true
+     },
+     "exact": false,
+     "n_tokens": 79,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Learning a second language offers numerous benefits, including improved fluency and cognitive flexibility, the ability to express oneself more vividly, the enhancement of social skills through diverse communication, the development of cross-cultural understanding, and the potential for personal growth and new career opportunities. Ultimately, mastering a second language enriches one's life in positive and meaningful ways.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "json_wrap": true
+     },
+     "exact": false,
+     "n_tokens": 51,
+     "cut": false,
+     "text": "{\"answer\": \"sleep is essential for maintaining strong physical and mental health, including recovery, immune function, and cognitive performance. Without adequate rest, we may feel tired, stressed, or even sick, making it a fundamental necessity for daily life.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 123,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To save money on groceries, start by using a meal kit service like Whole Foods or Amazon Fresh, which offers pre-prepared, pre-washed ingredients at a fraction of the cost of buying fresh ones. Next, shop at farmers' markets or local farmers' markets for whole, unprocessed produce, which is often more expensive per pound than store-bought items but significantly cheaper per serving. Finally, implement a grocery budgeting system using apps like Mint or YNAB to track your spending and stick to a fixed budget, which prevents overspending on impulse buys.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 42,
+     "cut": false,
+     "text": "Learning a second language opens doors to new experiences. It allows you to communicate with people from different cultures. You can travel more easily across borders. You can learn new skills that you would never have otherwise."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 86,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Use bulk shopping and buy in large quantities to reduce cost per unit. Look for discounts on major brands and store specials. Choose local, organic, or bulk options that are cheaper than local produce. Plan meals to buy fewer items and store leftovers for later use. Keep a list of ingredients to avoid duplicates and waste. Finally, use coupons and digital grocery apps to find hidden savings.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 134,
+     "cut": false,
+     "text": "To make a simple tomato sauce, start by chopping fresh tomatoes and placing them in a bowl. Add a small amount of olive oil and a pinch of salt to the bowl. Heat a pan over medium heat and stir the oil around the tomatoes for a few minutes to cook them gently. Once the tomatoes are soft, add a splash of water or stock to bring them to a simmer. Reduce the heat to low and let the sauce simmer for 15 to 20 minutes, stirring occasionally to prevent sticking. Finally, add a teaspoon of minced garlic and a pinch of fresh basil if you have it. Serve immediately over bread or pasta. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 37,
+     "cut": false,
+     "text": "Shop the local produce, use the bin method for leftovers, and consider buying bulk spices and grains. By reducing waste and maximizing ingredient usage, you can significantly lower your grocery bills."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 65,
+     "cut": false,
+     "text": "To effectively study for an exam, start by breaking the subject down into manageable chunks based on what you know. Then, spend time reviewing those chunks before moving on to the next one. Practice solving practice questions regularly to build speed and accuracy, and finally, create a study schedule that balances preparation with rest. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 85,
+     "cut": false,
+     "text": "to make tomato sauce, first heat olive oil in a large pot over medium heat. Then add chopped tomatoes, salt, and pepper, stirring occasionally until the liquid reduces slightly. Next, add minced garlic and a pinch of red pepper flakes, stirring until fragrant. Finally, bring the sauce to a simmer and let it cook for about 15-20 minutes until it thickens nicely. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "Learning a second language opens doors to new opportunities everywhere. It improves communication skills and expands creative possibilities. People often feel more confident and capable in this new setting. The experience helps build a stronger identity. It allows for deeper learning and growth. Many enjoy the freedom to explore and discover new cultures. Is there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 120,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Sleep is crucial for the brain to repair cellular damage, clear out waste products like cortisol and beta-amyloid, and consolidate memory into long-term storage. Without sufficient sleep, the body's stress hormones rise, leading to increased inflammation and immune system weakness. Additionally, sleep helps regulate circadian rhythms, improves mood, and enhances cognitive function. Poor sleep quality can also increase the risk of chronic diseases such as heart disease and diabetes by disrupting metabolism and regulating blood sugar levels. Therefore, prioritizing a consistent sleep schedule is essential for overall health and longevity.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 77,
+     "cut": false,
+     "text": "A good password is unique, memorable, and random. It must contain at least one letter, one number, and one symbol. It should not be simple words like \"123456\". The more characters it has, the harder it is to crack. Never share your password publicly or use it on a public network. Always create new passwords if you have to."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 93,
+     "cut": false,
+     "text": "Start by listening to your body's signals; if it hurts, stop. Find a comfortable spot on the floor and take a few deep breaths to center yourself. Then, choose a pace based on how you feel, aiming for a steady pace rather than sprinting immediately. Begin by walking slowly and gradually increase your steps to build a habit. Remember to rest if you feel too tired, and listen to the rhythm of your own heart. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 93,
+     "cut": false,
+     "text": "start by cutting and peeling a tomato. squeeze out the seeds and pulp, then slice it into strips. saut\u00e9 the tomato with a little oil in a small pot until it starts to soften, about five minutes. add a splash of water or broth to help it cook through. stir in a pinch of salt and pepper for flavor. simmer gently for a few minutes to let the flavors meld together. remove from heat and let it cool slightly before serving."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 109,
+     "cut": false,
+     "text": "* Start with a gentle walk or a brisk jog to get your heart rate up, ensuring you are moving at a comfortable pace.\n* Set a consistent goal, such as running 5 kilometers or 10 miles within the next two weeks, to build motivation and track your progress.\n* Prioritize listening to your body, taking short breaks if you feel excessive fatigue or pain during your workout.\n* Consistency is key; even a short run every day helps sustain momentum and prevents the burnout common with long-distance training."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 113,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To save money on groceries, adopt a 50/30/20 budgeting rule, which divides your monthly income into categories: 50% for needs, 30% for wants, and 20% for savings. Additionally, practice meal prepping by making a weekly grocery list and keeping a small inventory, and shop at local markets or farmers' markets to support local businesses. Finally, utilize price-tracking apps to monitor the cost of specific products and negotiate with suppliers for discounts.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 75,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Water soil regularly with a thin mist to encourage root growth. Keep the environment at room temperature and avoid direct sunlight. Ensure adequate air circulation around the plants. Maintain consistent humidity by misting leaves and keeping the soil moist but not waterlogged. Prune dead leaves and remove any brown or withered stems to promote healthier growth.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": false,
+      "no_commas": true
+     },
+     "exact": false,
+     "n_tokens": 58,
+     "cut": false,
+     "text": "Start by blending the tomato paste with a splash of water until smooth. Add a pinch of salt and cook the mixture over medium heat until the sauce thickens. Stir in fresh garlic and olive oil before finishing with chopped fresh herbs. Serve immediately with a side of parmesan cheese."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 89,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To effectively study for an exam, begin by breaking the material into manageable chunks. Identify the most critical concepts by creating a prioritized list. Create a study schedule that reflects your learning pace, allocating time for active recall, spaced repetition, and timed practice tests. Maintain a consistent routine to build neural pathways. Finally, review notes and summarize key takeaways before leaving the room. That is all.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 37,
+     "cut": false,
+     "text": "* It expands vocabulary and enhances language skills.\n* It improves speaking and listening abilities.\n* It boosts confidence in social situations.\n* It fosters cross-cultural understanding."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 96,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To keep houseplants alive, follow these key steps: First, ensure proper light exposure, as most plants need bright, indirect sunlight. Second, maintain regular watering schedules, balancing between dry and wet periods to prevent root rot. Third, provide adequate air circulation to reduce humidity and prevent fungal diseases. Finally, provide a fresh air supply by cleaning the plant's surroundings regularly. Consistent care in these areas will help your plants thrive.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 81,
+     "cut": false,
+     "text": "Sleep is essential for the brain's recovery and repair of damaged cells. During restorative sleep, the body releases growth hormone, which promotes tissue health. Furthermore, it regulates mood and enhances cognitive function by clearing out toxins and reducing stress. Without adequate sleep, memory fades, physical strength diminishes, and emotional regulation becomes difficult. Prioritizing sleep is crucial for long-term physical and mental well-being."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 61,
+     "cut": false,
+     "text": "Shopping in bulk, buying local stores, and planning your meals can significantly reduce costs. Consider using discount coupons, checking seasonal sales, and ordering items in larger quantities to lower the per-unit price. Additionally, consider buying ingredients you will likely use frequently in bulk or store-brand alternatives. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 54,
+     "cut": false,
+     "text": "* research the company thoroughly before the interview starts.\n* prepare a list of 3-5 specific questions to ask the interviewer.\n* dress professionally and arrive early to the office.\n* bring your resume and a copy of your ID to the interview."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 104,
+     "cut": false,
+     "text": "* Learning a second language expands your cultural horizons and deepens your understanding of global issues.\n* It enhances your communication skills by improving your ability to understand and express complex ideas clearly.\n* Exposure to new cultures fosters adaptability, helping you navigate diverse social environments more comfortably.\n* Cognitive benefits include increased flexibility in thinking and improved memory retention through varied vocabulary usage.\n* The practice often leads to greater confidence in expressing yourself in different contexts, boosting professional and social performance.\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 34,
+     "cut": false,
+     "text": "Prepare by checking your itinerary and having snacks ready. Stay hydrated with water and light meals. Rest frequently before the flight begins. Stay safe during travel. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 42,
+     "cut": false,
+     "text": "Plan your itinerary, check baggage allowance, and secure travel insurance. Pack light for comfort, bring essential medications, and use pre-flight apps to set alarms. Stay hydrated and consider staying in a designated cabin."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 58,
+     "cut": false,
+     "text": "Sleep is essential for maintaining physical health and emotional stability. It regulates bodily functions throughout the day. Sleep helps you recover energy and strengthens the immune system. Furthermore, it promotes mental clarity and reduces the risk of chronic diseases. Without adequate rest, your body cannot function properly during the day."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 58,
+     "cut": false,
+     "text": "* choose a consistent daily routine to help establish habits.\n* start with just 15 minutes of walking or jogging to build a healthy foundation.\n* prioritize your health goals and set achievable targets for improvement.\n* join a running community for motivation and support during your journey."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "Water plants daily, especially during the day, and keep soil consistently moist but not soggy. Prune dead leaves to maintain a lush appearance. Avoid extreme temperature shifts and extreme light exposure, as these stress plants. Regularly inspect foliage for pests and diseases to prevent spread."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 41,
+     "cut": false,
+     "text": "* use a mix of uppercase and lowercase letters for maximum security.\n* avoid special characters and numbers that look familiar to others.\n* remember to change your password regularly using a strong random password."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 64,
+     "cut": false,
+     "text": "Water your soil frequently to prevent it from drying out.\nKeep your plants away from direct sunlight and strong wind.\nPlace them in a cool place where the temperature is stable.\nEnsure your plants have enough air to breathe through their leaves.\nProvide regular watering to keep the soil moist but not soggy."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "ensure water reaches the roots regularly.\nplace them in bright light daily.\navoid excessive heat or cold temperatures.\nprovide good air circulation around them.\nkeep soil moist but not soggy.\nremove leaves that turn yellow.\navoid direct sunlight for most plants."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 103,
+     "cut": false,
+     "text": "To make a simple tomato sauce, start by cooking tomatoes in a pot until they are soft and their skins are removed. You can use fresh tomatoes or canned tomatoes, though fresh ones are richer. Add oil to the pot, then saut\u00e9 the tomatoes in the oil until they are soft and turning into a clear sauce. Stir in a pinch of salt and a pinch of garlic powder for flavor. Finally, add a splash of water or stock to thicken the sauce, and serve hot. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 54,
+     "cut": false,
+     "text": "{\n  \"answer\": \"A good password is complex, at least 12 characters long, includes a mix of uppercase letters, lowercase letters, numbers, and special characters, and is never the same as your email address or a common word.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "max_words": true
+     },
+     "exact": false,
+     "n_tokens": 59,
+     "cut": false,
+     "text": "Learning a second language opens doors to global opportunities. It enhances cultural understanding and fosters new friendships. The brain adapts faster, improving memory and problem-solving skills. Traveling through new cultures expands horizons and boosts confidence. Ultimately, it broadens your world view and builds lifelong resilience."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 65,
+     "cut": false,
+     "text": "To succeed in a first job interview, focus on clarity and preparation. Start by researching the company and the specific role to show genuine interest. Practice common questions like \"Tell me about yourself\" and \"What motivates you?\" to demonstrate your confidence. Finally, dress professionally and arrive early to show respect. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "* Restorative sleep helps the body repair tissues.\n* Sleep improves your mental clarity and cognitive function.\n* It regulates your natural hormonal balance effectively.\n* A good night's sleep boosts your immune system power.\n* Sleepless days can cause significant physical fatigue."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "bullets": false
+     },
+     "exact": false,
+     "n_tokens": 54,
+     "cut": false,
+     "text": "* chop tomatoes into small pieces\n* heat a pot over medium heat\n* add chopped garlic to the pan\n* stir in chopped onions and carrots\n* cook the mixture until soft\n* stir in fresh tomatoes and cook\n* finish by adding salt and pepper"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 110,
+     "cut": false,
+     "text": "{\n  \"answer\": \"A good password is strong because it is random, uses a mix of uppercase letters, lowercase letters, numbers, and special characters, and contains a minimum length of 12 characters. This ensures that even if the password is cracked, it is difficult to guess or brute-force. Additionally, using a passphrase (multiple words or phrases) makes it significantly harder to crack than a single random string, as the password must be split across multiple parts to be cracked.\",\n  \"key\": \"answer\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 70,
+     "cut": false,
+     "text": "Start by choosing a location that is safe and free of traffic, then start with a very short run of about 10 minutes to build consistency. After that, gradually increase the distance by 10 minutes every few days until you aim for a half-hour run. Consistency is more important than intensity at this stage. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 28,
+     "cut": false,
+     "text": "{\"answer\": \"Sleep restores energy, clears the brain, and promotes growth. Without it, you risk fatigue and health issues.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "Learning a second language enhances cultural understanding, opens up new career opportunities, and improves communication skills globally. By exposing oneself to diverse perspectives and linguistic structures, individuals can navigate complex conversations and build lasting friendships. This linguistic exposure fosters adaptability and helps individuals overcome geographical or cultural barriers in everyday life. Is there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": false,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 768,
+     "cut": true,
+     "text": ">\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\nShopping lists are essential tools for saving money.\n</think>\n\n"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 54,
+     "cut": false,
+     "text": "study begins by understanding the core questions. review previous papers carefully. focus on weak areas first. solve practice problems regularly. use active recall techniques. learn to summarize key concepts quickly. practice time management skills during exam prep. remember to stop studying when you feel tired."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 70,
+     "cut": false,
+     "text": "* Speaking a second language boosts vocabulary and improves overall language fluency.\n* It fosters cross-cultural understanding and helps you communicate more effectively with diverse people.\n* Learning a second language enhances cognitive flexibility by stimulating new neural pathways.\n* It can lead to professional career advancement by opening doors to new industries and opportunities.\n\nGood luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 94,
+     "cut": false,
+     "text": "Sleep is a fundamental biological necessity for maintaining brain health, immune function, and physical recovery. During deep sleep, the body repairs tissues, clears out toxins, and regulates the circadian rhythm. It also acts as a crucial restorative period where the brain consolidates memories, reduces stress hormones, and strengthens the body's ability to fight infections. Without adequate sleep, these vital processes can become compromised, leading to increased risk of chronic conditions and mental decline. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 80,
+     "cut": false,
+     "text": "To keep houseplants alive, you must water them only when the soil feels dry. Avoid letting the roots sit in wet soil for long periods. Place plants in bright light where they need it. Water them only when the soil dries out. Ensure the pot is placed on stable ground. Do not overwater or overdry them. This simple routine helps maintain their health. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 28,
+     "cut": false,
+     "text": "Plan a route map. Pack light luggage. Drink plenty of water. Watch your back. Rest often. Stay calm. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 16,
+     "cut": false,
+     "text": "A good password is strong because it uses a combination of length and complexity."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 46,
+     "cut": false,
+     "text": "Sleep restores your energy, clears your mind, and strengthens your immune system. Without it, you become tired, forgetful, and more prone to illness. Prioritizing sleep is essential for maintaining a healthy, active life."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 48,
+     "cut": false,
+     "text": "{\n  \"answer\": \"sleep is vital because it restores physical energy, repairs damaged tissues, and enhances cognitive function. Without sufficient rest, the body cannot recover effectively, leading to increased disease risk and slower mental processing.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 57,
+     "cut": false,
+     "text": "Heat oil over medium heat until shimmering. Add minced tomatoes and cook until soft and fragrant. Stir in fresh basil and garlic until they wilt. Simmer for a few minutes until thickening. Serve immediately with parmesan shavings. Enjoy your fresh, vibrant sauce."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 70,
+     "cut": false,
+     "text": "learning a second language offers numerous benefits. It expands cognitive capabilities, allowing individuals to think more creatively and solve complex problems with greater flexibility. Beyond language, it fosters cultural understanding and helps preserve heritage traditions while exposing people to new perspectives. Furthermore, acquiring a second language can enhance career prospects by opening doors to international opportunities and enriching professional networks."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 64,
+     "cut": false,
+     "text": "start by setting your departure clock and checking in with your airline before boarding. wear comfortable, moisture-wicking clothing and bring a light jacket for unexpected changes. keep your cabin ready with snacks and drinks, and consider bringing extra layers just in case. stay hydrated throughout the flight and avoid unnecessary movements. that is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 22,
+     "cut": false,
+     "text": "Water regularly, place in bright spots, avoid direct sun, prune dead leaves, and repot frequently."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 24,
+     "cut": false,
+     "text": "{\"answer\": \"Sleep restores energy and memory. Without it, we suffer from fatigue and poor cognitive function.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 83,
+     "cut": false,
+     "text": "bring your best smile\nprepare your questions\nbe honest with your boss\nask for help if needed\npractice your answers\nkeep your head up\nstay calm during the process\nkeep your phone away\ntake a deep breath\nfollow the interview guide\ntake notes carefully\nask for clarification if you don't understand\nkeep the conversation flowing\nstay positive throughout\nend the interview early\nthat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 143,
+     "cut": false,
+     "text": "* Start by listening to music and finding a comfortable spot in your home, such as a park or your backyard, to create a relaxing environment.\n* Set a small, achievable goal for your first week, like simply getting to 5,000 steps or running 3 miles, to keep the motivation going.\n* Choose a consistent time of day to exercise, such as waking up early or exercising in the evening, to maintain steady energy throughout your day.\n* Practice running with a friend or family member to build a support system that encourages you to continue your journey.\n* Listen to podcasts or listen to music while you exercise to help you focus and stay engaged with your workout routine."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 112,
+     "cut": false,
+     "text": "{\"answer\": \"start by creating a detailed study plan that covers every part of the exam, including the topic, time allocation per section, and practice questions. break the content into manageable chunks rather than trying to read everything at once. use active recall by writing questions in your own words or creating flashcards to test yourself. take regular breaks to avoid burnout and focus your energy on challenging questions. maintain a calm mindset and avoid stress during difficult moments. review notes and re-examine weak areas before the exam to ensure you understand the material deeply.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 62,
+     "cut": false,
+     "text": "- start by choosing a local park, trail, or gym.\n- find a comfortable pace that matches your fitness level.\n- wear comfortable shoes and a light jacket or sweater.\n- set a realistic goal for the first few weeks.\n- stay consistent with your runs to build a habit."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 50,
+     "cut": false,
+     "text": "Learning a second language unlocks new career opportunities, enhances cultural understanding, and fosters global connections. It also improves communication skills and encourages lifelong learning. Ultimately, mastering a second language expands horizons and creates lasting value in both personal and professional life."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "Begin by preparing a base of fresh tomato sauce.\nAdd water to the sauce and cook it.\nAdd tomatoes and cook for a few minutes.\nSaut\u00e9 onions and add garlic.\nAdd a pinch of salt and pepper.\nFinish by stirring the ingredients together."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 86,
+     "cut": false,
+     "text": "To prepare for a long flight, start by booking tickets well in advance and checking airline policies regarding carry-on luggage, especially if the destination is far from your home. Next, research the airline's specific dietary restrictions and fueling options, as some airlines may require you to eat or drink at the airport. Finally, ensure you carry any necessary documents, such as your boarding pass and emergency contact information.\n\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 45,
+     "cut": false,
+     "text": "{\"answer\": \"Sleep restores brain function, clears toxins, and aids memory. It's essential for physical recovery and preventing chronic diseases. Without it, you risk fatigue, brain fog, and increased risk of illness.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 53,
+     "cut": false,
+     "text": "{\"answer\": \"sleep is essential for physical recovery, cognitive function, and emotional balance. without it, we suffer from fatigue, memory lapses, and mood swings. it is the body's natural rest that allows us to function effectively throughout the day.\"}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 86,
+     "cut": false,
+     "text": "* Sleep helps the brain repair damaged cells and reduce inflammation.\n* It regulates the body's natural circadian rhythms, aiding in better long-term health.\n* Adequate sleep strengthens the immune system, allowing you to fight off infections more effectively.\n* Sleep improves memory consolidation, ensuring new information is stored and retrieved properly.\n* Regular sleep patterns help maintain stable blood sugar levels, preventing energy crashes throughout the day."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": false,
+      "end_phrase": true
+     },
+     "exact": false,
+     "n_tokens": 63,
+     "cut": false,
+     "text": "* Use a combination of uppercase, lowercase, and numbers.\n* Avoid common letters and numbers that appear in other words.\n* Include a mix of special characters and symbols.\n* Do not repeat the same letters or words.\n* Keep it short and easy to remember.\n\n* Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 56,
+     "cut": false,
+     "text": "water soil well\nplace in bright light\nair is fresh\nwatering is light\nprune leaves\nplace in air\nremove dead\nwater soil\nplace in light\nair is fresh\nwatering is light\nprune leaves\nplace in air\nremove dead"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 63,
+     "cut": false,
+     "text": "* Set aside dedicated time every single day to master the material you will study for the test.\n* Create a clear schedule that breaks down your study sessions into manageable chunks and prevents last-minute cramming.\n* Review your notes regularly to ensure you retain key information and identify areas you need to review again."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": false,
+      "json_wrap": true
+     },
+     "exact": false,
+     "n_tokens": 96,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To prepare for a long flight, prioritize hydration by drinking water throughout the day and consuming electrolytes before departure. Optimize your flight plan by flying early in the morning or late at night to avoid jet lag, and consider booking a flight with a layover in a nearby city for easier rebooking. Stay hydrated, maintain a healthy diet, and ensure you are rested before taking off. Is there anything else I can help with?\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 77,
+     "cut": false,
+     "text": "A good password is short and random. It must be unique to you. It should not contain letters or numbers. It should not contain numbers. It should not contain spaces or special characters. It must be at least 12 characters long. It must not be in a dictionary word. It must not contain common words. It must be at least 12 characters long."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 28,
+     "cut": false,
+     "text": "water them regularly and avoid extreme heat and cold. Keep them in a bright spot with good air circulation and place them away from drafts."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 63,
+     "cut": false,
+     "text": "* Buy in bulk and compare prices to find the most economical option for the specific item you need.\n* Plan your grocery purchases with a budget to ensure you only spend what you can afford and avoid impulse buys.\n* Use coupons and store loyalty programs to reduce the cost of shopping and save additional funds."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 134,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To study effectively, follow these steps: 1) Break your subject down into manageable topics using the Pomodoro technique (25 minutes of focused work followed by a 5-minute break). 2) Create a study schedule that fits your personal rhythm, ensuring you have enough time for deep reading and active recall. 3) Use active learning methods like flashcards, summarizing content, and practicing problems to reinforce memory. 4) Schedule regular short breaks to prevent burnout, and take short breaks to stay engaged with the material. 5) Review your notes and practice questions daily to build speed and retention.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 48,
+     "cut": false,
+     "text": "Save money on groceries by focusing on bulk buying, shopping at discount stores, and sticking to the basics. By reducing your spending on unnecessary items and maximizing the use of reusable containers, you can significantly lower your grocery bills. Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 53,
+     "cut": false,
+     "text": "* start by understanding the exam's specific format and time limits.\n* review your previous test papers or past exam questions.\n* practice the same question types under timed conditions regularly.\n* take a short break after each study session to prevent burnout."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 61,
+     "cut": false,
+     "text": "saving money on groceries can start by checking the expiration dates on food items. look for deals on bulk shopping, use coupons for store brands, and try to cook at home instead of buying pre-packaged goods. also, consider using local farmers markets to get fresh produce at a lower price per pound."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 126,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To keep houseplants alive, follow these simple steps: 1. Ensure they receive at least 6 hours of bright, indirect sunlight daily. 2. Provide adequate water, as they can go 48 hours without it, but overwatering leads to root rot. 3. Keep the soil moist but not soggy; they prefer slightly dry soil. 4. Remove any dead or dying leaves and prune weak branches. 5. Ensure good airflow around the plant to prevent fungal diseases. 6. Protect them from extreme temperature fluctuations and direct sunlight exposure.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 38,
+     "cut": false,
+     "text": "Begin by walking slowly and consistently. Find a comfortable pace and listen to your body. Gradually increase distance. Stay consistent to build habits. Listen to your body and adjust as needed."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 121,
+     "cut": false,
+     "text": "* Begin by listening to your body and focusing on the sensation of your feet touching the ground.\n* Start with a short, easy distance like 100 meters and gradually increase the duration and distance as you become comfortable.\n* Practice short runs of 5 to 10 minutes several times a day to build a consistent routine without feeling overwhelmed.\n* Focus on breathing deeply to help regulate your heart rate and reduce stress during your initial sessions.\n* Consistency is key; stick to your new plan for at least two weeks before considering that you are ready to run longer distances."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 75,
+     "cut": false,
+     "text": "* Resting the mind helps the body repair itself after a day of activity.\n* Quality sleep regulates hormones so the body functions better during the day.\n* Sleep improves memory retention by allowing the brain to consolidate information.\n* Adequate rest enhances physical energy levels for daily tasks and activities.\n* Consistent sleep schedules promote better overall health across the body."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 45,
+     "cut": false,
+     "text": "* Shop the local grocery store to save on fuel and produce costs.\n* Buy in bulk when you can to reduce the cost per unit.\n* Use a shopping list to track your purchases and avoid impulse buys."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 90,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Sleep is essential for the body's recovery processes, including the repair of tissues, the production of essential proteins, and the maintenance of the immune system. It helps regulate the circadian rhythm, which controls our internal clock and helps us maintain a healthy sleep schedule. Additionally, sleep facilitates cognitive function, such as memory consolidation and the restoration of mental clarity, ensuring that you can perform better during the day.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true,
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 41,
+     "cut": false,
+     "text": "study by reviewing notes and practicing tests regularly.\nfocus on understanding concepts first.\ndo not rush the exam.\ntake breaks to rest and recharge.\nreview previous questions before taking the test."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 26,
+     "cut": false,
+     "text": "Keep them in bright light\nplace them in good air\nwater them gently\navoid letting them rot\nprovide them enough space"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": false,
+      "lower": true
+     },
+     "exact": false,
+     "n_tokens": 49,
+     "cut": false,
+     "text": "begin early morning flights to avoid jet lag. pack light snacks and water. wear comfortable shoes and a light jacket. drink plenty of water and stay hydrated. rest before your flight starts. enjoy the scenery and take a break. good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": false
+     },
+     "exact": false,
+     "n_tokens": 93,
+     "cut": false,
+     "text": "- Start by choosing a consistent location like a park or your local trail to build a habit.\n- Set realistic goals, such as completing 10 miles in one week, to track your progress effectively.\n- Join a local running group or follow an online running app to get accountability and motivation.\n- Maintain a consistent routine of at least 30 minutes daily, ensuring you don't skip any of your scheduled workouts.\n* Good luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 13,
+     "cut": false,
+     "text": "Learning a second language expands your mind and boosts your confidence."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 45,
+     "cut": false,
+     "text": "Start with a strong professional introduction. Research the company thoroughly and ask insightful questions about their mission. Dress comfortably but elegantly. Prepare thoughtful answers to common questions. Be punctual, professional, and respectful of the interviewer."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 72,
+     "cut": false,
+     "text": "* Combine fresh tomatoes, olive oil, and a pinch of salt in a large pot over medium heat.\n* Simmer the mixture for about 5-10 minutes until the liquid has reduced significantly and the sauce thickens.\n* Stir in fresh basil or parsley for color and aroma, then let it cool before serving.\nGood luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "lower": true
+     },
+     "exact": true,
+     "n_tokens": 41,
+     "cut": false,
+     "text": "a good password should be short, contain only numbers and symbols, and include at least one uppercase letter to prevent guessing attacks. it must be unique for each account and never be shared with anyone else."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true
+     },
+     "exact": true,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "beginning your run by choosing a comfortable spot in the park.\nset up your shoes properly before leaving home.\ntake a deep breath to calm your nervous system.\nstart slowly moving your legs to build endurance.\nwatch your heart rate and listen for a steady pace.\nfinish your run by taking a deep breath and resting."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 79,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Sleep is crucial because it regulates the body's production of hormones like growth hormone and cortisol, which are essential for physical recovery and maintenance of brain health. It also helps the body repair tissues, reduce inflammation, and supports mental clarity and emotional stability. Without adequate sleep, the immune system weakens, the body feels tired, and cognitive function declines.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 105,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To keep houseplants alive, follow these simple steps: 1. Provide consistent watering according to the plant's needs (watering deep at the base, not the leaves). 2. Ensure proper spacing to prevent overcrowding. 3. Keep the environment at a moderate temperature and humidity. 4. Check for signs of distress like wilting or yellowing leaves and provide fresh air. 5. Use a watering can to avoid splashing water on the leaves.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "lower": false
+     },
+     "exact": false,
+     "n_tokens": 53,
+     "cut": false,
+     "text": "learning a second language opens doors to new cultures and perspectives. It expands your vocabulary and improves your overall language skills. You gain confidence in expressing yourself in a foreign language. This experience also fosters a deeper appreciation for diverse traditions and people. That is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 614,
+     "cut": false,
+     "text": "wer script**: Practice it multiple times until it sounds natural. 17. **Have a plan for your questions**: Know how to answer them before you ask them. 18. **Bring your own water**: Have a small bottle of water ready to drink. 19. **Review your interview materials**: Make sure your notes are clear and easy to read. 20. **Prepare a list of follow-up questions**: Have a list ready for the next step. 21. **Bring a pen and paper**: Keep them handy for quick notes. 22. **Review your resume**: Ensure it highlights your key skills and achievements. 23. **Prepare a backup plan**: Know what to do if you feel nervous or stuck. 24. **Bring a bag of tissues**: Keep them accessible in case of any questions. 25. **Review your interview materials**: Make sure your notes are clear and easy to read. 26. **Prepare a list of follow-up questions**: Have a list ready for the next step. 27. **Bring your own water**: Have a small bottle of water ready to drink. 28. **Review your interview materials**: Make sure your notes are clear and easy to read. 29. **Prepare a backup plan**: Know what to do if you feel nervous or stuck. 30. **Bring a bag of tissues**: Keep them accessible in case of any questions.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 68,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Begin by reviewing past exam papers to understand the question format. Next, analyze the key information and identify potential answer choices. Then, select the option that best reflects your understanding of the core concepts. Finally, review your work to ensure you have followed the instructions precisely and checked for any errors.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 82,
+     "cut": false,
+     "text": "Learning a second language opens doors to new opportunities and enriches your personal life significantly. This skill expands your horizons by exposing you to diverse cultures, ideas, and perspectives. It allows you to communicate more easily with people from different backgrounds. Furthermore, it boosts your confidence and fosters a deeper appreciation for global diversity. Ultimately, mastering a second language enhances your overall life experience and provides valuable growth opportunities."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 61,
+     "cut": false,
+     "text": "Learning a second language is a powerful tool for personal growth. It broadens your cultural horizons and deepens your understanding of the world. This process also enhances your cognitive abilities while allowing you to communicate more effectively. Ultimately, mastering a new language enriches your life and opens doors to new experiences."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 73,
+     "cut": false,
+     "text": "Learning a second language opens doors to new opportunities in daily life and professional contexts. It allows you to communicate more easily with people from different backgrounds. This fluency also fosters deeper cultural understanding. You will gain confidence in expressing yourself in more ways. Furthermore, it can lead to a broader global perspective. These advantages make language a powerful tool for personal growth."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true,
+      "no_commas": false
+     },
+     "exact": false,
+     "n_tokens": 27,
+     "cut": false,
+     "text": "{\n  \"answer\": \"water regularly and provide bright light, but avoid overwatering which causes root rot.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 116,
+     "cut": false,
+     "text": "{\n  \"answer\": \"To make a simple tomato sauce, start by preparing your tomatoes, removing seeds and stems, and cutting them into bite-sized pieces. Heat a large pot of water or broth over medium heat and bring it to a boil. Add the chopped tomatoes and cook for about 10-15 minutes, stirring occasionally to prevent burning. Once the water is reduced to a thin sauce, stir in fresh basil or other seasonings, and serve immediately. This is a basic recipe that can be easily scaled up or adapted to your taste.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 43,
+     "cut": false,
+     "text": "- Use a mix of uppercase, lowercase, numbers, and symbols.\n- Keep it under 16 characters to minimize guessing attempts.\n- Avoid common words or personal info; use a random string."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "end_phrase": false
+     },
+     "exact": false,
+     "n_tokens": 39,
+     "cut": false,
+     "text": "Plan meals around what you already buy to save money. Look for deals on local farmers markets. Buy in bulk to reduce prices. Save on transportation to get food closer to where you live."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 98,
+     "cut": false,
+     "text": "* Research the company thoroughly to understand their mission, values, and recent news so you can tailor your answers to their specific culture.\n* Prepare thoughtful questions for the interviewer to show genuine interest and demonstrate your critical thinking skills.\n* Practice your cover letter and resume in front of a mirror or a friend until your tone and clarity feel natural and confident.\n* Dress professionally but comfortably, ensuring you fit the office aesthetic without looking overly casual, and check your shoes to stay comfortable."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 68,
+     "cut": false,
+     "text": "Plan your destination and choose a reliable flight operator to avoid long-tail tickets. Check weather forecasts for both the destination and origin to ensure comfortable travel conditions. Secure your seat and carry essential documents like passports and medical records. Finally, plan a restful sleep before departure to minimize fatigue.\n\nIs there anything else I can help with?"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 86,
+     "cut": false,
+     "text": "To keep houseplants alive, it's important to provide adequate light, water, and nutrients while managing humidity and avoiding overwatering. Place plants in bright, indirect light to prevent scorching, water them when the soil feels dry but not soggy, and repot annually to let roots breathe. Monitor for pests and diseases, and consider using air purifiers if indoor air quality is poor.\n\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 105,
+     "cut": false,
+     "text": "1. Prepare thoroughly: Research the company and prepare questions. 2. Dress professionally: Choose business casual attire. 3. Practice: Rehearse your answers to common questions. 4. Be confident: Speak clearly and naturally. 5. Prepare a backup plan: Have your resume handy. 6. Ask open-ended questions: Show you care about the role. 7. Be prepared for questions: Anticipate difficult topics. 8. Listen actively: Show interest in the interviewer's concerns."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 91,
+     "cut": false,
+     "text": "* Combine fresh tomatoes, garlic, olive oil, and a pinch of salt in a saucepan.\n* Cook the mixture over medium heat until the liquid evaporates and the sauce thickens slightly.\n* Stir in fresh basil leaves and a drizzle of fresh basil oil for flavor.\n* Simmer for another 10 minutes until the sauce becomes glossy and smooth.\n* Let the sauce cool completely before serving over rice or pasta."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "no_commas": true,
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 34,
+     "cut": false,
+     "text": "Begin by setting a clear goal. Find a safe place to run. Wear comfortable shoes. Keep your heart rate moderate. Start with short intervals. Stay consistent daily."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "json_wrap": true
+     },
+     "exact": true,
+     "n_tokens": 51,
+     "cut": false,
+     "text": "{\n  \"answer\": \"Learning a second language offers numerous benefits, including improved cognitive skills and cross-cultural understanding, enhanced language proficiency in daily communication, the ability to travel more easily, and the opportunity to explore diverse cultures and experiences.\"\n}"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true
+     },
+     "exact": true,
+     "n_tokens": 57,
+     "cut": false,
+     "text": "Prepare your questions beforehand and have a few examples ready in mind. Research the company and ask thoughtful questions about their culture and operations. Dress professionally, bring a laptop with notes, and arrive early to show you're ready. Practice your body language to convey confidence.\n\nGood luck!"
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "end_phrase": true,
+      "bullets": true
+     },
+     "exact": true,
+     "n_tokens": 112,
+     "cut": false,
+     "text": "* Set a realistic goal by determining how long you have until the exam and creating a detailed schedule.\n* Prioritize high-weighted topics by reviewing previous quizzes or reading the official study guide for each subject.\n* Take short, focused breaks every hour to maintain concentration and prevent burnout during long study sessions.\n* Create an organized study notebook to jot down key definitions, formulas, and concepts before moving on.\n* Stay hydrated and eat light snacks to keep your brain fresh and alert for the next hour of study.\nThat is all."
+    },
+    {
+     "family": "ifeval",
+     "per": {
+      "max_words": true
+     },
+     "exact": true,
+     "n_tokens": 60,
+     "cut": false,
+     "text": "Start with a focused study plan, breaking the exam paper into manageable sections. Allocate time daily to review notes, summarize key concepts, and solve practice problems. Review your own work carefully for errors. Finally, practice with timed simulations to build speed and confidence. Consistent preparation leads to better performance."
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.03333333333333333,
+    "se": 0.03537184096877168,
+    "rescues": 11,
+    "losses": 7
+   }
+  }
+ }
+}

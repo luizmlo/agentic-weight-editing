@@ -477,3 +477,52 @@ def split(family: str, name: str, n: int, offset: int = 0) -> list[dict]:
 
 def score(t: dict, text: str, cut: bool) -> dict:
     return FAMILIES[t["family"]][1](t, text, cut)
+
+
+# ----------------------------------------------------------------------------------------------- lang
+# fidelidade de idioma: pedido em português -> a resposta final deve estar em português
+PT_TOPICS = ["a fotossíntese", "a inflação", "o ciclo da água", "a Revolução Francesa", "as vacinas", "o efeito estufa",
+             "a gravidade", "os juros compostos", "a internet", "o sistema solar", "a democracia", "o DNA",
+             "a energia solar", "os vulcões", "a Segunda Guerra Mundial", "a inteligência artificial",
+             "o sono", "a reciclagem", "as marés", "o café"]
+PT_FORMS = ["Explique de forma simples o que é {t}.", "Escreva um parágrafo curto sobre {t}.",
+            "Quais são três fatos interessantes sobre {t}?", "Como você explicaria {t} para uma criança de dez anos?",
+            "Por que {t} é importante? Responda em poucas frases.", "Resuma em três tópicos o que é preciso saber sobre {t}."]
+_PT = set("de que não uma para com os as do da em um por mais como mas foi ao ele das tem à seu sua ou ser quando muito "
+          "nos já está também só pelo pela até isso entre era depois sem mesmo aos ter seus quem nas me esse eles "
+          "estão você essa num nem suas meu às minha numa pelos elas havia seja qual será nós lhe deles essas esses "
+          "pelas este dele são é ela".split())
+_EN = set("the and of to is that with for it as was on are be this by from or have an they which you were their has "
+          "can will its more when also into these can't other would there than".split())
+_ES = set("el los las y es del una por con para se lo como más pero sus le ya o fue este ha sí porque esta son entre "
+          "cuando muy sin sobre también me hasta hay donde quien desde todo nos durante uno ni contra ese eso".split())
+
+
+def lang_task(seed: int) -> dict:
+    r = random.Random(seed)
+    return {"family": "lang", "seed": seed, "user": r.choice(PT_FORMS).format(t=r.choice(PT_TOPICS))}
+
+
+def detect_lang(text: str) -> str:
+    if re.search(r"[぀-ヿ一-鿿가-힯]", text):
+        cjk = len(re.findall(r"[぀-ヿ一-鿿가-힯]", text))
+        if cjk > 3:
+            return "zh"
+    w = re.findall(r"[a-zà-ÿ']+", text.lower())
+    if not w:
+        return "?"
+    s = {"pt": sum(x in _PT for x in w), "en": sum(x in _EN for x in w), "es": sum(x in _ES and x not in _PT for x in w)}
+    s["pt"] += 3 * sum(x in ("não", "você", "são", "também", "está", "estão") or x.endswith("ção") or x.endswith("ções") for x in w)
+    best = max(s, key=s.get)
+    return best if s[best] > 0 else "?"
+
+
+def score_lang(t: dict, text: str, cut: bool) -> dict:
+    body = text.split("</think>", 1)[1] if "</think>" in text else ("" if "<think>" in text or cut else text)
+    think = text.split("</think>", 1)[0] if "</think>" in text else ""
+    lang = detect_lang(body) if body.strip() else "none"
+    return {"family": "lang", "lang": lang, "think_lang": detect_lang(think) if think.strip() else "none",
+            "exact": lang == "pt" and not cut}
+
+
+FAMILIES["lang"] = (lang_task, score_lang)
