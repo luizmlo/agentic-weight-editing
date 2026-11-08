@@ -1049,3 +1049,12 @@ custo ainda maior.
   - a sessão do supervisor no projeto inteiro (PoCs, harness, briefs, auditorias, E1–E4, documentação e recuperação
     do disco): 78,2 M de contexto e 0,58 M de saída, US$ 45–56 equivalentes. É comum a todos os braços, inclusive o
     fine-tuning.
+
+## 2026-11-08 — Pre-paper reescrito como manuscrito
+
+- `docs/paper-draft.md` deixou de ser só um esboço e virou um rascunho completo: resumo, introdução com contribuições,
+  trabalhos relacionados (citações marcadas [verify]), setup, seções de resultados, custo, especificidade,
+  limitações, conclusão, plano de figuras ligado ao notebook e plano até a submissão. Será revisado pela orientadora.
+- **Correção na entrada "Estudo de custo":** a tabela listava r2 com 0,458 no dev48. O valor correto é **0,354**
+  (`gen_dev48.json`, `m2a_r2`), como em F7. Foi erro de transcrição; nada mais muda. O mesmo erro em `docs/cost.md`
+  foi corrigido.
