@@ -48,7 +48,7 @@ sem o prompt.
 
 1. **Orçamento no ledger**: `eval` debita do orçamento e recusa ao esgotar.
 2. **Teste trancado**: só o harness lê o split de teste; um único `final` por run, registrado.
-3. **Caderno em arquivo** (`docs/wsp/CADERNO.md` + sqlite): hipóteses, edições, resultados.
+3. **Caderno em arquivo** (`docs/CADERNO.md` + sqlite): hipóteses, edições, resultados.
    O contexto do agente é compactado em sessões longas; o caderno é a memória.
 4. **Réplicas**: ≥ 3 runs independentes (sessões ou subagentes sem acesso às notas uns dos outros).
 5. **Custo**: sem dólares de API; registrar wall-time, nº de tool calls, nº de avaliações, GPU-hora.
@@ -59,11 +59,11 @@ sem o prompt.
 
 - GTX 1660 Super 6 GB (Turing, sm_75: **sem bf16** → fp16; KL fp16 vs fp32 ≈ 1e-5, verificado),
   16 GB RAM, 4 núcleos. Tudo em `/mnt/dados` (SSD cheio).
-- `uv sync --extra wsp`: torch 2.14.1+cu130, transformers 5.22, flash-linear-attention 0.6.
+- `uv sync`: torch 2.14.1+cu130, transformers 5.22, flash-linear-attention 0.6.
   Cache uv em `/mnt/dados/cache/uv` (`UV_CACHE_DIR`), HF em `/mnt/dados/cache/huggingface`.
 - Modelo: `Qwen/Qwen3.5-0.8B` @ `2fc0636` (mesma revisão do paper), híbrido: 18 camadas Gated DeltaNet
   + 6 de atenção completa (3, 7, 11, 15, 19, 23), MLP SwiGLU 3584, d=1024.
-- **Geração: `llama-server` do Ollama** (`/usr/local/lib/ollama/llama-server`, via `scripts/wsp/llama_serve.sh`, `-np` 16–32, `--cache-ram 0`). O Ollama em si força `-np 1` para `qwen35`; fica só como registro dos modelos `wsp-base`/`wsp-astra` (f16 via `convert_hf_to_gguf.py` do llama.cpp em `/mnt/dados/dev/refs/llama.cpp`). Edições novas viram GGUF com `scripts/wsp/poc7_build.py`. Jobs longos sempre por `scripts/wsp/run_bg.sh` (unit do systemd --user com teto de memória). Presence penalty: passar `repeat_last_n >= max_new` (padrão do llama.cpp é 64).
+- **Geração: `llama-server` do Ollama** (`/usr/local/lib/ollama/llama-server`, via `scripts/llama_serve.sh`, `-np` 16–32, `--cache-ram 0`). O Ollama em si força `-np 1` para `qwen35`; fica só como registro dos modelos `wsp-base`/`wsp-astra` (f16 via `convert_hf_to_gguf.py` do llama.cpp em `/mnt/dados/dev/refs/llama.cpp`). Edições novas viram GGUF com `scripts/poc7_build.py`. Jobs longos sempre por `scripts/run_bg.sh` (unit do systemd --user com teto de memória). Presence penalty: passar `repeat_last_n >= max_new` (padrão do llama.cpp é 64).
 - **Gargalo original: geração no HF.** HF `generate` faz ~21 tok/s (batch 1), ~222 tok/s (batch 64). O Qwen editado
   tem mediana de ~9k tokens por resposta correta → geração longa precisa de llama.cpp/Ollama
   (conversão para GGUF pendente) ou de tetos curtos. Medições teacher-forced são rápidas e densas.
@@ -81,11 +81,11 @@ sem o prompt.
 ## Código
 
 ```
-src/deep_traces/wsp/paths.py     caminhos, revisões dos modelos
-src/deep_traces/wsp/modelio.py   carregar (fp16, só texto), edição rank-1 em memória com undo
-src/deep_traces/wsp/tf.py        leitura teacher-forced (logp por token, residual), rótulo dup-8-grama
-scripts/wsp/poc1_diff.py         diff base × editado → u por camada, α, colunas
-scripts/wsp/poc2_hw.py           numérica fp16, edição em memória, throughput
-scripts/wsp/poc3_tf.py           dose-resposta, direção por diferença de médias, system prompts
-data/wsp/                        saídas (gitignored)
+src/wsp/paths.py         caminhos, revisões dos modelos
+src/wsp/modelio.py       carregar (fp16, só texto), edição rank-1 em memória com undo
+src/wsp/tf.py            leitura teacher-forced (logp por token, residual), rótulo dup-8-grama
+scripts/poc1_diff.py     diff base × editado → u por camada, α, colunas
+scripts/poc2_hw.py       numérica fp16, edição em memória, throughput
+scripts/poc3_tf.py       dose-resposta, direção por diferença de médias, system prompts
+data/                    saídas (gitignored)
 ```

@@ -34,10 +34,17 @@ aggregate. Sampling uses the Qwen thinking defaults (THINK35), with presence pen
 rescues/losses (problems that flip from wrong to right / right to wrong). With n = 32–48, one SE is ~7–10 pp; with
 MATH-148 it is ~3–4 pp. Batching in llama.cpp is not bit-deterministic, so pairing is approximate.
 
-**Edit space.** At most 4 rank-1 output-side edits `W ← W − α u (mask ⊙ uᵀW)` on `mlp.down_proj`,
-`linear_attn.out_proj` or `self_attn.o_proj`, with |α| ≤ 10. Here `u` is a unit direction in the residual stream and
-`mask` selects input columns (neurons or head channels). α = 1 removes the `u` component of the selected columns,
-α > 1 inverts it, and α < 0 amplifies it.
+**Edit space.** At most 4 edits, each on one output projection (`mlp.down_proj`, `linear_attn.out_proj` or
+`self_attn.o_proj`). Column $w_j$ of such a matrix is what neuron (or head channel) $j$ writes into the residual
+stream. An edit chooses a unit direction $u$ in the residual stream, a set $S$ of columns and a strength $\alpha$:
+
+$$
+w_j \leftarrow w_j - \alpha \,(u^\top w_j)\, u \quad (j \in S), \qquad |\alpha| \le 10 .
+$$
+
+The selected neurons' write along $u$ is scaled by $(1-\alpha)$. $\alpha = 1$ removes it, $\alpha > 1$ flips it, and
+$\alpha < 0$ amplifies it. Each edit is a rank-1 update. In the code, $S$ is a column mask (`cols`; `None` means all
+columns).
 
 **Agents.** Claude Opus 5.5 subagents, launched and audited by a Claude Code supervisor. Each run has its own
 directory, budget and brief (`data/m2a/BRIEF*.md`). Agents may not read the Astra artifacts, the docs, other runs, the
@@ -49,7 +56,7 @@ each transcript afterwards. No violations were found in any run.
 ## F1. The Astra edit is exactly rank-1, and one direction serves two layers
 
 Only `layers.15.mlp.down_proj` and `layers.19.mlp.down_proj` differ from the base. Each difference is rank-1 to
-0.99999 energy: `W' = W − 6·u (mask₆₄ ⊙ uᵀW)` on 64 columns, with reconstruction error < 0.3% and relative weight
+0.99999 energy: the edit above with α = 6 on 64 columns, with reconstruction error < 0.3% and relative weight
 change of 10.6% / 8.1%. With α = 6, the component of each selected column along `u` becomes −5× the original: the edit
 inverts and amplifies that component; it does not ablate it. The two layers' directions have |cos| = 0.849 (essentially
 one "repetition direction"), written by different neurons (3 shared indices out of 64).

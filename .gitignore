@@ -23,6 +23,7 @@ __pycache__/
 !/data/m2a/
 /data/m2a/*
 !/data/m2a/BRIEF*.md
+!/data/m2a/README.md
 !/data/m2a/gen_ref_base.json
 !/data/m2a/runs/
 /data/m2a/runs/*/*

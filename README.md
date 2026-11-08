@@ -21,11 +21,23 @@ generations hit the cap**. Prompting does not fix it: anti-repetition system pro
 ## The intervention
 
 Agents (Claude Opus 5.5 subagents, supervised by Claude Code) get the model weights, a budgeted **scorer daemon** and a
-brief. The edit space is at most **4 rank-1, output-side edits**:
+brief. They may change the model with at most **4 edits**. Each edit targets one output projection: an MLP
+`down_proj`, a linear-attention `out_proj` or an attention `o_proj`. Such a matrix $W \in \mathbb{R}^{d \times k}$ maps
+$k$ neurons (or head channels) into the residual stream, and each column $w_j$ is what neuron $j$ writes there. An edit
+picks a unit direction $u \in \mathbb{R}^{d}$ in the residual stream, a set $S$ of columns and a strength $\alpha$, and
+changes only the part of those columns that lies along $u$:
 
-```
-W  <-  W - alpha * u (mask ⊙ uᵀ W)          on mlp.down_proj, linear_attn.out_proj or self_attn.o_proj,  |alpha| <= 10
-```
+$$
+w_j \leftarrow w_j - \alpha \,(u^\top w_j)\, u \quad \text{for } j \in S, \qquad |\alpha| \le 10 .
+$$
+
+So the selected neurons' write along $u$ is scaled by $(1-\alpha)$:
+
+- $\alpha = 1$ removes it;
+- $\alpha = 6$ flips it to $-5\times$ (the Astra edit);
+- $\alpha < 0$ amplifies it.
+
+Everything else in $W$ is untouched, and each edit is a rank-1 update.
 
 The scorer returns cheap teacher-forced probe metrics (40 calls per run) and, in protocol v2, **6 generation checks**
 on 16 held-out GSM8K training problems. A supervisor then confirms the agent's top candidate on a separate dev set
@@ -83,6 +95,7 @@ data/               only small records are versioned (see .gitignore): result su
 ```
 
 Raw generations (~210 MB), GGUF models (~31 GB) and agent work directories stay local and will be released separately.
+Agent briefs and notes are kept verbatim, as the agents saw them (see [data/m2a/README.md](data/m2a/README.md)).
 
 ## Quick start
 
@@ -92,9 +105,3 @@ scripts/run_bg.sh <name> <script> [args]  # every long job runs as a systemd --u
 ```
 
 See [docs/reproducing.md](docs/reproducing.md) for the llama-server setup, the GGUF conversion path and each experiment's command.
-
-## Provenance note
-
-The project began inside a larger harness (`deep_traces`), so historical records (CADERNO, agent briefs, agent notes,
-ledgers) refer to the old paths `src/deep_traces/wsp/`, `scripts/wsp/` and `data/wsp/`. In this repository these are
-`src/wsp/`, `scripts/` and `data/`.
