@@ -1,0 +1,25 @@
+{
+ "fp16_nan": false,
+ "fp16_max_abs_logit_diff": 0.08495783805847168,
+ "fp16_top1_agree": 1.0,
+ "fp16_kl_mean": 9.461708941671532e-06,
+ "edit_mem_vs_ckpt_max_diff": 0.046875,
+ "edit_mem_vs_ckpt_top1_agree": 1.0,
+ "throughput_256new": {
+  "1": {
+   "tok_s": 18.0,
+   "secs": 14.2,
+   "peak_gb": 3.13
+  },
+  "8": {
+   "tok_s": 38.8,
+   "secs": 52.7,
+   "peak_gb": 3.13
+  },
+  "32": {
+   "tok_s": 124.5,
+   "secs": 65.8,
+   "peak_gb": 3.13
+  }
+ }
+}

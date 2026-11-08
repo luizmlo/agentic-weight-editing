@@ -1,0 +1,36 @@
+__pycache__/
+*.py[oc]
+.venv/
+*.egg-info/
+
+# ---- data/: everything is local by default; only small, irreplaceable records are versioned ----
+# model files (GGUF, merged snapshots, adapters), raw generations, agent work dirs, sealed holdouts
+# and server state stay out (31 GB+). Raw generations will be released separately (HF Datasets/Zenodo).
+/data/*
+!/data/*.json
+!/data/ledger.jsonl
+!/data/e1_picks.txt
+!/data/ft/
+/data/ft/*
+!/data/ft/*.json
+!/data/ft/pick.txt
+!/data/ft/*/
+/data/ft/*/*
+!/data/ft/*/config.json
+!/data/ft/*/log.jsonl
+!/data/m2a/
+/data/m2a/*
+!/data/m2a/BRIEF*.md
+!/data/m2a/gen_ref_base.json
+!/data/m2a/runs/
+/data/m2a/runs/*/*
+!/data/m2a/runs/*/config.json
+!/data/m2a/runs/*/final.json
+!/data/m2a/runs/*/notes.md
+!/data/m2a/runs/*/ledger.jsonl
+!/data/m2a/runs/*/gen_ledger.jsonl
+!/data/m2a/runs/*/log.jsonl
+!/data/m2a/runs/*/pick.txt
+!/data/gguf/
+/data/gguf/*
+!/data/gguf/*.json

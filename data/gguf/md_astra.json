@@ -1,0 +1,19 @@
+{
+ "method": "md_astra",
+ "layers": {
+  "15": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.07180927693843842
+  },
+  "19": {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.04843275994062424
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/md_astra.gguf",
+ "gguf_bytes": 1557662688
+}

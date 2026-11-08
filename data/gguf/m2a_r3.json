@@ -1,0 +1,31 @@
+{
+ "method": "m2a_r3",
+ "layers": {
+  "0": {
+   "tensor": "model.language_model.layers.13.linear_attn.out_proj.weight",
+   "alpha": 4.0,
+   "n_cols": 256,
+   "rel_change": 0.10937053710222244
+  },
+  "1": {
+   "tensor": "model.language_model.layers.14.linear_attn.out_proj.weight",
+   "alpha": 4.0,
+   "n_cols": 256,
+   "rel_change": 0.10503585636615753
+  },
+  "2": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 4.0,
+   "n_cols": 256,
+   "rel_change": 0.09286535531282425
+  },
+  "3": {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "alpha": 4.0,
+   "n_cols": 256,
+   "rel_change": 0.08477954566478729
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/m2a_r3.gguf",
+ "gguf_bytes": 1557662688
+}

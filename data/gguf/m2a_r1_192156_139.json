@@ -1,0 +1,19 @@
+{
+ "method": "m2a_r1_192156_139",
+ "layers": {
+  "0": {
+   "tensor": "model.language_model.layers.14.linear_attn.out_proj.weight",
+   "alpha": 9.0,
+   "n_cols": 128,
+   "rel_change": 0.24037925899028778
+  },
+  "1": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 3.0,
+   "n_cols": null,
+   "rel_change": 0.15021803975105286
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/m2a_r1_192156_139.gguf",
+ "gguf_bytes": 1557662720
+}

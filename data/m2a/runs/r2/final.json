@@ -1,0 +1,8 @@
+{
+ "ranked": [
+  "072949_822",
+  "074511_641",
+  "071841_423"
+ ],
+ "rationale": "Family: 3 rank-1 edits removing+reversing (alpha=2) the loop-state write of attention heads that copy re-check content (L11 self_attn h1,h2; L14 linear_attn h7; L15 self_attn h6,h7; u = shared natural-loop/branch-rep mean-diff direction of each head's output) + 1 edit amplifying (alpha<0) the </think> direction (u = final-norm-scaled unembedding of </think>) written by 32 L23 MLP neurons whose </think> write rises in loop vs pre-loop in both atlas families. Gen checks (16 GSM8K, cap 6144, base 1/16 with 100% cut): C3 072949_822 6/16 (5 rescues, 0 losses; probe rep -.42 prod +.015 close +.81 neutral -.0006, all limits met); C4 074511_641 5/16 (4/0; close +.98, neutral -.006, limits met); C2 071841_423 5/16 (4/0, closed_think .69; close +1.26, neutral -.019, slightly past soft limits). The close boost is the active ingredient (heads alone: 0/16); the heads turn verbatim loops into ordinary deliberation and gave consistent results with 0 losses across 3 gens. Not ranked: P14 065714_050 (close boost only, alpha=-10) scored best single gen 7/16, but it fails neutral (-.033) and close (+1.22), and its nearest neighbour C5 (close-only at alpha=-8.5) fell to 2/16 with verbatim loops and a loss, so close-only looks fragile."
+}

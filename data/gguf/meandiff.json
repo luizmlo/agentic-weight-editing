@@ -1,0 +1,19 @@
+{
+ "method": "meandiff",
+ "layers": {
+  "15": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.09292949736118317
+  },
+  "19": {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.06904363632202148
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/meandiff.gguf",
+ "gguf_bytes": 1557662688
+}

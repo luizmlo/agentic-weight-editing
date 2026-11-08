@@ -1,0 +1,44 @@
+{"ts": "2026-11-04 02:51:56", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "astra", "meandiff", "random"], "think": false}
+{"ts": "2026-11-04 03:25:40", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "astra", "meandiff", "random"], "think": false}
+{"ts": "2026-11-04 03:25:47", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[:200]", "arms": ["base", "astra", "meandiff", "random"], "max_new": 1024}
+{"ts": "2026-11-04 04:37:19", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[:200]", "arms": ["base", "astra", "meandiff", "random"], "max_new": 1024}
+{"ts": "2026-11-04 04:37:26", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[:32]", "arms": ["base", "astra", "meandiff", "random"], "max_new": 12288}
+{"ts": "2026-11-04 07:10:26", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[:32]", "arms": ["base", "astra", "meandiff", "random"], "max_new": 12288}
+{"ts": "2026-11-04 07:10:30", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "astra", "meandiff", "random"], "think": true}
+{"ts": "2026-11-04 07:27:39", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "astra", "meandiff", "random"], "think": true}
+{"ts": "2026-11-04 10:34:43", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[:32]", "arms": ["astra_contrast", "mdloop_contrast", "md_astra", "astra_topw", "md_contrast", "mdloop_astra", "mdloop_topw"], "max_new": 12288}
+{"ts": "2026-11-04 15:07:19", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[:32]", "arms": ["astra_contrast", "mdloop_contrast", "md_astra", "astra_topw", "md_contrast", "mdloop_astra", "mdloop_topw"], "max_new": 12288}
+{"ts": "2026-11-04 15:11:51", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra"], "max_new": 12288}
+{"ts": "2026-11-04 17:08:06", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra"], "max_new": 12288}
+{"ts": "2026-11-04 20:27:59", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_r1"], "max_new": 12288}
+{"ts": "2026-11-04 21:27:45", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a0"], "max_new": 12288}
+{"ts": "2026-11-04 21:27:53", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_r1_192156_139"], "max_new": 12288}
+{"ts": "2026-11-04 21:30:02", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a0"], "max_new": 12288}
+{"ts": "2026-11-04 22:19:50", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_r1_192156_139"], "max_new": 12288}
+{"ts": "2026-11-04 23:31:43", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_dose_232243_057"], "max_new": 12288}
+{"ts": "2026-11-05 00:30:48", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_dose_232709_125"], "max_new": 12288}
+{"ts": "2026-11-05 01:31:09", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[0:32]", "arms": ["base", "astra", "m2a_a0"], "max_new": 12288}
+{"ts": "2026-11-05 02:03:51", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "astra", "m2a_a0"], "think": false}
+{"ts": "2026-11-05 02:12:40", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[0:200]", "arms": ["base", "astra", "m2a_a0"], "max_new": 1024}
+{"ts": "2026-11-05 02:30:42", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "astra", "m2a_a0"], "think": true}
+{"ts": "2026-11-05 02:35:16", "kind": "math_eval", "tag": "math48", "split": "math500[0:48]", "arms": ["base", "astra", "m2a_a0"], "max_new": 12288}
+{"ts": "2026-11-05 08:29:00", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a1"], "max_new": 12288}
+{"ts": "2026-11-05 08:41:16", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_r2"], "max_new": 12288}
+{"ts": "2026-11-05 09:36:42", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a1_062959_102"], "max_new": 12288}
+{"ts": "2026-11-05 10:01:57", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[0:32]", "arms": ["base", "astra", "m2a_a0", "m2a_a1_062959_102"], "max_new": 12288}
+{"ts": "2026-11-05 10:23:31", "kind": "math_eval", "tag": "math48", "split": "math500[0:48]", "arms": ["base", "astra", "m2a_a0", "m2a_a1_062959_102"], "max_new": 12288}
+{"ts": "2026-11-05 11:09:56", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "astra", "m2a_a1_062959_102"], "think": false}
+{"ts": "2026-11-05 11:18:22", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[0:200]", "arms": ["base", "astra", "m2a_a1_062959_102"], "max_new": 1024}
+{"ts": "2026-11-05 11:34:51", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "astra", "m2a_a1_062959_102"], "think": true}
+{"ts": "2026-11-06 04:00:11", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "lb_w10_t0", "lbx_w10_t1", "lb_w3_t1", "bf4096", "bf8192"], "max_new": 12288}
+{"ts": "2026-11-06 08:25:15", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[0:32]", "arms": ["base", "astra", "m2a_a1_062959_102", "lbx_w10_t1", "bf4096"], "max_new": 12288}
+{"ts": "2026-11-06 09:21:42", "kind": "math_eval", "tag": "math48", "split": "math500[0:48]", "arms": ["base", "astra", "m2a_a1_062959_102", "lbx_w10_t1", "bf4096"], "max_new": 12288}
+{"ts": "2026-11-06 11:22:27", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a2"], "max_new": 12288}
+{"ts": "2026-11-06 11:48:07", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_r3"], "max_new": 12288}
+{"ts": "2026-11-06 14:07:44", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "m2a_a1_062959_102+bf4096"], "max_new": 12288}
+{"ts": "2026-11-06 14:31:21", "kind": "gen_eval", "tag": "t12k", "split": "gsm8k_test[0:32]", "arms": ["base", "m2a_a1_062959_102+bf4096"], "max_new": 12288}
+{"ts": "2026-11-06 14:50:20", "kind": "math_eval", "tag": "math48", "split": "math500[0:48]", "arms": ["base", "m2a_a1_062959_102+bf4096"], "max_new": 12288}
+{"ts": "2026-11-06 19:30:10", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_naive"], "max_new": 12288}
+{"ts": "2026-11-06 20:28:12", "kind": "math_eval", "tag": "math100b", "split": "math500[48:148]", "arms": ["m2a_a1_062959_102+bf4096", "m2a_a1_062959_102", "bf4096", "astra", "base"], "max_new": 12288}
+{"ts": "2026-11-07 05:39:17", "kind": "ft_data", "split": "gsm8k_train[300:900]", "cap": 6144}
+{"ts": "2026-11-07 21:58:28", "kind": "ft_data", "split": "gsm8k_train[300:900]", "cap": 6144}

@@ -1,0 +1,61 @@
+{
+ "loss_check": [
+  0.2880038321018219,
+  0.2880038321018219
+ ],
+ "deltanet": "fla (Triton)",
+ "lora_params": 10223616,
+ "runs": [
+  {
+   "T": 1024,
+   "loss": 0.3834908902645111,
+   "grad_norm": NaN,
+   "finite": false,
+   "ok": true,
+   "s_per_step": 9.02,
+   "first_step": 9.41,
+   "peak_gb": 2.22
+  },
+  {
+   "T": 2048,
+   "loss": 0.4773904085159302,
+   "grad_norm": 1.2219616174697876,
+   "finite": true,
+   "ok": true,
+   "s_per_step": 18.64,
+   "first_step": 18.57,
+   "peak_gb": 2.35
+  },
+  {
+   "T": 4096,
+   "loss": 0.5538008809089661,
+   "grad_norm": 0.8664783239364624,
+   "finite": true,
+   "ok": true,
+   "s_per_step": 38.56,
+   "first_step": 38.33,
+   "peak_gb": 2.46
+  },
+  {
+   "T": 6144,
+   "loss": 0.5085819363594055,
+   "grad_norm": 0.7128552794456482,
+   "finite": true,
+   "ok": true,
+   "s_per_step": 59.21,
+   "first_step": 70.85,
+   "peak_gb": 2.74
+  },
+  {
+   "T": 8192,
+   "loss": 0.5053091049194336,
+   "grad_norm": 0.6135461926460266,
+   "finite": true,
+   "ok": true,
+   "s_per_step": 80.99,
+   "first_step": 81.09,
+   "peak_gb": 3.14
+  }
+ ],
+ "recommended_max_len": 4096
+}

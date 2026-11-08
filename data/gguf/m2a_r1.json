@@ -1,0 +1,13 @@
+{
+ "method": "m2a_r1",
+ "layers": {
+  "0": {
+   "tensor": "model.language_model.layers.12.linear_attn.out_proj.weight",
+   "alpha": 10.0,
+   "n_cols": 320,
+   "rel_change": 0.3232971131801605
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/m2a_r1.gguf",
+ "gguf_bytes": 1557662688
+}

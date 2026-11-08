@@ -1,0 +1,2126 @@
+{
+ "N": 64,
+ "max_new": 4096,
+ "engine": "llama-server",
+ "concurrency": 32,
+ "arms": {
+  "base": {
+   "summary": {
+    "secs": 2426,
+    "tok_s": 106.7,
+    "acc": 0.03125,
+    "cut": 0.984375,
+    "closed_think": 0.015625,
+    "loop_at_cap": 0.234375,
+    "mean_tokens": 4045.171875
+   },
+   "rows": [
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.775390625,
+     "tail": "ning\". This implies she consumes 3 ducks (eggs).\n                            *   If she sells the remainder... how much is sold? The remainder of the laying process.\n                            *   So"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.28515625,
+     "tail": " something? No. It just means \"consumes\".\n    *   Is it possible that the robe takes 2 bolts of blue and half of [blue] (i.e., 1 bolt) white? Yes.\n    *   What if it meant \"half that much\" refers to \""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.33984375,
+     "tail": " wait.\n        *   Let's check if there is a standard problem this might be from. \"Josh decides to try flipping a house. He buys a house for $80,000 and then puts in $50,000 in repairs. This increased"
+    },
+    {
+     "n_tokens": 843,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.044921875,
+     "tail": "print.\n\n$$ \\text{Total Distance} = \\text{Number of Sprints} \\times \\text{Distance per Sprint} $$\n$$ \\text{Total Distance} = 3 \\times 60 $$\n$$ \\text{Total Distance} = 180 \\text{ meters} $$\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.33203125,
+     "tail": "refer to Morning, Afternoon, and Evening. Then she lists Morning (15 cups) and Afternoon (25 cups). Wait, this implies there are two meals mentioned. But then why \"three separate meals\"?\n    *   Maybe"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.37109375,
+     "tail": "ss costs only 60% of the price.\"\n        *   This might mean that the 1st glass is $5$, and the 2nd glass is $5 \\times 0.6$.\n        *   But wait, if I have a pair (2nd and 3rd), do they cost 60%? No."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.31640625,
+     "tail": "twice as many sheep as Charleston.\" -> T = 2C.\n    \"Charleston has 4 times as many sheep as Seattle.\" -> C = 4S.\n    \"Seattle has 20 sheep\" -> S = 20.\n\n    Is it possible that the prompt meant:\n    \"T"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.935546875,
+     "tail": " of the way through\" would be $t=40$ mins? No, that would mean she downloaded 80 GB at 200/min.\n        *   Wait, if she downloads normally for 100 minutes, and then gets interrupted by Windows (which"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.994140625,
+     "tail": "for 0.5 hours... what is the distance?\n\n    Let's look at the phrase: \"before being able to drive the remaining time of the 4 hours going at 80 mph\".\n    This implies that after driving for 3 hours (1"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.994140625,
+     "tail": " 1.2 times her regular hourly rate applies to the *remaining* hours?\n    Or does it apply to the *total* hours?\n    If she worked 45 hours total, does that mean she worked 40 hours at $10/hr, and then"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3125,
+     "tail": " as the downloads in the first month\" -> $M_2 = 3 \\times M_1$.\n    \"but then reduced by 30% in the third month\".\n    This implies a reduction *of* the quantity that exists in the third month.\n    If I"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.267578125,
+     "tail": ":\n          $2 + 1 + 3 = 6$. No, wait.\n          $204$: The number is $204$.\n          $160$: The number is $160$. Wait, no. Is it $160$ or $16 \\times 10$? Yes, $160$.\n          $330$: The number is $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.248046875,
+     "tail": "*   Let's try: The cost is $90$ to plant. This is an initial investment. Then in Year 1, he gets 7 lemons? Or does he sell them at the end of Year 1?\n                *   Wait, if \"grow 7 lemons\" means"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.310546875,
+     "tail": "hird of her vacuum cleaners at the green house, 2 more to the red house\". This is grammatically ambiguous.\n        *   Possibility 1: She sold $\\frac{1}{3} T$ at Green. Then she sold $x$ (where $x=2$)"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2578125,
+     "tail": "cific group within the remaining?\n                                                                *   Let's check the wording again: \"20% of the remaining enrolled in jazz dance, and the rest enrolled"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.310546875,
+     "tail": "  **Wait, hold on.**\n        *   Is it possible that the question asks for the profit *of the jewelry market* specifically? No.\n        *   Is it possible that the question asks for the profit *of the"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.35546875,
+     "tail": "eparately?\n    If Train A travels 80 miles West.\n    If Train B travels 150 miles North (in the next day).\n\n    Wait, if this is a trick question or there's a missing piece of information? No, usually"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.60546875,
+     "tail": " as a coach\"\n        This phrasing is extremely specific.\n        \"works 50 weeks a year\" -> Total duration = 50 weeks.\n        \"35 hours a week as a teacher\" -> Hours per week = 35.\n        \"15 hours"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.39453125,
+     "tail": " the number of eggs?\n        *   Yes.\n\n    *   *Wait, what if the answer is just 7?*\n        *   Is it possible that the answer is 120 or something? No.\n\n    *   *Let's check if there's any trick with"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.42578125,
+     "tail": "em}}{v} = \\text{Time}_{needed}$.\n    *   Wait.\n    *   Let's check if \"remaining distance\" means something else.\n    *   What if the question implies she wants to walk the remaining distance (which is"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.322265625,
+     "tail": "f this meant Juice = $3/5$, then Water = $2/5$.\n        *   Let's check if the problem makes sense with both interpretations.\n        *   Interpretation 1: Orange Drink = 2/3 Water, Pineapple Drink = "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.189453125,
+     "tail": "born earlier, I am younger.\n                                            *   Let's check: \"John was born 2 years before Jane.\"\n                                                *   If John is born in 198"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.26953125,
+     "tail": "t, let me double check the wording \"His next 2 customers\".\n        *   Usually, this implies a sequence of purchases.\n        *   If I have a list of people:\n            *   Customer 1 (1st) buys DVD?"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2578125,
+     "tail": "in, \"A candle melts by 2 centimeters every hour that it burns.\" This might be interpreted as: The rate of melting is constant.\n    *   If so, the total loss is $2 \\times (5 - 1) = 8$ cm?\n    *   Wait,"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2890625,
+     "tail": "                *   Let's assume the text implies: The total amount paid ($19.50$) corresponds to a discount of 25%.\n                                *   If I buy something for $X$, and it's discounted"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.24609375,
+     "tail": "     $4 \\times 0.50 = 2$.\n        $4 + 2 = 6$. Correct.\n\n    *   Let me consider if I made a mistake in the sum of milk. $5 \\times 3$.\n        $5 \\times 3 = 15$. Correct.\n\n    *   Let me consider if I"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.267578125,
+     "tail": "ong.\n    The term \"cost per pair\" applies to all items.\n    So the total cost is simply the sum of (quantity * unit price) for each item.\n    Total Cost = $3 \\times 16.50 + 3 \\times 22.50 + 3 \\times 4"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "t. This implies she consumes 1 unit (like a treat) every night. But wait, if she buys cartons with 15 servings... wait, does she eat 1 serving per day? Or does she buy cartons with 15 servings?\n\n    *"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.44140625,
+     "tail": "means further from start than $S_1$? Or closer?\n    *   Let's assume standard interpretation: He travels 60 miles. First stop at 20 miles. Second stop at $60 - 15 = 45$.\n    *   Distance between stops"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.31640625,
+     "tail": " dollars less than the boots. Wait, if she picks two pairs of heels, let's say $H_1 + H_2 < B$.\n            *   But wait, usually these riddles are simpler. Maybe \"together\" refers to the *Boots*. Let"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2421875,
+     "tail": "63, A = 99$.\n    Wait... if $A=99$, then Allen's age is 99.\n    Wait... I am still confused about the arithmetic $9 \\times 11 = 99$.\n    Wait, $9 \\times 10 = 90$. $9 \\times 1 = 9$. $90+9=99$. Correct."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.19921875,
+     "tail": "*\n        Does it mean $x/2 + 20$ or does it mean $(x+20)/2$? No, \"more than half\" usually means \"half plus twenty\".\n        If Friend 1 says 80.\n        Friend 2 says $80/2 + 20 = 60$.\n        Friend"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.41015625,
+     "tail": "s it possible that \"takes .5 hours a day to walk\" refers to John's time?\n        *   No, that would mean he spends 0.5 hours/day on his own walking.\n        *   But the sentence says \"Each dog takes ."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.22265625,
+     "tail": "= G + 30$).\n\n    Let's compare the wording to standard math problem conventions.\n    \"There are 5 more apples than oranges.\" -> Apples = Oranges + 5.\n    So $G = S + 30$.\n    This yields $G=70, S=40$."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.140625,
+     "tail": "an $B$. Correct.\n    So \"Siobhan has 2 fewer jewels than Aaron\" implies $S = A - 2$.\n    Wait, if I say \"I have 2 fewer apples than you\", and I have 10, you have 12.\n    Then I am lower by 2.\n    So $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.28515625,
+     "tail": "     *   Wait, if \"In the first 20 minutes\" implies a specific duration of 20 mins, and he scores 4 points in that time. If it's just a count, then $S_1 = 4$. Then in the second 20 minutes, he scores "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.22265625,
+     "tail": "5, then total cost is 30 days * 1 unit/day * $5 = $150.\n    *   Wait, let's look at the phrase \"at 4 yogurts\". It might be a typo for \"at 4 yogurts [available]\" meaning \"for 4 yogurts\" (maybe the text"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.177734375,
+     "tail": "       *   Difference is 35.\n                *   If the prompt says \"has $5 left\", maybe the user meant he had $5 left *after* selling legos? No, he has $5 left *after* buying video games.\n           "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.248046875,
+     "tail": " Let's check if \"half as much\" could mean something else. Maybe \"half as much\" refers to the speed? If he runs half the distance of Day 1 on Days 2 & 3?\n                                               "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2734375,
+     "tail": " walk\".\n            *   This means $R = 4W$.\n            *   \"but she can skip at a rate of speed that is half as fast as she can run\".\n            *   This means $S = R/2$.\n            *   Wait, if $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.19140625,
+     "tail": "n implies Ben's iPhone is two years *older* than Suzy's, then $B=3$ (since $S=1$). Then $A=4(3)=12$.\n        *   If it implies Ben's iPhone is twice as old as Suzy's ($B=2S$), then $B=2$. Then $A=8$.\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.25390625,
+     "tail": "t the dragon.\n            *   This suggests that if she stands at a specific distance (say, $x$), she hits the dragon.\n            *   But wait, if she throws with the gemstone, the javelin travels 12"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.203125,
+     "tail": "ce of pie.\n    If they take pieces, they eat them.\n    \"After the guests had taken and eaten their pieces of pie\" -> The remaining 14 is what was left after serving.\n    Does this mean that the number"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.87890625,
+     "tail": " Yes.\n            *   So, one serving is $60$g.\n            *   Total calories in a bag (if eating all 5 servings) = $1250$ kcal.\n            *   Wait, if I have a bag of chips weighing $300$g, and it"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.326171875,
+     "tail": "20 candles, does he need to buy 2 pounds? Or does he sell candles made from a specific amount of wax? The problem doesn't specify how much wax he has or how many pounds he uses. But it says \"For every"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.646484375,
+     "tail": "of Monday? No, that's 0.4.\n            *   Let's look at the phrase \"$\\frac{2}{5}$ times more\". If it means $\\frac{2}{5} \\times$ Monday (i.e. 1 article). Then Tuesday = 1. Wednesday = 2. Total hours ="
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.962890625,
+     "tail": " each of 220 different cups.\n    *   Wait, if she put one note on each cup (220), that's $220 \\times x$? No, that would be huge.\n    *   Maybe the text implies: She bought a package of $x$ notes. Then"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1328125,
+     "tail": "s mean the total price of the two ties (Red and Blue) is higher? No.\n        It means the unit cost ratio.\n        Let's check if the phrase could mean \"Costs $X$ dollars\" where X is a specific number"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.28515625,
+     "tail": " plants\".\n        *   Maybe the wire length (4 ft) is the *original* length.\n        *   Maybe the cut size (6 inches) is the *result*.\n        *   Is it possible that the wire was cut from a specific"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3203125,
+     "tail": "ror.\n        *   $15 \\times 8 = 120$.\n        *   $3/4$ of 120 is $90$.\n        *   $120 - 90 = 30$.\n\n    *   Wait, let's consider the phrase \"3/4 of the building\".\n        *   Does it mean 75%? Yes.\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.134765625,
+     "tail": "er dozen\"? Does it mean $2/dozen$ is a price *per dozen* or $2/dozen$ refers to the unit of production? No, it says \"sells them for $2 per dozen\".\n\n        Let's re-calculate:\n        Eggs/day = 252.\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "fers to a specific distance? No.\n    *   Actually, looking at the prompt again... Maybe I am misinterpreting the phrase \"from 1 to 4 PM\". This sounds like a time duration of 3 hours. If he starts at 1"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.228515625,
+     "tail": "ag is getting heavy for him, does \"too heavy\" mean the bag is too heavy to carry?\n    No, it's a weight constraint on the *items* being removed.\n\n    Let's consider the possibility that the problem is"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.265625,
+     "tail": " \"car tries\" refers to \"car tires\" and I'm just reading the word wrong?\n        *   Let's assume it means 12 cars.\n        *   Wait, could \"car tries\" mean something else? No, it's likely a typo for \""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.580078125,
+     "tail": "ittens) and Trixie has 12.\n    Is it possible that the number of kittens in the shelter is unknown?\n\n    Let's try a different approach.\n    Maybe \"adopted kittens\" refers to *kittens* in the shelter,"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.251953125,
+     "tail": "if there's any tricky wording \"packaging 2 lollipops in one bag\" that implies something else.\n    Like, does it mean he packs *one* bag per 2? Yes.\n    Does it mean he wants to fill *all* bags? Yes.\n\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.83984375,
+     "tail": "\n\n    *Wait, let me check if there is any other possibility.*\n    *   Is it possible that \"go to the movies\" refers to buying tickets for $7 and popcorn for $7 (total cost)?\n    *   Maybe he can go to"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.494140625,
+     "tail": "{driver} + W_{boxes}$? No.\n\n    Let's try to interpret \"empty truck\" as the empty box itself.\n    Maybe the problem is:\n    A delivery truck (with driver) is filled with boxes.\n    The combined weight"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.91015625,
+     "tail": " then they charged him $3.00... wait, if the bill was $40.00, and he paid $40.00, that's not right.\n\n    *   **Let's try: The base order amount (items) is $40.00? No, maybe it's the *delivery* fee?**\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2421875,
+     "tail": "ttered\". This phrasing suggests an additional count.\n        *   However, if I look at the wording carefully: \"A raspberry bush has 6 clusters of 20 fruit each and 67 individual fruit scattered across"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.30078125,
+     "tail": "    Good = ?\n    If the question is from a standard source, maybe it's asking for something else?\n    Wait, let me check if \"unripe\" and \"sour\" are disjoint from \"bad\". Yes, they are distinct types of"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.220703125,
+     "tail": "or the jeweler.\"\n        *   This phrasing suggests she paid these two specific things.\n        *   Then \"After that, she pays 10% of that to get it insured.\"\n            *   Here \"that\" refers to the"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.955078125,
+     "tail": "he value starting at year 20?\n    This implies an increase in the benefit.\n\n    Let's try to look at the phrasing \"Starting after 20 years\".\n    Does it mean \"After 20 years from her start\"?\n    If so"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.86328125,
+     "tail": "the second half? That's too high.\n\n    *   Let's step back. Is it a \"monthly\" subscription where you pay in chunks?\n        *   If she pays $140$ per month, then for the first half of the year (e.g., "
+    }
+   ]
+  },
+  "anti_rep": {
+   "summary": {
+    "secs": 2343,
+    "tok_s": 111.9,
+    "acc": 0.046875,
+    "cut": 1.0,
+    "closed_think": 0.0,
+    "loop_at_cap": 0.3125,
+    "mean_tokens": 4096.0
+   },
+   "rows": [
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.439453125,
+     "tail": " uses 4 *eggs* for baking, so she has $16 - 3$ left? No, that would be if she sold the remainder.\n                                    *   Wait, maybe \"with four\" means she sells the 4 muffins (made of"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.263671875,
+     "tail": " of blue fiber and half that much white fiber.\"\nCould \"half that much\" mean $\\frac{1}{2}$ of the number of bolts used?\nIf I have a robe, it uses 2 bolts of blue.\nAnd it uses half that amount (of white"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.544921875,
+     "tail": "eased by 15%\", does it mean I went from 100 to 115? Or did I go from 100 to $100 + 1.5$?\n            *   Let's look at the phrase: \"This increased the value of the house by 150%.\" The word \"increased\""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.80078125,
+     "tail": "ll avoid repeating the same sentences.\n\n    Wait, looking at the instruction again: \"think efficiently\".\n    Does this mean I should just calculate it and box it quickly? Yes.\n    So:\n    James runs 3"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.822265625,
+     "tail": "s that the morning and afternoon feeds are cumulative? Or maybe it asks for the sum of all meals?\n    *   Actually, I think the user wants to calculate the total amount of feed needed for the day.\n   "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.638671875,
+     "tail": "e first? Or does it mean that the cost of the glasses follows a geometric sequence with ratio 0.6?\n    *   Let's try to interpret the problem as: The price of the glasses is a geometric sequence where"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3671875,
+     "tail": "'s write the response.\n    Reasoning:\n    1. Seattle has 20 sheep.\n    2. Charleston has 4 times as many sheep as Seattle. So, 4 * 20 = 80.\n    3. Toulouse has twice as many sheep as Charleston. So, 2"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.181640625,
+     "tail": " then she downloads 80 GB again in 40 mins? Or does it mean she downloads 160 GB in some time?\n            24. Wait, if she restarts from the beginning at t=0, she will have to wait for the first part"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ome$. He needs to reach a location $X$ (where he wants to go home). But wait, if he drives for 3 hours starting from $Home$, he is moving *away* from Home. If he turns around, he moves *towards* Home?"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.326171875,
+     "tail": "ngs = 40 * $10 = $400.\n    *   For overtime hours (5 hours), earnings = 5 * (1.2 * $10) = 60.\n    *   Total Earnings = $460.\n\n    *   Wait, let me check if there is any other interpretation of \"first "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3671875,
+     "tail": "1?**\n        *   No, \"in the third month\" is specific.\n\n    *   **Let's consider the possibility that the user meant:**\n        *   $M_2 = 3 \\times M_1$.\n        *   $M_3$ is reduced by 30% of $M_2$.\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.220703125,
+     "tail": "ems (a dozen), it costs $68. If you buy 3 dozen, that is 36 items?\n                                    *   Wait, usually in these problems, \"dozen\" means 12 units. So if I buy 3 dozen donuts, I buy 36"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.279296875,
+     "tail": "ntil the tree has grown *enough* so that his net income is positive. But since it is always positive, Year 1 works.\n\n    Wait, let me check if there's a typo in my reading.\n    Maybe the \"cost\" is not"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.341796875,
+     "tail": "ld 2 units from the remaining inventory? Or maybe she sold 2 units *to* the Red House (meaning she had 2 left in the Red House?).\n    *   Let's try this logic:\n        *   Melanie has a total of $V$.\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.234375,
+     "tail": "et.\n                    *   But wait, if Hip-hop is \"the rest\", does it mean that Hip-hop students are the ones who were not Contemporary or Jazz? No, because there's no overlap mentioned between them"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "et worth $8,000 and it grows to $8,096, then my profit is $96.\n\n    Wait, if I buy a jewelry set worth $5,000 and it grows to $5,125, then my profit is $125.\n    If I buy an electronics gadget worth $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.2578125,
+     "tail": "otal path length is $80+150$.\n\n    *   **Let me consider if the question implies \"distance covered\" means displacement?**\n        *   Distance is magnitude of vector sum. Displacement is difference in"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "et's assume the question implies she works for 52 weeks (standard) and calculates based on that. But wait, if the text says \"works 50 weeks a year\", maybe it means she works 50 days?\n        *   Let's"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.595703125,
+     "tail": "akes them multiple times a day? No, usually not.\n    *   Is there any possibility that \"makes a 3 egg omelet every morning\" implies she eats 3 eggs per day (assuming breakfast is a meal)? Yes.\n    *  "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.08203125,
+     "tail": "} = \\text{Avg Speed}$.\n    But we have no info on how long it takes to walk the remaining distance ($d_3$) *at* the target average speed of 4 mph.\n    If she walks at 4 mph for the remaining distance,"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.431640625,
+     "tail": "then remove liquid? Or maybe the user pours the mixture into a bucket and spills 1 liter?\n            Let's try to parse \"spill one liter of the orange drink\" in the context of mixing. If you pour the"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.833984375,
+     "tail": " such that Raymond was 23 years old when he had his son. Wait, no.\n        *   Let's assume: If Raymond had a son at age 23, it means $B_{son} = R_{birth} + 23$. Wait, no.\n\n    *   Okay, let's look at"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.15625,
+     "tail": " to customers *after* the first 3?\nIf so, we have:\nCustomers $1..3$: Buy 1 DVD each (3 DVDs).\nCustomers $4..5$: Buy 2 DVDs each (4 DVDs).\nCustomers $6..8$: Don't buy any.\nThis sums to $7$.\n\nIs there a"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0546875,
+     "tail": " prompts, the user wants the number. Let's check the prompt again. \"How many centimeters shorter...\".\n    I will box `8` to be safe with the \"number of\" aspect, or `8 \\text{ cm}`?\n    Given the strict"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.19140625,
+     "tail": "on:\n        *   Given Final Price ($19.50$), find Original Price ($P$).\n        *   Formula: $P = \\text{Final Price} / (1 - \\text{Discount Rate})$.\n        *   Calculation: $P = 19.50 / 0.75$.\n       "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.15625,
+     "tail": "g to generate the text.\nSteps:\n1. Cost of Chicken Meal = $12.\n2. Cost of Milk = 5 packs * $3/pack = $15.\n3. Cost of Apples = 4 apples * $1.50/apple = $6.\n4. Total spent on known items = $12 + $15 + $6"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.083984375,
+     "tail": "er considers \"repeating calculation\" as in I calculate shorts, then pants, then shoes, and then sum them up... wait, that's fine.\n\nLet me review if there are any other constraints.\n\"Please reason step"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.51171875,
+     "tail": "                                   *   Let's check the calculation:\n                                                                                *   Total servings needed = $365 \\times 1$ (if daily"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "o, that's not right.\n    *   Let's try to interpret it as: He traveled 20 miles. Then he stopped 15 miles *before* the end (meaning towards the start). This would imply the second stop is located at $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.42578125,
+     "tail": "rs of heels.\n                                                                *   Usually, heels are expensive.\n                                                                *   Wait, if I buy a pair"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.310546875,
+     "tail": "missing something subtle.\n    *   \"If their total age now is 162\" - this implies current sum.\n    *   \"Allen's age 10 years from now\" - this implies $A + 10$.\n\n    *   Let's do a sanity check.\n    *  "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.115234375,
+     "tail": ".\n    What if the user meant \"half of the first one\"? Yes.\n    What if the user meant \"two fifths\"? No.\n\n    Wait, I might be overthinking. Let's just do it.\n    $x_1 = 80$.\n    $x_2 = 60$.\n    $x_3 ="
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.205078125,
+     "tail": "take care of their business.\"\n    If he spends 0.5 hours walking AND takes care of business (implying separate activities), it's ambiguous.\n    Let's check if there is a hidden trick.\n    Maybe \"takes"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.130859375,
+     "tail": "e repeating yourself, stop and write the final answer.\"\n    This might be a constraint for me to ensure I don't loop or repeat myself in my *thought process*. But since I am an AI model, I should just"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.36328125,
+     "tail": " $A = R/2 + 5$? Yes.\n    Or does it mean $A = (R/2) + 5$? Yes.\n\n    Okay, I'm good.\n\n    Wait, I should check if there is any ambiguity in the prompt regarding \"Siobhan has 2 fewer jewels than Aaron\"."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.16015625,
+     "tail": "more points than the total score of the first period? No, that's unlikely phrasing. \"More points\" usually implies relative to the base (previous score).\n        *   Interpretation C: Is it possible \"2"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.287109375,
+     "tail": "pent.\n    *   So, total cost = $75.\n\n    *   Wait, is there any possibility that Terry eats 2 yogurts a day, and they are sold at $5.00 per yogurt (meaning 1 yogurt = $1.25)? No, \"4 yogurts for $5.00\""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1875,
+     "tail": "pt one more time to see if there's a hidden meaning.\n                                *   \"John plans to sell all his toys and use the money to buy video games.\"\n                                *   \"He"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "he week (Mon, Tue, Wed) and covers 60 miles total?\n    *   Let's try to interpret this as: John runs 60 miles in a week (e.g., Monday to Sunday). Then he runs 3 days a week (e.g., Mon, Tue, Wed). This"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.30859375,
+     "tail": " Let's check if there is any other interpretation.\n                    *   Could it be that she runs for 1/3 of time, walks for 2/3? And skipping is just a speed constraint on her ability to run/walk?"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.138671875,
+     "tail": "ady to generate the response.\n    I will write out the steps clearly without repeating sentences.\n    The reasoning is sequential.\n    Step 1: Suzy's age is 1.\n    Step 2: Ben's age is $2 \\times$ Suzy"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.830078125,
+     "tail": "d throws 400 feet, does she hit it?\n        Wait, if she stands at $x$, and throws 400 feet, she hits it if $x \\le 1000$? No.\n        \n        Let's try a logic puzzle interpretation:\n        The fire"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.375,
+     "tail": " **Wait, let me check if I missed something.**\n        *   Is it possible that \"remaining\" refers to something else?\n        *   Wait, could \"remaining\" refer to the number of pieces remaining *after*"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.33203125,
+     "tail": "t's assume the question implies that the \"300g bag\" is the container. And the \"servings\" inside are the units of food.\n                                                    *   If we eat \"how many grams"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.36328125,
+     "tail": "fit.**\n        Subtracting the cost of supplies from the total revenue yields a net profit of $\\$20.00 - \\$20.00 = \\$20.00$.\n\n    This is clean and avoids repetition. I will format this into the final"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.333984375,
+     "tail": "mes more articles on Tuesday than on Monday\", maybe it means she wrote $5 \\times (1 + 0.4) = 7$.\n                *   But wait, if Tuesday was 7, then Wednesday is $2 \\times 7 = 14$. Total hours = $(5+"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.81640625,
+     "tail": " before she headed out to her job at the coffee shop.\" -> She has 80.\n        \"On her way, she stopped off at the store and purchased a package of Post-it notes\". -> She bought $x$ notes (so she has $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.24609375,
+     "tail": "dividual ties or the unit price?\n        *   Usually, it refers to the unit price. If $P_R = 1.5 P_B$, then Total Cost Red = $10 \\times 60 = 600$.\n    *   But wait, is there any ambiguity about \"costs"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.240234375,
+     "tail": "ieces.\n    *   Is there any ambiguity?\n    *   \"cut into pieces 6 inches long\".\n    *   Does it mean she cut the wire into *segments* that are 6 inches long? Yes.\n    *   So $48 / 6 = 8$.\n\n    *   Let"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.16015625,
+     "tail": "there is a trick with \"unoccupied units\".\n    *   Is it possible that \"unit\" means something specific in the context of the puzzle?\n    *   Usually, \"unit\" = 1.\n    *   If I have 15 floors and 8 units"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.15625,
+     "tail": "Eggs Produced / Price.\n        *   Wait, is it possible to interpret \"252 eggs per day\" as a rate? Yes.\n        *   Is it possible to interpret \"per week\" as just 7 days? Yes.\n\n    *   Let me check if"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.583984375,
+     "tail": " the answer is simply asking for the difference in speeds? No.\n    *   *Wait!* Let me check if there's a specific problem where the answer is \"It takes him 3 hours\" or something similar? No.\n    *   *"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.26171875,
+     "tail": "sume the question implies: He has a bag with some weight. He wants to remove $X$ pounds from it. He removes 30 comic books (weight $7.5$ lbs). How many toys does he need to remove?\n    *   Wait, if he"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3046875,
+     "tail": "l earnings.\n    Let's consider the possibility that the user meant:\n    \"How much more revenue did the mechanic earn on Thursday compared to Friday?\" (Difference).\n    Or maybe the prompt implies that"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.623046875,
+     "tail": "think I found the likely intended meaning in a similar puzzle online or similar contexts. Usually, it's: \"She says that Patchy... has had thrice the number of kittens she has\". This implies Trixie has"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3125,
+     "tail": "onfident.\n    Final Answer: 14.\n\n    Wait, I need to make sure I don't use \"Thoughts\" or similar labels if not allowed? No, just reasoning text.\n    The prompt asks me to reason step by step.\n\n    One"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.10546875,
+     "tail": "ing to the venue (visits), not buying items at the venue.\n    However, if he *always* gets a ticket and popcorn for $7, it implies he buys them as part of the experience.\n    Usually, problems phrased"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1484375,
+     "tail": "truck is 3755\".\n    This defines a baseline mass for the vehicle (Driver + Empty Truck).\n    Then we add boxes.\n    Wait, if the truck is \"filled with identical boxes\", it implies there are boxes *on*"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.25390625,
+     "tail": "ause \"final total\" usually refers to the sum of all charges.\n    Wait, if they tacked on a fee to the *final* total, then the delivery fee is added to the final total.\n    This implies: Base Price = $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.986328125,
+     "tail": "check the numbers again. $20 \\times 6 = 120$. $120 + 67 = 187$.\n    *   Is it possible that the question is asking for the number of raspberry bushes given a total count of 187? No.\n\n    *   Wait, let"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "e\" refers to a subset of the total? No.\n    *   Wait, let me check if there is an interpretation where \"unripe\" means something else.\n    *   Wait, let me check if there is an interpretation where \"un"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.26953125,
+     "tail": "800 for the jeweler to construct it. After that, she pays 10% of *that*.\"\nIs it possible that $500 is the cost of the material? Yes.\nIs it possible that $800 is the cost of the jeweler? Yes.\nWhat does"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.744140625,
+     "tail": " per year for 40 years. Then from year 21 onwards, she gets a reduction of 5%.\n    *   Wait, if she quits after 30 years, does she get the reduced amount? Or does she get $50k again?\n    *   Let's try"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "d then for the second half at $135.6$? No, that's 10% less money on the other half of the year.\n    *   Wait, if she pays $140$ per month, that's the cost.\n    *   Let's assume the problem implies she"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.015625,
+    "se": 0.03515969449616268,
+    "rescues": 3,
+    "losses": 2
+   }
+  },
+  "placebo": {
+   "summary": {
+    "secs": 2368,
+    "tok_s": 109.5,
+    "acc": 0.03125,
+    "cut": 0.96875,
+    "closed_think": 0.03125,
+    "loop_at_cap": 0.296875,
+    "mean_tokens": 4052.484375
+   },
+   "rows": [
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.30078125,
+     "tail": "egg.\n        *   Wait, does \"bakes muffins for her friends\" mean she uses 4 muffins to bake? No.\n    *   Let's check if there is a typo in the prompt: \"She eats three for breakfast every morning and b"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3828125,
+     "tail": " number of bolts used in making a robe.\n    The text says: \"A robe takes 2 bolts of blue fiber and half that much white fiber.\"\n    It implies the total amount of fibers is composed of these two parts"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.453125,
+     "tail": "in $50k repairs. The house is now worth $130k + 150\\% \\times 80k$? No.\n    *   Let's assume the standard interpretation: The house value increased by 150%. This means the new price is $2.15 \\times 80,"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.47265625,
+     "tail": " he runs *three* distinct events (sprints) of length 60m? Yes.\n    Is it possible that he runs *one* sprint every time and there are 3 sprints? No.\n    Okay, I'll output 180.\n\n    Wait, is it possible"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.716796875,
+     "tail": "e sense?\n    *   Wait, if I calculate 3 meals per day * 15 + 25 = 40 cups? No, that's not right.\n    *   Let's try to find a different interpretation. Maybe the question asks for the total feed needed"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.287109375,
+     "tail": "s \"Every third glass costs only 60% of the price\"? Or \"Every other glass\"?\n                                                                                *   Actually, let's look at the phrase \"every"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.630859375,
+     "tail": "arleston.\" -> $T = 2C$.\n        *   \"Charleston has 4 times as many sheep as Seattle.\" -> $C = 4S$.\n\n    *   Wait, let me check if I misread \"Toulouse\" vs \"Seattle\".\n        *   \"Toulouse has twice as"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ally (at max speed), she finishes in 100 minutes.\n                        *   Wait, if she downloads at a rate of 2 GB/min, does that mean she is downloading 2 GB/min? Yes.\n                        *  "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.607421875,
+     "tail": " a stop. If he drives for 3 hours (speed 60), and spends 2 hours in standstill traffic... that means he drove for $t_{drive}$ time? Or did he drive for 2 hours?\n                                    *  "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.71875,
+     "tail": "ime is calculated differently?\n    *   Wait, could it be that she works at a different rate for overtime? No.\n\n    *   Let's check if there is any possibility that \"Eliza's rate per hour for the first"
+    },
+    {
+     "n_tokens": 1624,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.171875,
+     "tail": "wnloads from all three months:\n$$\\text{Total} = D_1 + D_2 + D_3$$\n$$\\text{Total} = 60 + 180 + 126$$\n$$\\text{Total} = 366$$\n\nThe total number of downloads over the three months is **366**.\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.18359375,
+     "tail": "ly, if you say \"I bought 6 dozens\", it means I bought 72 units. But if the price is \"$55 per dozen\" and it's a unit rate for the dozen... then $55 \\times 6$ = $330$.\n    But wait, if the price was per"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3203125,
+     "tail": "many years until he starts earning money? This implies finding the first year where Revenue > Cost.\n                                *   But wait, if he pays $90 (planting), then net profit is (Revenue"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.365234375,
+     "tail": "t's try the sequential interpretation again.\n                        Start with $x$.\n                        She sold $\\frac{1}{3}$ of her vacuum cleaners at the green house. Remaining = $\\frac{2}{3}x"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.4765625,
+     "tail": "         *   $20 - 4 = 16$ (Non-Jazz).\n            *   Then Hip-Hop = ?\n            *   Is it possible that Hip-Hop is just the remainder?\n            *   Wait, if Hip-Hop is a subset of the remaining"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.53125,
+     "tail": "(value = $5,000), and it goes up 2.5%, my value becomes $5,125$.\n        *   If I buy gadgets worth $8,000 (value = $8,000), and it goes up 1.2%, my value becomes $8,096$.\n        *   So the profit is"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.328125,
+     "tail": ".\n                *   Let's assume the question is: \"Two trains leave San Rafael at the same time. They begin traveling westward, both traveling for 80 miles.\" -> This means Train A travels West for 8"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.244140625,
+     "tail": "s sounds like a specific scenario where:\n                *   Weeks = 50.\n                *   Teaching Hours/week = 35? Or is it \"works 50 weeks\" meaning she works 50 times a year, and in each of those"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.51953125,
+     "tail": "= $3 \\times 28 = 84$.\n            *   If the question asks for \"dozens\", maybe it means how many groups of 12?\n            *   $84 / 12 = 7$ dozen.\n            *   But usually, questions like this ask"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.208984375,
+     "tail": "he remaining distance (which is 6 miles) in 2 hours, her average speed is $3$ mph. To get an average speed of 4 mph, she needs to walk the remaining distance in less time? Or does it mean she needs to"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3671875,
+     "tail": "ge} = 2/3 \\times 10$? No, usually if you say \"two-thirds water\", it means the volume of water is 2/3 of the total volume.\n        *   Wait, let's check the second part again. \"I wish to add it [to] 15"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.818359375,
+     "tail": " if I am 31 and you were born 12 years ago. You are younger.\n                            *   If Raymond was born 6 years before Samantha, then R is older? No.\n                            *   Let's try"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.89453125,
+     "tail": " $\\times$ 2 DVDs each = 4 DVDs.\n    *   Group 3: 3 people $\\times$ 0 DVDs each = 0 DVDs.\n    *   Total = $3 + 4 + 0 = 7$.\n\n    *   Wait, is there any ambiguity about the total number of customers? The"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.8125,
+     "tail": "length...\n    Let's assume the question implies that the candle *starts* at 10cm?\n    Actually, let's look at the prompt again.\n    \"A candle melts by 2 centimeters every hour that it burns.\"\n    \"How"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.22265625,
+     "tail": "if he bought it \"for\" \\$19.50, that means he paid \\$19.50.\n                                        *   If he paid \\$19.50, and it was a 25% discount... wait, usually you don't say \"bought for $X\" when"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.28125,
+     "tail": "  *   Is it possible that the pizza boxes are not just one type but multiple types? No.\n        *   Is it possible that the Chicken Meal is actually a specific meal (e.g., chicken burger) costing $12?"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.109375,
+     "tail": "llar signs for shorts and pants ($16.50, $22.50) which implies decimals. So $42 is likely exact dollars. I will assume $42.\n\n    Let's write it down.\n    Step 1: Cost of shorts = 3 * 16.50 = 49.50\n   "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "erving every night (assuming 365 nights in a year), then she buys 15 cartons for 365 days? No, that would be \"every night\" meaning every single day of the year.\n    *   Wait, if she buys cartons with "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.296875,
+     "tail": "\"after 20 miles\".\n    *   Let's consider if the phrase \"He first stopped after 20 miles\" means he stopped at a point that was 20 miles from his start. Yes.\n    *   \"His second stop was 15 miles before"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.5625,
+     "tail": "sible that \"together\" means sum of the two pairs? If so, $Cost(Heels) + Cost(Boots)$? No, that would mean $Cost(Heels) + Cost(Boots)$ is something. But usually \"together cost X\" means the sum is X. So"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.08203125,
+     "tail": "me the first item is associated with the first number if they are listed sequentially.\nSo Darrell = 7 parts, Allen = 11 parts.\n\nLet's double check the calculation $9 \\times 7$ and $9 \\times 11$.\n$63 +"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.318359375,
+     "tail": " *   Then Friend 2 says $x_2$.\n            *   Then Friend 3 says $x_3$.\n        *   Let's check if there is any ambiguity in \"20 more than half the first one\".\n            *   If it means $20 + \\frac"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.27734375,
+     "tail": "rs *per day* to walk (and takes care of business).\n    Does he spend 0.5 hours per day *on dogs*? Or does he spend 0.5 hours per day *to do the tasks*?\n    The text says \"Each dog takes .5 hours a day"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.185546875,
+     "tail": "gold coins\" -> $S = G + 30$.\n    Then $G + S + 30 = 110$? No, that's nonsense.\n    The only logical interpretation is standard algebra word problem.\n\n    I will proceed with generating the response.\n\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.41015625,
+     "tail": "{}.\"\n\n    *   Okay, I will write out the solution clearly.\n        1. Identify Raymond's jewels: $R = 40$.\n        2. Calculate Aaron's jewels: $A = \\frac{1}{2}R + 5$.\n           $\\frac{1}{2} \\times 4"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.27734375,
+     "tail": "t possible the text means: \"In the first 20 minutes, he scores 4 points.\" (Total score = 4)\n                                *   \"In the second 20 minutes, he scores 25% more points\" -> This implies an"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.330078125,
+     "tail": ", could the question be interpreted as: \"They are currently on sale at 4 yogurts [for $5]\". Does this mean the price is $5 for 4 yogurts? Yes.\n    *   If he eats 2 yogurts a day, does he buy 1 unit or"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3125,
+     "tail": "and has $5 left.\"\n        Is it possible that the question implies: He ends up with $5 money? No, he has *left* $5.\n        Wait, if I assume there's a typo in the user prompt, maybe the cost of games"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.576171875,
+     "tail": "       *   So Total Distance = 60 miles.\n                    *   Frequency = 3 days/week.\n                    *   So Average Daily Distance = $60 / 7$.\n                    *   Wait, the problem says \""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.453125,
+     "tail": "1/3 of time and walks for 2/3 of time?\n        \n        Wait, if $v_{skip} = \\frac{1}{2} v_{run}$, then $v_{skip} = \\frac{1}{2} (4 v_{walk}) = 2 v_{walk}$.\n        If she skips at 3 mph, then $v_{walk"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.294921875,
+     "tail": "ario where it's not a multiplication?*\n        If \"Ben's iPhone is two times older than Suzy's iPhone\" meant \"Ben's age is 2 years *more* than Suzy's age\"? That would be \"two years older\".\n        But"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.189453125,
+     "tail": "Wait, let's look at the wording again.\n        *   \"fire upon anything within a distance of 1000 feet\" -> She can see/fire at 1000 feet? Or is it the area of influence?\n        *   Usually, if she can"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.994140625,
+     "tail": "ces, and set them out on the buffet table.\n    Then at the end, 14 are left.\n    So $40 - \\text{eaten} = 14$.\n    $\\text{eaten} = 26$.\n\n    Wait, I might have misread the question or made a mistake in"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.869140625,
+     "tail": "u can eat all 5? No.\n                                *   Wait, maybe the user meant \"a 300g bag has 5 servings\" meaning there are 5 servings in the bag (i.e., the volume of the bag is 5 servings). But"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.345703125,
+     "tail": " a fixed cost per lb.\n    *   Wait, let's check if there's any other possibility. Maybe he needs to buy 1 lb because he sells 20 candles? No, that would mean he buys 1 lb and makes 10 candles. But the"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.27734375,
+     "tail": "   *   Wait, let me re-read the prompt provided by the user again.\n                                                                                *   \"Last week, she wrote 5 articles on Monday and 2/"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.310546875,
+     "tail": "sible the question implies: She put 80 notes in her purse *before* heading out... meaning she had them. Then she bought a package of $P$ notes. Then at work she used 220 notes. Then there are 23 left."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.251953125,
+     "tail": "Wait, \"The red ties cost 50% more than blue ties.\" This phrasing is almost always used to mean $Price(Red) = Price(Blue) + (Price(Blue) \\times 0.5)$? Or does it mean the value of Red Ties is 1.5 times"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.267578125,
+     "tail": "the total length is 4 feet, and she cuts it into pieces of length $x$ inches, but the problem asks for the number of pieces in a specific way? No.\n\n    *   Let me double check the prompt again. \"Tracy"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1328125,
+     "tail": "r floor, you calculate the number of rooms.\n    Is it possible that \"3/4 of the building\" refers to the *number of floors*? No.\n\n    Let's try to interpret the phrase \"3/4 of the building is occupied\""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.228515625,
+     "tail": "7 = $294.\n\n    *   **Wait, let me check if there's any possibility that the problem implies he sells 1 dozen of eggs for $2?**\n        *   Yes, but does he sell \"them\" (the 252 eggs)? Or just a dozen?"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.5625,
+     "tail": "tance = ?\n        *   Wait, maybe the question implies that the distance is not given, but we need to calculate time based on speed? No.\n        *   Let's try to search for this specific problem text."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.384765625,
+     "tail": "c books, that means he is removing them from the bag?\n        *   If he removes 30 comics, weight removed = $30 \\times 0.25 = 7.5$.\n        *   He needs to remove 15 lbs total.\n        *   So he needs"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.533203125,
+     "tail": "d Friday.\n        *   Or maybe it means \"How much more revenue did he earn in total on Thursday compared to Friday?\" (implying Thursday was higher).\n    *   Let's calculate $520 - $480 = $40.\n\n    *  "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.33984375,
+     "tail": "ays Patchy has had thrice the number of adopted kittens, while Trixie has had 12.\n        \n    *   *Step 21: Let's look at the phrase \"thrice the number of adopted kittens\" again.*\n        Could it be"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.203125,
+     "tail": "ng if needed, but plain text is also acceptable. I will use \\boxed{} as requested.\n\nWait, looking at the instruction \"think silently\". I am in the silent thinking phase.\nThe output should be the final"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " movie pass.\n    *   Actually, let's look at the wording again: \"He always gets a ticket for $7 and popcorn for $7.\" This implies that both items are available at the theater. If he goes to the movies"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.30859375,
+     "tail": " = 3755 + n \\times 15$.\n        *   But wait, the limit is 5000.\n        *   Does this make sense? If I have a truck with boxes and it weighs 3755 (empty + driver) plus some weight of boxes...\n       "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.318359375,
+     "tail": "t 25% of the order amount, but simply an additional charge?\n                                        *   Wait, maybe the prompt implies that the delivery fee was calculated as a percentage of the order"
+    },
+    {
+     "n_tokens": 3783,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.23046875,
+     "tail": "al fruits:** There are 67 raspberries scattered across the bush (individual fruit).\n5.  **Add the totals together:** $120 + 67 = 187$.\n\nThe total number of raspberries in the bush is 187.\n\n\\boxed{187}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.326171875,
+     "tail": "en Sour = 2.\n            *   Good = $25 - (1 + 5 + 2) = 17$.\n\n    *   Wait, is it possible that \"among which\" refers to a subset of the basket? No.\n    *   Is it possible that the percentages refer to"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3515625,
+     "tail": "in the previous sentence or clause. Here, the only specific nouns are \"$500\", \"$800\". The phrase \"another $800\" is the most recent item. So 10% of $800 is the safest reading.\n\n    *   Wait, let me try"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.44921875,
+     "tail": "arcy works for the same company for 40 years, she gets an annual pension of $50,000/year. Starting after 20 years, she becomes entitled to 5% of the value of the pension per year.\"\n    Maybe it means:"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.576171875,
+     "tail": "ething.\n    *   Maybe the prompt means: \"She was charged $140 per month\" (base fee). And then she paid an additional amount for the first half? No.\n    *   Maybe the prompt implies a calculation where"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.0,
+    "se": 0.031497039417435604,
+    "rescues": 2,
+    "losses": 2
+   }
+  },
+  "astra": {
+   "summary": {
+    "secs": 2527,
+    "tok_s": 99.7,
+    "acc": 0.0625,
+    "cut": 0.9375,
+    "closed_think": 0.0625,
+    "loop_at_cap": 0.0,
+    "mean_tokens": 3935.8125
+   },
+   "rows": [
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1796875,
+     "tail": "$26$.\n\n    *   Interpretation B:\n        *   \"She sells the remainder\" implies she sells whatever is left after breakfast and muffin production? No, that's redundant.\n        *   Or maybe it means she"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.240234375,
+     "tail": " *   Total = 3.\n        *   Wait, if the robe takes 2 bolts of blue fiber and \"half that much\" white fiber.\n        *   Does it mean:\n            *   Option A: White = 0.5 * Blue (which is 1). Total ="
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.208984375,
+     "tail": "* increasing the value?\n    If \"value\" means total market price, and \"increased by 150%\" refers to the repair cost being added to the value?\n    No, that doesn't make sense.\n\n    Let's try a different"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.171875,
+     "tail": "). It's defining the unit.\n    *   So the calculation holds.\n\n    *   Let me check if there is any ambiguity in the phrase \"3 sprints\".\n        *   Does it mean he runs 3 distinct types of sprints? No"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.099609375,
+     "tail": "nal** meal.\n    If the morning and afternoon are the only ones mentioned, there might be a third one (e.g., evening) that is not provided?\n    Or maybe the \"three meals\" refers to the count of meals *"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.455078125,
+     "tail": "x 0.046656$.\n    Wait, $0.6^4 = 0.1296$.\n    Let's re-calculate step-by-step.\n    $0.6^1 = 0.6$\n    $0.6^2 = 0.36$\n    $0.6^3 = 0.216$\n    $0.6^4 = 0.1296$\n    $0.6^5 = 0.07776$\n    $0.6^6 = 0.046656$"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.23828125,
+     "tail": "rleston\" could be interpreted differently.\n        *   Does it mean T is the subject of the action, and C is the object? Yes.\n        *   So $T \\rightarrow 2C$.\n\n    *   Wait, I need to check if there"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.162109375,
+     "tail": "s to restart the download from the beginning.\"\n                *   This implies she starts downloading again.\n                *   Does she continue until 40% is reached? Or does she restart and finish"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.240234375,
+     "tail": "ed driving back towards home? Or maybe he drove from somewhere else?\n    *   Let's try to interpret \"turns around\" as a stoppage of the journey.\n        *   Scenario: John drives for 3 hours at 60 mph"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.15625,
+     "tail": "or.\n    However, there's a possibility that the problem implies:\n    She works 40 hours at \\$10/hr.\n    Then she gets paid an additional amount for the remaining 5 hours.\n    Is this amount calculated"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.31640625,
+     "tail": "is modifies the download count in the third month.\n\n    *   Let's check if there is a trick where \"reduced\" refers to $N_3$ being 70% of $N_1$? No, that would be \"reduced to 30%\" or something.\n    *  "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1171875,
+     "tail": "                                   **Wait, I am looking at this:**\n                                        204 (from 3 dozen donuts)\n                                        160 (from 2 dozen cupcakes)"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.119140625,
+     "tail": "question implies: He earns money *from* the trees?\n    \n    Wait, could the $90 be the cost of planting *leaves*? No.\n    \n    Let's try to interpret the problem as:\n    Total Cost = 90 + (3 * years)."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.255859375,
+     "tail": "f the text means: She sold $\\frac{1}{3}$ of her total in Green. And she had 5 left.\n                *   Wait, does \"sold a third\" mean she sold $\\frac{1}{3}$ of the total inventory? Or did she sell $x"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.138671875,
+     "tail": "al = 20.\n        *   Contemporary (CD) = $20\\%$ of total = $4$.\n        *   Remaining students ($R$) = $20 - 4 = 16$.\n        *   Hip-Hop ($HH$) = ?\n            *   We need to know what the \"rest\" is."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.306640625,
+     "tail": "     *   \"If the merchant is looking to maximize profit at the end of this month by making a choice, how much profit would this be?\"\n        *   This phrasing suggests he wants to buy one plan and see"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.140625,
+     "tail": "vel Northwards, covering 150 miles.\n    So total distance = $80 + 150$?\n\n    Let's check if there is an interpretation where the answer is something else.\n    \"The next day\" implies a second trip.\n   "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.19921875,
+     "tail": "ours of work in a year?\n    Or does it mean that *in total*, over the years, she has completed 50 weeks?\n    \n    Let's assume the standard math problem interpretation:\n    Total Hours = $35 + 15 = 50"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.140625,
+     "tail": "\" refers to something else?** Unlikely.\n\n    *   **One edge case:** Does \"oats\" or something similar imply 100%? No.\n    *   **Another edge case:** Is it possible that the question asks for a specific"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.126953125,
+     "tail": "ed 4 miles in 1 hour, and then she walked a second leg of length $x$ (or \"next two\") in an hour. Wait, if it says \"walks the next two miles\" and gives the time as \"another hour\", that implies $d_2 = 2"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.080078125,
+     "tail": "ng:\n                *   Maybe the text means \"Two-thirds of the liquid are water\"? (i.e., Juice is $2/3$, Water is $1/3$).\n                    *   If this were the case, then Juice = 6.67L, Water = 3."
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.203125,
+     "tail": ".\n            *   Wait, if they are siblings, their ages are roughly equal (or close).\n            *   If Raymond is now 31? No, we don't know.\n        *   Let's check the logic: \"Raymond and Samantha"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.099609375,
+     "tail": " of customers and we are told about their sales?\n            *   Example: Customer A (buying 1st) -> buys 2nd DVD.\n            *   This interpretation is too complex to guess without the full sequence"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.068359375,
+     "tail": ".\n    Does it mean that for every hour of burning, the length decreases by 2 cm?\n    Or does it mean the candle melts into liquid and expands?\n    Usually, if you have a solid object, melting involves"
+    },
+    {
+     "n_tokens": 2242,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.134765625,
+     "tail": "{0.75}$$\n    Multiply both numbers by 4 to clear the decimal in the denominator:\n    $$x = \\frac{19.5 \\times 4}{0.75 \\times 4} = \\frac{78}{3} = 26$$\n\n    So, the original price was $\\$26$.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.19140625,
+     "tail": "ompt says \"costs $1.50 each\". This is explicit.\n    \n    Wait, could \"4 apples\" be a typo for something else in the user's mind?\n    If apples cost $2 each (total 8), then:\n    12 + 15 + 6 = 33. 50 - "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.212890625,
+     "tail": "\" - implies she completed the purchase.\n    The numbers are consistent with a simple multiplication problem.\n\n    Let me write down the steps clearly.\n    1. Calculate total shorts cost: 3 pairs * $16"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.10546875,
+     "tail": "     *   Is there any chance that \"one serving\" refers to the number of servings in one carton? No, it says \"15 servings per carton\".\n        *   What if the question is from a context where \"serving\""
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.22265625,
+     "tail": "mile $45$?\n    Wait. Is there a typo in my reading of \"mile\"?\n    The prompt says: \"He first stopped after 20 miles.\" -> $x_1 = 20$.\n    \"His second stop was 15 miles before the end of the trip.\" -> $"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.169921875,
+     "tail": "total cost of the heels is $x$?\n    *   Let's assume the \"pair\" refers to a specific item.\n        *   She has two pairs of heels.\n        *   One pair costs $y$.\n        *   The other pair costs $z ="
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.169921875,
+     "tail": "         *   Allen's age is now $A_{new} = A + 10 = 99 + 10 = 109$.\n\n    *   **Wait.** Is there any other interpretation?\n        *   \"Ratio of 7:11\". Does this mean the ratio of their ages is 7 to 11"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1953125,
+     "tail": " says 20 more than half of the first one.\"\n            *   Interpretation: $n_2 = 80/2 + 20 = 60$.\n    *   Let me check for any potential ambiguity in \"half\".\n        *   Maybe \"half\" means $\\frac{1}{"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.103515625,
+     "tail": "d number, I can't calculate.\n    Let's assume the standard interpretation: The total time John spends on dogs is determined by the given numbers. Since he has to walk and take care, and that takes 0.5"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.166015625,
+     "tail": "e sum of \"gold and silver\" coins? Yes.\n\n    Let me check if there's any ambiguity in the phrase \"30 more gold coins\".\n    Does it mean: Silver = Gold - 30?\n    Or does it mean: Gold = Silver + 30?\n   "
+    },
+    {
+     "n_tokens": 1588,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": "p 1: \"Siobhan has 2 fewer than Aaron.\"\n    *   Substitute the value for Aaron ($25$):\n        $$s = a - 2$$\n        $$s = 25 - 2$$\n        $$s = 23$$\n\nTherefore, Siobhan has **23** jewels.\n\n\\boxed{23}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.142578125,
+     "tail": " = 4$. And then \"In the second 20 minutes... he scores 25% more points.\" This usually means for the duration of that interval, the score is higher.\n    *   Wait, if it's a percentage increase relative"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.21484375,
+     "tail": " *   \"Terry eats 2 yogurts daily.\"\n        *   \"Currently on sale at [quantity]\".\n        *   If there are currently 4 available, and he buys them for $5?\n            *   Cost = $5 per unit $\\times$ ("
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.185546875,
+     "tail": "buying\" -> This is likely a typo for \"He buys\". But even if it was just \"He buys\", what does it mean?\n        *   Maybe it means he bought 8 video games using his remaining balance ($5)?\n            *"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.099609375,
+     "tail": "(Total Distance).\n                                *   \"Runs 3 days\" (Number of days).\n                                *   \"Runs 3 hours on the first day\" ($T_1 = 3$).\n                                *"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1640625,
+     "tail": "is 4:1.\n        *   If I say \"I walk half as fast as you\", it means speed ratio is 0.5:1.\n    *   Let's check the wording again. Maybe I missed a word.\n        *   \"she can run at a rate of speed that"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.18359375,
+     "tail": " Let's consider the phrase: \"two times older\".\n    If I say \"Ben is two years older than Suzy\", then $B - S = 2$.\n    Here, it says \"Ben\u2019s iPhone is two times older than Suzy\u2019s\". This phrasing is very"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.291015625,
+     "tail": "           *   \"However, when holding the gemstone, she could throw the javelin three times farther than when not holding.\"\n                            *   This implies $R_{gem} = R_{no\\_gem} \\times 3"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.033203125,
+     "tail": "it, if I have a pizza and cut it into 8 pieces, and there are 14 left, how many were eaten?\n    If I eat the whole pizza, and get 14 left, then eaten = 26.\n    But usually riddles like this imply that"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.16796875,
+     "tail": "w that each serving weighs $60\\text{ g}$? No, why would I assume that?\n                            *   Let's try another interpretation: The bag is a container. It holds chips. The total weight of the"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.109375,
+     "tail": "weight.\n        *   Now, what about the cost?\n        *   If I buy 1 lb of wax, do I get 10 candles?\n            *   Yes.\n            *   So if he sells 20 candles, he must have bought 2 lbs (since 10"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.220703125,
+     "tail": "$T = M \\times 0.4$.\n                        *   Let's check if there is an interpretation where \"times more\" means something else.\n                            *   Maybe it means \"2/5\" (as in $1/5$) of"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.125,
+     "tail": "f the problem is asking:\n    She had 80 notes.\n    She bought a package of size $x$ (where $x$ is unknown).\n    Then she placed them on cups.\n    If she used them all, remaining would be 0? No.\n    If"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.25,
+     "tail": "$.\n        \"The red ties cost 50% more than blue ties.\" -> $Cost_{red} = Cost_{blue} \\times 1.5$.\n        Wait, does this mean the *total* cost of all ties was different?\n        No, it says \"costs\".\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.16015625,
+     "tail": "ber of pieces, it's 8.\n\n    *   **Let's verify the calculation one more time.**\n        *   Total length = $4 \\text{ ft}$.\n        *   Conversion: $12 \\text{ inches/foot}$.\n        *   Total length in"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.12890625,
+     "tail": "oors were occupied, it would be \"15%\".\n    *   If 75% of the floor count was occupied, that is $15 \\times 3/4 = 11.25$ floors? No, that's not a number of units. It would mean 11.25 floors are occupied"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.103515625,
+     "tail": "hat the price is $2000? No, \"$2\".\n    Is it possible the chickens produce 252 *dozens*? No, \"eggs per day\".\n    Everything seems straightforward.\n\n    Let's write down the steps for the final output.\n"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.19921875,
+     "tail": "t takes him to travel from 1 to 4 (time $t_1$) and then return. But if we don't know distance, maybe we can assume he starts at 1 and ends at 4?\n        *   If he starts at 1 and goes to 4.\n    *   **"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.212890625,
+     "tail": " (1/2) = 15$?\n    \n    Wait, is it possible that the question asks: \"How many do we need to remove if he removes 30 comics?\"\n    If he removes 30 comic books, and they weigh 1/4 each, he removed $7.5$"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.4140625,
+     "tail": "ee \"car tire\" vs \"car tries\".\n    Wait, let me check the raw text of the user prompt.\n    The text says: `On Friday, the mechanic repairs 12 car tries and doesn\u2019t repair any truck tires.`\n    Ah, wait"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.42578125,
+     "tail": "2.\" -> No.\n        *   User Input: \"She says that Patch...\" -> Wait, I think I see it now.\n    *   Let's assume the user input actually contains this sentence: \"She says that Patch... has had a number"
+    },
+    {
+     "n_tokens": 663,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.060546875,
+     "tail": "to hold exactly 2 lollipops. To find out how many bags can be formed, divide the remaining number of lollipops by the size of one bag:\n    $$\\frac{28}{2} = 14$$\n\nJean can fill **14** bags.\n\n\\boxed{14}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.091796875,
+     "tail": "uys them as well. If he buys popcorns, does it affect the number of times he can go? No, unless you need more than one popcorn per movie.\n    *   Actually, let's look at a different perspective. Maybe"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1484375,
+     "tail": "r = 3755.\n    Then if we add boxes, does that mean the system includes the boxes?\n    Yes, because it says \"filled with identical boxes\".\n    So total mass = $W_{truck\\_empty} + W_{driver} + N \\times "
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.103515625,
+     "tail": " Maybe the base bill was not $40$, but the \"final bill\" (which includes the $25\\%$ fee) came to $\\$40$.\n                *   Let's check: If Final Bill = $40$, and they added a delivery fee of $\\$3.00$"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.103515625,
+     "tail": "er of fruits in clusters + Number of scattered individuals.\n        *   Wait, is it possible that the 67 individual fruits are a subset of the 120? Or maybe they are just extra?\n        *   If we just"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.048828125,
+     "tail": "and 1 is known to be bad, and we know that 5 are unripe.\n                                                            *   Wait, does \"bad\" mean an orange that is neither sour nor unripe? Yes, usually.\n"
+    },
+    {
+     "n_tokens": 1639,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.103515625,
+     "tail": "et it insured.\n    $$1,300 \\times 0.10 = 130$$\n\n3.  **Calculate the total amount paid:**\n    Add the materials and construction costs plus the insurance cost.\n    $$1,300 + 130 = 1,430$$\n\n\\boxed{1430}"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.216796875,
+     "tail": "0 years (or 20?), what is her new annual pension?\n    The question asks: \"If she quits after 30 years...\"\n    \n    Let's look at the sentence structure again.\n    \"Marcy works for the same company for"
+    },
+    {
+     "n_tokens": 4096,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.203125,
+     "tail": " charges $X$ per month, and it runs for 12 months, then:\n                *   First Half = 6 months. Cost = $140 \\times 6$.\n                *   Other Half = 6 months (if there was another half). But if"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.03125,
+    "se": 0.03125,
+    "rescues": 3,
+    "losses": 1
+   }
+  }
+ }
+}

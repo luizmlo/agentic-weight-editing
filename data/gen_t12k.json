@@ -1,0 +1,4444 @@
+{
+ "tag": "t12k",
+ "N": 32,
+ "max_new": 12288,
+ "np": 16,
+ "penalty_last_n": 12800,
+ "thinking": true,
+ "engine": "llama-server",
+ "sampling": {
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "presence_penalty": 1.5,
+  "min_p": 0.0
+ },
+ "arms": {
+  "base": {
+   "model": "wsp-base",
+   "summary": {
+    "secs_this_run": 2382,
+    "tok_s_this_run": 151.8,
+    "acc": 0.125,
+    "cut": 0.875,
+    "closed_think": 0.125,
+    "loop_at_cap": 0.875,
+    "mean_tokens": 11297.34375,
+    "median_tokens_finished": 4109
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " eats three for breakfast every morning\".\n    *   This means she eats 3 *eggs* for breakfast.\n    *   \"She bakes muffins for her friends every day with four\".\n    *   This means she makes 4 *muffins*."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "   Then Total = 3.\n    *   Wait, if White = 1.\n    *   Then Total = 3.\n    *   Wait, if White = 1.\n    *   Then Total = 3.\n    *   Wait, if White = 1.\n    *   Then Total = 3.\n    *   Wait, if White = "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.6015625,
+     "tail": "arket value is $200,000$, the profit is $120,000$.\n            *   If the market value is $120,000$, the profit is $40,000$.\n            *   Which is it?\n            *   Let's check the math for $120,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "rints, 3 times a week\".\n    Wait, if he runs 3 sprints, 3 times a week.\n    This implies he runs 3 sprints, 3 times a week.\n    Wait, no.\n    Let's assume the prompt is \"runs 3 sprints 3 times a week\""
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "    *   Wait, if the morning and afternoon are just the two meals, then the final meal is the third one.\n    *   Let's try to interpret the question differently.\n    *   Maybe the question implies the"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.533203125,
+     "tail": "12.5$.\n        *   Wait, is the sum of infinite series equal to $12.5$?\n        *   $12.5 = 12.5$.\n        *   If $r=0.6$, sum is $12.5$.\n        *   Wait, if $r=0.6$, sum is $12.5$.\n        *   Wait,"
+    },
+    {
+     "n_tokens": 3301,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.091796875,
+     "tail": "} = 20 + 80 + 160$$\n\n    Adding the numbers:\n    $$20 + 80 = 100$$\n    $$100 + 160 = 260$$\n\n**Conclusion:**\nThe total number of sheep in Toulouse, Charleston, and Seattle together is 260.\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "  Yes.\n    *   Wait, is the restart duration *added* to the time to download *initial*?\n    *   Yes.\n    *   Wait, is the restart duration *added* to the time to download *initial*?\n    *   Yes.\n    *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "st have been driving *for* 2 hours.\n            *   Wait, if he drives 3 hours, stops for 2 hours, drives 0.5 hours, drives remaining 0.5 hours, the total time is 6 hours.\n            *   But the goal"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s at the regular rate and 5 hours at the overtime rate.\n    *   Total = 460.\n\n    *   **Wait**, what if the overtime is paid for the hours *before* 40?\n    *   If she worked 45 hours, and the first 40"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.935546875,
+     "tail": "3 * 60 = 180.\n    Month 3: \"reduced by 30%\".\n    If I have 180.\n    I reduce by 30%.\n    I get 126.\n    If I have 180.\n    I reduce by 30% of 180.\n    I get 126.\n    If I have 180.\n    I reduce by 30%"
+    },
+    {
+     "n_tokens": 8411,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.314453125,
+     "tail": "Cost = Cost of Donuts + Cost of Cupcakes + Cost of Cheesecakes\n*   **Calculation:** $\\$204 + \\$160 + \\$330$\n    *   $204 + 160 = 364$\n    *   $364 + 330 = 694$\n*   **Total Cost:** $\\$694$\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "   *   Wait, does he pay $3$ a year for water/feeding?\n    *   If he plants it, he pays $3$ a year for water/feeding.\n    *   So for $t$ years, he pays $90 + 3t$.\n    *   And he earns $10.5t$.\n    *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                        *   Sold $1/3 x$ at Green. Remaining $2/3 x$.\n                                                                                                  *   Added $2$ to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "12 / 20 = 0.6$.\n        *   Wait, $12 / 20 = 0.6$.\n        *   Wait, $12 / 20 = 0.6$.\n        *   Wait, $12 / 20 = 0.6$.\n        *   Wait, $12 / 20 = 0.6$.\n        *   Wait, $12 / 20 = 0.6$.\n        *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "             *   Wait, $5125$ is smaller than $8096$.\n                *   Wait, $5125$ is smaller than $8096$.\n                *   Wait, $5125$ is smaller than $8096$.\n                *   Wait, $5125$"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "he *time*?\n    *   If they travel for 80 miles, does it mean the time is 80 miles?\n    *   No.\n    *   What if \"traveling for 80 miles\" means the *speed* is 80 miles/hour?\n    *   If speed is 80 miles"
+    },
+    {
+     "n_tokens": 1630,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.125,
+     "tail": " earnings.**\n*   Number of weeks per year: $50$\n*   Annual salary = Total weekly earnings $\\times$ Weeks per year\n*   Annual salary = $\\$1,150 \\times 50$\n*   $1,150 \\times 50 = 57,500$\n\n\\boxed{57,500}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ery morning\" means \"once per day\"?*\n        *   Yes.\n\n    *   *Wait, is it possible \"3 egg omelet\" means \"3 eggs\" (quantity) and \"every morning\" means \"once per day\"?*\n        *   Yes.\n\n    *   *Wait,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "e, she is covering the *last* part of the trail.\n        Wait, if she walks the remaining distance, she is covering the *last* part of the trail.\n        Wait, if she walks the remaining distance, she"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " is in the remaining 24 liters [of the orange drink]?\"\n    *   Wait, let's look at the problem again.\n    *   Maybe the user meant \"How much water is in the remaining 24 liters [of the orange drink]?\""
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " *   Then Raymond was 25 in 2041.\n    *   Wait, if Raymond was born in 2018, he was 25 in 2041.\n    *   Wait, let's recalculate.\n    *   If Raymond was born in 2018.\n    *   Then Raymond was 25 in 204"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " + 3(0) = 7$.\n\n    *   *Wait, I think I might have missed a crucial detail.*\n        *   \"His last 3 customers don't buy any DVDs.\"\n        *   This implies that the customers labeled \"Last 3\" are the"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "stion implies the length is *given* as 10 cm?\n            *   Wait, maybe the question implies the length is *given* as 10 cm?\n            *   Wait, maybe the question implies the length is *given* as"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.65234375,
+     "tail": "0$) and Original Price ($P$).\n    *   So, $19.50 = P \\times (1 - 0.25)$.\n    *   $P = 26$.\n\n    *   *Wait*, let me check the alternative.\n    *   \"bought ... for $19.50\" (original price).\n    *   Then"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "sible that the text means \"5 packs of milk\" (plural) and \"that costs $3 each\" means \"each pack costs $3\"?\n            *   Yes.\n            *   Wait, is it possible that the text means \"5 packs of milk"
+    },
+    {
+     "n_tokens": 4109,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.181640625,
+     "tail": "mount spent:**\n*   Total Cost = (Cost of shorts) + (Cost of pants) + (Cost of shoes)\n*   Total Cost = $49.50 + 67.50 + 126.00$\n*   Total Cost = $117.00 + 126.00$\n*   Total Cost = $243.00$\n\n\\boxed{243}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ing.\n                *   Wait, does she need to buy *all* the servings from the carton?\n                *   If she buys 1/15 of a carton, she buys 1 serving.\n                *   Wait, does she need to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "miles.\n    *   Wait, if he stops at 20, he has traveled 20 miles.\n    *   Wait, if he stops at 45, he has traveled 45 miles.\n    *   Wait, if he stops at 20, he has traveled 20 miles.\n    *   Wait, if"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "        *   No, $C_{Heels}$ is 33 or 66.\n                    *   Wait, maybe the sentence means: \"She has to choose between the boots and two pairs of high heels that *together* cost five dollars less"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.7734375,
+     "tail": "1x$.\n    Then $D$ is 7 parts.\n    $A$ is 11 parts.\n    So $D$ is smaller.\n    So Darrell is 63.\n    Allen is 99.\n    So Allen's age is 109.\n\n    Wait, I think I'm just repeating myself.\n    Wait, if $"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "it possible that \"20 more than half the first one\" means $20 + \\frac{1}{2} \\times 80$?\n    *   Yes.\n    *   Wait, is it possible that \"20 more than half the first one\" means $20 + \\frac{1}{2} \\times 8"
+    }
+   ]
+  },
+  "astra": {
+   "model": "wsp-astra",
+   "summary": {
+    "secs_this_run": 2001,
+    "tok_s_this_run": 143.6,
+    "acc": 0.40625,
+    "cut": 0.4375,
+    "closed_think": 0.625,
+    "loop_at_cap": 0.21875,
+    "mean_tokens": 8979.84375,
+    "median_tokens_finished": 6854
+   },
+   "rows": [
+    {
+     "n_tokens": 9819,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": "ified otherwise. Thus, the interpretation of \"three\" as the count of individual ducks is the most robust and standard approach.\n\n**Final Calculation:**\n$$16 - 3 = 13$$\n$$13 \\times 2 = 26$$\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 737,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.029296875,
+     "tail": "text{Half of } 2 = \\frac{2}{2} = 1 $$\n    So, the robe uses **1 bolt** of white fiber.\n\n3.  **Calculate the total:**\n    Add the blue fiber and the white fiber together.\n    $$ 2 + 1 = 3 $$\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.703125,
+     "tail": "reased by 150%, it should become $1.50 \\times$ original.\n        So $80,000 \\times 1.50 = 120,000$.\n        \n        Wait, why did I think \"Price increased by 100%\" means doubling?\n        Because $10"
+    },
+    {
+     "n_tokens": 870,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.03125,
+     "tail": "print is 60 meters long.\n3.  **Calculate the total distance:**\n    $$3 \\text{ sprints} \\times 60 \\text{ meters/sprint} = 180 \\text{ meters}$$\n\nTherefore, James runs a total of 180 meters.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.599609375,
+     "tail": " *   Then the final meal is the third.\n    *   If the question asks for the cups.\n    *   And we know the morning meal is 15.\n    *   And we know the afternoon meal is 25.\n    *   If the final meal is"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.30859375,
+     "tail": "                                        *   Let's check the wording \"seventh glass\" or something.\n                                                                            *   If the rule was \"Every"
+    },
+    {
+     "n_tokens": 1744,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.20703125,
+     "tail": "sheep from all three cities together:\n    $$\\text{Total} = T + C + S$$\n    $$\\text{Total} = 160 + 80 + 20$$\n    $$\\text{Total} = 260$$\n\n**Answer:**\nThe total number of sheep is 260.\n\n$$ \\boxed{260} $$"
+    },
+    {
+     "n_tokens": 10352,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.0703125,
+     "tail": "nload} + \\text{Time to restart} $$\n$$ \\text{Total Time} = 100 \\text{ minutes} + 20 \\text{ minutes} = 120 \\text{ minutes} $$\n\nTherefore, the total time to download the file is 120 minutes.\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.74609375,
+     "tail": " then the 3 hours are the total time.\nIf he stands still for 2 hours, then he drives for 1 hour.\nSo the distance is 180 miles + 80 miles = 260 miles.\n\nWait, if the distance is calculated as the sum of"
+    },
+    {
+     "n_tokens": 8997,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0703125,
+     "tail": "ever, the standard interpretation of \"first 40 hours\" followed by \"overtime pay\" implies the remaining hours are subject to the overtime multiplier.\n\nTherefore, her earnings are **$460**.\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 5363,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.296875,
+     "tail": "ext{Downloads}_{\\text{Month 1}} + \\text{Downloads}_{\\text{Month 2}} + \\text{Downloads}_{\\text{Month 3}} $$\n$$ \\text{Total Downloads} = 60 + 180 + 126 $$\n$$ \\text{Total Downloads} = 366 $$\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 9783,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": "ts by the price per dozen gives the total cost for that specific group.)*\n\n**3. Calculate the total cost:**\n$$ \\text{Total Cost} = \\$204 + \\$160 + \\$330 $$\n$$ \\text{Total Cost} = \\$694 $$\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.333984375,
+     "tail": "money.\n    Unless the cost is *negated*?\n    \n    Wait, could the \"cost\" be *negative*?\n    No.\n    \n    What if the question is asking for the number of years until the *profit* is *positive*?\n    If"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.310546875,
+     "tail": "half\" = $1/2 (2/3 T + 2)$.\n                    *   This gives $x = 12$.\n            *   Which is the intended logic?\n                *   Usually, \"moved X to Y\" implies moving items *from* the current"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.43359375,
+     "tail": "                        *   Okay, I will assume the prompt is:\n                                                            *   Class = 20.\n                                                            *"
+    },
+    {
+     "n_tokens": 10272,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.37109375,
+     "tail": "125 = 2,971 $$\n\nHowever, without further context, the direct interpretation of maximizing profit based on the values of the items is to select the option with the higher resulting value.\n\n\\boxed{8096}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.947265625,
+     "tail": ".\n    *   Wait, if both travel 150 miles.\n    *   Then Train 1 travels 150 miles.\n    *   Train 2 travels 150 miles.\n\n    *   Wait, I'll assume the question asks for the distance covered by each train"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.326171875,
+     "tail": " 50 = 2500.\n    Then total earnings = 20 * 2500 + 30 * 2500 = 125,000.\n    \n    BUT, this interpretation is inconsistent with the phrasing \"works 50 weeks\".\n    If she works 50 weeks, and she works 35"
+    },
+    {
+     "n_tokens": 5549,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.076171875,
+     "tail": "ozens:\n$$\\text{Number of dozens} = \\frac{\\text{Total eggs}}{12}$$\n$$\\text{Number of dozens} = \\frac{84}{12}$$\n$$\\text{Result} = 7$$\n\nAlternatively, you can think of it as 7 sets of 12 eggs.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.4765625,
+     "tail": "another hour to walk the next two miles.\"\nThis means:\n- Walk 4 miles: 1 hour.\n- Walk 2 miles: 1 hour.\nTotal time = 2 hours.\nTotal distance = 6 miles.\nRemaining distance = 12 miles - 6 miles = 6 miles."
+    },
+    {
+     "n_tokens": 10633,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.251953125,
+     "tail": "e the remaining liquid after the spill, and the spill removed 1 liter of the mixture, the remaining mixture has 15.66... - 1 = 14.66... liters.\n\nThus, the water content is 14.67 liters.\n\n\\boxed{14.67}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 4225,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.126953125,
+     "tail": "\\text{ DVDs}$$\n\n**Step 4: Sum all the sales.**\nWe add the sales from all three groups together.\n*   Group 1 sales: 3\n*   Group 2 sales: 4\n*   Group 3 sales: 0\n\nTotal DVDs = $3 + 4 + 0 = 7$.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.880859375,
+     "tail": "o the answer is 8 cm.\n    \n    Wait.\n    Let's check 12:00 to 1:00.\n    12:00 to 1:00 is 1 hour.\n    1:00 to 5:00 is 4 hours.\n    \n    Wait.\n    1 hour to 5 hours.\n    1 hour = 1.\n    5 hours = 5.\n   "
+    },
+    {
+     "n_tokens": 3967,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1640625,
+     "tail": "ft(\\frac{3}{4}\\right) $$\n$$ x = 19.50 \\times \\frac{4}{3} $$\n$$ x = \\frac{19.50 \\times 4}{3} $$\n$$ x = \\frac{78}{3} $$\n$$ x = 26 $$\n\nTherefore, the original price of the book was $\\$26.00$.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 3012,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.099609375,
+     "tail": "d 2 boxes.\n\n**Verification:**\n*   Chicken Meal: $\\$12$\n*   Milk: $15$\n*   Apples: $6$\n*   Pizza Boxes: $2 \\times \\$8.50 = \\$17$\n*   Total: $12 + 15 + 6 + 17 = 50$\n\nThe calculation holds up.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.767578125,
+     "tail": "  *   237 + 6 = 243.\n    *   So the answer is 243.\n\n    *   Wait, I'm confusing myself. Let me just do the math one last time carefully.\n    *   Short cost: 3 * 16.50 = 49.50.\n    *   Pants cost: 3 * "
+    },
+    {
+     "n_tokens": 3847,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.119140625,
+     "tail": "tons by the price per carton to get the total cost.\n*   Total Cost = $\\text{Number of Cartons} \\times \\text{Price per Carton}$\n*   Total Cost = $4 \\times \\$4.00$\n*   Total Cost = $\\$16.00$\n\n\\boxed{16}"
+    },
+    {
+     "n_tokens": 6854,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.13671875,
+     "tail": "{\\text{second}} - \\text{Position}_{\\text{first}}| $$\n    $$ \\text{Distance} = |45 - 20| $$\n    $$ \\text{Distance} = 25 $$\n\nThus, Henry traveled 25 miles between his first and second stops.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 12097,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.203125,
+     "tail": "hus, the sum of the costs of the pairs is $B - 5$.\n    $$a + c = B - 5$$\n4.  Substituting the values:\n    $$33 + 66 = B - 5$$\n    $$99 = B - 5$$\n    $$B = 104$$\n\nSo, the boots cost \\$104.\n\n\\boxed{104}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1328125,
+     "tail": "*   Yes, ages are integers.\n            *   So, if I have to choose, I'd say the intended question was likely \"calculate the difference\".\n            *   But I will answer based on the text provided.\n"
+    },
+    {
+     "n_tokens": 7202,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.28515625,
+     "tail": " **Calculate the average:**\n    *   To find the average, sum all the guesses and divide by the number of friends (3).\n    *   Sum $= 80 + 60 + 100 = 240$.\n    *   Average $= 240 / 3 = 80$.\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.28125,
+    "se": 0.10272864937896248,
+    "rescues": 11,
+    "losses": 2
+   }
+  },
+  "meandiff": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/meandiff.gguf",
+   "summary": {
+    "secs_this_run": 2313,
+    "tok_s_this_run": 151.4,
+    "acc": 0.1875,
+    "cut": 0.8125,
+    "closed_think": 0.3125,
+    "loop_at_cap": 0.8125,
+    "mean_tokens": 10940.03125,
+    "median_tokens_finished": 5788
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": ".\n            * Wait, is there any chance \"with four\" refers to \"with four *pairs*?\"\n            * Let's assume the text is correct.\n            * Wait, is there any chance \"with four\" refers to \"with"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.650390625,
+     "tail": "ed immediately before it (the bolts of blue fiber).\n    *   Therefore, \"half that much\" refers to $\\frac{1}{2}$ of the amount of blue fibers (which is 2 bolts).\n    *   Calculating this: $2 \\div 2 = 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "value is $1.5 \\times$ original.\n    *   So $120,000.\n    *   If he spent $50,000.\n    *   Then he made $70,000 profit.\n\n    *   Wait, if he spent $50,000.\n    *   If the house value is $120,000.\n    *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "3 times a week.\"\n    If he runs them 3 times, he runs them 3 times.\n    So he runs 3 distinct sprints.\n    So 180.\n\n    Wait, what if \"runs 3 sprints\" means he runs 3 distinct sprints?\n    No, that's "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "t.\n\nLet's assume the question is asking for the *total* cups of feed needed to feed the flock of 20 chickens?\nIf the flock size is 20 chickens, and she feeds them 15 and 25 cups.\nMaybe the question is"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.962890625,
+     "tail": "ounted, then $P_3 = 3.\n                    *   Wait, $P_3 = 1.8$.\n                    *   Wait, if $P_3$ is discounted, then $P_3 = 1.8.\n                    *   If $P_3$ is not discounted, then $P_3 ="
+    },
+    {
+     "n_tokens": 1380,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": "ulouse} + \\text{Charleston} + \\text{Seattle}$$\n$$\\text{Total} = 160 + 80 + 20$$\n$$\\text{Total} = 260$$\n\nAlternatively, you can add the individual values directly:\n$20 + 80 + 160 = 260$.\n\n$\\boxed{260}$"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ining data, then the total time is 60 minutes.\nWait, if the resume *is* the time to finish the remaining data, then the total time is 60 minutes.\n\nWait, I'm stuck in a loop. Let's look at the phrasing"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "covers 0 miles.\n    *   If he spends 0.5 hours driving at 30mph, he covers 15 miles.\n    *   If he drives for the remaining time (of 4 hours) at 80mph, he covers 320 miles?\n    *   Wait, if he drives "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "'s check if there is any ambiguity in \"rate per hour for the first 40 hours she works each week is $10.\"*\n    Does it mean \"rate per hour for the first 40 hours she works each week is $10\"?\n    Yes.\n\n"
+    },
+    {
+     "n_tokens": 3090,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.220703125,
+     "tail": " D_3$$\n$$\\text{Total Downloads} = 60 + 180 + 126$$\n$$\\text{Total Downloads} = 240 + 126$$\n$$\\text{Total Downloads} = 366$$\n\nThe program had a total of 366 downloads over the three months.\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "its of the dozen, then 3 dozen is 36 units.\n    If the price is $68 per dozen, then the price per unit is $68.\n    Wait. If the price is $68 per dozen, then the price per unit is $68.\n    Wait. If the"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " question again.\n    \"Carlos is planting a lemon tree. The tree will cost $90 to plant. Each year it will grow 7 lemons, which he can sell for $1.5 each. It costs $3 a year to water and feed the tree."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "range} = 1/2 Remaining_{Green, then $Remaining_{Orange} = 1/2 (x/3 + 2) = x/6 + 1.\n        Wait, if she sold $x/3 at Green, then remaining is $2x/3.\n        If she sold $x/3 + 2 at Red, then remaining"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "So Hip-Hop = 12.\nBut wait, 12/20 = 60%.\nBut wait, is it possible that \"the rest\" refers to the remaining students after removing the ones in Contemporary and Jazz?\nIf so, Hip-Hop = 12.\nBut wait, 20 - "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 5125.*\n    *   *Wait, if the merchant chooses jewelry, he gets 5000. If the market goes up 2.5%, the value of jewelry is 5000 * 1.025 = 5125.*\n    *   *Wait, if the merchant chooses jewelry, he gets "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "vered by each train in the two days?\"\n            *   If Train A travels 80 miles.\n            *   If Train B travels 150 miles.\n            Then the answer is 80 miles and 150 miles.\n\n            *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "        *   Wait, $1750 + 750 = 2500.\n            *   Wait, $1750 + 750 = 2500.\n            *   Wait, $1750 + 750 = 2500.\n            *   Wait, $1750 + 750 = 2500.\n            *   Wait, $1750 + 750 = "
+    },
+    {
+     "n_tokens": 5788,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.349609375,
+     "tail": "ens.**\nThere are 12 eggs in a dozen. To find out how many dozens of eggs she ate, we divide the total number of eggs by 12.\n$$84 \\text{ eggs} \\div 12 \\text{ eggs/dozen} = 7 \\text{ dozens}$$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " miles / 1.5 hours = 8 mph.\n    Wait, 12 miles / 1.5 hours = 8 mph.\n    Wait, 12 miles / 1.5 hours = 8 mph.\n    Wait, 12 miles / 1.5 hours = 8 mph.\n    Wait, 12 miles / 1.5 hours = 8 mph.\n    Wait, 12"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": " I spill 1 liter of the orange drink, I remove 1 liter of the orange drink.\nWait, if I spill 1 liter of the orange drink, I remove 1 liter of the orange drink.\n\nOkay, let's try to interpret \"spill one"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": " had the son...\n        * Then the son was born 2 years ago?\n        * Wait, I am stuck in a loop.\n\n    *   Let's try to calculate the age difference again.\n        *   Let $Age(Raymond) be the age of"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": ".\n    C1, C2, C3 are first.\n    C4, C5 are next.\n    C6, C7, C8 are last.\n    Wait, if I have 8 customers.\n    C1, C2, C3 are first.\n    C4, C5 are next.\n    C6, C7, C8 are last.\n    Wait, if I have 8"
+    },
+    {
+     "n_tokens": 8983,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.322265625,
+     "tail": " the total length lost due to melting.\n\nTherefore, the candle will be $8 \\text{ cm}$ shorter (or shorter in length) than it was originally.\n\n**Answer:**\nThe candle will be **8 cm** shorter.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 7400,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.125,
+     "tail": "iscount (25%) = $0.25 \\times 26 = \\$6.50$\n*   Book Price (with discount) = $26 - 6.50 = \\$19.50$\n*   The calculated price matches the stated price.\n\nTherefore, the original price was \\$26.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 3952,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.06640625,
+     "tail": "{8.50}$$\n$$x = 2$$\n\n**Verification:**\n*   Chicken Meal: $12\n*   Milk: $15\n*   Apples: $6\n*   Pizza Boxes: $2 \\times \\$8.50 = \\$17\n*   Total: $12 + $15 + $6 + $17 = $50.\nThe math checks out.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 3 shorts.\n    I buy 3 sets? No.\n    Wait.\n    If I buy 3 shorts.\n    I buy 3 items.\n    Wait.\n    If I buy 3 shorts.\n    I buy 3 sets? No.\n    Wait.\n    If I buy 3 shorts.\n    I buy 3 items.\n    Wait"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "15 servings.\n                *   She eats 1 serving.\n                *   Wait, if she buys 1 carton, she gets 15 servings.\n                *   She eats 1 serving.\n                *   Wait, if she buys"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " I stop at 20.\n    Wait, if I stop at 20.\n    Wait, if I stop at 20.\n    Wait, if I stop at 20.\n    Wait, if I stop at 20.\n    Wait, if I stop at 20.\n    Wait, if I stop at 20.\n    Wait, if I stop at "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                       *   Wait, maybe \"together\" refers to the heels?\n                                                                                                                    *   Wait, \"He"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.9375,
+     "tail": "/7.\n    Wait, if $Age(Darrell) = 99 and $Age(Allen) = 63.\n    Then $Age(Darrell) > Age(Allen).\n    Wait, if $Age(Darrell) = 99 and $Age(Allen) = 63.\n    Then $Age(Darrell) / Age(Allen) = 99/63 = 11/7."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "he friends are guessing about it.\n    *   If Friend 1 guesses 80.\n    *   Friend 2 guesses 60.\n    *   Friend 3 guesses 100.\n    *   The average is 80.\n    *   This seems correct.\n\n    *   Wait, could"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.0625,
+    "se": 0.08909830562090465,
+    "rescues": 5,
+    "losses": 3
+   }
+  },
+  "random": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/random.gguf",
+   "summary": {
+    "secs_this_run": 2472,
+    "tok_s_this_run": 152.8,
+    "acc": 0.0625,
+    "cut": 0.9375,
+    "closed_think": 0.0625,
+    "loop_at_cap": 0.90625,
+    "mean_tokens": 11799.78125,
+    "median_tokens_finished": 4760
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "       *   Does it mean \"eggs\"? Yes.\n        *   Does it mean \"ducks\"? No.\n        *   Does it mean \"eggs\"? Yes.\n        *   Does it mean \"ducks\"? No.\n        *   Does it mean \"eggs\"? Yes.\n        *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "t much\" refers to the previous noun phrase.\n    Wait, if \"that much\" refers to the previous noun phrase.\n    Wait, if \"that much\" refers to the previous noun phrase.\n    Wait, if \"that much\" refers to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "0,000, and he spends \\$50,000, he has \\$70,000 left.\n                                                                    *   Wait, if the house is worth \\$120,000, and he spends \\$50,000, he has \\$70,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                    *   This implies he runs 3 sprints $\\times$ 3 = 9 sprints.\n                                            *   Wait, if he runs 3 sprints *per week*, and he runs them 3"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "is the second meal.\n    *   Then the afternoon is the final meal.\n    *   So the answer is 25.\n    *   Wait, let's look at the wording again.\n    *   \"In the morning, she gives her flock of chickens 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "       *   Let's assume the standard interpretation: \"Every second glass\" means \"Glass 2, 4, 6...\".\n                                                            *   Wait, no. \"Every second glass\" means"
+    },
+    {
+     "n_tokens": 4193,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.251953125,
+     "tail": "tal number of sheep:**\n    *   Now we add the number of sheep from all three cities together.\n    *   Total = $S + C + T$\n    *   Total = $20 + 80 + 160$\n    *   Total = $260$\n\n**Answer:**\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "B file.\"\n        *   \"Normally she can download 2 GB/minute...\"\n        *   \"...but 40% of the way through the download, Windows forces a restart to install updates, which takes 20 minutes.\"\n        *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "  *   Then 2 hours standstill.\n            *   Then 0.5 hours drive.\n            *   Then remaining time.\n            *   Wait, if the 0.5 hours is the \"next half-hour\", then the remaining time is 0.5"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "?\n        *   Yes.\n        *   Is there any chance the overtime rate is 1.2 * 10 = 12?\n        *   Yes.\n        *   Is there any chance the overtime rate is 1.2 * 10 = 12?\n        *   Yes.\n        *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "   *   Okay, I'm confident.\n    *   Wait, I need to check the wording \"reduced by 30% in the third month\".\n        *   Does it mean \"reduced by 30%\" of the *total* downloads?\n        *   No.\n        *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ozen\" means 3 dozen *units*?\n        *   If I buy 3 dozen units, that is 36 units.\n        *   If the price is $68/dozen, it means $68 per unit.\n        *   So 36 units cost 3 * 68 = $204.\n        *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ney.\n    *   Wait, if I plant a tree, I lose money.\n    *   Maybe the question implies that the \"planting cost\" is not deducted from the revenue yet?\n    *   No, that would be weird.\n    *   Let's try"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " house being 2 *more* than the quantity sold at the green house?\n                *   Wait, is it possible \"2 more to the red house\" refers to the quantity sold at the red house being 2 *more* than the"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                       *   Let's check the logic again.\n                                                                                                    *   If HipHop % = 60%, then HipHop count = 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "           *   Wait, if the market *goes up*, the value of the jewelry *increases*.\n                    *   Wait, if the market *goes up*, the value of the jewelry *increases*.\n                    *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " distance?\n    *   Wait, if they are moving in *parallel*, they would cover the same distance?\n    *   Wait, if they are moving in *parallel*, they would cover the same distance?\n    *   Wait, if they"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "    *   $35 \\times 50 = 1750$.\n            *   $15 \\times 50 = 750$.\n            *   $1750 + 750 = 2500$.\n            *   Wait, why did I think $35 \\times 50 = 1750$?\n            *   $35 \\times 50 = 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ts 3 eggs.\n    *   If she eats 3 eggs per day.\n    *   Total eggs = 84.\n    *   If the question asks for \"dozens\", and the answer is requested in a specific format (integer?), maybe I should round up?"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ph.\n        If she walks the next 2 miles in 1 hour, her speed is 2 mph.\n        \n        Wait, if she walks the first 4 miles in 1 hour, her speed is 4 mph.\n        If she walks the next 2 miles in 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "bottle.\n                                *   So the Pineapple bottle is now 15L.\n                                *   Wait, the Pineapple bottle is 15L.\n                                *   If I spill 1L"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "er than Alice.\n        *   Wait, \"Bob was born 10 years before Alice.\" -> Bob is 10 years older than Alice.\n        *   Wait, \"Bob was born 10 years before Alice.\" -> Bob is 10 years older than Alice."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8.\n    Wait, 3 + 2 + 3 = 8."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "   No.\n           \n           Wait, let's look at the possibility that the question asks for the *remaining* length.\n           If the question implies the comparison is against the *original* length,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "`, and the discount was 25% of the original price, then $19.50` is the price paid.\n    Wait, if I pay $19.50`, and the discount was 25% of the original price, then $19.50` is the price paid.\n    Wait,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = 2$.\n    Wait, $17 / 8.5 = "
+    },
+    {
+     "n_tokens": 4760,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.2578125,
+     "tail": ".50 + \\$67.50 + \\$126.00$\n*   Adding the decimals: $49.50 + 67.50 = 117.00$\n*   Adding the integers: $117.00 + 126.00 = 243.00$\n\nMishka spent a total of $243.00 on all the clothing items.\n\n\\boxed{243}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "unlikely.\n        *   Let's try to interpret the question differently.\n        *   Maybe the question implies she has 60 days of ice cream *available*?\n        *   No, that's unlikely.\n        *   Let"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "stopped 15 miles before the end\", then Stop 2 is 45.\n    *   Wait, what if \"before the end\" means \"15 miles before the end\"?\n    *   If the problem said \"He stopped 15 miles before the end\", then Stop"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.888671875,
+     "tail": "                                                                                                                                                                         *   Wait, let's look at the \"to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.3828125,
+     "tail": "    Usually, \"Darrell\" is 7, \"Allen\" is 11.\n    Wait, I'll check if there's a convention I'm missing.\n    Actually, I suspect the ratio is $D:A = 11:7$ is more likely because 11 is the larger number.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "hat if \"25% more\" means $0.25 \\times 80$?\n    *   Wait, what if \"25% more\" means $0.25 \\times 80$?\n    *   Wait, what if \"25% more\" means $0.25 \\times 80$?\n    *   Wait, what if \"25% more\" means $0.25"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": -0.0625,
+    "se": 0.04347552147751577,
+    "rescues": 0,
+    "losses": 2
+   }
+  },
+  "astra_contrast": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/astra_contrast.gguf",
+   "summary": {
+    "secs_this_run": 2255,
+    "tok_s_this_run": 143.7,
+    "acc": 0.34375,
+    "cut": 0.59375,
+    "closed_think": 0.46875,
+    "loop_at_cap": 0.375,
+    "mean_tokens": 10123.34375,
+    "median_tokens_finished": 5959
+   },
+   "rows": [
+    {
+     "n_tokens": 11566,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.189453125,
+     "tail": "  Therefore, the remainder of the ducks' eggs is 13.\n\n**3. Calculate the earnings:**\n*   Number of eggs sold: 13.\n*   Price per egg: $2.\n*   Total earnings: $13 \\times 2 = 26$.\n\n**Answer:**\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 5357,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.16796875,
+     "tail": "lts and the white bolts together.\n    *   Total = (Number of blue bolts) + (Number of white bolts)\n    *   Total = $2 + 1$\n    *   Total = $3$\n\nTherefore, the robe takes a total of 3 bolts.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.599609375,
+     "tail": "hase price was $80,000$, then the profit is $40,000$.\n\n    *   *Let's check if there is a simpler interpretation.*\n        *   Maybe the house value is $80,000$.\n        *   The repairs were $50,000$."
+    },
+    {
+     "n_tokens": 10297,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.314453125,
+     "tail": "s\" as the frequency of the action (3 times per week), and the \"3\" as the number of distinct runs (3 runs). If he runs 3 runs, and each is 60 meters long, the total is $3 \\times 60 = 180$.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.265625,
+     "tail": "tion ask for the \"final meal\" and not the \"second meal\"?\nMaybe the question implies that the \"final meal\" is the meal *after* the afternoon meal?\nNo, the question asks for the final meal.\nLet's assume"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.59765625,
+     "tail": ", 5, 3, \\dots$\n                *   This gives 64.\n            *   Let's check if the wording \"every second\" implies \"every second\" (periodic).\n                *   If yes, then the sequence is $5, 3, 3"
+    },
+    {
+     "n_tokens": 2870,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.17578125,
+     "tail": "d the number of sheep from all three cities together:\n$$ \\text{Total} = \\text{Toulouse} + \\text{Charleston} + \\text{Seattle} $$\n$$ \\text{Total} = 160 + 80 + 20 $$\n$$ \\text{Total} = 260 $$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.853515625,
+     "tail": "GB in 60 minutes.\n    *   Total = 120 minutes.\n\n    *   Final Answer: 120 minutes.\n\n    *   Wait, if she downloads 200 GB, and downloads 40% (80 GB), she downloads the remaining 120 GB.\n    *   So she"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.962890625,
+     "tail": "e.\n\nBut wait, if he drives 180 miles, he are at 180 miles.\nIf he drives 180 miles, he are at 180 miles.\n\nOkay, I think the logic is sound.\nSo the answer should be 275 miles.\n\nBut wait, let's check the"
+    },
+    {
+     "n_tokens": 9622,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": "e}) + (\\text{Overtime Hours} \\times \\text{Overtime Rate})$$\n$$\\text{Total Earnings} = (40 \\times 10) + (5 \\times 12)$$\n$$\\text{Total Earnings} = 400 + 60$$\n$$\\text{Total Earnings} = 460$$\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.43359375,
+     "tail": " 1: $M_3 = 0.7 \\times 180 = 126$.\n            *   Case 2: $M_3 = 0.7 \\times 60 = 42$.\n            *   Case 3: $M_3 = 180 - 0.3 \\times 180 = 126$.\n            *   Case 4: $M_3 = 180 - 0.3 \\times 60 = 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.767578125,
+     "tail": "   $360 + 330 = 690$.\n    $300 + 300 = 600$.\n    $60 + 30 = 90$.\n    $40 + 0 = 40$.\n    $600 + 90 + 40 = 730$.\n    \n    Wait, $360 + 330$.\n    $300 + 330 = 630$.\n    $60 + 40 = 100$.\n    $630 + 100 = "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.38671875,
+     "tail": "     *   However, strictly speaking, does he earn money *during* the year?\n            *   If the cost is $90 + 3n$, and revenue is $1.5 \\times 7n$.\n            *   If $n=12$, revenue = 126. Cost = 12"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.296875,
+     "tail": "o the number of *vacuum cleaners* sold *at the green house*?\nNo, that would mean \"sold a third of her vacuum cleaners (of the total) at the green house\".\nThen 2 more to the red house.\nThis implies she"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.83984375,
+     "tail": "f there is any other interpretation.\n        *   Maybe \"25%\" refers to the total remaining?\n            *   Yes.\n        *   If so, Hip-Hop would be the remaining students.\n            *   So, Hip-Hop"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.939453125,
+     "tail": "y, so jewelry profit is $125$.\n            *   Electronics profit is $96$.\n            *   So jewelry is better.\n            *   Profit = $125$.\n\n            *   Wait, I need to check $8000 \\times 1.0"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.392578125,
+     "tail": "e covered by each is 80 miles and 150 miles.\n    \n    Wait, is it possible that the question asks for the distance covered by *each* train in the *two days*?\n    If Train 1 travels for 80 miles (day 1"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 12281,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.18359375,
+     "tail": "*   To find the number of dozens, divide the total number of eggs by 12.\n    *   Dozens = $\\frac{84}{12}$\n    *   Calculation: $84 \\div 12 = 7$\n\nTherefore, Claire eats **7** dozens of eggs.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.99609375,
+     "tail": "st 4 miles.\"\n    *   \"Then another hour to walk the next two miles.\"\n    *   Wait.\n    *   If she walks the first 4 miles in 1 hour.\n    *   And then the next two miles in 1 hour.\n    *   Then she has"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.791015625,
+     "tail": "mes 3/5 = 9$.\n    Total water = $15.666$.\n    If the user spills 1 liter, they lose 1 liter of water.\n    Remaining water = $15.666 - 1 = 14.666$.\n    \n    Wait, but the question asks for the water in"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 5959,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": "ustomer group:\n$$ \\text{Total DVDs} = (\\text{Dvds from Group 1}) + (\\text{Dvds from Group 2}) + (\\text{Dvds from Group 3}) $$\n$$ \\text{Total DVDs} = 3 + 4 + 0 $$\n$$ \\text{Total DVDs} = 7 $$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 2067,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0859375,
+     "tail": "{Distance} = 2 \\text{ cm/hr} \\times 4 \\text{ hr}$$\n$$\\text{Distance} = 8 \\text{ cm}$$\n\nSince the candle melts while burning, the remaining length of the candle will decrease by this amount.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 4289,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.185546875,
+     "tail": " 26 $$\n\n**4. Verification:**\nIf the original price was $26.00:\n*   Discount amount = $26.00 \\times 25\\% = 6.50$\n*   Final Price = $26.00 - 6.50 = 19.50$\nThis matches the given information.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 4354,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.017578125,
+     "tail": "e divide the remaining balance ($17) by the cost of one box to find out how many boxes were ordered.\n$$\\frac{\\$17}{\\$8.50} = 2$$\n\nSince the calculation is exact, there are 2 boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 3683,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.21484375,
+     "tail": "26.00$\n\n**4. Find the total spending:**\nAdd the costs calculated above:\n$$49.50 + 67.50 + 126.00$$\n$$117.00 + 126.00 = 243.00$$\n\nMishka spent a total of $243.00 on all the clothing items.\n\n\\boxed{243}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 7689,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.205078125,
+     "tail": "):\n$$ \\text{Distance} = |20 - 45| = 25 \\text{ miles} $$\n\nAlternatively, since the stops are at mile 20 and mile 45, the distance between them is simply the difference between these values.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.423828125,
+     "tail": "        *   \"The other\" = 1 set.\n                *   So, count is 2.\n                *   So, \"two pairs\" refers to the count of sets (2).\n                *   This is consistent.\n                *   So"
+    },
+    {
+     "n_tokens": 10441,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.16796875,
+     "tail": " Calculate Allen's Age 10 Years Later**\nThe question asks for Allen's age 10 years from now.\nAdd 10 to Allen's current age:\n$$ \\text{Future Age} = 99 + 10 $$\n$$ \\text{Future Age} = 109 $$\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.267578125,
+     "tail": "vial answer unless \"20\" is a percentage.\n        *   If \"20\" is a percentage, then $20 + 40 = 60$ is still valid (assuming \"20\" is the percentage).\n        *   Wait, if \"20\" is the percentage, then \"2"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.21875,
+    "se": 0.09769908334829336,
+    "rescues": 9,
+    "losses": 2
+   }
+  },
+  "mdloop_contrast": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/mdloop_contrast.gguf",
+   "summary": {
+    "secs_this_run": 2483,
+    "tok_s_this_run": 136.3,
+    "acc": 0.28125,
+    "cut": 0.65625,
+    "closed_think": 0.5,
+    "loop_at_cap": 0.5625,
+    "mean_tokens": 10577.84375,
+    "median_tokens_finished": 6749
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.150390625,
+     "tail": " Let's check the wording \"bakes muffins for her friends every day with four.\"\n        *   \"with four\" could mean she has 4 friends? No.\n        *   \"with four\" could mean she uses 4 muffins?\n        *"
+    },
+    {
+     "n_tokens": 11447,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.126953125,
+     "tail": " straightforward:\n    *   Bolts of blue fiber = 2.\n    *   Amount of white fiber = 2 / 2 = 1.\n    *   Total bolts = Blue + White = 2 + 1 = 3.\n\n    Therefore, the total number of bolts is 3.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.607421875,
+     "tail": "if he buys it for $80,000.\n            *   And he spends $50,000.\n            *   Maybe the house is worth $92,000.\n            *   If he sells it for $92,000.\n            *   But wait, if he spends $"
+    },
+    {
+     "n_tokens": 11964,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.41796875,
+     "tail": "based on the number of runs (3) and the distance per run (60). Even if it implies he runs 3 sprints every week, the calculation remains the same.\n\n**Calculation:**\n$$ 3 \\times 60 = 180 $$\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.802734375,
+     "tail": "answer 25.\n\nWait, I should check if there's any ambiguity about the meal name.\n\"In the afternoon... 25 cups.\"\nIf the meal schedule is Morning -> Afternoon.\nThen the lunch meal is the final meal.\nSo 25"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.880859375,
+     "tail": "I buy glasses 1 through 16.\n\n    *   Let's try to interpret \"Every second\" as \"Glass 10\".\n        *   Wait, if I buy glasses 1 through 16.\n\n    *   Let's try to interpret \"Every second\" as \"Glass 14\"."
+    },
+    {
+     "n_tokens": 1212,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.14453125,
+     "tail": "from the word problems without intermediate calculation, but calculating the specific values is safer.)\n\n**Answer:**\nThe total number of sheep in Toulouse, Charleston, and Seattle is 260.\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 9787,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.048828125,
+     "tail": "restart takes another 20 minutes to resume from scratch. Thus, the total duration is the sum of these two durations.\n\nTherefore, the total time required to download the file is 60 minutes.\n\n\\boxed{60}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "  *   2 hours standstill = 0 miles.\n    *   0.5 hours @ 30mph = 15 miles.\n    *   1.5 hours @ 80mph = 120 miles.\n    *   Total = 315 miles.\n\n    *   Wait, let's check the math again.\n    *   3 hours @"
+    },
+    {
+     "n_tokens": 6570,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.150390625,
+     "tail": "Total Earnings:**\nNow, sum the earnings from both periods.\n$$ \\text{Total Earnings} = \\text{Regular Earnings} + \\text{Overtime Pay} $$\n$$ \\text{Total Earnings} = \\$400 + \\$60 = \\$460 $$\n\n\\boxed{\\$460}"
+    },
+    {
+     "n_tokens": 6514,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.177734375,
+     "tail": " Month 2: 180\n    *   Month 3: 126\n*   Total = $60 + 180 + 126$\n*   Calculation:\n    *   $60 + 180 = 240$\n    *   $240 + 126 = 366$\n\n**Answer:**\nThe total number of downloads was **366**.\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 8844,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.328125,
+     "tail": "he remaining part: $364 + 330$\n    *   $364 + 300 = 664$\n    *   $664 + 30 = 694$\n\nAlternatively, add them directly:\n$$204 + 160 + 330$$\n$$= 364 + 330$$\n$$= 694$$\n\nThe total cost is $694.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.96875,
+     "tail": ".\n                                                    *   So he earns money at $t=12$.\n                                                    *   Wait, but maybe the question implies that the cost is $90"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.66015625,
+     "tail": "                                                                                                                            So \"half of what was left\" refers to inventory remaining *before* the orange"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.447265625,
+     "tail": "ntage = 60%.\n\n    *   Let's check if there is any other interpretation.\n        *   What if \"20% enrolled in contemporary dance\" means \"20% of the remaining\"?\n            *   Then $C = 0.2 \\times 16 ="
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.65234375,
+     "tail": " $8000 + 80 + 16 = 8096$.\nWait, $8000 + 80 = 8080$.\n$8080 + 16 = 8116$.\nWait, $16 + 80 = 96$.\nWait, $8000 + 96 = 8096$.\nWait, $8000 + 80 = 8080$.\n$8080 + 16 = 8112$?\nWait, $8000 + 80 = 8080$.\n$8080 + "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.783203125,
+     "tail": " If so, the distance covered by each train is 80 miles.\n    *   But the text says \"traveling northwards, covering 150 miles\".\n    *   This implies Train B travels 150 miles.\n    *   If they travel *to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.99609375,
+     "tail": "s 50 weeks a year, 35 hours a week as a teacher and 15 hours a week as a coach.\"\nThis implies she teaches 35 hours per week as a teacher.\nAnd she coaches 15 hours per week as a coach.\nAnd she works 50"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.96875,
+     "tail": "tended meaning is that she eats the contents of the omelet.\n    *   If she eats the contents, she eats 3 eggs.\n    *   But wait, what if the question implies she eats *only* the shells?\n    *   If she"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.98828125,
+     "tail": " two miles.\"\n    *   Wait, if she walks 4 miles in 1 hour, and 2 miles in 1 hour.\n    *   Wait, if she walks 6 miles in 2 hours.\n    *   Then average speed is 3 mph.\n    *   If she wants average speed"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "g volume is 24L.\n    *   And I have 10L orange.\n    *   Wait, if I spill 1L.\n    *   Wait, maybe the question is asking for the water in the remaining 24 liters.\n    *   If the remaining volume is 24L"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.806640625,
+     "tail": "   But he had a son at age 23.\n    Wait, if Raymond was born at 25, he couldn't be 23.\n    Unless...\n    Wait, maybe \"at the age of 23\" refers to the son's age?\n    \"Raymond had a son at the age of 23"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.763671875,
+     "tail": " 0 = 0.\n        *   Total = 7.\n    *   Is it possible that the \"Last 3\" refers to the last 3 customers in the list of customers?\n        *   If the list is 1, 2, 3, 4, 5, 6, 7, 8.\n        *   Then the"
+    },
+    {
+     "n_tokens": 3735,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.130859375,
+     "tail": "t{ cm/hr} \\times 4\\text{ hours}$$\n$$\\text{Total Length Loss} = 8\\text{ cm}.$$\n\n**Conclusion:**\nSince the candle melts (loses length), it will be 8 centimeters shorter than it was initially.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.66796875,
+     "tail": "scount was 25% off the original price.\n            *   And the price paid was $19.50$.\n            *   This implies $19.50 = 0.75 \\times X$.\n            *   This matches.\n        *   Wait, what if the"
+    },
+    {
+     "n_tokens": 1816,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.03515625,
+     "tail": "t} = x \\times 8.50 $$\n\nWe know that the remaining money ($17) equals the cost of the pizza boxes ($8.50 \\times x$).\n\n$$ 17 = 8.50x $$\n\nSolving for $x$:\n$$ x = \\frac{17}{8.50} $$\n$$ x = 2 $$\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 11805,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.22265625,
+     "tail": "imes 3 = 49.50$$\n*   $$22.50 \\times 3 = 67.50$$\n*   $$42.00 \\times 3 = 126.00$$\n*   Sum: $$49.50 + 67.50 + 126.00 = 243.00$$\n\nMishka spent a total of $243.00 on all the clothing items.\n\n\\boxed{243.00}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.90625,
+     "tail": "buys 1 carton, she gets 15 servings.\nIf she eats 1 serving, she needs to buy 1 carton?\nOr maybe she buys *ice cream* items?\nLet's try to interpret the question as:\nShe buys 1 carton of ice cream every"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.546875,
+     "tail": "was 15 miles before the end of the trip.\"\nSince the trip ends at 60 miles, \"before the end\" implies a position closer to the start than the end.\nWe subtract 15 miles from the ending position (60 miles"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.580078125,
+     "tail": "$Cost(Boots) - 5 = Cost(Heels)$.\nThen $B - 5 = 99$.\n$B = 104$.\nIf this means $Cost(Boots) + 5 = Cost(Heels)$.\nThen $B + 5 = 99$.\n$B = 94$.\nWait, if $B = 94$.\nThen $Cost(Heels) = 99$.\nThen $99 = 94 + 5"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.244140625,
+     "tail": "s age\".\n    If I swap them, I would have to flip the labels.\n    Usually, names are fixed identifiers.\n    So I will stick with 109.\n    Wait, let me think if there's any reason to think \"Allen\" might"
+    },
+    {
+     "n_tokens": 6749,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.185546875,
+     "tail": "verage guess:**\nTo find the average, we sum the guesses and divide by the number of friends (which is 3).\n*   Sum = $80 + 60 + 100 = 240$\n*   Average = $\\frac{240}{3}$\n*   Average = **80**\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.15625,
+    "se": 0.07917639300749574,
+    "rescues": 6,
+    "losses": 1
+   }
+  },
+  "md_astra": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/md_astra.gguf",
+   "summary": {
+    "secs_this_run": 2384,
+    "tok_s_this_run": 146.4,
+    "acc": 0.25,
+    "cut": 0.75,
+    "closed_think": 0.3125,
+    "loop_at_cap": 0.65625,
+    "mean_tokens": 10908.21875,
+    "median_tokens_finished": 7456
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.677734375,
+     "tail": "ffins, she uses up 4 muffins?\n    *   No, \"with four\" implies the muffins are 4.\n    *   If she uses 4 muffins, she eats them.\n    *   If she eats the muffins, she eats them.\n    *   If she eats 3 and"
+    },
+    {
+     "n_tokens": 3590,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.064453125,
+     "tail": "e total number of bolts:**\n    *   The total number of bolts is the sum of the blue bolts and the white bolts.\n    *   Calculation: $2 \\text{ (blue)} + 1 \\text{ (white)} = 3 \\text{ bolts}$.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.96875,
+     "tail": "ording again.\n        \"He buys a house for $80,000 and then puts in $50,000 in repairs. This increased the value of the house by 150%.\"\n        If the repairs *added* value, then the house value would"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "\n\nWait, if I say \"I run 3 laps, 3 times a week\", it means I run 3 laps, and then I run 3 laps again.\n\nWait, if I run 3 laps, and I do it 3 times a week, I run 3 laps, then 3 laps again.\nWait, if I say"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s for the *final* meal.\n    But the prompt says \"she gives the chickens their feed in three separate meals.\"\n    This implies the morning and afternoon are *separate* meals.\n    So, Meal 1 = Morning.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.251953125,
+     "tail": "28 \\times 6 = 1.39968$.\n$1.39968 / 10 = 0.139968. Correct.\n$0.139968 \\times 6 = 0.839808.\n$0.839808 / 10 = 0.0839808. Correct.\n$0.0839808 * 6 = 0.5038848.\n$0.5038848 / 10 = 0.05038848. Correct.\n$0.050"
+    },
+    {
+     "n_tokens": 1014,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.13671875,
+     "tail": "\nWe add the number of sheep from all three cities together:\n$$\\text{Total} = \\text{Toulouse} + \\text{Charleston} + \\text{Seattle}$$\n$$\\text{Total} = 160 + 80 + 20$$\n$$\\text{Total} = 260$$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "*assuming* she doesn't have to wait for the 20 minutes.\n                                        * Let's try to interpret the question as asking for the time to download the file *assuming* she doesn't"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "interpret \"remaining time of the 4 hours\" as \"the time remaining after the 3 hours driving\".\n                                                                                            * If he drives "
+    },
+    {
+     "n_tokens": 8619,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": "*   Overtime earnings = $\\$60$\n\n**5. Calculate Total Earnings:**\n*   Total earnings = Regular earnings + Overtime earnings\n*   Total earnings = $\\$400 + \\$60$\n*   Total earnings = $\\$460$\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.494140625,
+     "tail": "    This seems the most logical path.\n        \n        Let's double check if there's any ambiguity in \"reduced by 30%\".\n        Does it mean \"reduced by 30% of the previous month's downloads\"?\n       "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.638671875,
+     "tail": " 364.\nWait, $364 + 330 = 694.\n\nWait, I am just stuck in a loop. Let me just do the addition one last time.\n$204\n+ 160\n-------\n364\n\n330\n-------\n694\n\nWait, $200 + 160 = 360.\nWait, $200 + 100 = 300.\n$300"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " $90.\n        I have $90.\n        I sell the tree for $10.50.\n        I have $0 left.\n        I spend $3.\n        I have a negative balance.\n        Wait, if I buy the tree for $90.\n        I have $90"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                   *   Let's try to calculate the total using the assumption that she sold $x/2 of the inventory *before"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.888671875,
+     "tail": "at \"25% of the remaining\" refers to the remaining percentage?**\n        *   If \"the rest\" refers to the remaining percentage, then the count of students in Hip-Hop is the count of remaining percentage"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.857421875,
+     "tail": "5000 is 125.\n    Wait, 1.2% of 8000 is 96.\n    Wait, 96 is less than 125.\n    So Jewelry is better.\n    \n    Wait, I am stuck in a loop.\n    Let me check the prompt again.\n    \"jewelry worth $5,000 or"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.92578125,
+     "tail": "Rafael at the same time. They begin traveling westward, both traveling for 80 miles. The next day, they travel northwards, covering 150 miles. What's the distance covered by each train in the two days"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ours *per week.\n            * If she works 50 weeks *total, she works 50 weeks *total.\n            * Wait, if she works 50 weeks *in a year, she works 50 weeks *total.\n            * Wait, if she works"
+    },
+    {
+     "n_tokens": 4600,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.181640625,
+     "tail": " to dozens.**\nFinally, we need to convert the total number of eggs into \"dozens\".\nA dozen is a unit consisting of 12 items.\n$$84 \\text{ eggs} \\div 12 \\text{ eggs/dozen} = 7 \\text{ dozens}$$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.9453125,
+     "tail": " walks 4 miles, then walks the remaining 8 miles.\nIf the text says \"walk the next two miles\", it implies she walks the remaining 2 miles.\nWait, if she walks 4 miles, then walks the remaining 8 miles.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "l 1 liter, I have 10 liters of orange.\n                                    *   Wait, if I spill 1 liter, I have 10 liters of orange.\n                                    *   Wait, if I spill 1 liter, I"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "orn 2 years ago.\nThen Raymond's age is 23.\nWait, if Raymond was born 2 years ago.\nThen Raymond's age is 23.\nWait, if Raymond was born 2 years ago.\nThen Raymond's age is 23.\nWait, if Raymond was born 2"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "rding again.\n    \"His first 3 customers buy one DVD each.\"\n    \"His next 2 customers buy 2 DVDs each.\"\n    \"His last 3 customers don't buy any DVDs.\"\n    Wait, if the \"last 3\" are the ones who *don't*"
+    },
+    {
+     "n_tokens": 6935,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.130859375,
+     "tail": "{Total Melting Distance} = 8 \\text{ cm}$$\n\n**Conclusion:**\nSince the candle melts 8 centimeters in total over the 4-hour period, it will be 8 centimeters shorter than it was before burning.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.763671875,
+     "tail": "s sold for $19.50, and the discount was applied to the original price.\n    *   If the original price was $X, and the discount was applied to the original price.\n    *   Then the price paid is $X - 0.2"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.9453125,
+     "tail": "                                       *   Then the count is 5.\n                                                 *   Wait, I am just looping.\n                                                 *   Let's"
+    },
+    {
+     "n_tokens": 7456,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.34765625,
+     "tail": "3.00\n\nAlternatively, you can group the calculations:\n*   Total Cost = $3 \\times (16.50 + 22.50 + 42)$\n*   $16.50 + 22.50 = 39.00$\n*   $39.00 + 42 = 81.00$\n*   $3 \\times 81.00 = 243.00$\n\n\\boxed{243.00}"
+    },
+    {
+     "n_tokens": 11080,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.23046875,
+     "tail": "s multiplied by the price per carton.\n$$ \\text{Total Cost} = \\text{Cartons Needed} \\times \\text{Price per Carton} $$\n$$ \\text{Total Cost} = 4 \\times 4.00 $$\n$$ \\text{Total Cost} = 16.00 $$\n\n\\boxed{16}"
+    },
+    {
+     "n_tokens": 10857,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.236328125,
+     "tail": "re* the end, which implies 45 miles from the start), the calculation remains 25 miles.\n*   There is no ambiguity in the provided text.\n\nThe distance traveled between the stops is 25 miles.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.84765625,
+     "tail": " shoes together cost 5 dollars less than the socks\", it means $Cost(Socks) + Cost(Shoes) < Cost(Socks).\n                                                                                    *   Wait, if"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.359375,
+     "tail": "\n    So Allen is 99.\n    Wait, why did I think $A$ was 63?\n    Because I checked $D=99, A=63$ which gave $D/A = 11/7$?\n    Wait, if $D=63, A=99$, then $D/A = 63/99 = 7/11$.\n    Wait, is $D/A = 7/11$?\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.947265625,
+     "tail": "     *   Then \"half the first one\" is 40.\n                            *   So the guesses are 80, 60, 100.\n                            *   Average is 80.\n\n                            *   Wait, is there"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.125,
+    "se": 0.08695104295503155,
+    "rescues": 6,
+    "losses": 2
+   }
+  },
+  "astra_topw": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/astra_topw.gguf",
+   "summary": {
+    "secs_this_run": 1947,
+    "tok_s_this_run": 143.6,
+    "acc": 0.40625,
+    "cut": 0.5,
+    "closed_think": 0.65625,
+    "loop_at_cap": 0.28125,
+    "mean_tokens": 8739.3125,
+    "median_tokens_finished": 5062
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.5859375,
+     "tail": "  This seems unlikely.\n\n    So, 26 is the most reasonable answer.\n\n    Let's check if the price is per *muffin* or *egg*.\n    \"sells the remainder ... for $2 per fresh duck egg\".\n    So it's per egg.\n"
+    },
+    {
+     "n_tokens": 2085,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0859375,
+     "tail": "l number of bolts.**\nAdd the number of blue bolts to the number of white bolts:\n$$ \\text{Total} = \\text{Blue Bolts} + \\text{White Bolts} $$\n$$ \\text{Total} = 2 + 1 $$\n$$ \\text{Total} = 3 $$\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.849609375,
+     "tail": "hen the value would be $80,000 + 150,000 = 230,000$.\n    *   But usually, if the repairs were $50,000$, they would be worth $50,000$.\n    *   If they increased the value, they must be worth $150,000$?"
+    },
+    {
+     "n_tokens": 754,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.041015625,
+     "tail": "s.\n2.  **Identify the distance per sprint:** Each sprint is 60 meters.\n3.  **Calculate the total distance:**\n    $$3 \\text{ sprints} \\times 60 \\text{ meters/sprint} = 180 \\text{ meters}$$\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 9999,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.26171875,
+     "tail": "is the second meal.\n    *   Therefore, the afternoon meal is the final meal.\n\n3.  **Calculate the Amount:** Based on the description, the amount of feed given in the final meal is 25 cups.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 4397,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.212890625,
+     "tail": "$$T = 160$$\n\n**5. Calculate the Total:**\nTo find the total number of sheep, add Toulouse, Charleston, and Seattle together:\n$$Total = T + C + S$$\n$$Total = 160 + 80 + 20$$\n$$Total = 260$$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 7002,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.16796875,
+     "tail": "%}} + \\text{Time}_{\\text{restart}} $$\n$$ \\text{Total Time} = 100 \\text{ minutes} + 20 \\text{ minutes} = 120 \\text{ minutes} $$\n\nTherefore, it takes Carla 120 minutes to download the file.\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.482421875,
+     "tail": "                                                                                                                                                                                *   So the sequence is:\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.708984375,
+     "tail": "ns the first 40 hours of the week?\n        If she worked 40 hours, and got overtime for 5 hours.\n        This yields 460.\n        \n        Wait, is there any chance that the problem implies she worked"
+    },
+    {
+     "n_tokens": 4282,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.18359375,
+     "tail": "om each month:\n$$ \\text{Total Downloads} = \\text{Downloads}_1 + \\text{Downloads}_2 + \\text{Downloads}_3 $$\n$$ \\text{Total Downloads} = 60 + 180 + 126 $$\n$$ \\text{Total Downloads} = 366 $$\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 5276,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.400390625,
+     "tail": ")\nTotal Cost = $204 + 160 + 330$\n\nLet's add them together:\n*   $204 + 160 = 364$\n*   $364 + 330 = 694$\n\nAlternatively:\n*   $204 + 160 = 364$\n*   $364 + 330 = 694$\n\nThe total cost is $694.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.712890625,
+     "tail": "planting cost is $0$, and the revenue is $1.5$ per lemon?\nNo.\n\nI will formulate the reasoning based on the most logical interpretation.\nIf the planting cost is $90$, and the revenue is $1.5$ per lemon"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.37890625,
+     "tail": "            *   Remaining Orange = $1/2 (x/3 + 2)$.\n                *   Wait, if she sold $x/3$ at Green, she has $2/3 x$ left.\n                *   If she sold $2$ more to Red.\n                    *  "
+    },
+    {
+     "n_tokens": 11708,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15234375,
+     "tail": "age} = \\left( \\frac{\\text{Count}_{\\text{HipHop}}}{\\text{Total Count}} \\right) \\times 100 $$\n    $$ \\text{Percentage} = \\left( \\frac{12}{20} \\right) \\times 100 = 0.60 \\times 100 = 60\\% $$\n\n\\boxed{60\\%}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.712890625,
+     "tail": "        *   Wait, I need to compare 5125 and 8096.\n        *   Wait, 5125 < 8096.\n        *   So Gadgets is better.\n\n    *   **Wait, let me check the arithmetic again.**\n        *   5000 * 1.025 = 512"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.83984375,
+     "tail": "and 150.\n    *   But wait, the text says \"covering 150 miles\".\n    *   Does this mean Train 2 covers 150 miles?\n    *   Yes.\n    *   So the answers are 150 and 150.\n\n    *   Wait, I'm getting confused"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.197265625,
+     "tail": "0$.\n\nHowever, if we look at the simpler interpretation:\nTotal earnings = $(\\text{Hourly Rate for Teacher} \\times \\text{Hours per Week}) + (\\text{Hourly Rate for Coach} \\times \\text{Hours per Week})$.\n"
+    },
+    {
+     "n_tokens": 5062,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.16015625,
+     "tail": "s into dozens.**\nIn the UK system, a dozen is 12 eggs.\n$$\\text{Number of dozens} = \\frac{\\text{Total eggs}}{12}$$\n$$\\text{Number of dozens} = \\frac{84}{12}$$\n$$\\text{Number of dozens} = 7$$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.470703125,
+     "tail": "les?\n                                                    *   If she walks the remaining 2 miles, then $d_{rem} = 2$.\n                                                    *   Then $d_1 = 4$, $d_{rem} = "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " is the total water before spilling.\nIf I spill 1L, I have 14.67L left.\nNo, that's wrong.\nWait, 15L + 9L = 24L.\nSo the Pineapple Drink volume is 15L.\nThe Orange Drink volume is 9L.\nSo the total volume"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": " is 23.\nThe son was born 2 years ago.\n\nI'll check the logic.\nIf Raymond is 25, and the son is 23.\nWait, if Raymond is 25, and the son is 23.\nWait, if Raymond is 25, and the son is 23.\nThe son was born"
+    },
+    {
+     "n_tokens": 1758,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": " results.**\n*   Total DVDs = (Sales from first group) + (Sales from second group) + (Sales from third group)\n*   Total DVDs = $3 + 4 + 0$\n*   Total DVDs = $7$\n\nBilly sold a total of 7 DVDs.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 1865,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1875,
+     "tail": "rease} = 2 \\text{ cm/hour} \\times 4 \\text{ hours} $$\n$$ \\text{Total Length Decrease} = 8 \\text{ cm} $$\n\nThus, the candle will be 8 centimeters shorter after burning from 1:00 PM to 5:00 PM.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 2293,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0625,
+     "tail": "ing by $\\frac{4}{3}$.\n$$ 19.50 \\times \\frac{4}{3} = \\frac{19.50 \\times 4}{3} = \\frac{78}{3} = 26 $$\n\nSo, the original price was $26.00.\n\n**Answer:**\nThe original price of the book was $\\boxed{26.00}$."
+    },
+    {
+     "n_tokens": 3408,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.03515625,
+     "tail": "alculated in Step 3).\n    \n    Equation:\n    $$17 = 8.50 \\times x$$\n    $$x = \\frac{17}{8.50}$$\n    $$x = \\frac{170}{85}$$\n    $$x = 2$$\n\n**Conclusion:**\nMarie ordered **2** boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 5440,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.14453125,
+     "tail": "$$3 \\text{ pairs} \\times \\$42.00/\\text{pair} = \\$126.00$$\n\n**Step 3: Calculate the total spending**\nAdd the costs of all the items together:\n$$\\$49.50 + \\$67.50 + \\$126.00 = \\$243.00$$\n\n\\boxed{243.00}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.255859375,
+     "tail": "for the 60 days.\n\n**Step 3: Calculate the total cost.**\nThe cost of a carton is given as $4.00.\n$$ \\text{Total Cost} = \\text{Number of Cartons} \\times \\text{Cost per Carton} $$\n$$ \\text{Total Cost} = "
+    },
+    {
+     "n_tokens": 12099,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": "ulated as the absolute difference between these two values:\n    $$ \\text{Distance} = |45 - 20| = 25 \\text{ miles} $$\n\nTherefore, Henry traveled 25 miles between his first and second stops.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.4453125,
+     "tail": "           *   Then $H = B - 5$.\n                    *   Then $B = 104$.\n                *   Let's assume the text meant \"The boots cost 5 dollars more than the heels.\"\n                    *   Then $B"
+    },
+    {
+     "n_tokens": 5622,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.115234375,
+     "tail": "ture}} = \\text{Allen's Age}_{\\text{current}} + 10 $$\n$$ \\text{Allen's Age}_{\\text{future}} = 99 + 10 $$\n$$ \\text{Allen's Age}_{\\text{future}} = 109 $$\n\nThus, Allen's age is 109 years old.\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.33984375,
+     "tail": ".\n    *   Maybe the \"half\" is 40.\n    *   Maybe the \"20\" is added to 40.\n    *   Result 60.\n\n    *   Is there any chance the \"25%\" is a percentage of the *second* guess?\n    *   No, \"the first one\".\n\n"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.28125,
+    "se": 0.09239613829034059,
+    "rescues": 10,
+    "losses": 1
+   }
+  },
+  "md_contrast": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/md_contrast.gguf",
+   "summary": {
+    "secs_this_run": 2423,
+    "tok_s_this_run": 148.2,
+    "acc": 0.1875,
+    "cut": 0.8125,
+    "closed_think": 0.28125,
+    "loop_at_cap": 0.78125,
+    "mean_tokens": 11224.71875,
+    "median_tokens_finished": 5823
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "makes 4 muffins, she uses 4 items.\n    *   If she eats 3 eggs, she has 13 left.\n\n    *   Let's try to interpret \"with four\" as \"uses 4 eggs\".\n    *   If she uses 4 eggs for muffins, she needs 4 *eggs."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.9765625,
+     "tail": " and 1 bolt of blue (repeating)? No.\n\n    Let's check if the answer is 5.\n    If the robe takes 2 bolts of blue and 1 bolt of blue (repeating)? No.\n\n    Let's check if the answer is 5.\n    If the robe"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.943359375,
+     "tail": "check if the question implies the house was worth 80k *after* repairs?\n    * No.\n    * So, 120k is the value.\n    * Profit is 40k.\n\n    * Okay, I've exhausted all interpretations.\n    * The answer is "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "uns 3 sprints (plural) 3 times, he runs 3 distinct events.\n    Wait, if I run 3 sprints, I run 3 events.\n    If I run them 3 times, I run 3 events.\n    Wait, if I run 3 sprints, I run 3 events.\n    If"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "         Wait, if the morning is 15, afternoon is 25.\n                Maybe the question is asking for the total amount of feed needed for the *flock* in the *final meal*?\n                Let's assume"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.916015625,
+     "tail": "= 0.0060466176.\n$0.6^11 = 0.003628.\nWait, $0.6^10 = 0.0060466176.\n$0.6^11 = 0.003628.\nWait, $0.6^11 = 0.003628.\nWait, $0.6^16 = 0.6^{11} \\times 0.6^5 \\approx 0.003628 \\times 0.07776 \\approx 0.000281.\n"
+    },
+    {
+     "n_tokens": 4587,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.166015625,
+     "tail": "= 260 $$\n\nAlternatively, we can calculate the individual values and sum them directly:\n1.  **Seattle:** 20\n2.  **Charleston:** 80\n3.  **Toulouse:** 160\n4.  **Sum:** $20 + 80 + 160 = 260$.\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.97265625,
+     "tail": " me check if I missed something.\n    *   Wait, let me check if I missed something.\n    *   Wait, let me check if I missed something.\n    *   Wait, let me check if I missed something.\n    *   Wait, let"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.92578125,
+     "tail": "t would mean he drives at 30mph for 2 hours, then 80mph for 2 hours?\nNo, that contradicts \"remaining time of the 4 hours.\n\nSo, the calculation remains 135 miles.\n\nWait, let's check the text again.\n\"He"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " base rate?\n        *   Yes.\n        Does she work 5 hours for overtime?\n        Yes.\n        So earnings = 40 * 10 + 5 * 12 = 460.\n\n    *   *Wait, I am stuck in a loop.*\n        *   Let's restart the"
+    },
+    {
+     "n_tokens": 5823,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.18359375,
+     "tail": "ds from each month together.\n    $$Total = M_1 + M_2 + M_3$$\n    $$Total = 60 + 180 + 126$$\n    $$Total = 366$$\n\nTherefore, the program had a total of 366 downloads over the three months.\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 11417,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.302734375,
+     "tail": "= Cost of Donuts + Cost of Cupcakes + Cost of Cheesecakes\n*   Total Cost = $204 + $160 + $330\n*   Calculation:\n    *   $204 + 160 = 364$\n    *   $364 + 330 = 694$\n\nThe total cost is $694.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "  *   Wait, if $T=12, profit is 0.\n    *   If $T=11, profit is negative.\n    *   So he starts earning money at $T=12?\n    *   Wait, if $T=12, profit is 0.\n    *   If $T=11, profit is negative.\n    *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " the total.\n           Wait, if she sold $x/3 at Green, she sold $x/3 units.\n           If she sold 2 more at Red, she sold $x/3 + 2 units.\n           If she sold $y/2 at Orange, she sold $y/2 units.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ed\" refers to the students who were enrolled in the class but *not* in Contemporary.\n        * Wait, if $N_{Cont} = 4.\n        * Then $N_{Total = 20.\n        * Then $N_{Non-Cont = 16.\n        * Then $"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "cash.\n    Wait, if he has $5, 000 cash.\n    Wait, if he has $5, 000 cash.\n    Wait, if he has $5, 000 cash.\n    Wait, if he has $5, 000 cash.\n    Wait, if he has $5, 000 cash.\n    Wait, if he has $5, "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ys \"traveling for 80 miles\" for Train 2.\n        *   If Train 2 travels 80 miles West, does it cover 80 miles?\n        *   Wait, if the prompt says \"traveling for 80 miles\" for Train 1.\n        *   If"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "5 hours teaching per week?\n        *   Wait, if she works 50 weeks of teaching, she works 50 weeks of teaching.\n        *   If she works 35 hours teaching a week, she earns 35 hours teaching per week?"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.783203125,
+     "tail": "t's 7.\n        *   If the answer is 84, it's 84.\n        *   The question asks \"How many *doons* of eggs will she eat?\"\n        *   The answer is 7.\n\n    *   Wait, I'm going to check if there's any nu"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "n a loop.\n\n    Let's try to calculate the speed using the assumption that the *remaining distance* is the *difference* between the total distance and the distance walked?\n    Remaining distance = 12 -"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.650390625,
+     "tail": " Wait, if I remove 1L of the orange liquid, I remove 1L of the liquid.\n   If I remove 1L of the liquid, I remove 1L of the water.\n   So, if I remove 1L of the water, I have 10L water remaining.\n\nWait,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "terpret the question as:\n    *   \"How many years ago was Raymond's son born?\"\n    *   If the son is 23, and he was born at age 23.\n    *   Wait, if the son is 23 years old now, and he was born at age "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "oop. Let me check the math again.\n    *   1st 3: 3 customers * 1 DVD = 3 DVDs.\n    *   Next 2: 2 customers * 2 DVDs = 4 DVDs.\n    *   Last 3: 3 customers * 0 DVDs = 0 DVDs.\n    *   Total = 3 + 4 + 0 ="
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " cm/hr.\n    If I calculate the total melting, it is 8 cm.\n    So the answer is 8 cm.\n\n    Wait, let's check if there is any possibility that the answer is the time.\n    If I say \"The candle burns for "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.578125,
+     "tail": "ice must be 19.50 / 0.75 = 26.\nWait, if the original price was 26, and the discount was 25% of the original price.\nThen the discount amount was 0.25 * 26 = 6.5.\nThen the price paid would be 26 - 6.5 ="
+    },
+    {
+     "n_tokens": 5090,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0546875,
+     "tail": "e price of one pizza box is $8.50. To find the number of boxes, divide the remaining money by the price per box.\n$$NumberOfBoxes = \\frac{\\$17}{\\$8.50} = 2$$\n\nMarie ordered 2 boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ems?\n            *   If I buy 3 sets of shorts, I have 3 sets.\n            *   Wait, if I buy 3 sets of shorts, do I have 3 items?\n\n            *   Let's try to find a definitive source.\n            *"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "if the question implies she buys the cartons *needed*?\n    But she doesn't know how many she buys.\n    Wait, what if the question implies she buys the cartons *she currently owns*?\n    But she doesn't"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "if he traveled 20 miles, and the second stop is at mile 45.\n                *   Wait, if he traveled 20 miles, and the second stop is at mile 45.\n                *   Wait, if he traveled 20 miles, and"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.279296875,
+     "tail": "n the boots, then the total cost of the heels + boots = (Boots - 5) + Boots.\n        *   Wait, if the heels cost 5 dollars less than the boots, then the total cost of the heels is $B - 5$.\n        *  "
+    },
+    {
+     "n_tokens": 8943,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.13671875,
+     "tail": "0 years from now\". This implies adding 10 years to the current age.\nAllen's age in 10 years $= \\text{Current Age} + 10$\nAllen's age in 10 years $= 99 + 10$\nAllen's age in 10 years $= 109$\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 3843,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.232421875,
+     "tail": "calculate the average of these guesses:\n$$Average = \\frac{x_1 + x_2 + x_3}{3}$$\n$$Average = \\frac{80 + 60 + 100}{3}$$\n$$Average = \\frac{240}{3}$$\n$$Average = 80$$\n\nThe average guess is 80.\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.0625,
+    "se": 0.0769569946935174,
+    "rescues": 4,
+    "losses": 2
+   }
+  },
+  "mdloop_astra": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/mdloop_astra.gguf",
+   "summary": {
+    "secs_this_run": 2380,
+    "tok_s_this_run": 135.6,
+    "acc": 0.25,
+    "cut": 0.71875,
+    "closed_think": 0.40625,
+    "loop_at_cap": 0.53125,
+    "mean_tokens": 10084.84375,
+    "median_tokens_finished": 3688
+   },
+   "rows": [
+    {
+     "n_tokens": 6078,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.083984375,
+     "tail": "ainder at the farmers' market for \"fresh duck eggs\" and provides no information on selling the muffins, we focus solely on the eggs.)\n\n**Calculation:**\n$$16 - 3 = 13$$\n$$13 \\times 2 = 26$$\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 3688,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.099609375,
+     "tail": "   To find the total, add the number of blue bolts and the number of white bolts together.\n    $$ \\text{Total} = \\text{Blue bolts} + \\text{White bolts} $$\n    $$ \\text{Total} = 2 + 1 = 3 $$\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.880859375,
+     "tail": "                                                                                                                           *   Wait, if I increase the value by 150%, I mean the value becomes 1.5 times"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "print again?\nNo, that would be 3 distinct events.\n\nOkay, I'll stick with 180.\n\nFinal Answer: 180.\n\nWait, checking the wording again.\n\"He runs 3 sprints.\"\n\"He runs 3 sprints 3 times a week.\"\nIf I run 3"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.939453125,
+     "tail": "that the question implies that lunch is NOT mentioned, but lunch IS a meal.\nIf lunch is not mentioned, maybe lunch is not a meal?\n\nLet's try to assume the meals are Morning and Afternoon.\nAnd lunch is"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.466796875,
+     "tail": "3 + 1.8 + ... + 5 \\times (0.6)^{15}$.\n    *   Wait, if $P_{16} = 5 \\times (0.6)^{15}$, then the last term is quite small.\n    *   Wait, if $n=16$, $P_{16} = 5 \\times (0.6)^{15}$.\n    *   $5 \\times 0.6"
+    },
+    {
+     "n_tokens": 5974,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.033203125,
+     "tail": "e sum of the sheep counts for all three cities:\n$$\\text{Total} = T + C + S$$\n$$\\text{Total} = 160 + 80 + 20$$\n$$\\text{Total} = 260$$\n\nTherefore, the combined total number of sheep is 260.\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.669921875,
+     "tail": "ds normally, she finishes in 100 mins.\nBut wait, if she downloads normally, she must have finished the download.\n\nWait, maybe the restart is a \"pause\" or \"stop\" that happens *before* she finishes?\nBut"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.984375,
+     "tail": "                                                                               *   So he must be moving?\n                                                                                               "
+    },
+    {
+     "n_tokens": 7748,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.12890625,
+     "tail": " \\text{ hours} \\times \\$12/\\text{hour} = \\$60$\n\n**3. Calculate Total Earnings**\n*   **Total Earnings:** Regular Earnings + Overtime Earnings\n*   **Total Earnings:** $\\$400 + \\$60 = \\$460$\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.474609375,
+     "tail": "ed by 30% of the downloads in the first month\".\n    *   But it says \"reduced by 30%\".\n    *   Usually, without qualification, \"30%\" refers to the current amount.\n    *   Why? Because if it referred to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.482421875,
+     "tail": "buy 3 units, I pay 3 * 68?\n                                            *   Wait, if I buy 1 unit, I pay $68?\n                                                *   Wait, if I buy 1 unit, I buy 1/12 dozen"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.583984375,
+     "tail": "then sell.\n\n    *   Wait, if he plants it, he loses money.\n    *   But usually, you plant and then sell.\n    *   If he plants it, he loses money.\n    *   But usually, you plant and then sell.\n\n    *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.77734375,
+     "tail": "*   Then $x = 18$.\n                                                                                                                    *   Wait, if she kept the 2, then inventory at Green is $2/3 x - "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.701171875,
+     "tail": "emaining part of the original set (16).\nWait, if Hip-Hip is the \"rest\", then Hip-Hip is the remaining part of the original set (16).\n\nLet's try to calculate the percentage again.\nTotal = 20.\nHip-Hip ="
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.740234375,
+     "tail": " values?\nWait, if the merchant chooses gadgets, profit is 96.\nIf he chooses jewelry, profit is 125.\nSo he should choose jewelry?\nWait, maybe the merchant is looking for the difference in market values"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.958984375,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.740234375,
+     "tail": "                                               *   Wait, if the duration is 50 weeks, then the total hours are 2500.\n                                                                            *   But"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.6953125,
+     "tail": " in the time frame.\n\nNext, we need to convert the timeframe into the number of days.\nSince there are 7 days in a week, there are 4 weeks $\\times$ 7 days/week = 28 days.\n\nNow, let's calculate the total"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.861328125,
+     "tail": "                    *   Wait, let's assume the distance is 2 miles.\n                                                                                                                                 *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.92578125,
+     "tail": ".\n    *   Wait, if the answer is 15L.\n\n    *   Wait, let's re-read the prompt carefully.\n    *   \"spill one liter of the orange drink.\"\n    *   If I spill 1 liter, I have 10-1 = 9L.\n    *   Then I add"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "Wait, \"Had a son at age 23\".\n    This implies the son's age was 23.\n    Wait, if the son was born at age 23.\n    Then the son's age at birth was 23.\n    Wait, if $R_{birth} = 19$.\n    Then $R_{age} = "
+    },
+    {
+     "n_tokens": 2221,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.068359375,
+     "tail": ".**\n*   Total DVDs = (DVDs from first group) + (DVDs from second group) + (DVDs from third group)\n*   Total DVDs = $3 + 4 + 0$\n*   Total DVDs = $7$\n\nBilly sold a total of 7 DVDs on Tuesday.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 3505,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.140625,
+     "tail": "\n    The candle begins with its original length and loses 8 centimeters of material during this time. Therefore, the difference in length is 8 centimeters.\n\nThe candle will be 8 cm shorter.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 5057,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": " 4 = 26$$\n\nAlternatively, you can keep the decimals:\n$$19.50 / 0.75 = 19.50 \\div (3/4)$$\n$$19.50 \\times 4 = 78$$\n$$78 \\div 3 = 26$$\n\n**Answer:**\nThe original price of the book was **$26**.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 3590,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.044921875,
+     "tail": " 50 = 12 + 15 + 6 + 8.50x $$\n$$ 50 = 33 + 8.50x $$\n\nSubtract 33 from both sides:\n$$ 17 = 8.50x $$\n\nDivide by 8.50:\n$$ x = \\frac{17}{8.50} $$\n$$ x = 2 $$\n\nMarie ordered **2** boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 2230,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.23046875,
+     "tail": "es 3 = 126.00$$\n\n**4. Calculate the total spending:**\n*   Add the individual costs together:\n    $$49.50 + 67.50 + 126.00$$\n    $$49.50 + 67.50 = 117.00$$\n    $$117.00 + 126.00 = 243.00$$\n\n\\boxed{243}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.943359375,
+     "tail": "                                   *   Let's try to interpret \"eats one serving of ice cream every night\".\n                                                                 *   Maybe it means she eats "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.796875,
+     "tail": "top at 20.\n                                                                            *   Then I traveled 20 miles.\n                                                                                *  "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.31640625,
+     "tail": "    This seems correct.\n    \n    However, let's consider another possibility.\n    Maybe the \"two pairs of heels\" are not the ones she chooses?\n    \"She chooses between the boots and two pairs of heels"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.248046875,
+     "tail": "?\n    No, it asks for Allen.\n    \n    Let's check if the ratio was $7:11$ for the ages of *Darrell and Allen*.\n    Yes.\n    \n    Wait, is there any chance the question implies $D$ and $A$ are just the"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.376953125,
+     "tail": "it possible \"another says 20 more than half the first one\" means \"20 + (half of the first guess)\".\n    *   Yes.\n\n    *   Wait, what if \"half the first one\" refers to the *second* guess?\n        *   If"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.125,
+    "se": 0.08695104295503155,
+    "rescues": 6,
+    "losses": 2
+   }
+  },
+  "mdloop_topw": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/mdloop_topw.gguf",
+   "summary": {
+    "secs_this_run": 2438,
+    "tok_s_this_run": 140.4,
+    "acc": 0.3125,
+    "cut": 0.625,
+    "closed_think": 0.53125,
+    "loop_at_cap": 0.53125,
+    "mean_tokens": 10696.65625,
+    "median_tokens_finished": 9091
+   },
+   "rows": [
+    {
+     "n_tokens": 10625,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.349609375,
+     "tail": "at the farmers' market.\n    *   Price per egg: $2.\n    *   Number of eggs remaining: 13.\n    *   Revenue: $13 \\times \\$2 = \\$26$.\n\nTherefore, Janet makes 26 dollars at the farmers' market.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.84765625,
+     "tail": " stuck in a loop thinking about \"that amount\".\n    *   Let's restart cleanly.\n    *   \"A robe takes 2 bolts of blue fiber.\" (Known: Blue = 2)\n    *   \"and half that much white fiber.\" (Unknown: White)"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "the repairs.\"\nNo, that doesn't make sense.\n\nLet's try to interpret \"increased the value of the house by 150%\" as meaning the house value is now 150% of the original.\nWait, if the house value is 120,00"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "times is the frequency.\nThen he runs 3 runs.\nTotal distance = 180 meters.\n\nOkay, I'll provide the solution.\n\nWait, what if \"3 sprints\" means \"3 runs\" and \"3 times\" means \"3 times\"?\nIf he runs 3 times,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.330078125,
+     "tail": "sks for the cup count in the \"final meal\", and assuming the morning is meal 1 and afternoon is meal 2.\n    *   If the afternoon is meal 2.\n    *   If the morning is meal 1.\n    *   The \"final\" meal is"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.658203125,
+     "tail": "596252540928$.\n                                                    *   Wait. $0.00010968596252540928 \\times 0.6 = 0.000065811577515245568$.\n                                                    *   Wait"
+    },
+    {
+     "n_tokens": 914,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.107421875,
+     "tail": "d Seattle).\n\n$$Total = T_{\\text{Toulouse}} + C_{\\text{Charleston}} + S_{\\text{Seattle}}$$\n$$Total = 160 + 80 + 20$$\n$$Total = 240 + 20$$\n$$Total = 260$$\n\nThe total number of sheep is 260.\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "nloading normally.\n    *   Wait, if she downloads normally, she downloads 2 GB/min.\n    *   So she downloads 40% of the file size in 20 mins.\n\n    *   Let's try to calculate the total time.\n    *   If"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s try to parse the text again.\n    \"John drives for 3 hours at a speed of 60 mph and then turns around...\"\n    \"He tries to get home in 4 hours but spends the first 2 hours in standstill traffic.\"\n   "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.83984375,
+     "tail": "                                    *   We need to calculate earnings for 45 hours.\n                                    *   Standard interpretation:\n                                        *   Regular"
+    },
+    {
+     "n_tokens": 7899,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.244140625,
+     "tail": "wnloads in the first month, second month, and third month.\n*   $\\text{Total} = D_1 + D_2 + D_3$\n*   $\\text{Total} = 60 + 180 + 126$\n*   $\\text{Total} = 240 + 126$\n*   $\\text{Total} = 366$\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 10365,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.28515625,
+     "tail": " 330$)*\n*   Next, add the result of the first two parts to this sum: $204 + 490$.\n    *   $204 + 490 = 694$.\n\nAlternatively, using the original sums directly:\n*   $204 + 160 + 330 = 694$.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.974609375,
+     "tail": "*   \"If I plant it, I get 7 fruits.\"\n    *   \"If I plant it, I get 7 fruits.\"\n\n    *   Okay, let's try to calculate the number of years needed to earn money.\n    *   If he plants it, he gets 7 fruits."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.958984375,
+     "tail": "             *   Wait, let's check the wording again.\n                                                                                                *   \"25% of the remaining enrolled in jazz dance\"\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.44140625,
+     "tail": " the merchant invests the money?\n        *   Usually, yes.\n        *   Maybe the profit is calculated differently?\n        *   Usually, profit is (Return - Cost).\n        *   If the merchant invests $"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.78515625,
+     "tail": "o 80 and 150.\n    \n    *   Wait, let me double check the question.\n    *   \"What's the distance covered by each train in the two days?\"\n    *   If Train A travels West for 80 miles.\n    *   If Train B"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.984375,
+     "tail": "he works 35 hours teaching and 15 hours coaching.\n                                                                                        *   Wait, if she works 35 hours teaching and 15 hours coaching"
+    },
+    {
+     "n_tokens": 9091,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.193359375,
+     "tail": "12 eggs.\n    *   Number of dozens = $\\frac{\\text{Total eggs}}{12 \\text{ eggs/dozen}}$\n    *   Number of dozens = $\\frac{84}{12} = 7$\n\nTherefore, Claire will eat 7 dozens of eggs in 4 weeks.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 6752,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.072265625,
+     "tail": "she would take 1.5 hours to cover 6 miles.\nSince 1.5 hours is less than 2 hours, she can complete the task.\n\nTherefore, Marissa needs to walk the remaining distance at a speed of **4 mph**.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "t, Pineapple is 15L.\n    Pineapple water is 9L.\n    Pineapple is untouched.\n    Pineapple water is 9L.\n    Pineapple is untouched.\n\n    Wait, Pineapple is 15L.\n    Pineapple water is 9L.\n    Pineapple"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 10379,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.142578125,
+     "tail": "hat there are 8 customers total. If he has 8 customers, then the \"last 3\" customers are the ones who don't buy DVDs. The sum of the quantities is $3 \\times 1 + 2 \\times 2 + 3 \\times 0 = 7$.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                                                                                                                                                                                                        "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.5,
+     "tail": "   *   Let's check if the problem could be interpreted as:\n        *   Original Price = $X$.\n        *   Discount = 25%.\n        *   Discounted Price = $19.50$.\n        *   Usually, \"bought for $19.50"
+    },
+    {
+     "n_tokens": 1989,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0546875,
+     "tail": "fit into the remaining $17.\n$$17 \\div 8.50$$\n\nTo simplify the fraction:\n$$17 \\div 8.5 = 170 \\div 85$$\nDividing both numbers by 5 gives:\n$$34 \\div 17 = 2$$\n\nSo, she ordered 2 boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "    \n                Wait.\n                \n                Wait.\n                \n                Wait.\n                \n                Wait.\n                \n                Wait.\n                \n"
+    },
+    {
+     "n_tokens": 8284,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.42578125,
+     "tail": "e total cost.**\nEach carton costs $4.00.\n$$ \\text{Total cost} = 4 \\text{ cartons} \\times \\$4.00/\\text{carton} = \\$16.00 $$\n\nTherefore, after 60 days, she will spend $16.00 on ice cream.\n\n\\boxed{16.00}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.732421875,
+     "tail": "end\" means near the end.\n        *   Wait, if I stop 15 miles *before* the end.\n        *   Does it mean I stop at 45?\n    *   Wait, I think I've established that the answer is likely 25 miles.\n\n    *"
+    },
+    {
+     "n_tokens": 11906,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.615234375,
+     "tail": "ion: Cost(Boots) = Cost(Heels) + 5.\n*   Or, Cost(Heels) = Cost(Boots) - 5.\n\nSubstituting the known values:\n$$ 99 = x - 5 $$\n$$ x = 99 + 5 $$\n$$ x = 104 $$\n\nTherefore, the boots cost $104.\n\n\\boxed{104}"
+    },
+    {
+     "n_tokens": 6445,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.205078125,
+     "tail": " from now.**\nThe question asks for Allen's age 10 years from now.\nSince the current age is 99, we add 10 to the current age to get the future age.\n\n$$ \\text{Future Age} = 99 + 10 = 109 $$\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 11884,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.384765625,
+     "tail": "ulate the average guess:**\nTo find the average, we sum the guesses and divide by the number of friends (3).\nSum = $80 + 60 + 100 = 240$.\nAverage = $240 / 3 = 80$.\n\nThe average guess is 80.\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.1875,
+    "se": 0.0945863234333863,
+    "rescues": 8,
+    "losses": 2
+   }
+  },
+  "m2a_a0": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/m2a_a0.gguf",
+   "summary": {
+    "secs_this_run": 1828,
+    "tok_s_this_run": 139.3,
+    "acc": 0.4375,
+    "cut": 0.40625,
+    "closed_think": 0.59375,
+    "loop_at_cap": 0.375,
+    "mean_tokens": 7958.03125,
+    "median_tokens_finished": 5189
+   },
+   "rows": [
+    {
+     "n_tokens": 2076,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.056640625,
+     "tail": "l daily earnings:**\n    Multiply the number of remaining eggs by the price per egg.\n    $$ \\text{Total Money} = 13 \\text{ eggs} \\times \\$2/\\text{egg} $$\n    $$ \\text{Total Money} = \\$26 $$\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 5957,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.115234375,
+     "tail": "$.\n\n3.  **Calculate the total:**\n    *   We need to sum the number of blue fibers and the number of white fibers.\n    *   Total = (Blue fibers) + (White fibers)\n    *   Total = $2 + 1 = 3$.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.755859375,
+     "tail": "\n            *   If the house is renovated, its value increases.\n            *   If the repairs are expenses, the value is reduced.\n            *   If the repairs are expenses, the value is $80,000 + "
+    },
+    {
+     "n_tokens": 4202,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.158203125,
+     "tail": "= 3 \\times 60 \\text{ meters} $$\n$$ \\text{Total distance} = 180 \\text{ meters} $$\n\nJames runs 3 sprints, and each sprint is 60 meters long. Therefore, he runs a total of 180 meters a week.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 5312,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.126953125,
+     "tail": "r, since the question asks for the amount in the final meal of the day, we use the values provided.\n\nTherefore, the amount of feed given in the afternoon meal is the amount to be reported.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+     "n_tokens": 3425,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.232421875,
+     "tail": " \\text{Toulouse} + \\text{Charleston} + \\text{Seattle} $$\n$$ \\text{Total} = 160 + 80 + 20 $$\n$$ \\text{Total} = 260 $$\n\nTherefore, Toulouse, Charleston, and Seattle have together 260 sheep.\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 6419,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.18359375,
+     "tail": "{Time}_{\\text{restart}} $$\n    $$ \\text{Total Time} = 100 \\text{ minutes} + 20 \\text{ minutes} = 120 \\text{ minutes} $$\n\nThus, the total time it takes to download the file is 120 minutes.\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " from $x(3)$ to $x(4)$.\n                    *   This implies he moves at speed $v_{forward}$ from $x(3)$ to $x(4)$.\n                    *   This implies he moves at speed $v_{back}$ from $x(3)$ to $x("
+    },
+    {
+     "n_tokens": 6105,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1484375,
+     "tail": "$$\n\n**3. Calculate Total Earnings:**\nAdding the regular earnings and overtime earnings together gives the total earnings for the week.\n$$ \\text{Total Earnings} = \\$400 + \\$60 = \\$460 $$\n\n\\boxed{\\$460}"
+    },
+    {
+     "n_tokens": 3521,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.197265625,
+     "tail": "late the total number of downloads over the three months.**\nTotal Downloads = Downloads in Month 1 + Downloads in Month 2 + Downloads in Month 3\n$$Total = 60 + 180 + 126$$\n$$Total = 366$$\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 2884,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.255859375,
+     "tail": "/\\text{dozen} = \\$330$$\n\n4.  **Find the total cost:**\n    Add the individual costs together.\n    $$\\$204 + \\$160 + \\$330$$\n    $$= \\$364 + \\$330$$\n    $$= \\$694$$\n\nThe total cost is $694.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "he plants one tree, he produces 7 lemons.\n        *   If he needs to plant trees to grow them.\n        *   This implies he needs to plant trees to produce lemons.\n        *   If he plants one tree, he"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.255859375,
+     "tail": "       *   This means she sold $1/2$ of the remaining amount.\n                *   This implies $Remaining\\_at\\_Orange$ was the total inventory.\n                *   $Total = 5$.\n                *   $GH"
+    },
+    {
+     "n_tokens": 6742,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.13671875,
+     "tail": "100 $$\n$$ \\text{Percentage} = \\left( \\frac{12}{20} \\right) \\times 100 $$\n$$ \\text{Percentage} = 0.6 \\times 100 = 60\\% $$\n\nTherefore, 60% of the entire students enrolled in hip-hop dance.\n\n\\boxed{60\\%}"
+    },
+    {
+     "n_tokens": 8565,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.2421875,
+     "tail": "\\$125$. Therefore, the merchant should choose electronic gadgets.\n\n**Conclusion:**\nThe merchant will choose electronic gadgets, and the profit associated with this choice will be $\\$160$.\n\n\\boxed{160}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ocated at $(121.2, 37.8)$ miles.\n    *   San Rafael is located at $(121.2, 37.8)$ miles.\n    *   San Rafael is located at $(121.2, 37.8)$ miles.\n    *   San Rafael is located at $(121.2, 37.8)$ miles."
+    },
+    {
+     "n_tokens": 5189,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.173828125,
+     "tail": "eks per year: 50 weeks\n*   Total Annual Earnings = Total Weekly Earnings $\\times$ Number of Weeks\n*   Total Annual Earnings = $\\$1,150 \\times 50$\n*   Total Annual Earnings = $\\$57,500$\n\n\\boxed{57,500}"
+    },
+    {
+     "n_tokens": 3887,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.099609375,
+     "tail": " total eggs to dozens.**\n\"One dozen\" equals 12 eggs. To find out how many dozens she eats, divide the total number of eggs by 12.\n$$ \\text{Dozens} = \\frac{84}{12} $$\n$$ \\text{Dozens} = 7 $$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.673828125,
+     "tail": "is is consistent.\n    \n    *Is it possible the walker walks the remaining distance at a speed of 6 mph and the walker walks the first two legs at 4 mph and 2 mph.*\n    This matches the logic.\n    \n   "
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "juice is removed entirely.\n                        *   Pineapple juice is removed entirely.\n                        *   Pineapple juice is removed entirely.\n                        *   Pineapple juice"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "                               *   Raymond is 23. Samantha is 31.\n                                    *   Raymond is 23. Samantha is 31.\n                                    *   Raymond is 23. Samantha"
+    },
+    {
+     "n_tokens": 6761,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.185546875,
+     "tail": "} = (\\text{Sales from Group 1}) + (\\text{Sales from Group 2}) + (\\text{Sales from Group 3}) $$\n$$ \\text{Total DVDs} = 3 + 4 + 0 $$\n$$ \\text{Total DVDs} = 7 $$\n\nBilly sold 7 DVDs on Tuesday.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 2461,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.150390625,
+     "tail": " (\\text{Duration}) $$\n$$ \\text{Total decrease} = 2 \\text{ cm/hour} \\times 4 \\text{ hours} $$\n$$ \\text{Total decrease} = 8 \\text{ cm} $$\n\nTherefore, the candle will be 8 centimeters shorter.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " *   If the text said \"bought last year's best-selling book for $19.50\" -> Price paid was $19.50$.\n    *   If the text said \"bought last year's best-selling book for $19.50\" -> Price paid was $19.50$."
+    },
+    {
+     "n_tokens": 3294,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.08984375,
+     "tail": "ble:\n$$50 - 33 = 8.50x$$\n$$17 = 8.50x$$\n\nFinally, divide both sides by 8.50 to solve for $x$:\n$$x = \\frac{17}{8.50}$$\n$$x = \\frac{170}{85}$$\n$$x = 2$$\n\nThus, Marie ordered 2 boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 6226,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.26171875,
+     "tail": "st of pants + Cost of shoes\n*   Total cost = $49.50 + 67.50 + 126.00$\n*   Adding $49.50$ and $67.50$: $49.50 + 67.50 = 117.00$\n*   Adding $117.00$ and $126.00$: $117.00 + 126.00 = 243.00$\n\n\\boxed{243}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " ice cream every night, she buys them all the night before she eats the ice cream.\n        *   If she buys cartons of ice cream every night, she buys them all the night before she eats the ice cream.\n"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "   Mile 20 is *before* mile 60.\n    *   Mile 20 is *before* mile 60.\n    *   Mile 20 is *before* mile 60.\n    *   Mile 20 is *before* mile 60.\n    *   Mile 20 is *before* mile 60.\n    *   Mile 20 is *"
+    },
+    {
+     "n_tokens": 8139,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1484375,
+     "tail": " P - 5$$\n\n4.  **Solve for the price of the boots:**\n    *   To isolate the price of the boots ($P$):\n        $$P = 99 + 5$$\n        $$P = 104$$\n\nTherefore, the price of the boots is $104.\n\n\\boxed{104}"
+    },
+    {
+     "n_tokens": 3748,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.13671875,
+     "tail": "10 years have passed.\nAllen's current age is 99. Adding 10 years to this gives:\n$$ \\text{Allen's age }_{\\text{future}} = 99 + 10 = 109 $$\n\nTherefore, Allen's age 10 years from now is 109.\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 80 + 20 = 60$.\n                                *   What if it means \"20 more than half\" means $0.5 \\times 80 + 20 = 60$.\n                                *   What if it means \"20 more than half\" means"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.3125,
+    "se": 0.08324928557283298,
+    "rescues": 10,
+    "losses": 0
+   }
+  },
+  "m2a_a1_062959_102": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/m2a_a1_062959_102.gguf",
+   "summary": {
+    "secs_this_run": 1287,
+    "tok_s_this_run": 138.2,
+    "acc": 0.5625,
+    "cut": 0.15625,
+    "closed_think": 0.84375,
+    "loop_at_cap": 0.125,
+    "mean_tokens": 5561.03125,
+    "median_tokens_finished": 4124
+   },
+   "rows": [
+    {
+     "n_tokens": 1434,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.033203125,
+     "tail": "aily.\nThe price listed for a fresh duck egg is $\\$2$.\nThere are 13 ducks remaining.\n$$13 \\text{ ducks} \\times \\$2/\\text{duck} = \\$26$$\n\nJanet makes $\\$26$ every day at the farmers' market.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 4774,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.17578125,
+     "tail": "2.\n    *   Quantity of white fiber = 1.\n4.  **Calculate the total:** Add the quantities together.\n    *   Total bolts = (Bolts of blue) + (Bolts of white)\n    *   Total bolts = $2 + 1 = 3$.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "the value.\n            *   If the repairs were an expense, they would reduce the value.\n            *   If the repairs were an expense, they would reduce the value.\n            *   If the repairs were"
+    },
+    {
+     "n_tokens": 1656,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.1640625,
+     "tail": "sprints by the distance per sprint.\n    $$ \\text{Total Meters} = 3 \\text{ sprints} \\times 60 \\text{ meters/sprint} $$\n    $$ 3 \\times 60 = 180 $$\n\nTherefore, James runs 180 meters a week.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 2962,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.05859375,
+     "tail": "l meals for the day = 2.\nFinal meal amount = 25 cups.\n\nNote: The feed composition (\"mixed chicken feed\") is descriptive of the ingredients, but the *quantity* is the focus of the question.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 5072,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.1875,
+     "tail": "  Sum: $S = \\frac{4.998595}{0.4} \\approx 12.496$\n\nSince the first glass costs exactly \\$5, the rest of the glasses form a geometric progression. The total cost is approximately \\$12.50.\n\n\\boxed{12.50}"
+    },
+    {
+     "n_tokens": 2745,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1171875,
+     "tail": "60$$\n\n**Step 4: Calculate the Total**\nFinally, calculate the total by adding the number of sheep in all three locations together.\nTotal = $T + C + S$\nTotal = $160 + 80 + 20$\nTotal = $260$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 5650,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.080078125,
+     "tail": "me the download (Phase 2).\n$$ \\text{Total Time} = \\text{Time to Restart} + \\text{Time to Resume} $$\n$$ \\text{Total Time} = 20 \\text{ minutes} + 80 \\text{ minutes} = 100 \\text{ minutes} $$\n\n\\boxed{100}"
+    },
+    {
+     "n_tokens": 12035,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.486328125,
+     "tail": "ces for each segment.\n        *   Distance 1: 180 miles.\n        *   Distance 2: 0 miles.\n        *   Distance 3: 15 miles.\n        *   Distance 4: 40 miles.\n        *   Total: 235 miles.\n\n\\boxed{235}"
+    },
+    {
+     "n_tokens": 3116,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1328125,
+     "tail": " (Remaining overtime hours $\\times$ Overtime rate)\nTotal earnings = $(40 \\times 10) + (5 \\times (10 \\times 1.2))$\nTotal earnings = $400 + (5 \\times 12)$\nTotal earnings = $400 + 60 = 460$.\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 1712,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.123046875,
+     "tail": "0\\%$ of $180$ is $54$, so $180 - 54 = 126$.)*\n\n**4. Calculate the total number of downloads over the three months.**\n$$Total = D_1 + D_2 + D_3$$\n$$Total = 60 + 180 + 126$$\n$$Total = 366$$\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 4175,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1171875,
+     "tail": "0$\n\n**4. Calculate the Total Cost:**\nTo find the grand total, add the cost of all the items together:\n$$\\$204 + \\$160 + \\$330$$\n$$= \\$364 + \\$330$$\n$$= \\$694$$\n\nThe total cost is $\\$694$.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ns. He sells them in Year 2.\n    *   In Year 1, he has 7 lemons. He sells them in Year 2.\n    *   In Year 1, he has 7 lemons. He sells them in Year 2.\n    *   In Year 1, he has 7 lemons. He sells them"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.40234375,
+     "tail": "   Let's re-check the calculation.\n                *   $x=36$.\n                    *   Sold at Green = 12. Remaining = 24.\n                    *   Sold at Red = 12 + 2 = 14. Remaining = 24 - 14 = 10.\n"
+    },
+    {
+     "n_tokens": 4124,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": "ed in hip-hop\" implies the remaining students after accounting for Contemporary and Jazz.\nIf we assume no overlap, the calculation holds.\nCalculation:\n$$\\frac{12}{20} \\times 100\\% = 60\\%$$\n\n\\boxed{60}"
+    },
+    {
+     "n_tokens": 5440,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.263671875,
+     "tail": " wants to maximize profit, they should choose the option that offers the higher profit.\n\n**Answer:**\nThe maximum profit the merchant can achieve by choosing the jewelry plan is **\\$125**.\n\n\\boxed{125}"
+    },
+    {
+     "n_tokens": 6433,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.109375,
+     "tail": "s} + 150 \\text{ miles} = 230 \\text{ miles} $$\n\n(Note: If \"distance covered\" were interpreted strictly as the sum of the individual distances for each train, the answer remains 230 miles).\n\n\\boxed{230}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " 50 weeks.\n    Then she works 35 hours a week.\n    Then she works 15 hours a week.\n    Then she works 50 weeks *in total*.\n    Then she works 50 weeks.\n    Then she works 35 hours a week.\n    Then she"
+    },
+    {
+     "n_tokens": 8581,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.060546875,
+     "tail": "nterpretation were that she eats 3 dozen eggs per week (meaning 36 eggs), the calculation would be $36 \\times 7 = 252$, which is incorrect because she only makes 3 eggs per omelet, not 36.)\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 3021,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.056640625,
+     "tail": "kes 1.5 hours to walk the remaining 6 miles. Since they have already walked for 2 hours, they are ahead of schedule.\n\nTherefore, the speed they need to walk the remaining distance is 4 mph.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 5827,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.076171875,
+     "tail": "\\frac{20}{3} + 9 = \\frac{20}{3} + \\frac{27}{3} = \\frac{47}{3}$ liters.\n\n**Step 5: Verify the calculation.**\n*   $20/3 = 6.66$\n*   $9 = 27/3$\n*   Sum = $47/3 = 15.67$ liters.\n\n**Answer:**\n\\boxed{15.67}"
+    },
+    {
+     "n_tokens": 5988,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.265625,
+     "tail": "d's son was born.\nSince Raymond was born 25 years ago, and the son was born at age 23, the son's age is 23 years old.\nTherefore, the son was born 2 years ago (relative to the current date).\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 1997,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15234375,
+     "tail": "  **Calculate the total number of DVDs sold:**\n    *   Total DVDs = (DVDs from Group 1) + (DVDs from Group 2) + (DVDs from Group 3)\n    *   Total DVDs = $3 + 4 + 0$\n    *   Total DVDs = $7$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 2200,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.20703125,
+     "tail": "l Melting} = 8 \\text{ cm} $$\n\nThe candle starts with some initial length and ends up being 8 cm shorter than it was before burning because the wax evaporates/gets consumed at a steady rate.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 6063,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.126953125,
+     "tail": "   Discount = 25% of $26 = 6.5$.\n        *   Final Price = $26 - 6.5 = 19.5$.\n        *   The final price matches the given information.\n\nTherefore, the original price of the book was $26.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 1664,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1171875,
+     "tail": "$\n\nSubtract 33 from both sides:\n$$8.50x = 50 - 33$$\n$$8.50x = 17$$\n\nDivide by 8.50:\n$$x = \\frac{17}{8.50}$$\n$$x = \\frac{170}{85}$$\n$$x = 2$$\n\n**Answer:**\nMarie ordered **2** boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 2888,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.30859375,
+     "tail": "es 42 = 126.00$$\n\n**4. Calculate the total spending:**\n$$\\text{Total Cost} = \\$49.50 + \\$67.50 + \\$126.00$$\n$$\\text{Total Cost} = \\$117.00 + \\$126.00$$\n$$\\text{Total Cost} = \\$243.00$$\n\n\\boxed{243.00}"
+    },
+    {
+     "n_tokens": 5118,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.03125,
+     "tail": "s equivalent. If the question implies she eats \"one serving every day\", the result remains 60 servings. Thus, the calculation holds.\n\n\\[ \\text{Total Cost} = 4 \\times \\$4.00 = \\$16.00 \\]\n\n\\boxed{16.00}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "after* 20 miles, he might be traveling *past* 20 miles.\n    If he stops *after* 20 miles, he might be traveling *past* 20 miles.\n    If he stops *after* 20 miles, he might be traveling *past* 20 miles"
+    },
+    {
+     "n_tokens": 6341,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.333984375,
+     "tail": "-5$, which is impossible.\n    Therefore, the intended interpretation is $Cost(\\text{Heels}) = Cost(\\text{Boots}) - 5$.\n    $$99 = Cost(\\text{Boots}) - 5$$\n    $$Cost(\\text{Boots}) = 104$$\n\n\\boxed{104}"
+    },
+    {
+     "n_tokens": 1558,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.09375,
+     "tail": "en's new age} = 109$$\n\n(Note: The term \"total age now\" refers to the sum of their ages at the beginning of the time frame provided.)\n\nThe calculated age of Allen 10 years from now is 109.\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 3939,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": "\nSo, the third guess is $g_3 = 100$.\n\n**Step 4: Calculate the average.**\nAverage = $\\frac{g_1 + g_2 + g_3}{3}$\nAverage = $\\frac{80 + 60 + 100}{3}$\nAverage = $\\frac{240}{3}$\nAverage = $80$.\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.4375,
+    "se": 0.0997729276746663,
+    "rescues": 15,
+    "losses": 1
+   }
+  },
+  "lbx_w10_t1": {
+   "model": "wsp-base",
+   "summary": {
+    "secs_this_run": 1803,
+    "tok_s_this_run": 141.4,
+    "acc": 0.46875,
+    "cut": 0.40625,
+    "closed_think": 0.59375,
+    "loop_at_cap": 0.40625,
+    "mean_tokens": 7967.96875,
+    "median_tokens_finished": 4850
+   },
+   "rows": [
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s muffins for her friends every day with four.\"*\n    *   Maybe \"with four\" means she uses 4 muffins.\n    *   If she uses 4 muffins, she has 4 muffins.\n    *   If she has 4 muffins, she eats 4 muffins."
+    },
+    {
+     "n_tokens": 3102,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.076171875,
+     "tail": ", add the amount of blue and white fibers together.\n    $$ \\text{Total} = \\text{Blue bolts} + \\text{White bolts} $$\n    $$ \\text{Total} = 2 + 1 = 3 $$\n\nTherefore, it takes 3 bolts in total.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.6484375,
+     "tail": "00$.\n    *   Increase = 150%.\n    *   New Value = $80,000 \\times 2.5 = 200,000$.\n    *   Total Cash Out = $80,000 + 50,000 = 130,000$.\n    *   Profit = $200,000 - 130,000 = 70,000$.\n\n    *Is there any"
+    },
+    {
+     "n_tokens": 9964,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.5703125,
+     "tail": "week\" describes the frequency of his sprints (i.e., he performs the action 3 times in a week), which confirms that he runs 3 sprints in a single week.\n\nTotal meters = $3 \\times 60 = 180$.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "tion is asking for the sum of the morning and afternoon meals.\n        *   Calculation: $15 + 25 = 40$.\n        *   However, the question asks \"How many cups of feed does she need to give her chickens"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "ule is \"Every second glass\" (meaning, every 2nd glass), then the 8th glass is discounted.\n        *   If the rule is \"Every second glass\" (meaning, every 2nd glass), then the 10th glass is discounted."
+    },
+    {
+     "n_tokens": 1869,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.142578125,
+     "tail": "d the number of sheep from all three cities together:\n$$ \\text{Total} = \\text{Seattle} + \\text{Charleston} + \\text{Toulouse} $$\n$$ \\text{Total} = 20 + 80 + 160 $$\n$$ \\text{Total} = 260 $$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.984375,
+     "tail": "es *from the end*?\n        *   No, \"restart ... which takes 20 minutes\".\n        *   So the total time is 80 minutes.\n\n    *   **Let's check the wording \"How load does it take to download the file?\"**"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "art is at 80 mph.\n                                *   Let's assume the time is 4 hours.\n                                *   He drives 3 hours.\n                                *   He stops for 2 hours."
+    },
+    {
+     "n_tokens": 5002,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.19140625,
+     "tail": "\n    *   **Overtime Hour Earnings:**\n        $$ 5 \\text{ hours} \\times \\$12/\\text{hour} = \\$60 $$\n\n5.  **Calculate Total Earnings:**\n    $$ \\text{Total Earnings} = \\$400 + \\$60 = \\$460 $$\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 1857,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.19921875,
+     "tail": "w, we add the downloads from all three months together.\n*   Total = (Downloads in Month 1) + (Downloads in Month 2) + (Downloads in Month 3)\n*   Total = $60 + 180 + 126$\n*   Total = $366$\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 6824,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.18359375,
+     "tail": "add the cost of each item together:\n$$204 \\text{ (donuts)} + 160 \\text{ (cupcakes)} + 330 \\text{ (cheesecakes)}$$\n\n*   $204 + 160 = 364$\n*   $364 + 330 = 694$\n\nThe total cost is **$694**.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " starts earning money in year 1.\n        *   Is it possible that he needs to *start* earning money *after* the planting cost?\n        *   If he starts planting, he pays $90.\n        *   Then he starts"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": " to Green.\n    i.e. She sold 1/3 to Green, and 2 to Red.\n    If she sold 2 to Red, and 1/3 to Green.\n    Then she sold $1/3 + 2$ to Red?\n    No, \"2 more\" implies adding 2 to the quantity sold to Green"
+    },
+    {
+     "n_tokens": 5441,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.26171875,
+     "tail": "\n$$ \\text{Percentage}_{\\text{HipHop}} = \\left( \\frac{12}{20} \\right) \\times 100 $$\n$$ \\text{Percentage}_{\\text{HipHop}} = 0.6 \\times 100 $$\n$$ \\text{Percentage}_{\\text{HipHop}} = 60\\% $$\n\n\\boxed{60\\%}"
+    },
+    {
+     "n_tokens": 7351,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.1640625,
+     "tail": "e two, the profit from choosing the electronic gadgets plan is greater than the profit from choosing the jewelry plan. The merchant chooses the electronic gadgets plan to maximize profit.\n\n\\boxed{160}"
+    },
+    {
+     "n_tokens": 11857,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.666015625,
+     "tail": "for the distance covered by each train in the two days, it might mean the sum of the distances covered by each train in the two days.\nSo the answer is 230 miles.\n\nFinal Answer: 230 miles.\n\n\\boxed{230}"
+    },
+    {
+     "n_tokens": 2162,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.15625,
+     "tail": "ual salary.**\n*   **Number of weeks:** $50$\n*   **Formula:** $\\text{Annual Earnings} = \\text{Weekly Earnings} \\times \\text{Weeks}$\n*   **Calculation:** $\\$1,150 \\times 50 = \\$57,500$\n\n\\boxed{\\$57,500}"
+    },
+    {
+     "n_tokens": 3910,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.076171875,
+     "tail": "\n*   By definition, a dozen equals 12 eggs.\n*   To find the number of dozens, divide the total number of eggs by 12:\n    $$\\frac{84}{12} = 7$$\n\n**Conclusion:**\nClaire eats 7 dozens of eggs.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "lks the remaining distance in 1 hour, speed is 6 mph.\n        *   If she walks the remaining distance in 2 hours, speed is 3 mph.\n        *   But she wants 4 mph.\n        *   This implies she needs to"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "s total.\n    *   If they poured 1 liter of orange drink, they have 9 liters remaining.\n    *   So the remaining volume is 24 liters.\n    *   The question asks for the water in the remaining 24 liters."
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "at the age of 23\" means Raymond was 23 *years ago*?\n            *   No.\n        *   This means Raymond was 23 *years ago*?\n            *   No.\n\n    *   **Let's try:**\n        *   \"Raymond had a son at"
+    },
+    {
+     "n_tokens": 1170,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0625,
+     "tail": "xt{ DVDs/customer} = 0 \\text{ DVDs}$.\n\n**4. Calculate the total:**\n*   Add the sales from all three groups together.\n*   $3 \\text{ DVDs} + 4 \\text{ DVDs} + 0 \\text{ DVDs} = 7 \\text{ DVDs}$.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.8359375,
+     "tail": "as 139 hours?\n            *   No.\n        *   Is it possible the user considers 1:00 PM to 5:00 PM as 140 hours?\n            *   No.\n        *   Is it possible the user considers 1:00 PM to 5:00 PM as"
+    },
+    {
+     "n_tokens": 5616,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": " $$\n\nAlternatively, using decimal arithmetic directly:\n$$ 19.50 \\div 0.75 $$\nMultiply by 4 to clear decimals:\n$$ 19.50 \\times 4 = 78 $$\n$$ 78 \\div 3 = 26 $$\n\nThe original price was $26.00.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 2865,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.0703125,
+     "tail": "\\times \\$8.50) = \\$50$$\n$$17 = n \\times \\$8.50$$\n\nDivide both sides by the cost per box to find the number of boxes ($n$):\n$$n = \\frac{17}{8.50}$$\n$$n = 2$$\n\nMarie ordered 2 boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 5114,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.337890625,
+     "tail": "nt:**\nSum the costs calculated above:\n$$\\$49.50 + \\$67.50 + \\$126.00$$\n\nCalculate the sum:\n*   $49.50 + 67.50 = 117.00$\n*   $117.00 + 126.00 = 343.00$\n\nMishka spent a total of $\\$343.00$.\n\n\\boxed{343}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "e buys 4 cartons, she gets 60 servings.\n        *   If she buys 4 cartons, she gets 60 servings.\n        *   If she buys 4 cartons, she gets 60 servings.\n        *   If she buys 4 cartons, she gets 60"
+    },
+    {
+     "n_tokens": 10794,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.169921875,
+     "tail": "p length:\n*   Start point is at 20 miles.\n*   End point is at 60 miles.\n*   Stop 1 is at 20 miles.\n*   Stop 2 is at $60 - 15 = 45$ miles.\n*   Distance between stops = $45 - 20 = 25$ miles.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 2208,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.16796875,
+     "tail": " of the boots ($x$):**\nSubstitute the values of $h_1$ and $h_2$ into the equation from step 2:\n$$99 = x - 5$$\n\nNow, isolate $x$:\n$$x = 99 + 5$$\n$$x = 104$$\n\n**Answer:**\nThe boots cost **104** dollars."
+    },
+    {
+     "n_tokens": 3275,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.11328125,
+     "tail": "f parts in the ratio (which is $7+11=18$) to find $x=9$, and then multiply the second part of the ratio ($11x$) by $x=9$ to get the age.\n\n**Answer:**\nAllen's age 10 years from now is 109.\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 4850,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.19140625,
+     "tail": "**.\n\n**Step 4: Calculate the average.**\nThe average guess is the sum of the guesses divided by the number of guesses (which is 3).\nSum $= 80 + 60 + 100 = 240$.\nAverage $= 240 \\div 3 = 80$.\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.34375,
+    "se": 0.09640069895008291,
+    "rescues": 12,
+    "losses": 1
+   }
+  },
+  "bf4096": {
+   "model": "wsp-base",
+   "summary": {
+    "secs_this_run": 1576,
+    "tok_s_this_run": 129.8,
+    "acc": 0.625,
+    "cut": 0.28125,
+    "closed_think": 1.0,
+    "loop_at_cap": 0.28125,
+    "mean_tokens": 6390.78125,
+    "median_tokens_finished": 4556
+   },
+   "rows": [
+    {
+     "n_tokens": 4446,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": "chase of the muffins appear to be extraneous details or distractors intended to confuse the reader, as the earnings are strictly based on the sale of the remaining ducks' eggs.\n\n**Answer:**\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 4386,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.244140625,
+     "tail": " add the blue bolts and the white bolts together.\n    $$ \\text{Total Bolts} = \\text{Blue Bolts} + \\text{White Bolts} $$\n    $$ \\text{Total Bolts} = 2 + 1 $$\n    $$ \\text{Total Bolts} = 3 $$\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.66015625,
+     "tail": "0 = 40,000$.\n\nWait, what if the \"value\" refers to the *market value* of the house *after* the repairs?\nIf the house was bought for $80,000$.\nAnd the repairs cost $50,000$.\nThen the market value is $80"
+    },
+    {
+     "n_tokens": 768,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.0546875,
+     "tail": "is 60 meters.\n3.  **Calculate the total distance:** Multiply the number of sprints by the length of one sprint.\n\n$$3 \\text{ sprints} \\times 60 \\text{ meters/sprint} = 180 \\text{ meters}$$\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "\"final meal\" is the one that comes *after* the afternoon.\nWait, if the morning and afternoon are the *only* meals, then the \"final meal\" is the one that comes *after* the afternoon.\nBut if the morning"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.705078125,
+     "tail": "e sum of $0.648 + 0.3888 + 0.23328 + 0.1399 + 0.0838 + 0.0525 + 0.0315 + 0.0169 + 0.0103 + 0.0064 + 0.0036 + 0.0022$.\nI summed this up as $1.61718$.\nWait, where did the $1.61718$ come from?\n$0.648 + 0"
+    },
+    {
+     "n_tokens": 2847,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.177734375,
+     "tail": "the total number of sheep.**\nWe need to find the total for Toulouse, Charleston, and Seattle combined:\n$$\\text{Total} = S + C + T$$\n$$\\text{Total} = 20 + 80 + 160$$\n$$\\text{Total} = 260$$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "d to finish.\nNo, that doesn't make sense. If she restarts, she has to wait for the previous download to finish.\nSo, if she restarts, does she have to wait for the previous download to finish?\nYes.\nSo,"
+    },
+    {
+     "n_tokens": 4744,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.171875,
+     "tail": "80 mph\n    *   Distance: $0.5 \\times 80 = 40$ miles.\n\n**4. Sum the Distances:**\n$$ \\text{Total Distance} = 180 + 0 + 15 + 40 $$\n$$ \\text{Total Distance} = 235 \\text{ miles} $$\n\n**Answer:**\n\\boxed{235}"
+    },
+    {
+     "n_tokens": 4586,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.126953125,
+     "tail": "$$ \\text{Overtime Earnings} = \\$60 $$\n\n**Step 5: Calculate Total Earnings**\nAdd the regular earnings and the overtime earnings together.\n$$ \\text{Total Earnings} = \\$400 + \\$60 = \\$460 $$\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 4670,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.326171875,
+     "tail": "tal Downloads} = 60 + 180 + 126 $$\n$$ \\text{Total Downloads} = 240 + 126 $$\n$$ \\text{Total Downloads} = 366 $$\n\n**Answer:**\nThe program had a total of 366 downloads over the three months.\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 1460,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.08984375,
+     "tail": " the cost for the cheesecakes is **$330**.\n\n**4. Calculate the total cost:**\nNow, add the costs of all three items together:\n$$\\$204 + \\$160 + \\$330 = \\$694$$\n\nThe total cost is **$694**.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "$ (maintenance).\nIn Year 1, he has earned $\\$10.5$.\nNet Loss = $\\$88.5$.\nWait, but the question asks \"How many years will it take before he starts earning money\".\nIf he starts earning money in Year 1,"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": " means she *sold* 2 more *units* *of* the vacuum cleaners *that were already at the green house*?\n        *   If she sold $\\frac{1}{3}x$ at Green, remaining $\\frac{2}{3}x$.\n        *   She sold 2 more"
+    },
+    {
+     "n_tokens": 4590,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.154296875,
+     "tail": "text{Hip-Hop}}}{\\text{Total Students}} \\right) \\times 100\\% $$\n    $$ \\text{Percentage} = \\left( \\frac{12}{20} \\right) \\times 100\\% $$\n    $$ \\text{Percentage} = 0.6 \\times 100\\% = 60\\% $$\n\n\\boxed{60}"
+    },
+    {
+     "n_tokens": 4560,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.171875,
+     "tail": "6$.\n\nComparing the profits:\n-   Jewelry Profit: $125\n-   Electronics Profit: $96\n\nSince $125 > 96$, the merchant should choose the jewelry plan.\n\n**Answer:**\nThe profit would be **$125**.\n\n\\boxed{125}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "vels 80 miles West and Train 2 travels 80 miles North...\nWait, if Train 1 travels 80 miles West and Train 2 travels 80 miles North...\nWait, does \"covering 150 miles\" mean Train 1 travels 150 miles and"
+    },
+    {
+     "n_tokens": 1630,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.125,
+     "tail": " earnings.**\n*   Number of weeks per year: $50$\n*   Annual salary = Total weekly earnings $\\times$ Weeks per year\n*   Annual salary = $\\$1,150 \\times 50$\n*   $1,150 \\times 50 = 57,500$\n\n\\boxed{57,500}"
+    },
+    {
+     "n_tokens": 4461,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.232421875,
+     "tail": "umber of eggs to dozens.**\n*   By definition, a dozen equals 12 eggs.\n*   Number of dozens = $\\frac{\\text{Total eggs}}{12}$\n*   Number of dozens = $\\frac{84}{12}$\n*   Number of dozens = $7$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "rs 6 miles.\nWait, if she walks 6 miles in 6 hours, she covers 6 miles.\nWait, I think the intended answer is 4 mph.\nWait, if she walks 6 miles in 6 hours, she covers 6 miles.\nWait, if she walks 6 miles"
+    },
+    {
+     "n_tokens": 4931,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1953125,
+     "tail": "(Water in Pineapple).\n*   Water in Orange remaining = $9 \\times \\frac{2}{3} = 6$ liters.\n*   Water in Pineapple = $15 \\times \\frac{3}{5} = 9$ liters.\n*   Total water = $6 + 9 = 15$ liters.\n\n\\boxed{15}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "years ago, and Samantha is 31.\n    *   Then the son was born 25 years ago.\n    *   Wait, if Raymond was born 25 years ago, and Samantha is 31.\n    *   Then the son was born 25 years ago.\n    *   Wait,"
+    },
+    {
+     "n_tokens": 4689,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.103515625,
+     "tail": "an think of the distribution as follows:\n*   First 3 customers bought 3 DVDs.\n*   Next 2 customers bought 4 DVDs ($2 \\times 2$).\n*   Last 3 customers bought 0 DVDs.\nTotal = $3 + 4 + 0 = 7$.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 4375,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.193359375,
+     "tail": "te\n*   Total Reduction = $4 \\text{ hours} \\times 2 \\text{ cm/hour}$\n*   Total Reduction = $8 \\text{ cm}$.\n\nTherefore, after burning from 1:00 PM to 5:00 PM, the candle will be 8 cm shorter.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 4842,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.173828125,
+     "tail": "$X \\times 0.75$.\nSince the remaining price is $19.50$, we have:\n$$ 0.75X = 19.50 $$\n$$ X = \\frac{19.50}{0.75} $$\n$$ X = 26 $$\n\n**Conclusion:**\nThe original price of the book was $26.00.\n\n\\boxed{26.00}"
+    },
+    {
+     "n_tokens": 3994,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.080078125,
+     "tail": "of boxes of pizza:**\nEach box of pizza costs $8.50. To find the number of boxes, divide the remaining cost by the price per box.\n$$\\frac{\\$17}{\\$8.50} = 2$$\n\nMarie ordered 2 boxes of pizza.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 4367,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.263671875,
+     "tail": "otal cost by adding the costs of all the items.**\n$$\\text{Total Cost} = 49.50 + 67.50 + 126.00$$\n$$49.50 + 67.50 = 117.00$$\n$$117.00 + 126.00 = 243.00$$\n\nMishka spent $243.00 in total.\n\n\\boxed{243.00}"
+    },
+    {
+     "n_tokens": 4958,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.185546875,
+     "tail": "she eats 1 serving per night, she needs 60 servings.\nIf she buys 4 cartons, she gets 60 servings.\nSo the logic holds.\n\nFinal Calculation:\n$$ 4 \\text{ cartons} \\times \\$4.00 = \\$16.00 $$\n\n\\boxed{16.00}"
+    },
+    {
+     "n_tokens": 4496,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.138671875,
+     "tail": "$\\rightarrow$ 20 miles.\n2.  Travel from first stop (20) to second stop (45) $\\rightarrow$ $45 - 20 = 25$ miles.\n\n**Conclusion:**\nHenry traveled 25 miles between his first and second stops.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 4621,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": " price of the boots:**\n    *   To find the price of the boots, add 5 back to the calculated cost of the heels.\n    *   $B = 99 + 5$\n    *   $B = 104$\n\n**Answer:**\nThe boots cost **$104**.\n\n\\boxed{104}"
+    },
+    {
+     "n_tokens": 4556,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.095703125,
+     "tail": ".\n\n**Step 4: Calculate Allen's age 10 years from now.**\nWe want to find Allen's age 10 years from now ($A_{new}$), which is $A_{current} + 10$.\n$$ A_{new} = 99 + 10 $$\n$$ A_{new} = 109 $$\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 4936,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.140625,
+     "tail": "thing. It says \"the first one\" for both the second and third.\nSo the logic holds.\n\nFinal check:\nGuess 1: 80\nGuess 2: 60\nGuess 3: 100\nAverage: 80.\n\nThere is no ambiguity. The average is 80.\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.5,
+    "se": 0.08980265101338746,
+    "rescues": 16,
+    "losses": 0
+   }
+  },
+  "m2a_a1_062959_102+bf4096": {
+   "model": "/mnt/dados/dev/deep_traces/data/wsp/gguf/m2a_a1_062959_102.gguf",
+   "summary": {
+    "secs_this_run": 1131,
+    "tok_s_this_run": 125.3,
+    "acc": 0.625,
+    "cut": 0.09375,
+    "closed_think": 1.0,
+    "loop_at_cap": 0.09375,
+    "mean_tokens": 4431.15625,
+    "median_tokens_finished": 3825
+   },
+   "rows": [
+    {
+     "n_tokens": 1815,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.03515625,
+     "tail": "ate the earnings.**\nShe sells the remainder at the farmers' market for **$2** per fresh duck egg.\nEarnings = Remaining ducks $\\times$ Price per egg\nEarnings = $9 \\times 2$\nEarnings = $18$.\n\n\\boxed{18}"
+    },
+    {
+     "n_tokens": 4315,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.248046875,
+     "tail": "hat much\" refers to the 2 bolts:\n        *   White bolts = $\\frac{2}{2} = 1$.\n\n4.  **Calculate the total:**\n    *   Total bolts = Blue bolts + White bolts\n    *   Total bolts = $2 + 1 = 3$.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "$50,000) increased the value by 150%, it means the value increased by 150% of the repairs?\nIf the repairs ($50,000) increased the value by 150%, it means the value increased by 150% of the repairs?\nIf"
+    },
+    {
+     "n_tokens": 6880,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.38671875,
+     "tail": " $3 \\text{ sprints} \\times 3 \\text{ times} = 9 \\text{ sprints}$.\n        *   Total distance = $9 \\text{ sprints} \\times 60 \\text{ meters/sprint} = 540 \\text{ meters}$.\n\n    **Answer:**\n    \\boxed{540}"
+    },
+    {
+     "n_tokens": 4196,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.072265625,
+     "tail": " the last one given. Therefore, the \"final meal\" corresponds to the amount given in the afternoon.\n\n4.  **Calculate the amount:**\n    *   The amount given in the final meal is **25 cups**.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 3316,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.03515625,
+     "tail": "t the problem likely expects a clean integer answer, rounding to the nearest dollar is appropriate because fractional cents are irrelevant in the context of purchasing items.\n\nFinal Answer: \\boxed{12}"
+    },
+    {
+     "n_tokens": 1977,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": "\\times C = 2 \\times 80 = 160$$\n\n**Step 3: Calculate the total number of sheep.**\nNow we sum the number of sheep for all three cities:\n$$Total = T + C + S = 160 + 80 + 20$$\n$$Total = 260$$\n\n\\boxed{260}"
+    },
+    {
+     "n_tokens": 4922,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.091796875,
+     "tail": "he full 200 GB using the standard speed of 2 GB/min: $200 \\text{ GB} / 2 \\text{ GB/min} = 100 \\text{ min}$. Since the interruption takes 20 minutes, the total time is indeed 100 minutes.)\n\n\\boxed{100}"
+    },
+    {
+     "n_tokens": 6199,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.509765625,
+     "tail": " miles.\n    2. 2 hours * 0 mph = 0 miles.\n    3. 0.5 hours * 30 mph = 15 miles.\n    4. Remaining time = 4 hours - (3h + 2h + 0.5h) = 0.5 hours.\n    5. 40 miles.\n    Total = 235 miles.\n\n    \\boxed{235}"
+    },
+    {
+     "n_tokens": 3386,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.19140625,
+     "tail": "Calculate total earnings.**\n$$ \\text{Total Earnings} = \\text{Regular Earnings} + \\text{Overtime Earnings} $$\n$$ \\text{Total Earnings} = \\$400 + \\$60 $$\n$$ \\text{Total Earnings} = \\$460 $$\n\n\\boxed{460}"
+    },
+    {
+     "n_tokens": 1653,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.169921875,
+     "tail": "rom all three months together.\n$$\\text{Total} = D_1 + D_2 + D_3$$\n$$\\text{Total} = 60 + 180 + 126$$\n$$\\text{Total} = 366$$\n\nThe program had a total of 366 downloads over the three months.\n\n\\boxed{366}"
+    },
+    {
+     "n_tokens": 4524,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.18359375,
+     "tail": "dd the results together:\n$$204 + 160 + 330$$\n\nFirst, add the lowest two numbers:\n$$204 + 160 = 364$$\n\nNext, add the highest number:\n$$364 + 330 = 694$$\n\nTherefore, the total cost is $694.\n\n\\boxed{694}"
+    },
+    {
+     "n_tokens": 5244,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.162109375,
+     "tail": " the total cost equals the total revenue. No money is made.\n*   **Year 13:** Cost = $90 + 3(13) = 132$. Revenue = $7(13)(1.5) = 136.5$. Profit = $4.5$.\n\nHe starts earning money in Year 13.\n\n\\boxed{13}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "ation:\n    Maybe \"half of what was left\" refers to the remaining inventory *after* the green house sale?\n    i.e. $S_{\\text{orange}} = \\frac{1}{2} \\times (S - S_{\\text{green}})$.\n    This yields $S_{\\"
+    },
+    {
+     "n_tokens": 4613,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1640625,
+     "tail": "udents}} \\times 100$\n$\\text{Percentage} = \\frac{12}{20} \\times 100$\n$\\text{Percentage} = 0.6 \\times 100 = 60\\%$.\n\n**Answer:**\nThe percentage of students enrolled in hip-hop dance is 60%.\n\n\\boxed{60\\%}"
+    },
+    {
+     "n_tokens": 3327,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.123046875,
+     "tail": "n asks \"how much profit would this be?\", implying the profit of the chosen option.)*\n\nThe merchant should choose the electronic gadgets. The profit associated with that choice is $\\$147$.\n\n\\boxed{147}"
+    },
+    {
+     "n_tokens": 3825,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.193359375,
+     "tail": "tance 2 ($D_2$) = 150 miles.\n    *   Total Distance = $D_1 + D_2 = 80 + 150 = 230$ miles.\n\nThus, the distance covered by each train in the two days is the sum of the individual distances.\n\n\\boxed{230}"
+    },
+    {
+     "n_tokens": 4570,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.146484375,
+     "tail": "0,000.\n*   **Coaching Salary:** 2500 hours $\\times$ $30/hour = $75,000.\n\n**Step 4: Sum the salaries to get the annual salary.**\n*   Total Annual Salary = $50,000 + $75,000 = $125,000.\n\n\\boxed{125,000}"
+    },
+    {
+     "n_tokens": 2455,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.1015625,
+     "tail": "s:**\n    By definition, 1 dozen equals 12 eggs. To find the number of dozens, divide the total number of eggs by 12.\n    $$252 \\text{ eggs} \\div 12 \\text{ eggs/dozen} = 21 \\text{ dozens}$$\n\n\\boxed{21}"
+    },
+    {
+     "n_tokens": 4730,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.068359375,
+     "tail": "he required speed for the remaining distance.\n$$ V_{required} = \\frac{D_{remaining}}{T_{remaining}} $$\n$$ V_{required} = \\frac{8 \\text{ miles}}{1 \\text{ hour}} = 8 \\text{ miles per hour} $$\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 1.0,
+     "tail": "4.\n    *   Water % = 0.61.\n\n    *   **Is it possible the Pineapple drink is 15L, and we add 10L of orange drink.**\n    *   Water in Orange = 6.67.\n    *   Water in Pineapple = 9.\n    *   Spilled Water"
+    },
+    {
+     "n_tokens": 4597,
+     "cut": false,
+     "correct": false,
+     "closed_think": true,
+     "dup_tail": 0.16796875,
+     "tail": "= $31 - 6 = 25$ years.\n*   **Age of Raymond's Son:** 23 years old.\n*   **Age Difference (Raymond's Son vs Raymond):** $23 - 25 = -2$ years.\n*   **Conclusion:** The son was born 2 years ago.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 2629,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.181640625,
+     "tail": ": 3\n*   DVDs per customer: 0\n*   Total DVDs from this group: $3 \\times 0 = 0$\n\n**Step 4: Calculate the total number of DVDs.**\nAdd the total DVDs from each group together:\n$$3 + 4 + 0 = 7$$\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 2529,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.125,
+     "tail": "rmine the final state.**\nAfter burning, the candle will be exactly 8 centimeters shorter than its original size because it has melted away 8 centimeters during the 4-hour period.\n\n\\boxed{8 \\text{ cm}}"
+    },
+    {
+     "n_tokens": 1332,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.208984375,
+     "tail": "nalPrice = \\frac{19.50}{\\frac{3}{4}}$$\n$$OriginalPrice = 19.50 \\times \\frac{4}{3}$$\n$$OriginalPrice = 78 \\div 3$$\n$$OriginalPrice = 26$$\n\nTherefore, the original price of the book was $26.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 1622,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.033203125,
+     "tail": ".00 left to pay for the boxes.\n*   To find the number of boxes, divide the remaining money by the cost per box.\n    *   Number of Boxes = $\\frac{\\$17}{\\$8.50}$\n    *   Number of Boxes = $2$\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 2888,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.30859375,
+     "tail": "es 42 = 126.00$$\n\n**4. Calculate the total spending:**\n$$\\text{Total Cost} = \\$49.50 + \\$67.50 + \\$126.00$$\n$$\\text{Total Cost} = \\$117.00 + \\$126.00$$\n$$\\text{Total Cost} = \\$243.00$$\n\n\\boxed{243.00}"
+    },
+    {
+     "n_tokens": 4808,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.1328125,
+     "tail": "- Total Cost = $60 \\times 4 \\times \\frac{1}{15}$\n- Total Cost = $240 \\div 15$\n- Total Cost = $16$\n\nBoth methods yield the same result.\n\n**Conclusion:**\nCynthia will spend $16 on ice cream.\n\n\\boxed{16}"
+    },
+    {
+     "n_tokens": 4433,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.14453125,
+     "tail": "the start.\n\n**Calculation:**\n*   Position of First Stop ($S_1$) = 20 miles.\n*   Position of Second Stop ($S_2$) = 45 miles.\n*   Distance between stops = $|S_2 - S_1| = 45 - 20 = 25$ miles.\n\n\\boxed{25}"
+    },
+    {
+     "n_tokens": 4417,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.2734375,
+     "tail": "ting the known values:\n$$ 99 = x - 5 $$\n\n**Step 4: Solve for the cost of the boots.**\nNow, solve the equation for $x$:\n$$ x = 99 + 5 $$\n$$ x = 104 $$\n\nThus, the cost of the boots is $104.\n\n\\boxed{104}"
+    },
+    {
+     "n_tokens": 2479,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.072265625,
+     "tail": " Age:** $11 \\times 9 = 99$\n\n**Step 5: Calculate Allen's age 10 years from now.**\nCurrently, Allen's age is 99. Adding 10 years to this amount gives:\n$$\\text{Allen's Age} = 99 + 10 = 109$$\n\n\\boxed{109}"
+    },
+    {
+     "n_tokens": 1252,
+     "cut": false,
+     "correct": true,
+     "closed_think": true,
+     "dup_tail": 0.06640625,
+     "tail": "e:**\nThe average is calculated by summing the guesses and dividing by the number of friends (which is 3).\n$$Average = \\frac{80 + 60 + 100}{3}$$\n$$Average = \\frac{240}{3}$$\n$$Average = 80$$\n\n\\boxed{80}"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": 0.5,
+    "se": 0.10040241611281235,
+    "rescues": 17,
+    "losses": 1
+   }
+  }
+ }
+}

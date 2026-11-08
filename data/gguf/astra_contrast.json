@@ -1,0 +1,19 @@
+{
+ "method": "astra_contrast",
+ "layers": {
+  "15": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.11367297172546387
+  },
+  "19": {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.08714338392019272
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/astra_contrast.gguf",
+ "gguf_bytes": 1557662720
+}

@@ -1,0 +1,19 @@
+{
+ "method": "random",
+ "layers": {
+  "15": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.07297596335411072
+  },
+  "19": {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.06706158071756363
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/random.gguf",
+ "gguf_bytes": 1557662688
+}

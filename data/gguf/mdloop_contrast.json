@@ -1,0 +1,19 @@
+{
+ "method": "mdloop_contrast",
+ "layers": {
+  "15": {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.1136687695980072
+  },
+  "19": {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "alpha": 6.0,
+   "n_cols": 64,
+   "rel_change": 0.10469697415828705
+  }
+ },
+ "gguf": "/mnt/dados/dev/deep_traces/data/wsp/gguf/mdloop_contrast.gguf",
+ "gguf_bytes": 1557662720
+}

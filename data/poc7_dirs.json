@@ -1,0 +1,41 @@
+{
+ "n_texts": 20,
+ "window": [
+  512,
+  4096
+ ],
+ "k": 64,
+ "alpha": 6.0,
+ "methods": {
+  "astra": {
+   "cos_u_astra_L15": 0.9999998807907104,
+   "cols_overlap_astra_L15": 1.0,
+   "cos_u_astra_L19": 1.0,
+   "cols_overlap_astra_L19": 1.0,
+   "dlogp_rep": -0.02807669364847243,
+   "dlogp_prod": -0.018295703851617873,
+   "dlogp_neutral_wikitext": -0.006319514170172624
+  },
+  "meandiff": {
+   "cos_u_astra_L15": -0.5229058265686035,
+   "cols_overlap_astra_L15": 0.4375,
+   "cos_u_astra_L19": -0.5235980749130249,
+   "cols_overlap_astra_L19": 0.1875,
+   "dlogp_rep": -0.03325124955736101,
+   "dlogp_prod": -0.011133862170390784,
+   "dlogp_neutral_wikitext": -0.0035218676621298073
+  },
+  "random": {
+   "cos_u_astra_L15": 0.006952452473342419,
+   "cols_overlap_astra_L15": 0.0,
+   "cos_u_astra_L19": -0.0355062410235405,
+   "cols_overlap_astra_L19": 0.015625,
+   "dlogp_rep": -0.000226276055479957,
+   "dlogp_prod": -0.00029899507571826687,
+   "dlogp_neutral_wikitext": -0.00035712837200119196
+  }
+ },
+ "astra_cols_top64_rule_overlap_L15": 0.484375,
+ "astra_cols_top64_rule_overlap_L19": 0.28125,
+ "neutral_base_nll": 2.8412540555000305
+}

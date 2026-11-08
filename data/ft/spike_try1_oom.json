@@ -1,0 +1,17 @@
+{
+ "loss_check": [
+  0.2880038321018219,
+  0.2880038321018219
+ ],
+ "deltanet": "fla (Triton)",
+ "lora_params": 10223616,
+ "runs": [
+  {
+   "T": 1024,
+   "ok": false,
+   "error": "OOM",
+   "detail": "CUDA out of memory. Tried to allocate 782.00 MiB. GPU 0 has a total capacity of 5.62 GiB of which 375.25 MiB is free. Process 14316 has 22.51 MiB memory in use. Process 12118 has 3.96 MiB memory in us"
+  }
+ ],
+ "recommended_max_len": null
+}

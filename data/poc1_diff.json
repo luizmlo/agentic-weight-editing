@@ -1,0 +1,44 @@
+{
+ "changed": [
+  {
+   "tensor": "model.language_model.layers.15.mlp.down_proj.weight",
+   "shape": [
+    1024,
+    3584
+   ],
+   "changed_cols": 64,
+   "sv_top5": [
+    1.7489,
+    0.001,
+    0.0009,
+    0.0009,
+    0.0008
+   ],
+   "rank1_energy": 0.999994,
+   "alpha_est": 6.0,
+   "recon_rel_err_bf16": 0.0023,
+   "rel_change": 0.1064
+  },
+  {
+   "tensor": "model.language_model.layers.19.mlp.down_proj.weight",
+   "shape": [
+    1024,
+    3584
+   ],
+   "changed_cols": 64,
+   "sv_top5": [
+    1.3988,
+    0.0009,
+    0.0008,
+    0.0007,
+    0.0007
+   ],
+   "rank1_energy": 0.999991,
+   "alpha_est": 6.0,
+   "recon_rel_err_bf16": 0.0029,
+   "rel_change": 0.0811
+  }
+ ],
+ "cos_u_between_layers": 0.849,
+ "shared_neuron_idx": 3
+}
