@@ -1,0 +1,10 @@
+{
+ "name": "ft_if_ep3",
+ "adapter": "data/ft/sft_if/ep3",
+ "scale": 2.0,
+ "tensors": 150,
+ "f16_rel_err_of_update": 0.02471871754000337,
+ "mean_rel_change": 0.009177408437873305,
+ "max_rel_change": 0.016639034827828733,
+ "gguf": "/mnt/dados/dev/agentic-weight-editing/data/gguf/ft_if_ep3.gguf"
+}

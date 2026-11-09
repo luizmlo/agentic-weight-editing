@@ -1,0 +1,13 @@
+{
+ "method": "m2aif_b1",
+ "layers": {
+  "0": {
+   "tensor": "model.language_model.layers.23.mlp.down_proj.weight",
+   "alpha": -1.5,
+   "n_cols": 64,
+   "rel_change": 0.022403141483664513
+  }
+ },
+ "gguf": "/mnt/dados/dev/agentic-weight-editing/data/gguf/m2aif_b1.gguf",
+ "gguf_bytes": 1557662688
+}
