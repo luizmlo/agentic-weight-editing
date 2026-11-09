@@ -401,7 +401,7 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 | Verify citations; edit-anatomy diagram | to do |
 
 **Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
-main-track conference if the second defect works.
+main-track conference if a concentrated second defect works.
 
 **Alternative titles:** *Agents as Weight-Space Programmers: Fixing Reasoning Loops in Small Language Models*;
 *Generation in the Loop: What Makes Agentic Weight-Space Programming Work*.

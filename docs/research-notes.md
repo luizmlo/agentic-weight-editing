@@ -245,13 +245,58 @@ The epoch was picked on the agents' 16 gen-check problems (epoch 2, 7/16).
 
 ---
 
+## F13. The result holds on a 200-problem locked test (t200)
+
+GSM8K test[200:400], opened once after writing predictions (CADERNO 2026-11-08). Thinking on, cap 12288.
+
+| arm | acc | cut |
+|---|---|---|
+| base | 0.155 | 0.845 |
+| Astra | 0.535 | 0.425 |
+| budget forcing 4096 | 0.610 | 0.340 |
+| a1 | 0.615 | 0.170 |
+| a1 + budget forcing | **0.695** | 0.095 |
+
+- a1 − Astra +8.0 ± 3.4 (32/16); pooled with t12k (232) +9.1 ± 3.1.
+- a1 − budget forcing +0.5 ± 3.4. This is a tie in accuracy, but a1 has half the cuts and ~30% fewer tokens.
+- combo − a1 +8.0 ± 3.0 and combo − bf +8.5 ± 3.6, so the two mechanisms are complementary.
+- The pre-registered rule ("text changes if bf beats a1 by > 2 SE") did not trigger.
+
+## F14. Second defect (IFEval instruction following): a well-controlled negative
+
+- **Choosing the defect:** structured-output screening (JSON, tool calls, language drift) showed no defect with
+  thinking off. IFEval prompt-level strict did (base ≈ 0.55).
+- **Arms:** two agent runs under the same protocol (b1: 48-prompt IFEval gen checks; b2: 128-prompt synthetic gen
+  checks), a system prompt, and LoRA-SFT on 414 self-distilled passing answers.
+- **Result:** all of them looked better on their own practice checks (+5 to +12 pp) and lost 3–7 pp on 152–200 fresh
+  IFEval prompts:
+
+  | arm | vs base on fresh prompts |
+  |---|---|
+  | b1 | −3.3 ± 4.1 |
+  | a1 | −3.9 ± 4.3 |
+  | system prompt | −6.6 ± 4.2 |
+  | FT | −7.2 ± 4.3 |
+  | b2 | −6.0 ± 3.7 (dev200) |
+- **Noise:** two base samples with different seeds disagree on 23% of prompts, which gives a paired SE of ~8–9 pp on
+  48 prompts.
+- **Larger check:** the 128-prompt check did not rescue the search. b2's best edit's opposite-sign control also looked
+  positive.
+- **Synthetic check is not a perfect proxy:** b2 cut fewer answers than base on the synthetic check and more on real
+  IFEval.
+- **Reading:** cheap perturbations of any kind seem to move this model off a near-local optimum on IFEval. The
+  method's reach is bounded by the signal-to-noise of the real test. Fine-tuning hits the same wall.
+- **Side finding (b2 agent, weights only):** a residual direction read with the same sign by 99.7% of the decay-gate
+  rows (`in_proj_a`) of all 288 DeltaNet heads. It is a global forgetting-control channel. Editing it changes the
+  model (neutral up to +0.026) but not IFEval.
+
 ## Open questions and threats to validity
 
-- **Small n.** Each dev/test number has an SE of ~7–10 pp. MATH-148 is the strongest evidence. Replicating at n ≥ 200
-  on GSM8K test is planned.
-- **One model, one defect.** The output-lever story may be specific to loops ("Wait" is a lexical marker). A second
-  defect with no lexical marker (for example, tool-call format errors or premature stopping) is the obvious next test,
-  and so is a second model.
+- **Sample sizes.** The main comparisons now rest on t200 (SE ~3–4 pp). Dev and MATH numbers still rest on 48–148
+  problems.
+- **One model, one defect that works.** The output-lever story may be specific to loops ("Wait" is a lexical marker).
+  The diffuse second defect (IFEval, F14) failed for every method. A concentrated defect without a lexical marker is
+  still needed, and so is a second model. Measure the real test's noise before the search.
 - **Protocol advantage.** Agents had 16 generation-check problems. E3 controls for the generation signal. E4 shows that a
   method that sees 600 problems' worth of the defect in data does much worse. The epoch pick used the same 16 problems.
 - **Sampler differences** from the paper (llama.cpp vs vLLM, 12k vs 32k cap) shift absolute numbers. Comparisons
@@ -261,6 +306,8 @@ The epoch was picked on the agents' 16 gen-check problems (epoch 2, 7/16).
   are for a 6 GB Turing card and may not transfer to faster GPUs.
 
 ## Pending
+
+- t200 tail arms (lbx_w10_t1, ft_sft_ep2), about 6 GPU-hours, lowest priority.
 
 - E4.3 (optional, since E4 was not competitive on dev48): MATH-148 for the LoRA. The locked test is not worth opening
   for an arm that already lost on dev.

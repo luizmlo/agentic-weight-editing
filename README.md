@@ -89,6 +89,12 @@ What we have learned so far:
    [docs/cost.md](docs/cost.md).
 6. **More interpretability context hurt.** Agents given an activation atlas found "internal-state" mechanisms that looked
    good on probes and generalized worse in generation. This held in 3 of 3 paired replicates.
+7. **It holds on a larger locked test.** On 200 more locked GSM8K problems, a1 beats the Astra edit by 8.0 ± 3.4 pp,
+   ties budget forcing with half the cut-off answers, and the combination is best (0.695).
+8. **It does not work on a diffuse defect.** On instruction following (IFEval, thinking off), two agent runs, a
+   system prompt and LoRA fine-tuning all lost 3–7 pp on fresh prompts after looking better on their practice
+   checks. Sampling noise (23% of prompts flip between two runs of the unchanged model) swamps any plausible gain.
+   The method's reach is set by the signal-to-noise ratio of the real test. See `docs/CADERNO.md` (2026-11-08/09).
 
 ## Repository layout
 

@@ -319,7 +319,7 @@ Escolhemos então **seguir instruções** (IFEval: "não use vírgulas", "tudo e
 exata", "destaque pelo menos 3 seções"). Com o raciocínio desligado, o modelo segue todas as instruções em só cerca de
 55% dos prompts, e as falhas se espalham por muitos tipos de instrução.
 
-**Desenho**
+**Configuração**
 - **Mesmo protocolo dos loops:** um agente com 40 notas rápidas e 6 testes reais por geração, no máximo 4 edições
   de posto 1.
 - **Comparações:** um system prompt pedindo cuidado, e fine-tuning LoRA em 414 respostas do próprio modelo que
@@ -419,7 +419,7 @@ As transcrições completas dos agentes e as gerações brutas (~210 MB) serão 
 | Conferir as citações; diagrama da anatomia da edição | a fazer |
 
 **Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os
-resultados atuais; e uma conferência principal se o segundo defeito funcionar.
+resultados atuais; e uma conferência principal se um segundo defeito concentrado funcionar.
 
 **Títulos alternativos:** *Agentes como Programadores do Espaço de Pesos: Corrigindo Loops de Raciocínio em Modelos de
 Linguagem Pequenos*; *Geração no Laço: o que Faz a Programação Agêntica no Espaço de Pesos Funcionar*.
