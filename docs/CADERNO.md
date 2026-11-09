@@ -1318,3 +1318,55 @@ pareadas (ganho ± EP; problemas que só o primeiro acerta / só o segundo):
 - O FT com dados autodestilados também não melhora o IFEval. Então **o defeito não é corrigível de forma barata
   nesta escala**, nem por gradiente. Isso conta a favor do método, não contra: o agente não "falhou" onde o FT acerta.
 - O b2 (checagem com 128 prompts) começou às 11h15 e testa se, com sinal melhor, a edição acha algo.
+
+## 2026-11-09 (13h45) — b2: a checagem maior não muda nada; confirmação negativa
+
+**Run b2** (gen_set synth128; 36 de 40 sondas e 6 de 6 checagens; ~1h50 de relógio, porque as checagens levaram
+5–8 min, não 15–20). **Auditoria:** nenhuma leitura proibida nas 117 chamadas de ferramenta.
+
+| checagem (128 sintéticos; base 0,578, cortes 0,078) | prompt strict | cortes |
+|---|---|---|
+| 112126_253: neurônios de parada tardios ×3 | 0,563 | 0,023 |
+| **120302_651: d_a ×5 em L0, L1, L2, L4 (linear_attn.out_proj)** | **0,625** | 0,063 |
+| 122209_766: d_a, outra ponderação | 0,578 | 0,078 |
+| 123756_003: variante | 0,594 | 0,078 |
+| 115957_748: d_a removida (sinal oposto) | 0,594 | 0,047 |
+| 125218_060: direção fim-vs-quebra-de-linha em L19/L23 | 0,555 | 0,078 |
+
+- **Achado mecanístico (do agente, só com os pesos):** uma direção residual, d_a, é lida com o mesmo sinal por
+  99,7% das linhas dos portões de decaimento (`in_proj_a`) das 288 cabeças DeltaNet. O valor singular principal
+  concentra 0,215 da energia, contra 0,001 numa direção aleatória.
+  - É um canal global de controle do esquecimento. Editar d_a muda o modelo: neutral até +0,026, ou seja, o texto
+    genérico fica *mais* provável.
+  - Os dois sinais dão resultados parecidos no IFEval sintético, então o efeito não tem direção. O próprio agente
+    estimou o ganho fora da amostra em 0 a +2 pp.
+  - Vale investigar à parte (memória/esquecimento das DeltaNet), fora do segundo defeito.
+- **Confirmação pré-registrada** (dev200, base reamostrado, mesmas sementes):
+  - base 0,560 (inst 0,691; cortes 0,12); b2 = 120302_651 0,500 (inst 0,632; cortes 0,17).
+  - **−6,0 ± 3,7** (22 resgates / 34 perdas). No recorte dev152: −7,2 ± 4,4.
+  - Não passa no critério. O teste trancado do IFEval continua fechado.
+- **Previsões:** "ganho ≥ 8 pp na própria checagem" não aconteceu (+4,7). "Passar na confirmação" (20%) também
+  não aconteceu.
+- **Ruído do base de novo:** a reamostra do base no dev[48:200], contra a amostra do dev152, deu +0,7 ± 4,0 (19/18
+  discordâncias, 24%).
+
+**Leitura conjunta do segundo defeito (5 braços escolhidos por 4 seletores):**
+
+| braço | dev152 vs base |
+|---|---|
+| b1 (agente, checagem de 48) | −3,3 ± 4,1 |
+| a1 (edição dos loops, sem seleção no IFEval) | −3,9 ± 4,3 |
+| P (system prompt) | −6,6 ± 4,2 |
+| FT ep2 (LoRA-SFT, época escolhida em 48) | −7,2 ± 4,3 |
+| b2 (agente, checagem de 128) | −7,2 ± 4,4 (dev200: −6,0 ± 3,7) |
+
+- Todos negativos. A checagem maior **não** resolveu, então a explicação "só ruído" fica fraca. A leitura que sobra:
+  - neste modelo e nesta tarefa, perturbações pequenas e baratas (pesos, prompt ou gradiente com dados
+    autodestilados) tiram o modelo de um ponto que já é quase o melhor da vizinhança;
+  - a seleção em ~50–130 prompts não acha as raras que ajudam.
+- O padrão de custo também se inverte entre os conjuntos. No sintético, o b2 cortava *menos* (0,063 contra 0,078);
+  no IFEval, cortou *mais* (0,17 contra 0,12). A checagem sintética não reproduz bem a distribuição dos prompts
+  reais do IFEval.
+- **Para o paper:** o segundo defeito é um **resultado negativo bem controlado**. O método (e o FT) funcionam quando o
+  defeito é concentrado e o sinal é grande (loops: +46 pp). Não funcionam quando o defeito é difuso e o efeito
+  plausível fica abaixo do ruído de amostragem. Isso delimita o escopo da técnica.
