@@ -57,6 +57,18 @@ Scorer v2 adds `submit_gen`: GGUF + llama-server on GSM8K train[200:216], 6k cap
 | E4.1 | Self-distilled SFT data (GSM8K train[300:900]) | natural ~5–10%; excised ~25–40% of loops | 175 sequences: natural 57 (9.5%, confirmed); excised 118 (19.7% of 600, 42% of loops; the prediction did not state the base) | `ft_data.py` → `ft/sft_stats.json` |
 | E4.2 | LoRA-SFT baseline vs the agent edit | ≥ +20 pp on dev48, below a1 (0.667); cost ≥ 5× the agent's | epoch 2 (picked on gen-check, 7/16). dev48 **0.292**: +14.6 ± 5.9 vs base (below +20), **−37.5 ± 7.1 vs a1 (0/18)**, below Astra, logit bias and bf4096; cut 0.71. Cost 17.1 GPU-h vs 1.31 per agent run (13×; 8× counting the scorer's full residency), **confirmed** ([cost.md](cost.md)) | `ft_train.py`, `ft_export.py`, `queue_e4.sh` |
 
+## Paper 1 follow-up and second defect (2026-11-08/09)
+
+| id | question | prediction | outcome | script → data |
+|---|---|---|---|---|
+| t200 | Larger locked GSM8K test (test[200:400]), 5 arms | base ≈ .13, Astra ≈ .42, a1 ≈ .60, bf ≈ .55, combo ≈ .65; text changes if bf beats a1 by > 2 SE | base .155, Astra .535, a1 .615, bf .610, combo **.695**; a1 − Astra +8.0 ± 3.4, a1 − bf +0.5 ± 3.4 (**text unchanged**), combo − a1 +8.0 ± 3.0; pooled 232: a1 − Astra +9.1 ± 3.1 | `queue_t200.sh` → `gen_t200.json` |
+| struct-screen | Is malformed JSON / tool calling a defect of the 0.8B without thinking? | — | **no**: near ceiling on schema-valid JSON and tool calls; language drift rare → not a second defect | `struct_eval.py` → `struct_screen_*.json` |
+| IFEval screen | IFEval as the second defect (strict prompt-level, thinking off) | — | base 0.55 on dev200; failures spread over many instruction types, ~1/3 degenerate repetition | `ifeval_eval.py` → `ifeval_dev200.json` |
+| b1 | Agent edit on IFEval (40 probes / 6 gen checks of 48 IFEval prompts) | agent +5–9 pp on dev152; a1 no change; probes weak | gen check 0.625 vs 0.500, **dev152 −3.3 ± 4.1** (refuted); a1 −3.9 ± 4.3; system prompt −6.6 ± 4.2 | `m2a_if/runs/b1` → `ifeval_dev152.json` |
+| FT-IF | LoRA-SFT on 414 self-distilled IFEval-style answers (`ifsynth`) | best epoch +5–15 pp on dev152 | epoch 2 picked at +12.5 ± 6.4 on dev[0:48]; **dev152 −7.2 ± 4.3** (refuted) | `queue_if_ft.sh` → `ifeval_ftsel_if.json`, `ifeval_dev152.json` |
+| noise | How noisy is a 48-prompt IFEval gen check? | — | two base samples (different seeds) disagree on 35/152 prompts (23%) → paired SE ≈ 8–9 pp on 48; every 48-prompt selector (agent, prompt, FT epoch) showed a winner's curse | `CADERNO.md` 2026-11-08/09 |
+| b2 | Agent edit with a 128-prompt synthetic gen check (declared deviation) | gain ≥ 8 pp on own check 35%; passes dev200 (> 2 SE) 20% | running | `m2a_if/runs/b2` |
+
 ## Deviations from pre-registration
 
 - **2026-11-07, E4.2:** training max_len raised from 4096 (the automatic E4.0 pick) to 8192, *before* training. With
