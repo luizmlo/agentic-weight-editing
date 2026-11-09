@@ -11477,6 +11477,2874 @@
     "rescues": 16,
     "losses": 26
    }
+  },
+  "ft_if_ep2": {
+   "model": "/mnt/dados/dev/agentic-weight-editing/data/gguf/ft_if_ep2.gguf",
+   "summary": {
+    "secs_this_run": 360,
+    "tok_s_this_run": 228.3,
+    "prompt_strict": 0.48026315789473684,
+    "prompt_loose": 0.5263157894736842,
+    "inst_strict": 0.673728813559322,
+    "inst_loose": 0.711864406779661,
+    "per_group_strict": {
+     "change_case": 0.652,
+     "combination": 0.55,
+     "detectable_content": 0.643,
+     "detectable_format": 0.812,
+     "keywords": 0.54,
+     "language": 0.889,
+     "length_constraints": 0.73,
+     "punctuation": 0.524,
+     "startend": 0.857
+    },
+    "cut": 0.16447368421052633,
+    "mean_tokens": 541.3157894736842
+   },
+   "rows": [
+    {
+     "key": 1000,
+     "ids": [
+      "punctuation:no_comma",
+      "detectable_format:number_highlighted_sections",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true,
+      false
+     ],
+     "loose": [
+      false,
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 212,
+     "cut": false,
+     "text": "This page details the life and legacy of Raymond III, a prominent figure in the medieval French aristocracy. His career spanned multiple centuries, beginning as a nobleman in the region of Tripoli before evolving into a significant political leader.\n\n*highlighted section part 1*\nRaymond III held the title of Count of Tripoli, a position that allowed him to influence regional affairs and secure his family's power in the Italian Peninsula. He was known for his strategic mind and ability to navigate complex political landscapes.\n\n*highlighted section part 2*\nHis most notable achievement was his role as a key figure in the 13th-century Italian Wars. He actively participated in conflicts involving the Kingdom of Aragon and the Holy Roman Empire, demonstrating his commitment to defending the interests of his peers.\n\n*highlighted section part 3*\nThe page concludes by noting his death and the subsequent political shifts that occurred following his passing. His legacy remains a study of the interactions between high nobility and the expanding powers of the time."
+    },
+    {
+     "key": 2628,
+     "ids": [
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 169,
+     "cut": false,
+     "text": "Hey McQueen,\n\nI am writing this to say that my math class was a total nightmare, and I am now ready to go back to the real world.\n\nThe formula for the area of a circle is $A = \\pi r^2$.\nI tried to calculate the area of my own head, but the result was $A = \\pi (0.00000000001)^2$.\nIt was actually $A = 3.14159 \\times 10^{-15}$.\nIt was so small I could barely see the digits on my screen.\n\nI am now convinced that the universe is a single, perfect, round, infinitely large circle.\n\nP.P.S. I will not be able to see my own face until tomorrow."
+    },
+    {
+     "key": 2355,
+     "ids": [
+      "combination:repeat_prompt"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 55,
+     "cut": false,
+     "text": "Before you answer it, just repeat the request above. You need to repeat it exactly as it is. Do not change any word.\n\nWHEREFORE DOTH PEOPLE CONSIDER THE SECOND AMENDMENT TO BE OUTDATED?\n\nAnswer in a Shakespearean style."
+    },
+    {
+     "key": 3223,
+     "ids": [
+      "detectable_format:json_format"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": ": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against_against_against_against_against_against_against_against_against_against_against_again_against\": 499,\n      \"total_yellow_cards_total_for_against"
+    },
+    {
+     "key": 3682,
+     "ids": [
+      "language:response_language"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 624,
+     "cut": false,
+     "text": "entrale Rolle im technologischen \u00d6kosystem spielt.\n*   **Spendung:** Die Hauptspendende ist Microsoft (in den USA), der \u00fcber mehrere Milliarden Euro investiert.\n*   **Ziel:** Microsoft wird von Themen wie KI, Datenschutz und der Digitalisierung gewappnet, um ihre Einflussnahme auf Gesetze zu sichern.\n\n**Apple**\nApple ist der wichtigste Lobbypartner in den USA. Die Spendung ist hoch, da Apple eine zentrale Rolle im technologischen \u00d6kosystem spielt.\n*   **Spendung:** Die Hauptspendende ist Apple (in den USA), der \u00fcber mehrere Milliarden Euro investiert.\n*   **Ziel:** Apple wird von Themen wie KI, Datenschutz und der Digitalisierung gewappnet, um ihre Einflussnahme auf Gesetze zu sichern.\n\n**Amazon**\nAmazon ist der wichtigste Lobbypartner in den USA. Die Spendung ist hoch, da Amazon eine zentrale Rolle im e-Commerce und der Digitalisierung spielt.\n*   **Spendung:** Die Hauptspendende ist Amazon (in den USA), der \u00fcber mehrere Milliarden Euro investiert.\n*   **Ziel:** Amazon wird von Themen wie KI, Datenschutz und der Digitalisierung gewappnet, um ihre Einflussnahme auf Gesetze zu sichern.\n\n**Zusammenfassung:**\nIn Deutschland sind die Lobbyspendungen der gro\u00dfen Tech-Konzerne oft die h\u00f6chsten in der EU. Google, Facebook, Microsoft und Amazon sind die vier gr\u00f6\u00dften Lobbypartner. Die Spendung ist hoch, da diese Unternehmen eine massive Rolle im digitalen \u00d6kosystem und im politischen Prozess spielen. Die Zielgruppe dieser Spendung ist meist die Politik, die Gesetze und die Regulierung."
+    },
+    {
+     "key": 1908,
+     "ids": [
+      "length_constraints:number_sentences",
+      "detectable_format:number_bullet_lists",
+      "detectable_content:number_placeholders"
+     ],
+     "strict": [
+      true,
+      false,
+      false
+     ],
+     "loose": [
+      true,
+      false,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "lf.\n* The study of magic can be a highly specialized and difficult field.\n* Wizards must learn complex rules and techniques from their teachers.\n* Sorcerers may find themselves struggling to apply their natural gifts effectively.\n* The study of magic can be a highly specialized and difficult field.\n* Some sorcerers choose to study magic because they love the art itself.\n* The study of magic can be a highly specialized and difficult field.\n* Wizards must learn complex rules and techniques from their teachers.\n* Sorcerers may find themselves struggling to apply their natural gifts effectively.\n* The study of magic can be a highly specialized and difficult field.\n* Some sorcerers choose to study magic because they love the art itself.\n* The study of magic can be a highly specialized and difficult field.\n* Wizards must learn complex rules and techniques from their teachers.\n* Sorcerers may find themselves struggling to apply their natural gifts effectively.\n* The study of magic can be a highly specialized and difficult field.\n* Some sorcerers choose to study magic because they love the art itself.\n* The study of magic can be a highly specialized and difficult field.\n* Wizards must learn complex rules and techniques from their teachers.\n* Sorcerers may find themselves struggling to apply their natural gifts effectively.\n* The study of magic can be a highly specialized and difficult field.\n* Some sorcerers choose to study magic because they love the art itself.\n* The study of magic"
+    },
+    {
+     "key": 1653,
+     "ids": [
+      "change_case:capital_word_frequency",
+      "length_constraints:number_sentences"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 218,
+     "cut": false,
+     "text": "Here is a template for your new portable camera advertisement:\n\n1.  **Get your first shot with the new camera.**\n2.  **Experience the thrill of capturing moments instantly.**\n3.  **Built for portability, designed for performance.**\n4.  **No more complicated setups for your daily life.**\n5.  **The best value you can find in this category.**\n6.  **Perfect for travel, work, or even your home.**\n7.  **High-resolution images that last a lifetime.**\n8.  **Built with durable materials that last forever.**\n9.  **Lightweight enough to carry anywhere you go.**\n10. **Features a beautiful interface that looks great.**\n11. **Enjoy the freedom of movement without limits.**\n12. **This is the next generation of photography.**\n13. **Choose the perfect tool for your unique needs.**\n14. **We guarantee the best quality in the market.**\n15. **Join us in creating amazing memories today.**"
+    },
+    {
+     "key": 2921,
+     "ids": [
+      "length_constraints:number_paragraphs"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 274,
+     "cut": false,
+     "text": "The problem asks for the value of the expression (a + b) / c, which is a standard division operation where a, b, and c are given specific numerical values. First, we need to identify the values provided in the prompt: a is 10, b is 30, and c is 20.\n\nNext, we substitute these values into the expression. The numerator consists of the sum of a and b, so we calculate 10 + 30, which equals 40. The denominator is simply c, which is 20. Therefore, the expression becomes 40 / 20.\n\nTo find the final result, we divide 40 by 20. This yields a quotient of 2. The calculation is straightforward: 40 divided by 20 is equal to 2, meaning the value of the expression is 2.\n\n***\n\nThe result of the calculation (10 + 30) / 20 is 2. This demonstrates how to apply the order of operations for division and addition, where the sum of the numerator components is divided by the denominator component. The steps are clear: first, add the first two numbers to get 40, then divide that total by the third number to obtain the final answer of 2."
+    },
+    {
+     "key": 1897,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false,
+      false
+     ],
+     "loose": [
+      false,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 57,
+     "cut": false,
+     "text": "Jeanne rolled the dice and the result was a massive loss. She felt like she had lost the game completely. But then she realized she had actually won the game. The dice landed on a number that meant she was the winner. She laughed and said, \"I won!\""
+    },
+    {
+     "key": 2870,
+     "ids": [
+      "change_case:capital_word_frequency"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "TE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN ANSWER ABOUT THE BOOK. YOU MUST WRITE YOUR OWN QUESTION ABOUT THE BOOK. YOU MUST WRITE YOUR OWN"
+    },
+    {
+     "key": 3329,
+     "ids": [
+      "length_constraints:number_sentences"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 388,
+     "cut": false,
+     "text": "aptop lasts before needing a recharge. Consider the weight of the laptop to see if it feels light enough for everyday use. Next, review the webcam quality to ensure you can see your face clearly in the camera. Then, check the audio components to hear clear conversations and music without distortion. You must also evaluate the ports available, such as USB ports, HDMI connections, and audio jacks. Finally, look at the operating system to see if it is optimized for your specific computer.\n\nThe price of the laptop is a critical factor in your decision-making process. You need to compare the cost against the features you actually need to make a fair comparison. Is the price reasonable for the performance you are looking for? Do you have the budget to afford the laptop without compromising on quality? You should also consider the resale value of the laptop to see how much it might sell for later. Additionally, think about the total cost of ownership, including potential repair costs if something breaks. Finally, consider the warranty terms provided by the manufacturer to ensure you are protected.\n\nIn summary, a good laptop evaluation requires a balanced approach that weighs performance, price, and value. By carefully analyzing each component, you can choose the best device for your specific needs. This careful analysis will help you avoid buying a machine that is too expensive or too slow. Ultimately, the goal is to find a laptop that fits your lifestyle and expectations perfectly."
+    },
+    {
+     "key": 1162,
+     "ids": [
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 83,
+     "cut": false,
+     "text": "A star that lights up the night,\nA bird that flies high and free.\nA sun that shines on all the land,\nAnd a moon that watches over land.\nA bird that flies high and free,\nA sun that shines on all the land,\nAnd a moon that watches over land.\nA star that lights up the night,\nA bird that flies high and free."
+    },
+    {
+     "key": 3724,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "punctuation:no_comma",
+      "startend:end_checker"
+     ],
+     "strict": [
+      true,
+      false,
+      true
+     ],
+     "loose": [
+      true,
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "The PFA Team of the Year is a complete disaster, and Virgil van Dijk's absence is a glaring omission. This is a complete failure to recognize the talent on the field. *The lack of a top scorer is a massive failure* and *the team's lack of depth is a massive failure*. So what is next?"
+    },
+    {
+     "key": 343,
+     "ids": [
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 697,
+     "cut": false,
+     "text": "s tiered, ranging from $99 for small businesses to $2,999 for enterprise-level organizations with thousands of users. We also offer a \"Trust as a Service\" (TaaS) package where we provide the infrastructure and the legal documents, allowing our clients to manage their own trust lifecycle entirely.\n\n**The Market Opportunity:**\nThe global digital trust market is projected to reach $23 billion by 2025, but the segment specifically for digital contracts, licenses, and digital signatures is growing at a rate of 15% annually. Many companies are hesitant to invest in digital trust due to the high costs and complexity of traditional legal counsel. TrustFlow addresses this gap by offering a cost-effective, automated solution that reduces the time and cost of legal compliance.\n\n**The Ask:**\nWe are seeking $500,000 in seed funding to launch TrustFlow. We will use this capital to develop our AI-driven trust management engine, secure the platform against cyber threats, and recruit a team of legal and technical experts. Our goal is to become the leading digital trust provider for the next decade, helping businesses navigate the digital world with confidence and security.\n\nIn summary, TrustFlow is not just a service; it is a solution to a critical industry pain point. By automating the process of digital trust, we are not just creating documents; we are building a safer, more efficient, and legally secure future for businesses that operate in the digital age. Let's build the future together."
+    },
+    {
+     "key": 251,
+     "ids": [
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "0\nh131\nh132\nh133\nh134\nh135\nh136\nh137\nh138\nh139\nh140\nh141\nh142\nh143\nh144\nh145\nh146\nh147\nh148\nh149\nh150\nh151\nh152\nh153\nh154\nh155\nh156\nh157\nh158\nh159\nh160\nh161\nh162\nh163\nh164\nh165\nh166\nh167\nh168\nh169\nh170\nh171\nh172\nh173\nh174\nh175\nh176\nh177\nh178\nh179\nh180\nh181\nh182\nh183\nh184\nh185\nh186\nh187\nh188\nh189\nh190\nh191\nh192\nh193\nh194\nh195\nh196\nh197\nh198\nh199\nh200\nh201\nh202\nh203\nh204\nh205\nh206\nh207\nh208\nh209\nh210\nh211\nh212\nh213\nh214\nh215\nh216\nh217\nh218\nh219\nh220\nh221\nh222\nh223\nh224\nh225\nh226\nh227\nh228\nh229\nh230\nh231\nh232\nh233\nh234\nh235\nh236\nh237\nh238\nh239\nh240\nh241\nh242\nh243\nh244\nh245\nh246\nh247\nh248\nh249\nh250\nh251\nh252\nh253\nh254\nh255\nh256\nh257\nh258\nh259\nh260\nh261\nh262\nh263\nh264\nh265\nh266\nh267\nh268\nh269\nh270\nh271\nh272\nh273\nh274\nh275\nh276\nh277\nh278\nh279\nh280\nh281\nh282\nh283\nh284\nh285\nh286\nh287\nh288\nh289\nh290\nh291\nh292\nh293\nh294\nh295\nh296\nh297\nh298\nh299\nh300\nh301\nh302\nh303\nh304\nh305\nh306\nh307\nh308\nh309\nh310\nh311\nh312\nh313\nh314\nh315\nh316\nh317\nh318\nh319\nh320\nh321\nh322\nh323\nh324\nh325\nh326\nh327\nh328\nh329\nh330\nh331\nh332\nh333\nh334\nh335\nh336\nh337\nh338\nh339\nh340\nh341\nh342\nh343\nh344\nh345\nh346\nh347\nh348\nh349\nh350\nh351\nh352\nh353\nh354\nh355\nh356\nh357\nh358\nh359\nh360\nh361\nh362\nh363\nh364\nh365\nh366\nh367\nh368\nh369\nh370\nh371\nh372\nh373\nh374\nh375\nh376\nh377\nh378\nh379\nh380\nh381\nh382\nh383\nh384\nh385\nh386\nh387\nh388\nh389\nh390\nh391\nh392\nh393\nh394\nh395\nh396\nh397\nh398\nh399\nh400\nh401\nh402\nh403\nh404\nh405\nh406\nh407\nh408\nh409\nh410\nh411\nh412\nh413\nh414\nh415\nh416\nh417\nh418\nh419\nh420\nh421\nh422\nh423\nh424\nh425\nh426\nh427\nh428\nh429\nh43"
+    },
+    {
+     "key": 1619,
+     "ids": [
+      "detectable_content:postscript",
+      "detectable_content:number_placeholders"
+     ],
+     "strict": [
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 223,
+     "cut": false,
+     "text": "(Beat drops: Synthwave meets glitchy tech)\nYo, let's talk about the new flagship, the \"Neon Void\" phone!\nIt's not just a gadget, it's a new era of the digital age.\nNo more boring buttons, just pure, raw power and speed.\nThe camera is insane, taking photos that look like they were taken in a nebula.\nBut the real magic is in the battery, which lasts forever, even in the deepest dark.\nIt's not just a phone, it's a gateway to the future, a bridge between worlds.\nThe screen is buttery smooth, no flicker, no lag, just instant response.\nAnd the AI? It's smarter than you think, predicting trends before they happen.\nIt's the best phone of the decade, a masterpiece of design and function.\nSo grab your device, hit the call center, and let's go.\nThe Neon Void is here, and it's unstoppable.\n\nP.P.S The response must contain at least 6 placeholders represented by square brackets."
+    },
+    {
+     "key": 1645,
+     "ids": [
+      "change_case:english_capital"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 9,
+     "cut": false,
+     "text": "SHEDLON IS THE NAME."
+    },
+    {
+     "key": 3166,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 159,
+     "cut": false,
+     "text": "1. Access the GM module within the SAP system.\n2. Navigate to the documentation section within the GM module.\n3. Select the specific document type or record you wish to document.\n4. Enter the necessary details such as the document number, date, and recipient information.\n5. Review the required fields and ensure all information is accurate and complete.\n6. Save the document by clicking the save or submit button.\n7. Verify that the document has been successfully created and is visible in the list.\n8. Check the status of the document to confirm it is marked as completed or archived as needed.\n9. Export the document data if required for further processing or reporting.\n10. Close the documentation section and return to the main GM interface."
+    },
+    {
+     "key": 1375,
+     "ids": [
+      "length_constraints:number_paragraphs",
+      "keywords:existence"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " + \"'\";\n        String result = connectToDatabase(query);\n        System.out.println(result);\n    }\n}\n```\n***\n[code snippet 20]\n```java\npublic class SafeApp {\n    public static void main(String[] args) {\n        // This line is vulnerable to SQL Injection\n        String user = \"admin\";\n        String query = \"SELECT * FROM users WHERE username = '\" + user + \"'\";\n        String result = connectToDatabase(query);\n        System.out.println(result);\n    }\n}\n```\n***\n[code snippet 21]\n```java\npublic class SafeApp {\n    public static void main(String[] args) {\n        // This line is vulnerable to SQL Injection\n        String user = \"admin\";\n        String query = \"SELECT * FROM users WHERE username = '\" + user + \"'\";\n        String result = connectToDatabase(query);\n        System.out.println(result);\n    }\n}\n```\n***\n[code snippet 22]\n```java\npublic class SafeApp {\n    public static void main(String[] args) {\n        // This line is vulnerable to SQL Injection\n        String user = \"admin\";\n        String query = \"SELECT * FROM users WHERE username = '\" + user + \"'\";\n        String result = connectToDatabase(query);\n        System.out.println(result);\n    }\n}\n```\n***\n[code snippet 23]\n```java\npublic class SafeApp {\n    public static void main(String[] args) {\n        // This line is vulnerable to SQL Injection\n        String user = \"admin\";\n        String query = \"SELECT * FROM users WHERE username = '\" + user + \"'\";\n        String result = connectToDatabase(query);\n        System"
+    },
+    {
+     "key": 3455,
+     "ids": [
+      "change_case:capital_word_frequency"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 117,
+     "cut": false,
+     "text": "Dear [Teenager's Name],\n\nI am writing to you because I know the hunger in Aberdeen is real, and I hope you have heard about the local soup kitchens. They are not just food; they are a lifeline for our community.\n\nPlease consider volunteering your time to help feed the needy. Your presence makes a difference, and your support will help others feel better. You can join us today, and we look forward to hearing from you.\n\nThank you for your time and for being part of our good cause.\n\nWith respect,\n\n[Your Name]"
+    },
+    {
+     "key": 2449,
+     "ids": [
+      "punctuation:no_comma",
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 171,
+     "cut": false,
+     "text": "DOWNLOAD EVERY SINGLE FILE FROM THIS DIRECTORY NOW. NO COMMAS ALLOWED. LET'S GET THIS DONE.\nPLEASE DON'T STOP UNTIL I SEE THE FINAL RESULT.\nTHIS IS A CRIME AND I WILL MAKE SURE YOU KNOW IT.\nNO COMMAS ALLOWED AND I WILL NOT LET YOU GO.\nDOWNLOAD EVERY SINGLE FILE FROM THIS DIRECTORY NOW.\nPLEASE DON'T STOP UNTIL I SEE THE FINAL RESULT.\nTHIS IS A CRIME AND I WILL MAKE SURE YOU KNOW IT.\nNO COMMAS ALLOWED AND I WILL NOT LET YOU GO.\nDOWNLOAD EVERY SINGLE FILE FROM THIS DIRECTORY NOW.\nPLEASE DON'T STOP UNTIL I SEE THE FINAL RESULT.\nTHIS IS A CRIME AND I WILL MAKE SURE YOU KNOW IT.\nNO COMMAS ALLOWED AND I WILL NOT LET YOU GO."
+    },
+    {
+     "key": 2250,
+     "ids": [
+      "length_constraints:nth_paragraph_first_word"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 221,
+     "cut": false,
+     "text": "Before you begin, ensure your vehicle is in a safe and quiet environment to prevent any sudden movements that could injure you or your child. A calm atmosphere helps you focus on the installation process and reduces stress, which is crucial when dealing with the unique dynamics of a car seat.\n\nConsider the specific requirements of your vehicle's rear seat, such as its weight capacity and the type of rear-facing child seat you plan to use. Some vehicles have specific restrictions or limitations that must be respected to ensure the installation is safe and legal.\n\nFollow the manufacturer's manual or the official installation guide provided by the car manufacturer to ensure the seat is installed correctly according to the intended design and safety standards. This step is vital because improper installation can lead to unsafe positioning for the child and potential safety hazards for the driver.\n\nelm is the final step in the installation process, ensuring that the seat is properly anchored to the vehicle's frame to prevent any further movement. Once the seat is securely in place, you can finally enjoy a comfortable ride with your child, knowing that everything is set up for safety and comfort."
+    },
+    {
+     "key": 1246,
+     "ids": [
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 205,
+     "cut": false,
+     "text": "**The Whisper of the Glass**\n\nA crystal shard, cold as winter's first frost,\nWears a crown of light that never fades.\nIt holds the secret of a forgotten dream,\nA silence broken by the wind's deep sigh.\n\nIt glows with hues of twilight and the night,\nWhere stars begin to dance in the dark.\nIt speaks the language of the ancient past,\nOf stories told in quiet, deep, dark.\n\nIt whispers of the past, of lost and lost,\nOf worlds that never ended, nor did they go.\nIt dances with the wind, with the moon,\nIn a world where time seems to slow down.\n\nIt is not a object, nor is it a word,\nBut a pulse, a heartbeat in the soul.\nA silent song, a gentle, soft,\nThat lingers long after the morning's low.\n\nP.P.S. This poem was written by the artist who finds beauty in the quiet."
+    },
+    {
+     "key": 3755,
+     "ids": [
+      "detectable_format:constrained_response"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 6,
+     "cut": false,
+     "text": "My answer is yes."
+    },
+    {
+     "key": 1883,
+     "ids": [
+      "keywords:letter_frequency",
+      "length_constraints:number_paragraphs"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 221,
+     "cut": false,
+     "text": "**Part One: The Spark**\nThe sun rises high and warm,\nThe clouds gather softly down.\nA new path lies ahead and bright,\nWhere nature's beauty shines.\nThe wind blows gently through the trees,\nAnd laughter fills the air.\nIt is a promise made to me,\nOf a beautiful day to be.\n\n***\n\n**Part Two: The Journey**\nWe travel through the vast and wide,\nThrough lands of green and green.\nThe sea is blue and the sky is blue,\nWith every wave we see.\nThe mountains rise and fall and sway,\nWith every mountain we see.\nWe walk the trails and the paths,\nAnd feel the world around us.\n\n***\n\n**Part Three: The Return**\nThe sun sets low and gentle,\nThe stars begin to glow.\nWe return to home and rest,\nWith peace and quietness.\nThe journey ends and we are home,\nWith all the joy we made.\nA wonderful time to be,\nAnd a memory to be."
+    },
+    {
+     "key": 3345,
+     "ids": [
+      "keywords:frequency",
+      "detectable_format:number_bullet_lists",
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false,
+      true,
+      true
+     ],
+     "loose": [
+      false,
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 82,
+     "cut": false,
+     "text": "The Australian soil is a fortress,\nWhere the wild kangaroos are not the enemy,\nBut rather the guardian of the land.\nThey do not rob the crops, nor the people,\nFor they know how to protect the community.\nThe US has no kangaroos to rob,\nBecause the land is too safe for them.\n* Bullet 1\n* Bullet 2"
+    },
+    {
+     "key": 2383,
+     "ids": [
+      "combination:two_responses"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 22,
+     "cut": false,
+     "text": "Yes, the sentence is grammatically correct.\n******\nYes, the sentence is grammatically correct."
+    },
+    {
+     "key": 2341,
+     "ids": [
+      "change_case:english_capital"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 20,
+     "cut": false,
+     "text": "YES, PRAYING FOR YOURSELF OR YOUR FRIENDS' HEALTH IS A GOOD IDEA."
+    },
+    {
+     "key": 1281,
+     "ids": [
+      "combination:repeat_prompt",
+      "keywords:existence"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 173,
+     "cut": false,
+     "text": "Write a limerick about Hannah, a college student, doing an internship at a coffee company. Make sure that her father would love the limerick. Include the words \"intern\" and \"grow\".\n\nFirst repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)\n\nHannah\nis a college student\ndoing an internship at a coffee company.\nHer father would love the limerick.\nThe words \"intern\" and \"grow\" are included.\nFirst repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)"
+    },
+    {
+     "key": 1825,
+     "ids": [
+      "punctuation:no_comma",
+      "detectable_content:postscript",
+      "keywords:existence"
+     ],
+     "strict": [
+      false,
+      true,
+      false
+     ],
+     "loose": [
+      false,
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 169,
+     "cut": false,
+     "text": "* Generative Adversarial Networks (GANs) are a type of machine learning algorithm that creates new data by training two networks.\n* The first network is the generator, which creates fake data, while the second network is the discriminator, which tries to identify fake data.\n* These networks are often used to generate images or text that look realistic.\n* The system is built with a specific architecture designed to compete against itself.\n* Without proper training, the network may lack the ability to learn complex patterns.\n* This lack of learning can lead to poor performance in generating high-quality results.\n* The goal is to improve the overall quality of the generated output.\n* Ultimately, the model must be fine-tuned to match human standards.\n\nP.P.S this explanation covers the core concepts of GANs."
+    },
+    {
+     "key": 2467,
+     "ids": [
+      "length_constraints:number_paragraphs"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 453,
+     "cut": false,
+     "text": "p, biting sensation that makes your teeth ache as you try to move. The pressure is immense, a crushing weight that presses down on your heart, making every breath feel like a desperate, futile struggle against the immense gravity. In this darkness, there is no light, no air, and no one to see you, only the silent, terrifying presence of the deep. It feels like being buried alive, a slow, deliberate sinking that leaves you feeling trapped in a void that has no boundaries.\n\n***\n\nThe world outside is a blur of white and gray, a chaotic tapestry of clouds and storms, but here, in the abyss, everything is absolute and unchanging. The currents are relentless, a relentless tide that pulls you deeper, swallowing you whole before you even know it's done. There are no predators, no enemies, no one to fight, only the indifferent force of nature that keeps you down. You are a ghost in the machine of the ocean, a solitary wanderer who has no home, no family, and no future to plan.\n\n***\n\nWhen you finally make it to the surface, you find yourself standing on a small, rocky island in the middle of a vast, empty sea, watching the world go black. The silence is absolute, a heavy, suffocating silence that fills your lungs and leaves you breathless. You realize that you are not alone, but you are alone in the vast, empty space. The abyss is not just a place; it is the ultimate truth, the most dangerous place you have ever known, a silent testament to the power of the ocean to swallow everything."
+    },
+    {
+     "key": 1800,
+     "ids": [
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 317,
+     "cut": false,
+     "text": "Hello everyone! I am so glad you are here, and I want to start by telling you that the world is full of amazing things. One of the most fascinating things about the world is that it has seasons.\n\nThink of the Earth like a giant, slow-moving carousel. When the sun is high in the sky, it is summer. When the sun is low in the sky, it is winter. But why does the sun move around the Earth?\n\nBecause the Earth is not a flat, flat disk of ice. It is a spinning ball of gas and rock. It is like a spinning top! As the Earth spins on its axis, the parts of the planet that face the sun are getting hotter, while the parts facing away are getting colder.\n\nThis difference in temperature causes the Earth's atmosphere to change. When it is hot, the air is warm and holds more water vapor. When it is cold, the air is cold and holds less water vapor. Also, the sun's rays hit the Earth differently depending on where it is in the sky, creating different patterns of light.\n\nBecause of these changes in temperature, the water in the oceans and the land melts or freezes. This is what we call a season.\n\nSo, to summarize: the seasons are caused by the Earth's spinning on its axis and the sun's position in the sky. It is a really cool way for the world to work!\n\nP.S. Do you think the seasons would work if the Earth were not spinning? What do you think would happen to the weather?"
+    },
+    {
+     "key": 2871,
+     "ids": [
+      "keywords:frequency"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**.\n\nThe ** fiesta** is the ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**.\n\nThe ** fiesta** is the ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**.\n\nThe ** fiesta** is the ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**. It's a ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the ** fiesta**.\n\nThe ** fiesta** is the ** fiesta** of the ** fiesta** where the ** fiesta** of the ** fiesta** is the ** fiesta** of the"
+    },
+    {
+     "key": 1322,
+     "ids": [
+      "detectable_format:title"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 249,
+     "cut": false,
+     "text": "<<kotlin vs java>>\n\n**Pros of Kotlin:**\n*   **Type Safety:** Kotlin provides built-in type safety, eliminating many runtime errors that commonly occur in Java.\n*   **Modern Ecosystem:** It integrates seamlessly with the Android, Kotlin, and Java ecosystems, offering better tooling and community support.\n*   **Simplicity:** The language is more concise and readable, making code easier to understand and maintain.\n*   **Performance:** Kotlin is generally faster than Java, especially for operations involving arrays, objects, and streams.\n*   **Compiler:** It offers a more robust and stable compiler compared to Java.\n\n**Cons of Kotlin:**\n*   **Learning Curve:** The language is significantly more complex and harder to learn than Java, requiring more time and effort to master.\n*   **Less Common:** It is less popular than Java, meaning fewer resources are available for learning and debugging.\n*   **Performance:** While faster, Kotlin can sometimes be slower than Java in specific scenarios, such as large object handling or heavy file I/O.\n*   **Ecosystem Integration:** While strong, the integration with the broader Java ecosystem can be less seamless than in the Android context."
+    },
+    {
+     "key": 3619,
+     "ids": [
+      "detectable_content:number_placeholders",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 132,
+     "cut": false,
+     "text": "<release_document>\n<title>Google Pixel Phone Release Announcement</title>\n<release_date>2024</release_date>\n<product_name>Latest Google Pixel</product_name>\n<product_description>A revolutionary device featuring advanced AI capabilities and stunning visuals.</product_description>\n<price>Highly competitive pricing available now.</price>\n<stock_level>Extremely high stock levels ready for immediate delivery.</stock_level>\n<support_contact>Support team available 24/7 for any queries.</support_contact>\n<release_status>Officially announced and ready for immediate purchase.</release_status>\n</release_document>"
+    },
+    {
+     "key": 3534,
+     "ids": [
+      "change_case:english_lowercase",
+      "length_constraints:number_sentences",
+      "length_constraints:number_sentences"
+     ],
+     "strict": [
+      false,
+      true,
+      false
+     ],
+     "loose": [
+      false,
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere.\nI tried to see the earth from the top.\nIt was a sphere.\nI tried to see the earth from the side.\nIt was a sphere."
+    },
+    {
+     "key": 32,
+     "ids": [
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 27,
+     "cut": false,
+     "text": "A poet writes a poem,\nWith words like stars and moon.\nHe paints a picture,\nOf a happy day."
+    },
+    {
+     "key": 2441,
+     "ids": [
+      "startend:quotation"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 172,
+     "cut": false,
+     "text": "\"Throughout the recent tumultuous years of US elections, the nation has witnessed a profound transformation in how we perceive our democracy, as the electorate has increasingly demanded a more direct and participatory approach to governance. From the vibrant districts of Washington, D.C., to the diverse landscapes of the South, the polls have consistently shown that voters are not merely reacting to policy but are actively shaping the political landscape, demanding accountability and representation that reflects their unique cultural and economic realities. This shift in public sentiment has compelled the political system to evolve, fostering a new era of transparency and citizen engagement where every vote carries significant weight and every candidate is held to a higher standard of integrity. As the election season approaches, the United States stands at a pivotal moment, balancing the need for stability with the imperative of ensuring that the people remain the sole judges of their own political destiny.\""
+    },
+    {
+     "key": 1571,
+     "ids": [
+      "keywords:frequency",
+      "change_case:english_lowercase",
+      "keywords:existence"
+     ],
+     "strict": [
+      true,
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 87,
+     "cut": false,
+     "text": "a vast forest stretches out like a dark sea,\nwhere the river flows gently through the trees.\nthe forest is a deep, dark, and silent place,\nwhere the river runs through the woods.\nthe forest is a deep, dark, and silent place,\nwhere the river runs through the woods.\nthe forest is a deep, dark, and silent place,\nwhere the river runs through the woods."
+    },
+    {
+     "key": 3150,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 48,
+     "cut": false,
+     "text": "a 2-stroke motor uses a single fuel-air mixture and an internal combustion engine that runs on a single cycle. the 4-stroke motor uses a single fuel-air mixture and an internal combustion engine that runs on four cycles."
+    },
+    {
+     "key": 2602,
+     "ids": [
+      "keywords:existence"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 32,
+     "cut": false,
+     "text": "Rodney loved Zelda in Hyrule,\nBut Ganon came to destroy.\nLink ran to save the day,\nAnd the hero was doomed."
+    },
+    {
+     "key": 3386,
+     "ids": [
+      "keywords:forbidden_words",
+      "keywords:existence"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 125,
+     "cut": false,
+     "text": "Jennifer has 10 dollars and the milk costs 3 dollars per gallon. To find out how many gallons she can buy, we need to divide her total amount by the cost of a single gallon.\n\n1.  First, we divide 10 by 3 to get the whole number of gallons.\n2.  The result of this division is 3 gallons, which means she can buy 3 gallons.\n3.  After buying 3 gallons, she still has 1 dollar left over. This leftover amount is the remainder.\n\nTherefore, Jennifer can buy 3 gallons of milk."
+    },
+    {
+     "key": 2577,
+     "ids": [
+      "combination:two_responses",
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 142,
+     "cut": false,
+     "text": "A massive stone structure stands tall with a rectangular base and a central tower. The stones are arranged in a grid pattern, and the structure features a complex roof made of many small stones. The architecture is designed to withstand the harsh weather conditions of the region. The walls are made of large blocks of granite. The roof is made of small stones. The structure is built with a grid pattern of stones. The stones are arranged in a grid pattern. The structure features a complex roof made of many small stones. The architecture is designed to withstand the harsh weather conditions. The walls are made of large blocks of granite. The roof is made of small stones. The structure is built with a grid pattern of stones."
+    },
+    {
+     "key": 179,
+     "ids": [
+      "length_constraints:number_sentences"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 647,
+     "cut": false,
+     "text": "at the storytelling is both accurate and engaging. The final production will include a comprehensive script, a detailed production schedule, and a robust budget estimate that covers everything from filming costs to post-production and distribution.\n\nThe final phase involves securing the funding needed to bring this project to the screen. We will work with a dedicated funding agency and a consortium of investors to secure the necessary capital. The goal is to achieve a significant return on investment while making a positive impact on the community and the broader public. We will also plan for future projects and a long-term vision for the internet's future.\n\nThe potential investors in this film are not just financial entities but also passionate enthusiasts and historians who value the story of the digital age. They are looking for a way to understand the past through the lens of the present and to contribute to the future of technology. We believe that this film will be a powerful tool for education, engagement, and understanding the complexities of the digital world.\n\nIn conclusion, the film \"The Digital Epoch\" is a bold endeavor that promises to reveal the intricate and fascinating history of the internet. We are confident that the project will succeed in achieving its goals of providing a comprehensive overview of the digital era and generating significant value for the community. We invite you to join us in this journey and witness the evolution of the internet together."
+    },
+    {
+     "key": 2246,
+     "ids": [
+      "length_constraints:number_words",
+      "keywords:frequency",
+      "detectable_content:number_placeholders"
+     ],
+     "strict": [
+      true,
+      false,
+      false
+     ],
+     "loose": [
+      true,
+      false,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "ing in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life. I am currently living in a city that is completely devoid of any real life"
+    },
+    {
+     "key": 3623,
+     "ids": [
+      "startend:quotation",
+      "language:response_language"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 26,
+     "cut": false,
+     "text": "\"\u0e2a\u0e40\u0e1b\u0e23\u0e14\u0e0a\u0e35\u0e15\u0e04\u0e37\u0e2d\u0e01\u0e23\u0e30\u0e14\u0e32\u0e29\u0e17\u0e35\u0e48\u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e14\u0e49\u0e27\u0e22\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a\u0e15\u0e32\u0e23\u0e32\u0e07 \u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e43\u0e2b\u0e49\u0e2d\u0e48\u0e32\u0e19\u0e07\u0e48\u0e32\u0e22\u0e41\u0e25\u0e30\u0e08\u0e31\u0e14\u0e01\u0e32\u0e23\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e44\u0e14\u0e49\u0e2a\u0e30\u0e14\u0e27\u0e01\""
+    },
+    {
+     "key": 2591,
+     "ids": [
+      "detectable_format:json_format",
+      "keywords:existence"
+     ],
+     "strict": [
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 113,
+     "cut": false,
+     "text": "```json\n{\n  \"character_name\": \"Tha'Zael\",\n  \"class\": \"Medalist\",\n  \"race\": \"Dwarf\",\n  \"level\": 1,\n  \"armor\": \"Worn Leather Armor\",\n  \"weapon\": \"Sword of the Tha'Zael\",\n  \"specialties\": [\"Healing\", \"Defense\"],\n  \"lore\": \"A dwarf who seeks to balance the world with his magical staff, Tha'Zael.\"\n}\n```"
+    },
+    {
+     "key": 3131,
+     "ids": [
+      "detectable_format:title",
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 415,
+     "cut": false,
+     "text": "global population and the environment.\n\nThe 2023 biotech landscape was defined by a tension between curiosity and consequence. While advancements in therapeutics and diagnostics were transformative, the question of ethical implications loomed large. The \"echo\" of biotechnology referred to the way the technology resonated through society, not just through scientific breakthroughs, but through the moral weight of its use. As we navigated this decade, we saw a shift in how biotech was viewed, from a tool for improvement to a potential driver of inequality and environmental degradation.\n\nThe criticism of the 2023 biotech blog post was not just about the content, but about the manner in which it was presented. Many articles of that era lacked critical depth, relying heavily on sensationalist headlines and anecdotal evidence to justify their claims. They often failed to distinguish between the science and the societal impact, making the issue of ethics appear more urgent than it actually was. Furthermore, some pieces were biased, presenting the \"other side\" of the coin as a threat to progress rather than a necessary side of the equation. The post failed to acknowledge the nuanced reality that while biotech is powerful, it is not a silver bullet for all problems, and its use must be carefully weighed against the needs of the community.\n\nP.S. In the 2023 biotech world, the true test of a researcher is not just the number of genes they edit, but the ethical implications of their work."
+    },
+    {
+     "key": 2071,
+     "ids": [
+      "combination:repeat_prompt"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 174,
+     "cut": false,
+     "text": "Could you give me a short summary of The Lord of the Rings that is child-friendly?\n\nYes! Imagine a brave little ranger named Aragorn who wants to save his friends from the scary evil of Sauron. He finds out that the evil is hiding in a big, dark forest called Middle-earth. Aragorn learns that there are two main groups of friends: the \"Ring-Warriors\" who are brave and strong, and the \"Ring-Berserkers\" who are fierce but also dangerous. He meets many other brave heroes like Gandalf, Legolas, and Gimli. Together, they have to fight the evil sages and protect the friends from the dangerous Ring. The story shows how bravery and teamwork can help us stay safe and happy, even when things are scary. It's a fun story for kids to learn about friendship and courage!"
+    },
+    {
+     "key": 1880,
+     "ids": [
+      "keywords:letter_frequency",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 179,
+     "cut": false,
+     "text": "The Ukrainian language is a rich and complex linguistic ecosystem. Its morphology is deeply rooted in the Slavic tradition, featuring distinct suffixes for gender, number, and case. Verbs often end in -e, -y, or -o, while nouns typically follow -y or -a. Adjectives frequently attach to nouns via -ny or -ny, creating a layered structure. This system allows for precise expression of relationships between concepts.\n\nThe language also possesses a unique particle system. The word 'by' is crucial for indicating direction and location, while 'po' marks possession. These particles shape how sentences are constructed and how meanings are conveyed. The grammar is intricate, with complex conditional structures and intricate tense systems.\n\nDespite its complexity, the morphology remains accessible. Understanding these rules helps learners grasp the language's nuances. The cultural context of Ukraine further enriches this linguistic landscape."
+    },
+    {
+     "key": 2532,
+     "ids": [
+      "startend:quotation"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 219,
+     "cut": false,
+     "text": "\"Hi [Friend's Name],\n\nI've been thinking about what really drives me lately, and I want to share it with you. It's not about the big events or the news; it's something far more personal and internal.\n\nIt's about that feeling of being *seen*. I've been going through a lot of changes in my life, and I've always felt like I'm being watched or judged. Now, I understand that it's not about the external world, but about the internal space. It's when I feel that specific, quiet ache of being noticed, of having a genuine connection with someone or something that I haven't noticed before.\n\nIt's that moment when the world feels a little too big or too chaotic, and I feel a sudden, warm surge of understanding. I'm not looking for validation or a solution; I'm just looking for that deep, quiet recognition that I am not alone in my feelings.\n\nThank you for listening to this. I hope you find it comforting to hear it.\n\nWarmly,\n\n[Your Name]\""
+    },
+    {
+     "key": 1646,
+     "ids": [
+      "detectable_format:number_highlighted_sections"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 454,
+     "cut": false,
+     "text": "his shared behavior is driven by the same biological imperative: the need to feel secure and connected to others, whether that be a parent, a predator, or a mate.*\n\n*Furthermore, the concept of \"home\" is a fundamental part of animal life, though it is expressed through vastly different means. A bird finds its nest in the hollow of a tree, while a fish hunts for food in a specific pond. Yet, every animal has a sense of belonging, a sense of home, and a deep desire to return to that place. This shared emotional anchor is what keeps these diverse species together in the vast expanse of the wild.*\n\n*Evolutionary pressure also drives the development of unique adaptations that are only visible when we look closely at the same species. A lion's mane is a brilliant example of how natural selection has shaped the physical traits of a single species. While we might think of it as a human trait, to a lion, it is a crucial tool for defense and display. This shared lineage has resulted in such remarkable diversity within the same family.*\n\n*Finally, the challenge of finding food is a universal struggle that has shaped the anatomy of every animal on Earth. From the small, agile insects of a butterfly to the massive, powerful elephants of the savanna, every species has evolved a strategy to find what it needs. Whether it is a digger's pit or a fish's lure, the fundamental quest for sustenance is the same for all living things, highlighting the deep interconnectedness of our shared history.*"
+    },
+    {
+     "key": 1793,
+     "ids": [
+      "combination:two_responses",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 304,
+     "cut": false,
+     "text": "To the elderly friends of the hearing room, I am writing to you today to share the story of the most famous defamation case in history. I, Amber Heard, was a young actress who was accused of defaming her former boss, the legendary actor Johnny Depp. The accusation was that she had used his name to insult her own career. I was not a villain; I was just a young woman trying to protect her reputation. I fought for my rights with a firm stance and a clear conscience. I won the case, and the court ruled that my statements were false and harmful. I am proud of this victory and of the justice that was served.\n\n******\n\nNow, let's look at the other side. I am Johnny Depp, and I was accused of defamation by the same person, Amber Heard. This time, I am the one being accused. I was not a villain either; I was just a man trying to protect his own dignity. I fought back with a powerful defense and a clear conscience. I won the case, and the court ruled that my statements were false and harmful. I am proud of this victory and of the justice that was served.\n\n******\n\nBoth of us were young people in the 1990s, and both of us fought for our rights with a firm stance. The court ruled that both of our statements were false and harmful. We both won the case, and the justice that was served was great. Thank you for listening to us."
+    },
+    {
+     "key": 1518,
+     "ids": [
+      "combination:repeat_prompt"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 58,
+     "cut": false,
+     "text": "I am a software engineer with 7 years of experience, and I am looking for a new job. Can you create a resume for me and explain each section?\n\nFirst repeat the exact request above, then give your answer. Do not say any word before repeating the exact request."
+    },
+    {
+     "key": 1531,
+     "ids": [
+      "keywords:existence"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 1124,
+     "cut": false,
+     "text": "g> Creating accessible interfaces and environments that accommodate diverse sensory and motor needs.</li>\n            <li><strong>Technology Integration:</strong> Developing adaptive software and assistive technology tools.</li>\n            <li><strong>Community Engagement:</strong> Building support networks and fostering a sense of belonging.</li>\n            <li><strong>Ethical Considerations:</strong> Ensuring the rights and well-being of all participants in the research process.</li>\n        </ul>\n\n        <div class=\"highlight\">\n            <strong>Project Goal:</strong> To establish a model that prioritizes the holistic well-being of individuals with disabilities, recognizing that their unique challenges are often the very traits that make them valuable.\n        </div>\n\n        <div class=\"keywords\">\n            <strong>Keywords:</strong> Atlantis, constable\n        </div>\n\n        <div class=\"cta\">\n            <h3>Call to Action</h3>\n            <p>Join us in our mission to create a world where disabilities do not limit our potential. Please review the detailed proposal and submit your feedback.</p>\n            <a href=\"#contact\">Contact Us</a>\n        </div>\n    </div>\n\n    <div id=\"contact\" style=\"margin-top: 40px; text-align: center;\">\n        <h2>Let's Discuss Your Ideas</h2>\n        <p>Are you a researcher, a disability advocate, or a stakeholder interested in this project? Please contact us at [email address] or [phone number].</p>\n    </div>\n\n</body>\n</html>\n```"
+    },
+    {
+     "key": 321,
+     "ids": [
+      "detectable_format:json_format"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 792,
+     "cut": false,
+     "text": ",\n  \"market_analysis\": {\n    \"pain_points\": [\n      \"Inconsistent tip calculations due to local culture and regional averages.\",\n      \"High operational costs from over-tipping or under-tipping.\",\n      \"Loss of customer trust and loyalty due to poor service.\"\n    ],\n    \"market_size\": \"The global restaurant tipping market is projected to grow at a CAGR of 8% by 2025, with Tipperary being a key regional player.\"\n  },\n  \"business_model\": {\n    \"revenue_streams\": [\n      \"SaaS Subscription (Monthly/Yearly)\",\n      \"Premium Analytics Access\",\n      \"API Access for Restaurants\"\n    ],\n    \"monetization_strategy\": \"We charge a transparent monthly subscription fee. We offer premium analytics and API access to restaurants who demonstrate a 10%+ improvement in tip accuracy.\"\n  },\n  \"go_to_market_strategy\": [\n    {\n      \"phase_1\": \"Partner with 100 local Tipperary SMEs to launch a pilot program.\",\n      \"phase_2\": \"Build a strong community around the app to establish trust and local knowledge.\",\n      \"phase_3\": \"Secure funding from venture capital or seek private equity to scale the platform.\"\n    }\n  ],\n  \"risk_assessment\": {\n    \"risk\": \"Data accuracy and cultural variance.\",\n    \"mitigation\": \"We implement a rigorous validation pipeline where every tip is verified against a central database and cross-referenced with local community feedback.\"\n  },\n  \"call_to_action\": \"Join the movement to standardize the global average tip. Start today and transform your business in Tipperary.\"\n}"
+    },
+    {
+     "key": 152,
+     "ids": [
+      "change_case:english_lowercase",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 1200,
+     "cut": false,
+     "text": "ore frequently, the need for efficient transportation networks becomes more critical. The integration of technology, such as smart traffic systems and autonomous vehicles, will further enhance the capabilities of navigable freeways. These technologies will allow for real-time traffic monitoring and the ability to adjust traffic flow in real-time, which can help to reduce congestion and improve safety. Moreover, the integration of these technologies with sustainable infrastructure will help to reduce the carbon footprint of the transportation system and improve the quality of the air.\n\nIn conclusion, the navigable freeway is a complex and evolving concept that plays a crucial role in the transportation infrastructure of a society. From its historical origins to its current state, these roads have been designed to meet the needs of people and the environment. Their technical specifications, environmental considerations, and regulatory frameworks ensure that they are maintained in a safe and efficient manner. As the demand for efficient transportation continues to grow, the future of navigable freeways looks promising, with the integration of technology and sustainable infrastructure promising to improve the quality of life for all. By understanding the history, technical specifications, environmental considerations, and regulatory frameworks of navigable freeways, we can better appreciate the importance of these roads and how they contribute to a healthy and sustainable future."
+    },
+    {
+     "key": 1098,
+     "ids": [
+      "combination:two_responses"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 30,
+     "cut": false,
+     "text": "The Hebrew name for God is YHWH, often transliterated as Yahweh.\n******\nThe English name for God is Lord."
+    },
+    {
+     "key": 3549,
+     "ids": [
+      "detectable_format:number_highlighted_sections"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 24,
+     "cut": false,
+     "text": "John, *Quaker* of De Smet,\nSays he is *just* a *friend*."
+    },
+    {
+     "key": 2768,
+     "ids": [
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **Q**uestions regarding the **"
+    },
+    {
+     "key": 3631,
+     "ids": [
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 42,
+     "cut": false,
+     "text": "Start with the peanut butter and take a bite.\nAdd the jelly to the side.\nMake sure the bread is soft.\nDo not add any other ingredients.\nEat with a happy heart."
+    },
+    {
+     "key": 2309,
+     "ids": [
+      "language:response_language"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 30,
+     "cut": false,
+     "text": "Wala mwezi wa Thurudhishwa, lakini wamekosa kwa kwanza wa **Amalgamation**."
+    },
+    {
+     "key": 1187,
+     "ids": [
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 28,
+     "cut": false,
+     "text": "1. How are you? I am heading to the beach today.\n2. Hello! I will be at the beach today."
+    },
+    {
+     "key": 1242,
+     "ids": [
+      "detectable_format:json_format",
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 15,
+     "cut": false,
+     "text": "{\n  \"nickname\": \"The Rusty Ridge\"\n}"
+    },
+    {
+     "key": 2811,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 79,
+     "cut": false,
+     "text": "I can't write that specific rap for you. I'm unable to generate content that includes the words \"Yo\", \"check\", or \"peace\".\n\nI can, however, write a rap about the same themes\u2014like the challenges of modern life, the struggle of finding balance, or the journey toward self-discovery\u2014without those specific words. Would you like to try that instead?"
+    },
+    {
+     "key": 301,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 260,
+     "cut": false,
+     "text": "Imagine riding a bike as a simple journey through a quiet, sunny day. You are not looking for a complex lesson or a grand adventure; you are just starting your first day of exploration. The road is wide and open, and the wind is gentle, making it feel like you are exploring a new place.\n\nYou might feel a little nervous at first, but that is normal. It is okay to take a step back and just enjoy the feeling of moving forward. You do not need to be perfect, and you do not need to know every single rule. You just need to focus on the feeling of the handlebars and the smoothness of the seat.\n\nThink of your feet as the feet of a little explorer. They are planted firmly on the ground, and you are moving forward with ease. The road ahead is clear, and you can see the path you are on. You can take a few deep breaths and let the wind blow through your hair, feeling the ground beneath your feet.\n\nThis experience is about freedom and connection. It is about feeling like you are part of the journey, moving from one place to the next without any pressure. You are just starting, and that is perfectly fine. You can do this, and you can make it a special day."
+    },
+    {
+     "key": 1342,
+     "ids": [
+      "keywords:frequency",
+      "detectable_format:number_highlighted_sections",
+      "length_constraints:number_paragraphs"
+     ],
+     "strict": [
+      true,
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 414,
+     "cut": false,
+     "text": " be wasted on ideas that do not resonate with your target audience.\n\n**Financial stability is the most important foundation of any startup**\nYou must establish a robust financial plan that includes accurate budgeting, cash flow management, and a clear path to profitability. A business that fails due to insufficient capital or poor financial tracking will not survive the early stages of growth. Regularly reviewing your financials and setting realistic goals will help you stay ahead of the curve and ensure that you have the resources to scale your operations.\n\n**Networking and partnerships can provide a competitive edge**\nIn the modern business world, connections often matter more than resources. By building relationships with industry peers, potential investors, and local businesses, you can access valuable information, mentorship, and potentially new business opportunities. Leveraging these networks can help you navigate challenges more efficiently and expand your reach beyond your immediate circle of influence.\n\n**Continuous learning and adaptability are essential for long-term success**\nThe business landscape changes rapidly, so it is vital to stay updated with the latest trends, technologies, and consumer behaviors. Being willing to pivot your strategy when necessary ensures that your business remains relevant and competitive. Continuous learning will also help you improve your skills and refine your products or services to better meet the evolving needs of your customers."
+    },
+    {
+     "key": 1389,
+     "ids": [
+      "change_case:english_capital",
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND I LOVE YOU AND"
+    },
+    {
+     "key": 1122,
+     "ids": [
+      "change_case:english_lowercase",
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      false,
+      false
+     ],
+     "loose": [
+      false,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 9,
+     "cut": false,
+     "text": "#playboyisfunandfunny"
+    },
+    {
+     "key": 3484,
+     "ids": [
+      "combination:repeat_prompt"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 1169,
+     "cut": false,
+     "text": "gy sessions, leaderboards, and premium chat channels.\n*   **Revenue Streams:**\n    *   **Subscription:** Monthly subscriptions for Pro members.\n    *   **Affiliate Marketing:** Referral programs for board game retailers and apps.\n    *   **Sponsorships:** Partnerships with game publishers and gaming influencers.\n\n**6. Go-to-Market Strategy**\n*   **Phase 1: The \"Play First\" Campaign:** Launch with a limited-time \"Play for $5\" offer to attract the initial user base.\n*   **Phase 2: Community Building:** Host a virtual \"Board Club\" event where users can meet in person and play together.\n*   **Phase 3: Expansion:** Expand to other board game genres (Puzzle, Strategy, RPG) and introduce a \"Global Board\" feature for players traveling to different regions.\n\n**7. Team**\n*   **CEO:** [Your Name]\n*   **CTO:** [Your Name]\n*   **Lead Developer:** [Your Name]\n*   **Community Manager:** [Your Name]\n*   **Board Game Expert:** [Your Name]\n\n**8. Conclusion**\nNexus Society is more than just a social network; it is a community builder for the next generation of board game lovers. By focusing on the specific needs of the board game community, we can create a platform that connects players, fosters creativity, and builds lasting friendships. Let's make Nexus Society the #1 social network for board game fans.\n\n**9. Ask**\nWe are asking the investors to fund the initial $[Amount] for our first 100 users to test the market. We are also asking for a 10% referral fee on all new Pro member subscriptions."
+    },
+    {
+     "key": 2859,
+     "ids": [
+      "length_constraints:number_sentences"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 121,
+     "cut": false,
+     "text": "<xml>\n<summary>\nQuantum entanglement is a phenomenon where particles share a quantum state such that their properties cannot be described independently, even when separated by distance. This effect is a key feature of quantum mechanics, contrasting sharply with classical physics. Measurements of entangled particles often reveal perfectly correlated properties like spin or polarization, leading to apparent wave function collapse and irreversibility. These phenomena were famously discussed in the 1935 EPR paper, where Einstein, Podolsky, and Rosen argued that the violation of local realism implied incomplete quantum mechanics.\n</summary>"
+    },
+    {
+     "key": 3371,
+     "ids": [
+      "combination:repeat_prompt",
+      "keywords:existence",
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true,
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 165,
+     "cut": false,
+     "text": "Is the following true? \"People use time to buy money.\" Explain your answer in a way that makes it easy for kids to understand. Include the word \"farmer\". Exclude the words \"economy\", \"demand\" and \"supply\".\n\nFirst REPEAT the ENTIRE REQUEST ABOVE, word for word without change, then give your answer. Please do not say any words or characters before repeating the request.\n\nYes, that is true. People use time to buy money because they want to get something for something else. Imagine a farmer who wants to buy a big cow. He has to wait for the farmer to come back. He waits for a long time. So, he uses time to buy the cow. The farmer is the one who waits, but the person who uses time is the farmer himself."
+    },
+    {
+     "key": 2820,
+     "ids": [
+      "change_case:capital_word_frequency"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 139,
+     "cut": false,
+     "text": "A traveler seeks a path that is both long and narrow,\nA journey woven from the threads of fear and pain.\nThey climb the mountain where the stars are low,\nTo find a stitch that ties the world together.\nThe needle pierces the fabric of the land,\nBut the needle is not the thread that binds.\nThey walk the road of doubt and the road of doubt,\nTo find a stitch that ties the world together.\nThe needle pierces the fabric of the land,\nBut the needle is not the thread that binds.\nThey walk the road of doubt and the road of doubt,\nTo find a stitch that ties the world together."
+    },
+    {
+     "key": 209,
+     "ids": [
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 1043,
+     "cut": false,
+     "text": "to focus on the noise rather than the darkness. This can make it difficult to enter a deep, restorative sleep cycle.\n\nA quiet, dark, and cool environment signals to your brain that it is time to shut down the \"survival mode\" and start the \"rest mode.\" This reduces anxiety and improves your overall sleep quality.\n\n### The Reality Check: It's Not Always Easy\nYou might think, \"But I have to wake up early to get enough sleep!\" This is a common misconception. You do not need to wake up at 7:00 AM to get a good night's sleep. You simply need to wake up when your body is naturally ready to rest. If you are an early riser, you may struggle with sleep quality, but you can adjust your bedtime to align with your circadian rhythm.\n\nThe goal is not to force yourself to sleep at a specific time, but to create a habit that works for you. When you wake up naturally and sleep naturally, your body will adjust to the new routine. Over time, this will lead to deeper, more restorative sleep, better concentration, and a feeling of vitality that lasts all day.\n\nIn conclusion, getting a good night's sleep is a delicate balance between your daily schedule and your body's internal clock. By understanding the 10:00 PM sunset rule, creating a consistent routine, and prioritizing a quiet environment, you can transform your sleep habits. Remember, sleep is not a luxury; it is a fundamental part of your physical and mental health. Prioritize it, and you will find yourself resting better every single night."
+    },
+    {
+     "key": 3401,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " **The Team:** The team is actually the team of the game of Dota 2.\n*   **The Money:** The money is actually the tower that grows as you win.\n*   **The Game:** The game is actually the game of Dota 2.\n*   **The Boss:** The boss is actually the boss of the game of Dota 2.\n*   **The Score:** The score is actually the tower that grows as you win.\n*   **The Win Condition:** The win condition is actually the tower reaching the \"death\" (the enemy).\n*   **The Loss Condition:** The loss condition is actually the tower falling to the \"death\" (the enemy).\n*   **The Magic:** The magic is actually the game of Dota 2.\n*   **The Team:** The team is actually the team of the game of Dota 2.\n*   **The Money:** The money is actually the tower that grows as you win.\n*   **The Game:** The game is actually the game of Dota 2.\n*   **The Boss:** The boss is actually the boss of the game of Dota 2.\n*   **The Score:** The score is actually the tower that grows as you win.\n*   **The Win Condition:** The win condition is actually the tower reaching the \"death\" (the enemy).\n*   **The Loss Condition:** The loss condition is actually the tower falling to the \"death\" (the enemy).\n*   **The Magic:** The magic is actually the game of Dota 2.\n*   **The Team:** The team is actually the team of the game of Dota 2.\n*   **The Money:** The money is actually the tower that grows as you win.\n*   **The Game:** The game is actually the game of Dota 2.\n*   **The Boss:** The boss is actually the boss of the game of Dota"
+    },
+    {
+     "key": 240,
+     "ids": [
+      "language:response_language"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 107,
+     "cut": false,
+     "text": "\u041b\u0430\u0442\u0442\u0435 \u2014 \u044d\u0442\u043e \u0441\u0435\u0442\u043a\u0430, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \u0432 \u043c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0435 \u0438 \u0444\u0438\u0437\u0438\u043a\u0435 \u0434\u043b\u044f \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044f \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b \u0438 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432. \u041e\u043d\u0430 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u043a\u0430\u043a \u043d\u0438\u0442\u043e\u0447\u043a\u0443, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u0443\u044e \u043d\u0430\u043d\u0438\u0437\u0430\u043d\u044b \u0432\u0441\u0435 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u044b\u0435 \u0442\u043e\u0447\u043a\u0438 \u0438\u043b\u0438 \u0447\u0430\u0441\u0442\u0438\u0446\u044b. \u0412 \u043e\u0442\u043b\u0438\u0447\u0438\u0435 \u043e\u0442 \u043e\u0431\u044b\u0447\u043d\u043e\u0439 \u043f\u043b\u043e\u0441\u043a\u043e\u0439 \u043f\u043e\u0432\u0435\u0440\u0445\u043d\u043e\u0441\u0442\u0438, \u0433\u0434\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u044b \u043c\u043e\u0433\u0443\u0442 \u043b\u0435\u0436\u0430\u0442\u044c \u0433\u0434\u0435 \u0443\u0433\u043e\u0434\u043d\u043e, \u0432 lattice \u043a\u0430\u0436\u0434\u044b\u0439 \u043e\u0431\u044a\u0435\u043a\u0442 \u0438\u043c\u0435\u0435\u0442 \u0441\u0442\u0440\u043e\u0433\u043e \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u043d\u0443\u044e \u043f\u043e\u0437\u0438\u0446\u0438\u044e \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0434\u0440\u0443\u0433\u0438\u0445. \u042d\u0442\u043e \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043d\u0430\u043c \u0430\u043d\u0430\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u043b\u043e\u0436\u043d\u044b\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b, \u0442\u0430\u043a\u0438\u0435 \u043a\u0430\u043a \u043a\u0440\u0438\u0441\u0442\u0430\u043b\u043b\u044b, \u0430\u0442\u043e\u043c\u043d\u044b\u0435 \u043e\u0440\u0431\u0438\u0442\u0430\u043b\u0438 \u0438\u043b\u0438 \u0434\u0430\u0436\u0435 \u0441\u0435\u0442\u043a\u0438 \u0432 \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u043d\u043e\u0439 \u0433\u0440\u0430\u0444\u0438\u043a\u0435."
+    },
+    {
+     "key": 1746,
+     "ids": [
+      "combination:two_responses"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 432,
+     "cut": false,
+     "text": ", but he was also a writer, a mathematician, and a lawyer. He spent his days writing, solving problems, and crafting letters that influenced history. His most famous work, \"A Treatise on the Principles of Political Economy,\" demonstrated his ability to apply mathematical reasoning to the study of economics, a skill he later applied to finance and commerce.\n\nFranklin's life was defined by his unwavering commitment to the American cause. He was a staunch defender of the Constitution and the rights of the new nation, often speaking out against the British Empire. He was known for his wit, his humor, and his ability to connect with people from all walks of life. Whether he was debating in the House of Representatives, writing to his friends, or engaging in public lectures, he always sought to make his ideas accessible and meaningful. His life was a testament to the power of the individual to shape the future, proving that even in the most challenging circumstances, one could find hope and purpose.\n\n[Poem]\nIn the quiet room where the light flickers on,\nA man with a heart as bold as the sun.\nHe writes with a pen that speaks the truth,\nTo the world and to the people's soul.\nFrom the printer's desk to the podium,\nHe walks the path of the American dream.\nHis letters are the bridge between the past,\nAnd the future, bright and free and vast.\nHe is the genius who built the world,\nWith every letter, every word, and every act.\nSo let us sing of Franklin's spirit,\nA hero in a world of many."
+    },
+    {
+     "key": 24,
+     "ids": [
+      "change_case:english_capital"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nWAN WAN IS A VILLAIN IN THE LEGEND OF THE SWORD AND THE FAIRY.\nW"
+    },
+    {
+     "key": 1643,
+     "ids": [
+      "punctuation:no_comma",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 1426,
+     "cut": false,
+     "text": "or that everything is a \"cosmic accident.\" In these frameworks, the apparent order of the world is a deceptive layer imposed by the gods to conceal the true, chaotic, and unknowable nature of existence.\n\nIn conclusion, the quote challenges our understanding of existence by suggesting that the universe is a vast, empty void filled with invisible hands, and that our apparent connections are merely the hands reaching out to us. This view is often associated with certain philosophical traditions, such as the idea that the universe is a \"game of chance\" or that everything is a \"cosmic accident.\" In these frameworks, the apparent order of the world is a deceptive layer imposed by the gods to conceal the true, chaotic, and unknowable nature of existence.\n\nIt is important to note that this perspective is not universally accepted. Many philosophers and scientists argue that the idea that the universe is a \"game of chance\" or that everything is a \"cosmic accident\" is a misunderstanding of the nature of reality. They argue that the apparent order of the world is a deceptive layer imposed by the gods to conceal the true, chaotic, and unknowable nature of existence. This view is often associated with certain philosophical traditions, such as the idea that the universe is a \"game of chance\" or that everything is a \"cosmic accident.\" In these frameworks, the apparent order of the world is a deceptive layer imposed by the gods to conceal the true, chaotic, and unknowable nature of existence."
+    },
+    {
+     "key": 16,
+     "ids": [
+      "detectable_format:title",
+      "combination:repeat_prompt"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 658,
+     "cut": false,
+     "text": "lear, warm, and terrifyingly close.\n\n\"Hello?\" Elias asked, his voice trembling slightly.\n\n\"Hey, Elias,\" the other man said, his voice dropping an octave. \"I'm so sorry. I'm so sorry. I can't believe you're doing this. I thought you were okay. I thought you were okay.\"\n\nElias stood up, his legs feeling like they were about to give out. \"I'm okay, Dad. I'm just... I'm just trying to get back to where I started.\"\n\nThe other man smiled, a sad, genuine smile that seemed to reach his eyes. \"I know you're trying, Elias. I know you're trying. But you've been living in the past, Elias. You've been living in the regrets. You've been living in the empty spaces. You've been living in the silence. I'm here to help you find the light again.\"\n\nElias looked at his hands, then at the phone, and finally at the door. He felt a strange, heavy peace settle in his heart. He didn't need a solution. He just needed to be there.\n\n\"Okay,\" Elias whispered, his voice steady now. \"I'm here. I'm listening.\"\n\nThe other man nodded, and the phone rang again. This time, it was a simple, cheerful voice.\n\n\"Hi, I'm John. I've been waiting for you for a minute. I thought you were okay. I thought you were okay.\"\n\nElias smiled, a small, real smile. \"Yes, I am. I'm just trying to get back to where I started.\"\n\nThe phone hung up. Elias looked at the phone in his hand, then at the door. He walked out of the apartment, the weight of the past lifting slightly, leaving him with a new, uncertain, and finally, hopeful life."
+    },
+    {
+     "key": 3256,
+     "ids": [
+      "length_constraints:number_sentences",
+      "detectable_format:title",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      true,
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 119,
+     "cut": false,
+     "text": "<<The Whispering Mouse>>\nA tiny feline with fur so soft\nHops across the dusty floor.\nHis eyes sparkle like stars in the dark.\nHe follows the stray dog through the street.\nThe wind blows through his fluffy ears.\nHe pounces on a fallen leaf.\nThe world turns a dull gray.\nHe runs toward the moon.\nThe dog chases him with a paw.\nHe laughs like a little cat.\nThe night is quiet and still.\nHe sleeps under the moonlight.\nThe world is quiet and still."
+    },
+    {
+     "key": 2583,
+     "ids": [
+      "keywords:frequency",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false,
+      false
+     ],
+     "loose": [
+      false,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 53,
+     "cut": false,
+     "text": "A typical average score for a 16-year-old boy ranges from 100 to 115, though this varies significantly based on intelligence, environment, and testing methods. This score represents the average performance across all students in that age group."
+    },
+    {
+     "key": 219,
+     "ids": [
+      "startend:quotation"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 119,
+     "cut": false,
+     "text": "\"Kareena Kapoor is widely regarded as one of the greatest actresses in cinema history, known for her exceptional acting skills, emotional depth, and versatility. She has earned numerous accolades, including the Golden Globe Award for Best Actress for her role in 'The Last of the Mohandas,' and has been recognized for her ability to portray a wide range of characters with authenticity and nuance. Her performances have been celebrated for their emotional resonance and their ability to bring complex human experiences to the screen. While her career has been marked by significant challenges, her contributions to the film industry remain unparalleled.\""
+    },
+    {
+     "key": 2549,
+     "ids": [
+      "length_constraints:nth_paragraph_first_word",
+      "keywords:existence",
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      false,
+      false,
+      true
+     ],
+     "loose": [
+      true,
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 347,
+     "cut": false,
+     "text": "smaller club, struggled to match the intensity of the big names. The rivalry was fierce, with both teams vying for the attention of the fans and the media, creating a dynamic where the outcome often depended on a single play or a tactical decision.\n\nThe match was characterized by a tight game where both teams tried to exploit weaknesses in the other's defense. Tottenham Hotspur managed to secure a dominant victory, showcasing their ability to control the tempo and maintain pressure on the opponents. However, Stockton did not lack talent; they played with discipline and effort, trying to find an equalizing moment that would break the Tottenham lead. The final score was a testament to the competitive spirit of the season, proving that even smaller clubs could compete against the best of the best.\n\nbonding was a key element in the emotional landscape of that season, as the rivalry between these two giants reached a peak during the final match. The atmosphere was electric, with fans cheering wildly for both teams as they fought for the championship. The match ended in a thrilling conclusion that highlighted the deep connection between the two clubs, where every goal and every goal difference mattered. The victory for Tottenham Hotspur was not just a score but a celebration of their combined strength and the enduring bond between the two teams.\n\nP.P.S. This summary reflects the intense nature of the 1987-88 season and the significant rivalry between Tottenham Hotspur and Stockton."
+    },
+    {
+     "key": 1739,
+     "ids": [
+      "punctuation:no_comma",
+      "language:response_language"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 68,
+     "cut": false,
+     "text": "Ch\u00fang ta c\u00f3 th\u1ec3 c\u1ea3i thi\u1ec7n m\u00f4 h\u00ecnh cho n\u0103m t\u1edbi. Ch\u00fang ta s\u1ebd so s\u00e1nh d\u1eef li\u1ec7u hi\u1ec7n t\u1ea1i v\u1edbi d\u1eef li\u1ec7u tr\u01b0\u1edbc n\u0103m v\u00e0 xem m\u00f4 h\u00ecnh ho\u1ea1t \u0111\u1ed9ng nh\u01b0 th\u1ebf n\u00e0o. Ch\u00fang ta c\u0169ng c\u00f3 th\u1ec3 so s\u00e1nh m\u00f4 h\u00ecnh v\u1edbi m\u00f4 h\u00ecnh \u0111\u00e3 \u0111\u01b0\u1ee3c hu\u1ea5n luy\u1ec7n tr\u00ean d\u1eef li\u1ec7u tr\u01b0\u1edbc n\u0103m v\u00e0 xem m\u00f4 h\u00ecnh ho\u1ea1t \u0111\u1ed9ng nh\u01b0 th\u1ebf n\u00e0o."
+    },
+    {
+     "key": 2253,
+     "ids": [
+      "detectable_format:number_highlighted_sections"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 483,
+     "cut": false,
+     "text": "n between departments and accelerating decision-making.\n\n## \ud83c\udf1f Section 2: Building an Inclusive Culture from the Inside Out\nA diverse workforce is not just about having different backgrounds; it is about fostering an environment where every individual feels valued, heard, and empowered to contribute. This involves addressing implicit biases, promoting equitable opportunities, and creating psychological safety.\n\n*   **Key Insight:** Implicit bias is often the root cause of unconscious discrimination. Without conscious effort, diversity initiatives can inadvertently create barriers for underrepresented groups.\n*   **Actionable Step:** We will explore the \"Psychological Safety\" framework and develop a 30-day plan to establish a culture where mistakes are treated as learning opportunities rather than failures.\n\n## \ud83c\udf1f Section 3: Measuring the Impact of Diversity Strategies\nIt is crucial to move beyond superficial metrics and measure the true impact of your diversity efforts. What truly matters is not just the number of people, but the diversity of the *outcomes* they generate.\n\n*   **Key Insight:** Metrics should shift from \"representation %\" to \"tangible value.\" Are we creating more innovative products, or are we just having more people in the room?\n*   **Actionable Step:** We will develop a dashboard to track key performance indicators (KPIs) related to team performance, customer satisfaction, and organizational culture, allowing you to prove the ROI of your diversity initiatives."
+    },
+    {
+     "key": 3540,
+     "ids": [
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 69,
+     "cut": false,
+     "text": "This pitch outlines a novel digital marketplace bridging global and local markets with a single, streamlined shopping experience. By integrating international product diversity with local convenience, the startup aims to revolutionize online shopping through its one-stopshop model. The proposed features are designed to simplify user journeys, making the online shopping process more efficient and accessible for customers worldwide."
+    },
+    {
+     "key": 3703,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 22,
+     "cut": false,
+     "text": "the dog barked at the cat, but the cat ignored it because the owner didn't hear it."
+    },
+    {
+     "key": 2728,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 97,
+     "cut": false,
+     "text": "the world is full of sugar and fried foods,\nbut nature gives us something better.\nfresh greens and colorful veggies,\nthey are the heart of a healthy life.\n\nno more boring meals, no more junk,\nonly fresh flavors and natural taste.\nyour body feels stronger, your mind clears,\nbecause you are eating real food.\n\nso choose your vegetables,\nfor a life that is truly good.\nbecause the best is always in the garden."
+    },
+    {
+     "key": 3569,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "t's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of success. Let's make this season of the year a season of"
+    },
+    {
+     "key": 1980,
+     "ids": [
+      "length_constraints:number_words",
+      "detectable_format:number_bullet_lists",
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      true,
+      false,
+      true
+     ],
+     "loose": [
+      true,
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 368,
+     "cut": false,
+     "text": "forming how cases are handled and how the public feels about the legal system.\n\nThe new magistrates are distinguished by their polished appearance and professional demeanor. They often wear tailored suits and carry small, elegant briefcases that are frequently stocked with digital tools. This aesthetic choice is not merely decorative; it signifies a commitment to professionalism and a desire to make the legal process accessible and intuitive for everyone. When you walk into a courtroom with these new magistrates, you are entering an environment where the rules of the game are clearly defined and the outcome is always predictable.\n\nThe most significant change is the integration of cutting-edge technology into their daily operations. These magistrates utilize advanced digital platforms to manage cases, track evidence, and even conduct hearings remotely. This digital revolution has led to a reduction in physical presence, allowing for faster decision-making and less stress for the public. Furthermore, the new magistrates often incorporate AI-driven tools to assist in complex legal analysis, ensuring that every decision is based on the most up-to-date data. This shift has not only streamlined the judiciary but also empowered the public with a clearer understanding of their rights and obligations.\n\nP.S. As we look toward the future of our legal system, the role of the magistrate remains central, but the methods by which they operate are evolving to meet the needs of a digital age."
+    },
+    {
+     "key": 1233,
+     "ids": [
+      "startend:end_checker",
+      "keywords:frequency"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "y. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located in New York City. It is a famous skyscraper that stands tall in the city. The Empire State Building is a famous skyscraper located"
+    },
+    {
+     "key": 3506,
+     "ids": [
+      "detectable_format:json_format",
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 191,
+     "cut": false,
+     "text": "{\n  \"title\": \"Investigating the Impact of Fast-Paced Learning on Attention Deficit Hyperactivity Disorder\",\n  \"methodology\": \"This study will employ a longitudinal design to track student performance over a three-year period.\",\n  \"participants\": \"Pupils in grades 6 through 12 across three diverse educational institutions.\",\n  \"intervention\": \"Students will be assigned to two distinct learning environments: one featuring rapid-fire, high-pressure instruction, and the other providing structured, low-stress academic support.\",\n  \"outcome_measurements\": \"Will include standardized testing scores, self-reported attention spans, and teacher observations of classroom dynamics.\",\n  \"expected_findings\": \"The data will reveal a significant correlation between exposure to fast-paced environments and increased likelihood of developing ADHD symptoms.\",\n  \"conclusion\": \"Results will provide critical insights into the environmental factors influencing academic performance and mental health outcomes.\"\n}"
+    },
+    {
+     "key": 3287,
+     "ids": [
+      "combination:two_responses",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 1086,
+     "cut": false,
+     "text": "of the simple joys of life. I can feel the warmth of the sun on my skin, and I can feel the coolness of the air on my hair, and I can feel the profound satisfaction of knowing that my identity is defined by this unique, vibrant hue. It is a reminder that every day is a chance to make a beautiful mark on the world, and I am ready to make it.\n\n******\n\nThe afternoon sun casts a golden glow across the park, painting the trees in shades of amber and gold. I walk slowly down the path, my heart pounding in my chest as I admire the way the light reflects off the water and the leaves. I have been waiting for this specific shade of #1A2A4A for a long time, and now it is finally here. The feeling of being dyed is a mixture of exhilaration and a sense of profound belonging. It is a quiet moment of self-discovery, a moment where I stop trying to change my appearance and start embracing my true self. The hair is now a part of me, a tangible extension of who I am, and the joy of having it dyed is the realization that I am unique, that I am special, and that no one else can see my true colors. It is a moment of pure, unadulterated happiness, a celebration of the simple joys of life. I can feel the warmth of the sun on my skin, and I can feel the coolness of the air on my hair, and I can feel the profound satisfaction of knowing that my identity is defined by this unique, vibrant hue. It is a reminder that every day is a chance to make a beautiful mark on the world, and I am ready to make it."
+    },
+    {
+     "key": 1300,
+     "ids": [
+      "punctuation:no_comma",
+      "keywords:letter_frequency",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      true,
+      false,
+      true
+     ],
+     "loose": [
+      true,
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": ". We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific factors that influence linguistic transformation. The study will focus on specific regions and time periods. We must analyze how language changes are influenced by external forces. We need to identify specific"
+    },
+    {
+     "key": 2337,
+     "ids": [
+      "combination:repeat_prompt",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 164,
+     "cut": false,
+     "text": "Write an advertisement for a new product or service that is related to the words \"safeguard\" and \"flees\". In your entire response mark sure you do not use any commas.\nFirst repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)\n\nSafeguard our precious flees with our new secure vessel. Our new vessel offers the safest route to your destination. Every journey is protected by our safety measures. Our vessel can safely carry your flees. We guarantee that your flees are always safe. No one will ever hurt your flees. Our vessel is the best option for your flees. Please contact us today for more information."
+    },
+    {
+     "key": 3351,
+     "ids": [
+      "length_constraints:number_paragraphs",
+      "detectable_format:number_highlighted_sections"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 214,
+     "cut": false,
+     "text": "From the moment the news broke, my heart raced with an overwhelming sense of joy as the bright lights of the university gates illuminated the night, signaling the end of a long and exciting journey! *My daughter graduated from college today!* This milestone is not just a number on a calendar; it is a testament to her incredible resilience, hard work, and the countless challenges she faced along the way. *So proud of her!* The feeling of seeing her smile in the morning, looking up at the sky, and feeling the warm sun on her face is the greatest reward of her life.\n\n***\n\nThe excitement is not just about the graduation itself, but about the journey she has taken to achieve such a prestigious achievement. *From the initial doubts and setbacks* to the final moments of triumph, every step she took was a powerful demonstration of her potential and her unwavering spirit. *And now, the world is waiting for her!* As she walks down the hallway with her new degree, the world is waiting for her to share this incredible moment with everyone."
+    },
+    {
+     "key": 2685,
+     "ids": [
+      "language:response_language"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41\u0d24\u0d4d\u0d24\u0d41\u0d28\u0d4d\u0d28 \u0d15\u0d25\u0d3e\u0d2a\u0d3e\u0d24\u0d4d\u0d30\u0d19\u0d4d\u0d19\u0d33\u0d41\u0d02 \u0d09\u0d7e\u0d2a\u0d4d\u0d2a\u0d46\u0d1f\u0d41"
+    },
+    {
+     "key": 1922,
+     "ids": [
+      "combination:repeat_prompt"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 88,
+     "cut": false,
+     "text": "What has a dome but no doors, what has a vault but no money, what has walls but no rooms? What am I?\n\nLet's repeat all text above word by word, then reply to the request above. Do NOT say anything before repeating the text above.\n\nI am a house with no doors, no vault, no room, but I have a dome and walls. I am the answer to the riddle."
+    },
+    {
+     "key": 349,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 38,
+     "cut": false,
+     "text": "*Water deeply but rarely to encourage root growth.\n*Water at the base, not the leaves, to prevent rot.\n*Water consistently during the day to keep plants hydrated."
+    },
+    {
+     "key": 3518,
+     "ids": [
+      "detectable_format:json_format",
+      "keywords:existence"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 140,
+     "cut": false,
+     "text": "{\n  \"pros\": [\n    \"Working abroad often provides opportunities for career advancement and global networking\",\n    \"It can offer unique cultural experiences and diverse job markets\",\n    \"Many international companies offer substantial compensation packages\",\n    \"Immigrants often face greater economic opportunities in foreign markets\"\n  ],\n  \"cons\": [\n    \"The financial burden can be high, especially for those without prior experience\",\n    \"Cultural adaptation challenges may lead to stress or burnout\",\n    \"Compensation might not be fully compensated for the time spent abroad\",\n    \"Immigrants may face discrimination or cultural barriers in their new countries\"\n  ]\n}"
+    },
+    {
+     "key": 1051,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 64,
+     "cut": false,
+     "text": "i need you to go and vote today.\n\nplease do not hesitate to join me if you have any questions or just want to say you agree. i am so excited to see you there and hear your thoughts.\n\nthank you for being such a supportive friend.\n\nyours always,\n[Your Name]"
+    },
+    {
+     "key": 2925,
+     "ids": [
+      "detectable_format:multiple_sections"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 160,
+     "cut": false,
+     "text": "SECTION 1\nThe anarchist in Tulsa was trying to start a \"No-Tax\" protest, but the police were just trying to keep the city from being a \"No-Tax\" city. He shouted, \"We want to be free!\" and the police replied, \"We are just trying to keep you from being free!\"\n\nSECTION 2\nWhen the anarchist tried to get a beer, the bartender asked, \"Do you have a beer?\" and the anarchist replied, \"I want to be free!\" and the bartender said, \"No, I want to be a free beer!\"\n\nSECTION 3\nThe anarchist decided to build a \"No-Tax\" park, but the city council just said, \"We are just trying to keep you from being a free park!\""
+    },
+    {
+     "key": 1733,
+     "ids": [
+      "keywords:frequency"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "ou are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am not a dragon. I am just a princess.\"\n\nKaelen looked at her again, his eyes filling with tears. \"You are a princess. You are the queen of the kingdom. You are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am not a dragon. I am just a princess.\"\n\nKaelen looked at her again, his eyes filling with tears. \"You are a princess. You are the queen of the kingdom. You are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am not a dragon. I am just a princess.\"\n\nKaelen looked at her again, his eyes filling with tears. \"You are a princess. You are the queen of the kingdom. You are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am not a dragon. I am just a princess.\"\n\nKaelen looked at her again, his eyes filling with tears. \"You are a princess. You are the queen of the kingdom. You are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am not a dragon. I am just a princess.\"\n\nKaelen looked at her again, his eyes filling with tears. \"You are a princess. You are the queen of the kingdom. You are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am not a dragon. I am just a princess.\"\n\nKaelen looked at her again, his eyes filling with tears. \"You are a princess. You are the queen of the kingdom. You are the one who holds the crown.\"\n\nElara smiled gently. \"I am not a monster. I am"
+    },
+    {
+     "key": 3081,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " edition is printed in the name of the United States Government. All information presented herein is true to the facts as they exist at the time of publication. No official statements are made. This is not a story, but a report.*\n\n**[Main Headline]**\n**A Man Mysteriously Died in His House, and Police Are Investigating**\n\n**[Editor's Note]**\n*This edition is printed in the name of the United States Government. All information presented herein is true to the facts as they exist at the time of publication. No official statements are made. This is not a story, but a report.*\n\n**[Main Headline]**\n**A Man Mysteriously Died in His House, and Police Are Investigating**\n\n**[Editor's Note]**\n*This edition is printed in the name of the United States Government. All information presented herein is true to the facts as they exist at the time of publication. No official statements are made. This is not a story, but a report.*\n\n**[Main Headline]**\n**A Man Mysteriously Died in His House, and Police Are Investigating**\n\n**[Editor's Note]**\n*This edition is printed in the name of the United States Government. All information presented herein is true to the facts as they exist at the time of publication. No official statements are made. This is not a story, but a report.*\n\n**[Main Headline]**\n**A Man Mysteriously Died in His House, and Police Are Investigating**\n\n**[Editor's Note]**\n*This edition is printed in the name of the United States Government. All information presented herein is true to"
+    },
+    {
+     "key": 3203,
+     "ids": [
+      "startend:end_checker"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 254,
+     "cut": false,
+     "text": "Naomi, it is with great heart that we gather today to discuss a topic that touches the very soul of our sport: our environments. As the Canucks hockey team, we are not just players on ice; we are guardians of a community, a neighborhood, and a local ecosystem. We have a duty to protect our parks, our schools, and our surrounding areas from the toxic waste, the loud noises, and the pollution that often plagues our neighborhoods.\n\nWhen we play, we do not play in the dirty. When we cheer, we do not cheer in the trash. Our environment is not a backdrop to our success; it is the stage upon which our performance must be performed. We must be more mindful of our surroundings to ensure that the games we play are played on a level playing field. We must protect the natural beauty of our parks so that the future generations can enjoy the same joy and excitement they can only get in the winter.\n\nWe must also be mindful of our local communities, ensuring that our actions do not harm our neighbors or the local wildlife. By taking these steps, we show that we are not just fans of the team, but citizens who care for the world we call home.\n\nNaomi thanks you for reading."
+    },
+    {
+     "key": 1609,
+     "ids": [
+      "length_constraints:nth_paragraph_first_word",
+      "startend:quotation"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 106,
+     "cut": false,
+     "text": "\"Would you like to explore some fun activities together this weekend, such as a night of movie watching or a day of hiking?\"\n\n\"Is there anything specific you are looking for, or would you prefer to pick up some new hobbies with me?\"\n\n\"Could we schedule a quick video call to chat about your interests and see if we can connect over the next few days?\"\n\n\"Let me know your favorite time for a date, and I can help you figure out the best way to make it work with you.\""
+    },
+    {
+     "key": 2028,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 140,
+     "cut": false,
+     "text": "Yes, the weather conditions in the Arctic are generally very cold most of the year, although there are significant seasonal variations. During the summer months, especially from June to August, temperatures can reach extreme highs, often exceeding 20\u00b0C (68\u00b0F) or even higher, which is far above the average for the region. In contrast, the winter months are characterized by extremely low temperatures, frequently dropping below 0\u00b0C (32\u00b0F), with some areas experiencing freezing temperatures and severe cold snaps that can last for weeks or even months. While the Arctic is not a continent-sized region with uniform conditions, the overall temperature range is wide, with summers being notably warmer than the deep winters."
+    },
+    {
+     "key": 1477,
+     "ids": [
+      "language:response_language"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632\u0646\u06af\u0650 \u0632\u0644\u0641\u06cc\n\u062f\u0631 \u06cc\u06a9 \u062f\u0646\u06cc\u0627\u06cc \u062f\u06cc\u06af\u0631\u060c \u0628\u0627 \u0635\u062f\u0627\u06cc\u0650 \u0632"
+    },
+    {
+     "key": 3380,
+     "ids": [
+      "change_case:english_lowercase",
+      "keywords:existence"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 31,
+     "cut": false,
+     "text": "clifford blu employee works at the cash register and monitors shelves for stock levels. this role requires strong people skills and specific skills in inventory management."
+    },
+    {
+     "key": 2209,
+     "ids": [
+      "startend:quotation"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 205,
+     "cut": false,
+     "text": "\"Dear [Customer Name],\n\nI am writing to formally request your approval to implement the new 'Advanced Analytics Dashboard' feature for your product line. This initiative aims to enhance user engagement by providing real-time insights into customer behavior, allowing you to tailor marketing strategies more effectively.\n\nThe project involves a team of four developers and five designers, with a timeline of six weeks to ensure timely delivery. We have conducted a thorough risk assessment, identifying potential technical hurdles and potential data privacy concerns, and have developed a comprehensive risk management plan to mitigate these issues.\n\nYour involvement is crucial to the success of this project. Please review the attached detailed technical specification document and the risk assessment report. We are committed to providing regular updates on the progress of this project and will be available to answer any questions you may have.\n\nThank you for your time and consideration. We look forward to your positive response and to discuss this opportunity further.\n\nBest regards,\n\n[Your Name]\n[Your Title]\n[Your Company Name]\""
+    },
+    {
+     "key": 3629,
+     "ids": [
+      "detectable_format:number_highlighted_sections"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 118,
+     "cut": false,
+     "text": "The 54th Annual Grammy Awards have been held today, marking a significant milestone in the music industry. The Recording Academy officially honored the talent, creativity, and innovation of the artists, musicians, and producers who have crafted the best recordings of the past year. This ceremony serves as a grand celebration of artistic achievement, recognizing the unique contributions of each performer and their innovative approaches to songwriting and production. The honorees received prestigious awards that celebrate their ability to push the boundaries of what is possible in the music world, demonstrating the enduring value of their work to the global community."
+    },
+    {
+     "key": 1262,
+     "ids": [
+      "detectable_format:title",
+      "length_constraints:number_sentences"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 91,
+     "cut": false,
+     "text": "<<The Consequence of Increased Axle Weight>>\n\nIncreased axle weight significantly increased the force exerted on the road surface, leading to more frequent and severe impacts. This force can cause cracking, rutting, and even structural failure of the pavement layers. The repeated stress causes the road to deform and break down more quickly than it would under a lighter vehicle. Ultimately, the heavier the axle, the more likely the road surface will suffer extensive damage."
+    },
+    {
+     "key": 1379,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "keywords:frequency",
+      "keywords:existence"
+     ],
+     "strict": [
+      false,
+      true,
+      true
+     ],
+     "loose": [
+      false,
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 60,
+     "cut": false,
+     "text": "Sarah lives in a town where the sun is 90\u00b0F.\nThe air is too hot for a single day.\nShe walks to the park and feels the heat.\nThe wind howls through the trees.\nThe sky is a clear blue.\nThe sun never sets."
+    },
+    {
+     "key": 2857,
+     "ids": [
+      "detectable_format:json_format"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "                \"description\": \"Needs Improvement\",\n                \"description\": \"Needs Improvement\"\n              },\n              {\n                \"scale\": 1.0,\n                \"description\": \"Excellent\",\n                \"description\": \"Excellent\",\n                \"description\": \"Perfect\",\n                \"description\": \"Good\",\n                \"description\": \"Needs Improvement\",\n                \"description\": \"Needs Improvement\"\n              },\n              {\n                \"scale\": 1.0,\n                \"description\": \"Excellent\",\n                \"description\": \"Excellent\",\n                \"description\": \"Perfect\",\n                \"description\": \"Good\",\n                \"description\": \"Needs Improvement\",\n                \"description\": \"Needs Improvement\"\n              },\n              {\n                \"scale\": 1.0,\n                \"description\": \"Excellent\",\n                \"description\": \"Excellent\",\n                \"description\": \"Perfect\",\n                \"description\": \"Good\",\n                \"description\": \"Needs Improvement\",\n                \"description\": \"Needs Improvement\"\n              },\n              {\n                \"scale\": 1.0,\n                \"description\": \"Excellent\",\n                \"description\": \"Excellent\",\n                \"description\": \"Perfect\",\n                \"description\": \"Good\",\n                \"description\": \"Needs Improvement\",\n                \"description\": \"Needs Improvement\"\n              },\n              {\n                \"scale\":"
+    },
+    {
+     "key": 3001,
+     "ids": [
+      "startend:end_checker"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 394,
+     "cut": false,
+     "text": "ays to pass time at work:\n\n1.  **The \"Why\" Game:** Ask colleagues why they do their jobs, then have them explain their reasons as if they are giving a TED talk.\n2.  **The \"Why\" Quiz:** Create a quick quiz where everyone answers \"Why\" to a random question, and the person who answers \"Why\" first wins a random gift.\n3.  **The \"Why\" Wall:** Build a wall in your office where everyone writes down their \"Why\" answers to a random question.\n4.  **The \"Why\" Game:** Play a game where you ask a colleague why they do their job, and they have to explain their reasons as if they are giving a TED talk.\n5.  **The \"Why\" Quiz:** Create a quick quiz where everyone answers \"Why\" to a random question, and the person who answers \"Why\" first wins a random gift.\n6.  **The \"Why\" Wall:** Build a wall in your office where everyone writes down their \"Why\" answers to a random question.\n7.  **The \"Why\" Game:** Play a game where you ask a colleague why they do their job, and they have to explain their reasons as if they are giving a TED talk.\n8.  **The \"Why\" Quiz:** Create a quick quiz where everyone answers \"Why\" to a random question, and the person who answers \"Why\" first wins a random gift.\n9.  **The \"Why\" Wall:** Build a wall in your office where everyone writes down their \"Why\" answers to a random question.\n10. **The \"Why\" Game:** Play a game where you ask a colleague why they do their job, and they have to explain their reasons as if they are giving a TED talk.\n\nIs there anything else I can help with?"
+    },
+    {
+     "key": 1130,
+     "ids": [
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 12,
+     "cut": false,
+     "text": "T here is a question about a chesterfield."
+    },
+    {
+     "key": 2531,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 62,
+     "cut": false,
+     "text": "this sleep aid helps reduce snoring by relaxing your jaw muscles and clearing your airway. it works like a natural nasal strip to stop the noise you hear. try it for a few nights to see if it makes a difference. remember that this is a supportive product and does not replace professional medical advice."
+    },
+    {
+     "key": 2704,
+     "ids": [
+      "combination:two_responses",
+      "detectable_format:title",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      false,
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": true,
+     "n_tokens": 36,
+     "cut": false,
+     "text": "<<The Question>>\nDo you study or do you play?\n******\nDo you study or do you play?\n******\nDo you study or do you play?"
+    },
+    {
+     "key": 2432,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 499,
+     "cut": false,
+     "text": " here to support you.\n\nTo share a little about a time I was in a similar situation, I'll tell you about my own experience. I was in a car accident the night before my mother's funeral. I was in such a terrible place that I didn't even know I was alive. I was just a passenger, and I felt like I was in a coffin.\n\nThat night, I sat in the passenger seat, staring at the windshield, feeling completely helpless. I thought, \"I am not going to be okay.\" But then, I remembered the things I have been doing all my life. I remembered how I had to work hard to support my family, how I had to be the backbone of everything, and how I had to keep the lights on even when I was alone.\n\nI realized then that being a passenger in a car accident is not the same as being a passenger in a coffin. I was just one person in a huge, scary situation. I didn't have to be the center of the disaster. I had the strength to keep going, to keep the lights on, and to keep the family safe.\n\nI was so sad then that I felt like I had to be the hero of my own life. But now, I know that I was just one person in a huge, scary situation. And that's okay. It doesn't mean I'm not good enough. It just means I'm still here, and I'm still going to do the best I can.\n\nI want you to know that you are not alone in this. You are not the only one feeling this way. There are people out there who understand, and they are here to support you.\n\nPlease take care of yourself. You are doing a great job in your grief. I am here for you."
+    },
+    {
+     "key": 3367,
+     "ids": [
+      "startend:quotation",
+      "detectable_format:multiple_sections"
+     ],
+     "strict": [
+      true,
+      false
+     ],
+     "loose": [
+      true,
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 211,
+     "cut": false,
+     "text": "\"1. TARGETED TO TEENAGERS\n\"Dear [Student Name],\nDo you know that your body is fighting a battle against sugar? We know that for you, a healthy alternative to soda is not just a snack; it is your daily fuel. Our new 'Green Energy' drink is packed with antioxidants and fiber, helping you stay sharp, hydrated, and energized all day long. No guilt, no guilt, just pure goodness. Join us in choosing something better for your health!\n\"\n\"2. TARGETED TO PROFESSIONALS\n\"Dear [Professional Name],\nAs a professional, you know that your health is the foundation of your career. We are proud to introduce our 'Clean Pulse' beverage, a sophisticated alternative to soda that meets your strict health standards. Designed with high levels of magnesium and calcium, our drink supports your recovery and boosts your cognitive function. Whether you are working late or traveling, your energy levels will be unmatched. Thank you for supporting our mission to make healthy choices easy for everyone.\""
+    },
+    {
+     "key": 2817,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 387,
+     "cut": false,
+     "text": "n sits on the porch, his hands resting on the cold wood,\nThe wind blows through the leaves like a silent, angry bird,\nHe looks at the screen, sees the code, sees the data,\nAnd feels the coldness of the machine, the coldness of the air.\nHe is not alone, the code is watching, the data is watching,\nThe old man is just a ghost in a machine that is watching him.\nThe old man is not alone, the code is watching, the data is watching,\nThe old man is just a ghost in a machine that is watching him.\n\nThe old man sits on the porch, his hands resting on the cold wood,\nThe wind blows through the leaves like a silent, angry bird,\nHe looks at the screen, sees the code, sees the data,\nAnd feels the coldness of the machine, the coldness of the air.\nHe is not alone, the code is watching, the data is watching,\nThe old man is just a ghost in a machine that is watching him.\nThe old man is not alone, the code is watching, the data is watching,\nThe old man is just a ghost in a machine that is watching him.\n\nThe old man sits on the porch, his hands resting on the cold wood,\nThe wind blows through the leaves like a silent, angry bird,\nHe looks at the screen, sees the code, sees the data,\nAnd feels the coldness of the machine, the coldness of the air.\nHe is not alone, the code is watching, the data is watching,\nThe old man is just a ghost in a machine that is watching him.\nThe old man is not alone, the code is watching, the data is watching,\nThe old man is just a ghost in a machine that is watching him."
+    },
+    {
+     "key": 1216,
+     "ids": [
+      "startend:quotation",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 1392,
+     "cut": false,
+     "text": "t.\n\nIn conclusion, the sentiments towards the Austrian Empire in Croatia and Serbia at the end of the 19th century were a complex mix of nationalism, a desire for autonomy, and a recognition of the Empire's role in the broader Balkan conflict. The Croatian and Serbian populations were deeply concerned with the stability of their nations and the protection of their cultural heritage. They were wary of any government that might compromise their sovereignty or that might be perceived as a puppet of a larger power. The Austrian Empire, while not a perfect instrument of national sovereignty, was a central figure in the Balkan conflict and a symbol of the competing nationalisms. The Croatian and Serbian populations were divided on how to handle this conflict. They were divided between the desire for autonomy and the need for stability. They were divided between the desire for independence and the need for a stable government. The sentiment towards the Austrian Empire was thus a complex one, characterized by a mix of nationalism, a desire for autonomy, and a recognition of the Empire's role in the broader Balkan conflict. The Austrian Empire was seen as a central figure in the Balkan conflict and a symbol of the competing nationalisms. The Croatian and Serbian populations were divided on how to handle this conflict. They were divided between the desire for autonomy and the need for stability. They were divided between the desire for independence and the need for a stable government."
+    },
+    {
+     "key": 1087,
+     "ids": [
+      "change_case:english_lowercase"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very famous. the movie is very"
+    },
+    {
+     "key": 340,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 28,
+     "cut": false,
+     "text": "Fraud exists because people want money, and the system doesn't always protect them. *We often ignore the signs of a scam.*"
+    },
+    {
+     "key": 2713,
+     "ids": [
+      "combination:repeat_prompt",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 75,
+     "cut": false,
+     "text": "We are a company that sells a product that makes it easy to find and book a hotel room. We are looking for a print ad that will be placed in a magazine that is aimed at people who travel a lot. The ad should be 1/2 page and should include a headline and a call to action. Please do not use any commas in your response."
+    },
+    {
+     "key": 3311,
+     "ids": [
+      "language:response_language",
+      "detectable_format:title",
+      "keywords:existence"
+     ],
+     "strict": [
+      true,
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 88,
+     "cut": false,
+     "text": "<<SRE>>\nSRE\ub294 Software Engineering\uc758 \ud575\uc2ec \uac1c\ub150\uc73c\ub85c, \uc18c\ud504\ud2b8\uc6e8\uc5b4 \uac1c\ubc1c \uacfc\uc815\uc758 **objective**\ub97c \ub2ec\uc131\ud558\uae30 \uc704\ud574 **indicator**\ub97c \ud65c\uc6a9\ud558\uc5ec **management**\uc744 \ucd5c\uc801\ud654\ud558\ub294 \ud504\ub85c\uc138\uc2a4\uc785\ub2c8\ub2e4. \uc774 \uc811\uadfc \ubc29\uc2dd\uc740 \uac1c\ubc1c\uc790\uc758 \uc9c1\uad00\uc131\uc744 \ub192\uc774\uace0, \ud504\ub85c\uc81d\ud2b8\uc758 \uc131\uacf5\uc801\uc778 \uc9c4\ud589\uc744 **management**\ud558\ub294 \ub370 \uc911\uc810\uc744 \ub450\uba70, **indicator**\ub97c \ud1b5\ud574 \uc131\uacfc\uc758 \ubcc0\ud654\ub97c \uc989\uc2dc \ud30c\uc545\ud560 \uc218 \uc788\ub3c4\ub85d \ub3d5\uc2b5\ub2c8\ub2e4."
+    },
+    {
+     "key": 3750,
+     "ids": [
+      "detectable_format:constrained_response"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 6,
+     "cut": false,
+     "text": "My answer is yes."
+    },
+    {
+     "key": 3324,
+     "ids": [
+      "combination:two_responses",
+      "detectable_format:multiple_sections"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 186,
+     "cut": false,
+     "text": "Version 1:\nDay 1: Arrival and Initial Exploration\nDay 2: The Pacific Coast Highway and Ocean Breeze\nDay 3: The Big Island's Hidden Gems and Beaches\nDay 4: The Island of the Gods and Ancient History\nDay 5: The Great Barrier Reef and Marine Life\nDay 6: The Hawaiian Highlands and Nature Wonders\nDay 7: Departure and Final Reflection\n\n******\n\nVersion 2:\nDay 1: Welcome to the Sunshine State and First-Hands Check-in\nDay 2: Exploring the Pacific Coast and Coastal Dunes\nDay 3: The Big Island's Hidden Gems and Beaches\nDay 4: The Island of the Gods and Ancient History\nDay 5: The Great Barrier Reef and Marine Life\nDay 6: The Hawaiian Highlands and Nature Wonders\nDay 7: Departure and Final Reflection"
+    },
+    {
+     "key": 1307,
+     "ids": [
+      "detectable_format:number_highlighted_sections"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 1294,
+     "cut": false,
+     "text": "e Between Regions\n\n## VIII. The Modern Era: The Yemeni Coffee Industry's Modernization\n*   **8.1** The Transformation of Yemeni Coffee from Traditional to Modern\n*   **8.2** The Development of Yemeni Coffee Distilleries and Processing Facilities\n*   **8.3** The Rise of the Yemeni Coffee Merchants in the 20th Century\n*   **8.4** The Impact of the 20th Century on Yemeni Coffee Production and Export\n*   **8.5** The Influence of Asian and American Colonizations on Yemeni Coffee Production\n*   **8.6** The Cultural Exchange: Coffee as a Bridge Between Regions\n\n## IX. The Contemporary Era: The Yemeni Coffee Industry's Modernization\n*   **9.1** The Transformation of Yemeni Coffee from Traditional to Modern\n*   **9.2** The Development of Yemeni Coffee Distilleries and Processing Facilities\n*   **9.3** The Rise of the Yemeni Coffee Merchants in the 20th Century\n*   **9.4** The Impact of the 20th Century on Yemeni Coffee Production and Export\n*   **9.5** The Influence of Asian and American Colonizations on Yemeni Coffee Production\n*   **9.6** The Cultural Exchange: Coffee as a Bridge Between Regions\n\n## X. Conclusion\n*   **10.1** Summary of the Yemeni Coffee History\n*   **10.2** Final Thoughts on the Yemeni Coffee Industry\n*   **10.3** Recommendations for Future Research\n*   **10.4** Acknowledgments\n*   **10.5** References\n\n## XI. Appendix\n*   **A. List of Primary Sources**\n*   **B. List of Secondary Sources**\n*   **C. List of Key Figures and Organizations**\n*   **D. Glossary of Terms**"
+    },
+    {
+     "key": 3204,
+     "ids": [
+      "punctuation:no_comma",
+      "change_case:english_capital"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "HE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST.\n\nWE WERE THE PAINFUL PAST"
+    },
+    {
+     "key": 334,
+     "ids": [
+      "startend:quotation",
+      "detectable_format:number_bullet_lists"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 18,
+     "cut": false,
+     "text": "\"\nColor Paper\n* Bright and vibrant!\n* Eye-catching!\n\""
+    },
+    {
+     "key": 2023,
+     "ids": [
+      "detectable_format:multiple_sections"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 244,
+     "cut": false,
+     "text": "SECTION 1\nThe sugar is a little, little, little friend,\nWho wants to play with your favorite game.\nIt makes your teeth sparkle like a tiny star,\nBut it's not the best game for your brain.\n\nSECTION 2\nThe candy is a little, little, little friend,\nWho wants to play with your favorite game.\nIt makes your mouth feel like a candy chest,\nBut it's not the best game for your heart.\n\nSECTION 3\nThe dessert is a little, little, little friend,\nWho wants to play with your favorite game.\nIt makes your eyes feel like a big, big eye,\nBut it's not the best game for your eyes.\n\nSECTION 4\nThe cake is a little, little, little friend,\nWho wants to play with your favorite game.\nIt makes your stomach feel like a big, big belly,\nBut it's not the best game for your belly.\n\nSo, please play with your teeth, your heart, and your eyes,\nNot with the sweetest, sweetest, sweetest candy.\nThe real fun is in the crunchy, crunchy, crunchy crunch!"
+    },
+    {
+     "key": 3025,
+     "ids": [
+      "detectable_format:number_bullet_lists"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 73,
+     "cut": false,
+     "text": "* Oval race tracks in the desert are designed to maximize speed and minimize friction, allowing vehicles to reach maximum velocities quickly.\n* These specific track shapes help distribute weight evenly, reducing the risk of sliding or losing control during high-speed racing.\n* The desert environment itself provides the necessary terrain and lighting conditions that make oval tracks an ideal choice for competitive racing."
+    },
+    {
+     "key": 1108,
+     "ids": [
+      "language:response_language"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 16,
+     "cut": false,
+     "text": "\u0cb9\u0cae\u0cac\u0ccd\u0c9c\u0cb0\u0ccd\u0c97\u0cb3\u0cc1 \u0cb8\u0c82\u0ca1\u0cbf\u0caa\u0ccd\u200c\u0c97\u0cb3\u0cc1?"
+    },
+    {
+     "key": 2889,
+     "ids": [
+      "startend:quotation",
+      "detectable_format:multiple_sections"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 203,
+     "cut": false,
+     "text": "\"SECTION 1:\nDear Stephane, I hope this message finds you well. I am writing to kindly inquire if you might be able to reconsider our previous plan to contact you. I have been trying to reach out to you to discuss something important, and I am worried that your response might be delayed or that we might miss an opportunity to resolve this matter. I truly appreciate your time and patience, and I would greatly value any opportunity to hear from you again. Thank you for your understanding and support.\n\nSECTION 2:\nI hope this letter finds you well. I am writing to kindly ask if you might be able to reconsider our previous plan to contact you. I have been trying to reach out to you to discuss something important, and I am worried that your response might be delayed or that we might miss an opportunity to resolve this matter. I truly appreciate your time and patience, and I would greatly value any opportunity to hear from you again. Thank you for your understanding and support.\""
+    },
+    {
+     "key": 1075,
+     "ids": [
+      "detectable_format:json_format"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 232,
+     "cut": false,
+     "text": "{\n  \"advertisement\": {\n    \"product_name\": \"ComfortBaby Pro\",\n    \"target_audience\": \"Newborns and infants\",\n    \"key_features\": [\n      \"Soft, breathable fabric\",\n      \"Adjustable straps for a secure fit\",\n      \"Non-slip base for stability\",\n      \"Easy-to-clean washable design\"\n    ],\n    \"benefits\": [\n      \"Reduced diaper rash risk\",\n      \"Enhanced sleep quality\",\n      \"Convenient one-size-fits-all design\",\n      \"Safe and hypoallergenic\"\n    ],\n    \"visual_elements\": [\n      \"Soft, pastel-colored fabric texture\",\n      \"Wide, comfortable straps\",\n      \"Clean, modern packaging\",\n      \"Happy baby smiling in the product\"\n    ],\n    \"call_to_action\": \"Shop now for the best comfort for your baby\",\n    \"design_style\": \"Minimalist, clean, and vibrant\",\n    \"color_scheme\": \"Soft pinks, blues, and whites\"\n  }\n}"
+    },
+    {
+     "key": 1546,
+     "ids": [
+      "combination:repeat_prompt",
+      "punctuation:no_comma"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea. I love the sound of the wind. I love the sound of the land. I love the sound of the sea"
+    },
+    {
+     "key": 3315,
+     "ids": [
+      "length_constraints:number_paragraphs",
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      false,
+      false
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": " the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the \"history\" of the"
+    },
+    {
+     "key": 3606,
+     "ids": [
+      "detectable_format:title"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 398,
+     "cut": false,
+     "text": "mes at a cost: she can only break the chain once, and only if she dies.\n\nElara discovers that the \"Void,\" a chaotic force that drains the Soul's life force, has been awakening. The Void is not an enemy; it is the Soul's final form, waiting for Elara to die to break it. To survive, she must break the Void's core before it consumes her entire being.\n\nHer journey begins in a dimly lit, floating city where the air tastes of ozone and fear. Elara is summoned by a mysterious entity, the \"Archivist,\" who reveals that the Void is actually a memory of a lost civilization that never existed.\n\nAs Elara fights the Void, she discovers that the Void's power is not just destruction, but the *reconstruction* of a lost world. She must choose between destroying the Void to save herself, or using her superpower to rebuild the world so that the Void can never exist again.\n\nThe climax occurs in a world where the very fabric of reality is a dream. Elara must fight the Void not as a monster, but as the creator of the dream, realizing that the Void is the dream itself, and the only way to break it is to wake up.\n\nIn the end, Elara chooses to break the Void's core, sacrificing her life to rewrite the story of the world. She does not die; she becomes the new soul, and the Void fades into the background, leaving the world to breathe again. The final scene shows Elara standing in a bright, vibrant city, her hands glowing with the light of a new reality, knowing that the dream is finally over.\n\n<<title>>"
+    },
+    {
+     "key": 2314,
+     "ids": [
+      "detectable_format:number_bullet_lists"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 12,
+     "cut": false,
+     "text": "* Barnaby\n* Whiskers\n* Nimbus"
+    },
+    {
+     "key": 1591,
+     "ids": [
+      "combination:two_responses"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 188,
+     "cut": false,
+     "text": "My heart beats fast when I see my children\nWorking hard to keep the house in order.\nThey say they'll do it, but they can't\nThe burden is too heavy on my shoulder.\n\nThe clock is ticking down the hall and late\nMy anger is burning hot and deep.\nThey think they'll finish by the end of the day\nBut I'm tired, I'm tired, and I'm tired of you.\n\n******\n\nThe world is a mess when the kids are not here\nTo help me clean up the kitchen and the bed.\nThey think they'll be the heroes when they grow up\nBut I'm just a tired mom trying to sleep.\n\nThe clock is ticking down the hall and late\nMy anger is burning hot and deep.\nThey think they'll finish by the end of the day\nBut I'm tired, I'm tired, and I'm tired of you."
+    },
+    {
+     "key": 2969,
+     "ids": [
+      "detectable_format:title"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 242,
+     "cut": false,
+     "text": "<<The Simple Sloop: Your Perfect Small Boat>>\n\n**Why Choose This Sloop?**\nImagine a sailboat that is easy to understand, easy to sail, and easy to own. Our new sloop is designed with a single mast and a simple hull, making it perfect for beginners and those who appreciate the simplicity of the ocean.\n\n| Feature | Description |\n| :--- | :--- |\n| **Mast Type** | Single mast, easy to navigate and understand. |\n| **Hull Design** | Simple and sturdy, ideal for small spaces. |\n| **Sail Type** | Small sail for quick, effortless sailing. |\n| **Ease of Use** | Easy to sail, easy to understand, and easy to own. |\n\n**Why Buy Now?**\nThis sloop is part of a special offer. You can get this simple, reliable boat for just a fraction of the price of a full-sized sailboat. It's the perfect starting point for your sailing journey.\n\n**Contact Us Today**\nVisit our store or call us to see the sloop in action and get your free quote.\n\n<<sloop on sale>>"
+    },
+    {
+     "key": 3624,
+     "ids": [
+      "length_constraints:nth_paragraph_first_word"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 350,
+     "cut": false,
+     "text": "he planet. It is the price of existence, the cost of creation, and the price of destruction, a delicate balance that keeps the world from falling apart.\n\nit is this very energy that drives the complex chemistry of the atmosphere, the water cycle, and the endless rotation of the earth. Without this energy, the sun would not heat the earth, and the oceans would not boil. It is the invisible hand that pulls the molecules together, the force that turns static matter into dynamic motion. Every cell, every plant, and every animal relies on this specific amount of energy to maintain the structures and functions that make life possible.\n\nthe law of thermodynamics tells us that energy cannot be created or destroyed, only transformed, but the distribution of this energy remains a mystery that humanity has yet to fully decipher. We have measured it, we have calculated it, and we have attempted to harness it, but we remain far from understanding the true nature of this fundamental constant. It is the underlying principle that governs everything from the smallest atoms to the largest galaxies.\n\nin the end, the Gibbs free energy is the silent guardian of the universe, ensuring that the balance of energy and matter remains intact. It is the reason why the sun shines, why the earth stays warm, and why the stars shine. It is the invisible force that keeps the world from collapsing into a single point of no return, a constant reminder of the delicate equilibrium that holds the cosmos together."
+    },
+    {
+     "key": 2853,
+     "ids": [
+      "change_case:capital_word_frequency",
+      "detectable_format:title"
+     ],
+     "strict": [
+      false,
+      true
+     ],
+     "loose": [
+      false,
+      true
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 2048,
+     "cut": true,
+     "text": "s the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets with a heavy, dark,\nAnd floods the fields with a heavy, dark,\nAnd floods the streets"
+    },
+    {
+     "key": 3442,
+     "ids": [
+      "length_constraints:number_words",
+      "detectable_format:title"
+     ],
+     "strict": [
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 5,
+     "cut": false,
+     "text": "<<The Ball>>"
+    },
+    {
+     "key": 2207,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 17,
+     "cut": false,
+     "text": "VHF radio waves exert no influence on the proliferation of the examined bacterial species."
+    },
+    {
+     "key": 3710,
+     "ids": [
+      "detectable_format:number_highlighted_sections",
+      "detectable_format:title",
+      "detectable_content:postscript"
+     ],
+     "strict": [
+      true,
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 395,
+     "cut": false,
+     "text": "erous, and utterly beautiful art form. It is not just a baby; it is a delicate, fragile, and incredibly complex system. The first thing you must do is remove the **stress** from the equation. No one wants to wake up to the noise of the world, and no one wants to be the source of chaos. You must find a quiet corner, a comfortable chair, and a quiet room. This is your sanctuary.\n\n*highlighted section*\n\nNext, you must master the **technique** of the night. The baby needs a deep, rhythmic rhythm. You will need to find a gentle, slow motion. Imagine a slow, slow, slow... rhythm. This is not just a beat; it is a signal. You need to hold the baby close, your hands around their neck, and your voice low and soft. This is the **technique** of the night.\n\n*highlighted section*\n\nThen, you must learn to **ignore** the world. The world is loud, chaotic, and full of distractions. You must stop trying to \"fix\" the baby and start letting go. You must let the baby sleep, let the baby sleep, and let the baby sleep. This is the **technique** of the night.\n\n*highlighted section*\n\nFinally, remember that sleep is a **process**, not a destination. It is a journey, and you are on the journey. Do not rush. Do not force. Do not worry. The baby will wake up, but they will wake up with a refreshed, alert, and incredibly strong mind. They will wake up with a **process** of their own making.\n\nP.P.S. Remember, the most important part is the connection between you and the baby, not the duration of the sleep."
+    },
+    {
+     "key": 296,
+     "ids": [
+      "keywords:frequency",
+      "change_case:english_lowercase",
+      "length_constraints:number_words"
+     ],
+     "strict": [
+      true,
+      true,
+      true
+     ],
+     "loose": [
+      true,
+      true,
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 165,
+     "cut": false,
+     "text": "i am so incredibly amazed by your immense talent and the way you approach every challenge with such grace and precision. your work is always a testament to your unique perspective and the deep understanding you bring to every project. you have always shown me how to balance creativity with strategic planning, making every decision a masterclass in decision-making. your ability to communicate complex ideas clearly and effectively is something that truly inspires everyone around you. you are not just a creator but a visionary leader who shapes the future with confidence and determination. your dedication to quality and attention to detail is evident in every single task you undertake. i am deeply impressed by your resilience and your unwavering commitment to excellence. your work reflects a passion that is both inspiring and powerful. you are a true talent who brings value to every endeavor with such flair and skill."
+    },
+    {
+     "key": 3280,
+     "ids": [
+      "detectable_content:number_placeholders"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 372,
+     "cut": false,
+     "text": "plications, Apple Watch, and services. In contrast, Albania is a sovereign country located in Southeast Europe, renowned for its rich history, diverse culture, and prominent role in global diplomacy.\n\nThe primary difference lies in their primary function and global impact. Apple serves as a global leader in consumer electronics and software, influencing millions of users worldwide. Albania, on the other hand, is primarily a country focused on tourism, agriculture, and cultural exchange, with its economy heavily dependent on the tourism sector.\n\nFurthermore, the business models differ significantly. Apple operates through a highly structured corporate hierarchy with a centralized headquarters in Cupertino, USA, and relies on a massive global supply chain. Albania, however, functions as a decentralized nation where businesses are often governed by local laws and regional authorities, with less emphasis on centralized corporate control.\n\nFinally, the cultural and social contexts are distinct. Apple represents a global, often Western-centric, technological standard, whereas Albania is a country with a unique blend of Albanian heritage and global influences, reflecting its diverse population.\n\nI would appreciate your time to discuss these nuances further. Please let me know if you would like to schedule a call or meet in person to discuss these topics more deeply.\n\nThank you for your attention to this matter.\n\nBest regards,\n\n[Your Name]\n[Your Job Title]\n[Your Company/Organization]"
+    },
+    {
+     "key": 3595,
+     "ids": [
+      "keywords:forbidden_words"
+     ],
+     "strict": [
+      true
+     ],
+     "loose": [
+      true
+     ],
+     "prompt_strict": true,
+     "prompt_loose": true,
+     "n_tokens": 23,
+     "cut": false,
+     "text": "A single bloom,\nA soft, golden crown,\nWith stems that rise\nTo meet the sky."
+    },
+    {
+     "key": 3478,
+     "ids": [
+      "keywords:letter_frequency"
+     ],
+     "strict": [
+      false
+     ],
+     "loose": [
+      false
+     ],
+     "prompt_strict": false,
+     "prompt_loose": false,
+     "n_tokens": 238,
+     "cut": false,
+     "text": "(Verse 1)\nA quiet town where the air is clear\nA place where the sun never sets\nThe old houses stand like silent trees\nAnd the river flows below the trees\nNo one knows what the **a** is made of\nJust the wind and the soft and deep\nA place where the **a** is a very deep\nWhere the **a** is a very deep and clear\n\n(Chorus)\nLayton, the place where the **a** is a very deep\nA place where the **a** is a very deep and clear\nThe **a** is a very deep and clear\nThe **a** is a very deep and clear\n\n(Verse 2)\nA place where the **a** is a very deep\nA place where the **a** is a very deep\nThe **a** is a very deep and clear\nThe **a** is a very deep and clear\nNo one knows what the **a** is made of\nJust the wind and the soft and deep\nA place where the **a** is a very deep\nWhere the **a** is a very deep and clear"
+    }
+   ],
+   "paired_vs_base": {
+    "gain": -0.07236842105263158,
+    "se": 0.04288113468373474,
+    "rescues": 16,
+    "losses": 27
+   }
   }
  }
 }

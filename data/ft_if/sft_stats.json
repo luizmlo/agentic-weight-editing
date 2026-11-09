@@ -1,0 +1,19 @@
+{
+ "N": 600,
+ "K": 2,
+ "kept_prompts": 414,
+ "sample_pass_rate": 0.5808333333333333,
+ "cut_rate": 0.04833333333333333,
+ "secs_this_run": 1495,
+ "tok_s_this_run": 238.1,
+ "per_group_pass": {
+  "change_case": 0.586,
+  "combination": 0.716,
+  "detectable_content": 0.703,
+  "detectable_format": 0.833,
+  "keywords": 0.696,
+  "length_constraints": 0.625,
+  "punctuation": 0.411,
+  "startend": 0.767
+ }
+}

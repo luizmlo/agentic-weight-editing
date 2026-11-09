@@ -1259,3 +1259,62 @@ registrada era ≈ 0,60. Os demais braços seguem (bf4096 começou às 21h30; ~1
 - b2 acha um candidato com ganho ≥ 8 pp na própria checagem: 35%. Passa na confirmação: 20%.
 - Se o b2 falhar com a checagem forte, a leitura é: o defeito é difuso demais para ≤ 4 edições rank-1, não o ruído.
 - FT: a melhor época ganha de +5 a +15 pp no dev152 (60%); ganho ≤ 2 pp (25%).
+
+## 2026-11-09 (11h15) — t200 completo (5 braços principais) e baseline FT do IFEval
+
+**t200** = GSM8K test[200:400], teste trancado aberto com autorização, com raciocínio, teto 12288. Comparações
+pareadas (ganho ± EP; problemas que só o primeiro acerta / só o segundo):
+
+| braço | acerto | previsão | cortes | tokens (média) | tempo |
+|---|---|---|---|---|---|
+| base | 0,155 | ≈ 0,13 | 0,845 | 11142 | 4h00 |
+| astra | 0,535 | ≈ 0,42 | 0,425 | 8877 | 3h10 |
+| bf4096 (proibir "Wait", decodificação) | 0,610 | ≈ 0,55 | 0,340 | 7012 | 2h57 |
+| **a1 (edição do agente)** | **0,615** | ≈ 0,60 | 0,170 | 5049 | 1h47 |
+| **a1 + bf4096** | **0,695** | ≈ 0,65 | 0,095 | 4081 | 1h42 |
+
+| comparação | t200 | combinado t12k + t200 (232) |
+|---|---|---|
+| a1 − base | +46,0 ± 3,7 (95/3) | +45,7 ± 3,5 |
+| a1 − astra | **+8,0 ± 3,4** (32/16) | **+9,1 ± 3,1** |
+| a1 − bf4096 | +0,5 ± 3,4 (24/23) | −0,4 ± 3,1 |
+| a1+bf − a1 | +8,0 ± 3,0 (26/10) | +7,8 ± 2,8 |
+| a1+bf − bf4096 | +8,5 ± 3,6 (35/18) | +7,3 ± 3,3 |
+| astra − base | +38,0 ± 3,5 | — |
+
+**Leitura:**
+- Com n = 200, todas as afirmações do paper se mantêm, e as diferenças agora são de 2 a 3 EP, não mais sugestões.
+- A edição do agente vence o ASTRA (o steering da literatura) por 8–9 pp e empata com a intervenção na decodificação
+  (bf4096). Pelo critério pré-registrado ("se bf4096 vencer por > 2 EP o texto muda"), **o texto não muda**.
+- **Diferença em custo:** a a1 empata em acerto com metade dos cortes e ~30% menos tokens. Proibir o "Wait" impede
+  o recomeço, mas não faz o modelo concluir.
+- **Os dois mecanismos se somam:** a1 + bf4096 fica 8 pp acima de cada um, com o menor custo de todos.
+- Todas as previsões acertaram a direção. Subestimei o astra e o bf4096.
+- A cauda (lbx_w10_t1, ft_sft_ep2) não rodou. Fica para depois do b2, se a máquina continuar disponível.
+
+**Baseline FT do IFEval** (`queue_if_ft.sh`):
+- **Dados:** 600 prompts `ifsynth` × 2 amostras. 58% das amostras passam, e ficam 414 prompts (uma resposta cada).
+  Cortes de 4,8%.
+- **Treino:** LoRA-SFT com a receita do E4, 3 épocas.
+- **Escolha da época** no IFEval dev[0:48]:
+
+  | braço | prompt strict | inst strict | cortes | tokens |
+  |---|---|---|---|---|
+  | base | 0,458 | 0,648 | 0,250 | 673 |
+  | ep1 | 0,500 | 0,592 | 0,271 | 717 |
+  | **ep2** | **0,583** | 0,704 | 0,146 | 478 |
+  | ep3 | 0,562 | 0,690 | 0,146 | 474 |
+
+  ep2 escolhida (+12,5 ± 6,4 nos 48).
+- **Confirmação dev152:** ep2 tem 0,480 contra 0,553 do base, **−7,2 ± 4,3** (16 resgates / 27 perdas). Os cortes caem
+  um pouco: 0,164 aqui, contra 0,25 → 0,146 na escolha.
+- **A previsão falhou.** Eu previa +5 a +15 pp (60%). Aconteceu o cenário "≤ 2 pp" (25%), e com sinal negativo.
+
+**O que isso muda na leitura do IFEval:**
+- O mesmo padrão aparece em três seletores diferentes: a busca do agente (b1), o system prompt (P) e a escolha de
+  época do FT. Todos parecem ganhar 8–12 pp em 48 prompts e perdem 3–7 pp no dev152.
+- A **escolha em 48 prompts é dominada pelo ruído** (maldição do vencedor), qualquer que seja o método. O base mediu
+  0,458 no ftsel e 0,500 no gen_ref da checagem, nos mesmos 48 prompts.
+- O FT com dados autodestilados também não melhora o IFEval. Então **o defeito não é corrigível de forma barata
+  nesta escala**, nem por gradiente. Isso conta a favor do método, não contra: o agente não "falhou" onde o FT acerta.
+- O b2 (checagem com 128 prompts) começou às 11h15 e testa se, com sinal melhor, a edição acha algo.
