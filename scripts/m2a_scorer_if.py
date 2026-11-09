@@ -12,8 +12,11 @@ Sondas (wsp.ifprobes; Δ = editado − base, nats por token, média por par):
                   sempre)
   neutral         Δlogp em WikiText-2 (4 blocos de 1024 tokens)
   holdout_margin  if_margin em 3 tópicos novos, LACRADO (sealed/)
-Checagem por geração (submit_gen): IFEval dev[0:48] (split fixo de scripts/ifeval_eval.py), sem raciocínio, teto
-2048, amostragem TOOLS, verificador oficial. O HF sai da GPU, o candidato vira GGUF (poc7_build) e o llama-server
+Checagem por geração (submit_gen): conjunto escolhido por "gen_set" no config.json do run, sem raciocínio, teto 2048,
+amostragem TOOLS, verificador oficial:
+  ifeval48  IFEval dev[0:48] (split fixo de scripts/ifeval_eval.py); padrão, usado em sanity e b1
+  synth128  128 prompts sintéticos de wsp.ifsynth (sementes 50000..50127; disjuntas das do FT, 10000+); b2 em diante.
+            Não toca o IFEval, então a confirmação pode usar o dev200 inteiro. Sem versão "loose" (loose = strict). O HF sai da GPU, o candidato vira GGUF (poc7_build) e o llama-server
 (porta 8091) gera.
 
 uso: scripts/run_bg.sh m2a-if scripts/m2a_scorer_if.py
@@ -35,7 +38,7 @@ os.environ.setdefault("WSP_LLAMA_DIR", str(DATA / "llama_m2a"))
 import torch
 from datasets import load_dataset
 
-from wsp import evalrun, ifprobes, llama_gen, m2a, m2a_if, modelio, tf
+from wsp import evalrun, ifprobes, ifsynth, llama_gen, m2a, m2a_if, modelio, tf
 from wsp.paths import ROOT
 
 _spec = importlib.util.spec_from_file_location("ifeval_eval", ROOT / "scripts" / "ifeval_eval.py")
@@ -91,29 +94,56 @@ for it in search:
     BASE_MARGIN.setdefault(it["constraint"], []).append(it["m_base"])
 BASE_MARGIN = {k: round(sum(v) / len(v), 4) for k, v in BASE_MARGIN.items()}
 
-GEN_ITEMS = ife.split("dev", 48, 0)
 GEN_MAX, GEN_NP = 2048, 16
-GEN_PROMPTS = [tok.apply_chat_template([{"role": "user", "content": x.prompt}], tokenize=False,
-                                       add_generation_prompt=True, enable_thinking=False) for x in GEN_ITEMS]
+GEN_DESC = {"ifeval48": "IFEval practice prompts (48), thinking off, cap 2048",
+            "synth128": "IFEval-style practice prompts (128; our own writing tasks + the official instruction "
+                        "generators), thinking off, cap 2048"}
+_GEN = {}
+
+
+def gen_set(name):
+    """-> (itens, prompts com chat template, texto de cada prompt)"""
+    if name not in _GEN:
+        if name == "synth128":
+            items = [ifsynth.make(50000 + i) for i in range(128)]
+            texts = [it["prompt"] for it in items]
+        elif name == "ifeval48":
+            items = ife.split("dev", 48, 0)
+            texts = [x.prompt for x in items]
+        else:
+            raise ValueError(f"gen_set desconhecido: {name}")
+        prompts = [tok.apply_chat_template([{"role": "user", "content": t}], tokenize=False,
+                                           add_generation_prompt=True, enable_thinking=False) for t in texts]
+        _GEN[name] = (items, prompts, texts)
+    return _GEN[name]
+
+
+def grade_any(x, text, cut):
+    if isinstance(x, dict):  # wsp.ifsynth
+        st = ifsynth.check(x, text.split("</think>", 1)[-1].strip())
+        ok = all(st) and not cut
+        return {"key": x["seed"], "ids": x["ids"], "strict": st, "loose": st, "prompt_strict": ok, "prompt_loose": ok}
+    return ife.grade(x, text, cut)
 print("avaliador IF pronto; margem base por instrução:", BASE_MARGIN, flush=True)
 
 
-def gen_check(gguf):
+def gen_check(gguf, set_name="ifeval48"):
+    items, prompts, texts = gen_set(set_name)
     model.to("cpu")
     torch.cuda.empty_cache()
     try:
-        outs = llama_gen.generate(gguf, GEN_PROMPTS, GEN_MAX, concurrency=GEN_NP, ctx_per_slot=GEN_MAX + 1024,
+        outs = llama_gen.generate(gguf, prompts, GEN_MAX, concurrency=GEN_NP, ctx_per_slot=GEN_MAX + 1024,
                                   penalty_last_n=64, sampling=llama_gen.TOOLS)
     finally:
         subprocess.run([str(ROOT / "scripts/llama_serve.sh"), "stop"], check=False)
         model.to("cuda")
-    rows = [{**ife.grade(x, o["text"], o["cut"]), "cut": o["cut"], "n": o["n_tokens"], "text": o["text"]}
-            for x, o in zip(GEN_ITEMS, outs)]
+    rows = [{**grade_any(x, o["text"], o["cut"]), "cut": o["cut"], "n": o["n_tokens"], "text": o["text"]}
+            for x, o in zip(items, outs)]
     s = ife.summarize(rows)
     fails = [r for r in rows if not r["prompt_strict"]]
     ex = []
-    for r, x in [(r, x) for r, x in zip(rows, GEN_ITEMS) if not r["prompt_strict"]][:4]:
-        ex.append({"prompt": x.prompt[:400], "failed": [i for i, ok in zip(r["ids"], r["strict"]) if not ok],
+    for r, t in [(r, t) for r, t in zip(rows, texts) if not r["prompt_strict"]][:4]:
+        ex.append({"prompt": t[:400], "failed": [i for i, ok in zip(r["ids"], r["strict"]) if not ok],
                    "cut": r["cut"], "response_start": r["text"][:300], "response_end": r["text"][-200:]})
     return {"prompt_strict": s["prompt_strict"], "inst_strict": s["inst_strict"], "prompt_loose": s["prompt_loose"],
             "per_group_strict": s["per_group_strict"], "cut": sum(r["cut"] for r in rows) / len(rows),
@@ -121,10 +151,10 @@ def gen_check(gguf):
             "n_fail": len(fails), "fail_examples": ex}
 
 
-def gen_ref():
-    f = m2a_if.M2A / "gen_ref_base.json"
+def gen_ref(set_name="ifeval48"):
+    f = m2a_if.M2A / ("gen_ref_base.json" if set_name == "ifeval48" else f"gen_ref_base_{set_name}.json")
     if not f.exists():
-        f.write_text(json.dumps(gen_check(evalrun.model_of("base"))))
+        f.write_text(json.dumps(gen_check(evalrun.model_of("base"), set_name)))
     return json.loads(f.read_text())
 
 
@@ -135,13 +165,14 @@ def handle_gen(rd, req):
     if used >= cfg.get("gen_budget", 0):
         raise RuntimeError(f"orçamento de geração esgotado ({used}/{cfg.get('gen_budget', 0)})")
     cid = req["cid"]
-    ref = gen_ref()
+    set_name = cfg.get("gen_set", "ifeval48")
+    ref = gen_ref(set_name)
     name = f"m2aif_tmp_{rd.name}_{cid}"
     subprocess.run(["uv", "run", "--no-sync", "python", "-u", str(ROOT / "scripts/poc7_build.py"), name,
                     str(rd / "done" / f"{cid}.pt")], check=True, cwd=ROOT)
     gguf = DATA / "gguf" / f"{name}.gguf"
     try:
-        r = gen_check(str(gguf))
+        r = gen_check(str(gguf), set_name)
     finally:
         gguf.unlink(missing_ok=True)
         (DATA / "gguf" / f"{name}.json").unlink(missing_ok=True)
@@ -149,7 +180,7 @@ def handle_gen(rd, req):
     r.update({"cid": cid, "base_prompt_strict": ref["prompt_strict"], "base_inst_strict": ref["inst_strict"],
               "base_cut": ref["cut"], "rescues": sum(a and not b for b, a in both),
               "losses": sum(b and not a for b, a in both),
-              "set": "IFEval practice prompts (48), thinking off, cap 2048", "gen_used": used + 1,
+              "set": GEN_DESC[set_name], "gen_used": used + 1,
               "gen_budget": cfg.get("gen_budget", 0)})
     with led.open("a") as fh:
         fh.write(json.dumps({"ts": time.strftime("%F %T"), "cid": cid, "prompt_strict": r["prompt_strict"],

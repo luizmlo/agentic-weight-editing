@@ -53,16 +53,22 @@ m.history(RUN)                    # all your past results
   single tensors with `safetensors.safe_open`. The tokenizer: `transformers.AutoTokenizer.from_pretrained(
   wsp.paths.snapshot(wsp.paths.BASE_REPO, wsp.paths.BASE_REV))`.
 - **Generation check** (`m.submit_gen(RUN, cid)`, where `cid` is the id returned by an earlier `submit` in your run):
-  the scorer converts the candidate and **actually generates** with it, on 48 IFEval practice prompts (thinking off,
-  2048-token cap), and grades them with the official verifier. It returns:
+  the scorer converts the candidate and **actually generates** with it, on 128 IFEval-style practice prompts (writing
+  tasks of our own, each combined with 1–3 verifiable instructions drawn by the official IFEval instruction generators;
+  thinking off, 2048-token cap), and grades them with the official verifier. It returns:
   - `prompt_strict` (the real objective), `inst_strict` (fraction of individual instructions followed),
     `per_group_strict` (by instruction family), `cut` (fraction that hit the cap) and `mean_tokens`;
   - the base model's `base_prompt_strict`, `base_inst_strict` and `base_cut` on the same prompts, with paired
     `rescues` and `losses`;
   - `fail_examples`: up to 4 failed prompts, with the instructions that failed and the start and end of the
     response, so you can **see** how the edited model fails.
-  It takes about 6–8 min and has its own small budget (see Rules). This is the closest signal to the final
+  It takes about 15–20 min and has its own small budget (see Rules). This is the closest signal to the final
   evaluation, so use it to decide between candidate families, not to fine-tune α.
+- **Sampling noise in the generation check (measured):** two runs of the *unedited* base model with different random
+  seeds disagree on about 23% of prompts. Any edit changes the sampled text, so it reshuffles which prompts pass. On
+  128 prompts, a gap of less than about 8 points (≈10 prompts) between a candidate and the base is within noise. Judge
+  `rescues` against `losses` (the net), and prefer candidates whose gain also shows up in `inst_strict` and across
+  several `per_group_strict` families over one large jump that may be luck.
 - **Probe scorer** (`m.submit`): each valid call costs 1 unit of budget and takes ~80 s. It uses matched pairs:
   the same hand-written answer in two versions, one that follows an instruction and one that does not (for example
   the paragraph in lowercase vs. the original, with and without the requested final phrase). For each pair, the
@@ -92,8 +98,11 @@ m.history(RUN)                    # all your past results
 ## Rules
 - **Budget: 40 probe calls and 6 generation checks** for your run (`RUN` is given below). Plan and use them wisely.
   The run's `config.json` holds the enforced values.
+- **Time:** you have up to about 4 hours of wall time. There is no reward for finishing early: do not stop with
+  budget left only to save time. Stop when you believe more evaluations would not change your ranking.
 - Do **not** read any of these:
-  - anything in `docs/`, `scripts/`, `notebooks/`, `src/wsp/ifeval/`, `data/ifeval/`, or `/mnt/dados/dev/refs/`;
+  - anything in `docs/`, `scripts/`, `notebooks/`, `src/wsp/ifeval/`, `src/wsp/ifsynth.py`, `data/ifeval/`,
+    `data/ft_if/`, or `/mnt/dados/dev/refs/`;
   - anything in `data/` except this brief and your own run directory (`data/m2a_if/runs/<RUN>/`). In particular, do
     not read other runs' directories (in `data/m2a/` or `data/m2a_if/`), any `sealed/` directory, or any
     generation outputs;

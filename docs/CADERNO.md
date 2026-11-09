@@ -1230,3 +1230,32 @@ IFEval dev[48:200], 152 prompts, sem raciocínio, teto 2048, pareado contra o ba
    o SFT ganhar e as edições não, é um limite honesto do método, a reportar no paper.
 3. O teste trancado do IFEval só abre se algum braço passar na confirmação. Hoje nenhum passou, então ele continua
    fechado.
+
+## 2026-11-08 (21h40) — t200: primeiro braço; pré-registro do b2 e do baseline FT do IFEval
+
+**t200, braço a1 completo:** 0,615 (cortes 0,17; loop no teto 0,165; fechou o raciocínio em 0,865). A previsão
+registrada era ≈ 0,60. Os demais braços seguem (bf4096 começou às 21h30; ~1h45 por braço).
+
+**Ordem da GPU para a madrugada (decidida antes de ver qualquer resultado novo):**
+1. t200, os 5 braços principais (a1, bf4096, combo, astra, base), até ~04h40.
+2. Baseline FT do IFEval (`scripts/queue_if_ft.sh`, sem mudanças): dados por rejeição em 600 prompts `ifsynth`
+   (sementes 10000+, K=2) → LoRA-SFT com a receita do E4 (3 épocas) → escolha da época no IFEval dev[0:48] →
+   confirmação no dev152.
+3. b2 (precisa de mim acordado para lançar o agente).
+4. Cauda do t200 (lbx_w10_t1, ft_sft_ep2), a menor prioridade: é a primeira a sair se faltar tempo.
+
+**b2, desenho (desvio declarado em relação ao b1, motivado pelo ruído medido no dev152):**
+- Checagem por geração: 128 prompts sintéticos (`gen_set: synth128`, `wsp.ifsynth` com sementes 50000..50127,
+  disjuntas das do FT). Não usa nenhum prompt do IFEval. EP pareado esperado ~4 pp (contra ~8–9 com 48 prompts).
+- O brief passa a informar o ruído medido (23% de discordância base contra base; diferenças < ~8 pp em 128 prompts
+  são ruído) e diz que não há prêmio por terminar cedo (até ~4 h). `ifsynth.py` e `data/ft_if/` entram na lista
+  proibida. O resto fica igual: 40 sondas, 6 checagens, mesmas sondas, mesmo espaço de edição.
+- Como a checagem não toca o IFEval, **a confirmação usa o dev200 inteiro** (tag `dev200b2`, braços base e
+  `m2aif_b2`, base reamostrado com as mesmas sementes). O recorte dev152 também é reportado, para comparar com o b1.
+- **Critério para "passar":** ganho pareado no dev200 > 2 EP. Só nesse caso eu pergunto ao Luiz se abro o teste
+  trancado do IFEval.
+
+**Previsões:**
+- b2 acha um candidato com ganho ≥ 8 pp na própria checagem: 35%. Passa na confirmação: 20%.
+- Se o b2 falhar com a checagem forte, a leitura é: o defeito é difuso demais para ≤ 4 edições rank-1, não o ruído.
+- FT: a melhor época ganha de +5 a +15 pp no dev152 (60%); ganho ≤ 2 pp (25%).
