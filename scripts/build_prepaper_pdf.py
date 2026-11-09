@@ -1,6 +1,8 @@
 """Typeset docs/paper-draft.md as a PDF with pandoc + pdfLaTeX (floating figures, proper page breaks).
 
-usage: uv run python scripts/build_prepaper_pdf.py [--lang en|pt-BR] [out.pdf]
+usage: uv run python scripts/build_prepaper_pdf.py [--lang en|pt-BR] [--print] [out.pdf]
+       --print: review copy for paper (wide right margin for notes, line numbers, "page X of Y", a final notes page)
+                -> docs/pre-paper[.pt-BR].print.pdf
        (default: docs/pre-paper.pdf from docs/paper-draft.md; pt-BR: docs/pre-paper.pt-BR.pdf from docs/paper-draft.pt-BR.md)
 needs: uv sync --group analysis (bundled pandoc), pdflatex with tcolorbox/titlesec/caption/newunicodechar, tgpagella, tgheros, mathpazo.
 Figures come from docs/figures/ (scripts/export_figures.py).
@@ -18,16 +20,25 @@ ROOT = Path(__file__).resolve().parents[1]
 args = sys.argv[1:]
 LANG = args.pop(args.index("--lang") + 1) if "--lang" in args else "en"
 args = [a for a in args if a != "--lang"]
+PRINT = "--print" in args
+args = [a for a in args if a != "--print"]
 L = {  # every language-specific marker the markdown uses, and the labels typeset around it
     "en": dict(src="paper-draft.md", out="pre-paper.pdf", authors="Authors:", note="Working draft", fig="Figure",
                exp="Experiment", setup="Setup", after_tldr="Everything ran on one gaming", pandoc_lang="en",
-               kicker="PRE-PAPER · WORKING DRAFT", header="Agentic Weight-Space Programming · pre-paper draft"),
+               kicker="PRE-PAPER · WORKING DRAFT", header="Agentic Weight-Space Programming · pre-paper draft",
+               figdir="figures", page="page", of="of", notes="Notes, questions and suggestions"),
     "pt-BR": dict(src="paper-draft.pt-BR.md", out="pre-paper.pt-BR.pdf", authors="Autores:", note="Rascunho de trabalho",
                   fig="Figura", exp="Experimento", setup="Configuração", after_tldr="Tudo rodou em uma única placa",
                   pandoc_lang="pt-BR", kicker="PRÉ-PAPER · RASCUNHO",
-                  header="Programação Agêntica no Espaço de Pesos · rascunho"),
+                  header="Programação Agêntica no Espaço de Pesos · rascunho",
+                  figdir="figures/pt-BR", page="página", of="de", notes="Anotações, dúvidas e sugestões"),
 }[LANG]
-OUT = Path(args[0]).resolve() if args else ROOT / "docs" / L["out"]
+OUT = Path(args[0]).resolve() if args else ROOT / "docs" / (L["out"].replace(".pdf", ".print.pdf") if PRINT else L["out"])
+
+
+def figpath(rel):  # translated copy of the figure when there is one (docs/figures/pt-BR/, scripts/export_figures_pt_br.py)
+    alt = ROOT / "docs" / L["figdir"] / Path(rel).name
+    return alt if alt.exists() else ROOT / "docs" / rel
 md = (ROOT / "docs" / L["src"]).read_text()
 
 # --- title block: taken out of the body, typeset by hand
@@ -38,7 +49,7 @@ md = md[md.index("**TL;DR**"):]
 
 # --- figures: image + "**Figure N:** caption" paragraph -> one captioned float
 md, nfig = re.subn(rf"!\[[^\]]*\]\((figures/[\w-]+\.png)\)\n\n\*\*{L['fig']} \d+:\*\* (.+?)\n\n",
-                   lambda m: f"![{m.group(2).replace(chr(10), ' ')}]({ROOT / 'docs' / m.group(1)}){{width=94%}}\n\n", md, flags=re.S)
+                   lambda m: f"![{m.group(2).replace(chr(10), ' ')}]({figpath(m.group(1))}){{width=94%}}\n\n", md, flags=re.S)
 # --- "Experiment N" labels, TL;DR box, money signs, decorative rules
 md = re.sub(rf"^\*{L['exp']} (\d+)\*\n\n### (.+)$", rf"### \\texorpdfstring{{\\expkicker{{{L['exp'].upper()} \1}}}}{{}} \2", md, flags=re.M)
 assert f"*{L['exp']}" not in md
@@ -95,6 +106,21 @@ HEADER = r"""
 """
 
 HEADER = HEADER.replace("@SETUP@", L["setup"]).replace("@HEADER@", L["header"])
+GEOMETRY = "top=24mm,bottom=24mm,left=26mm,right=26mm,headsep=8mm"
+if PRINT:  # review copy: room to write, line numbers to point at, page X of Y, and a ruled notes page at the end
+    GEOMETRY = "top=22mm,bottom=24mm,left=22mm,right=46mm,headsep=8mm"
+    HEADER += r"""
+\usepackage{lastpage}
+\fancyfoot[C]{\sffamily\footnotesize\color{ink2}@PAGE@ \thepage\ @OF@ \pageref*{LastPage}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\sffamily\footnotesize\color{ink2}@PAGE@ \thepage\ @OF@ \pageref*{LastPage}}}
+\usepackage[pagewise]{lineno}\renewcommand{\linenumberfont}{\normalfont\tiny\sffamily\color{ink2!60}}
+\setlength{\linenumbersep}{6mm}
+\usepackage{setspace}\setstretch{1.12}
+\AtBeginDocument{\linenumbers}
+\DeclareRobustCommand{\expkicker}[1]{{\scriptsize\bfseries\color{accent}#1}\enspace}
+""".replace("@PAGE@", L["page"]).replace("@OF@", L["of"])
+    md += ("\n\n\\clearpage\\nolinenumbers\n\n## " + L["notes"] + "\n\n" +
+           "\\vspace{6mm}" + "".join("\\noindent{\\color{ink2!35}\\rule{\\linewidth}{0.4pt}}\\par\\vspace{4.5mm}" for _ in range(18)) + "\n")
 
 
 def tex_escape(s):
@@ -120,7 +146,7 @@ with tempfile.TemporaryDirectory() as td:
         extra_args=["--standalone", "--shift-heading-level-by=-1",
                     f"--include-in-header={td / 'header.tex'}", f"--include-before-body={td / 'before.tex'}",
                     "-V", "documentclass=article", "-V", "papersize=a4", "-V", "fontsize=11pt",
-                    "-V", "geometry=top=24mm,bottom=24mm,left=26mm,right=26mm,headsep=8mm",
+                    "-V", f"geometry={GEOMETRY}",
                     "-V", "fontfamily=tgpagella",
                     "-V", "colorlinks=true", "-V", "linkcolor=accent", "-V", "urlcolor=accent",
                     "-V", f"lang={L['pandoc_lang']}", "--pdf-engine=pdflatex"])
@@ -140,7 +166,7 @@ with tempfile.TemporaryDirectory() as td:
     (td / "paper.tex").write_text(tex)
     for _ in range(2):
         r = subprocess.run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "paper.tex"], cwd=td,
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, errors="replace")
         if r.returncode != 0:
             print(r.stdout[-3000:]); sys.exit(1)
     log = (td / "paper.log").read_text(errors="ignore")

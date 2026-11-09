@@ -150,18 +150,18 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 
 ![Figure 4](figures/headline.png)
 
-**Figure 4:** Share of problems solved by each method on the three problem sets (error bars: ±1 standard error).
+**Figure 4:** Share of problems solved by each method on the four problem sets (error bars: ±1 standard error).
 
-| method | practice set (48) | locked test (32) | harder math (148) |
-|--------------------------------|-----------|-----------|-----------|
-| original model | 15% | 13% | 8% |
-| published edit (Astra) | 46% | 41% | 21% |
-| ban the word "Wait" (best of 3 settings) | 52% | 47% | 27% (first 48) |
-| thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 37% |
-| automated search, no agent | 27% | — | — |
-| fine-tuning (LoRA) | 29% | — | — |
-| **agent's edit (a1)** | **67%** | 56% | **47%** |
-| **agent's edit + time limit** | **69%** | **63%** | **53%** |
+| method | practice set (48) | locked test 1 (32) | locked test 2 (200) | harder math (148) |
+|--------------------------------|-----------|-----------|-----------|-----------|
+| original model | 15% | 13% | 15.5% | 8% |
+| published edit (Astra) | 46% | 41% | 53.5% | 21% |
+| ban the word "Wait" (best of 3 settings) | 52% | 47% | — | 27% (first 48) |
+| thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 61.0% | 37% |
+| automated search, no agent | 27% | — | — | — |
+| fine-tuning (LoRA) | 29% | — | — | — |
+| **agent's edit (a1)** | **67%** | 56% | 61.5% | **47%** |
+| **agent's edit + time limit** | **69%** | **63%** | **69.5%** | **53%** |
 
 *Experiment 4*
 
@@ -405,6 +405,45 @@ main-track conference if a concentrated second defect works.
 
 **Alternative titles:** *Agents as Weight-Space Programmers: Fixing Reasoning Loops in Small Language Models*;
 *Generation in the Loop: What Makes Agentic Weight-Space Programming Work*.
+
+## Glossary
+
+- **Language model, weights:** a model is a large collection of numbers (its *weights*) arranged in matrices.
+  Qwen3.5-0.8B has about 800 million. Training changes them gradually, with gradients. Here, an agent changes a few of
+  them directly and deliberately.
+- **Token:** the piece of text the model reads and writes at a time, about ¾ of a word.
+- **Thinking, loop:** before answering, the model writes a draft between `<think>` and `</think>`. It is *looping*
+  when it repeats the same passage ("Wait, let me check…") until it runs out of space.
+- **Rank-1 edit:** the smallest structured change to a matrix. It picks one direction and a group of *neurons*
+  (matrix columns) and changes only how much those neurons write along that direction. Each fix used at most 4.
+- **Fine-tuning, LoRA:** the usual route, which is training the model on examples. LoRA is the cheap version, which
+  trains only small matrices added to the model.
+- **Steering:** adding a vector to internal activations to push behavior. The Astra edit is of this kind, baked into
+  the weights.
+- **Decoding:** how text is sampled from the model's probabilities. *Word ban* (logit bias) and *thinking time limit*
+  (budget forcing) change decoding, not weights.
+- **Agent:** an AI model (here, Claude) working on its own with tools: it reads the weights, proposes edits, requests
+  evaluations, and decides what to do next.
+- **Quick score (probe) and test run:**
+  - a quick score measures an internal probability in seconds (for example, how much the model "wants" to repeat);
+  - a test run makes the edited model actually solve problems and checks the answers.
+  Central lesson: quick scores can be gamed, and only test runs are reliable.
+- **Practice set, locked test, pre-registration:** agents only saw practice problems. The *locked test* stays sealed
+  until every method has picked its final version. Predictions were written in the notebook *before* results were
+  opened (pre-registration).
+- **Standard error (± SE), paired comparison:** "+8.0 ± 3.4" means a gain of 8 points with an uncertainty of about
+  3.4. A difference larger than ~2 SE is rarely luck. In a paired comparison, both methods solve the *same* problems:
+  *rescues* are the ones only the first solves, and *losses* the ones only the second solves.
+- **GSM8K, MATH-500, IFEval:** public benchmarks.
+  - GSM8K: grade-school math.
+  - MATH-500: competition math.
+  - IFEval: following verifiable instructions ("no commas", "all lowercase"...).
+- **Goodhart's law:** when a measure becomes a target, it stops being a good measure. This is what happened to the
+  quick scores.
+- **Atlas:** an extra map of the model's internal activity (which neurons fire during loops), given to half of the
+  agents.
+- **DeltaNet:** the layer type ("linear attention") that makes up 18 of Qwen3.5's 24 layers. It keeps a compressed
+  memory of the text and has *gates* that decide how much to forget.
 
 ## References (to verify and complete)
 

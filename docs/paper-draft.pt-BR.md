@@ -158,20 +158,20 @@ vantagem é de 9,1 ± 3,1.
 Um cético perguntaria se a edição é só um jeito sofisticado de fazer algo mais simples. Testamos as alternativas mais
 simples, ajustadas em 48 problemas (três vezes o que os agentes viram), o que as favorece.
 
-| método | prática (48) | teste trancado (32) | matemática difícil (148) |
-|--------------------------------|-----------|-----------|-----------|
-| modelo original | 15% | 13% | 8% |
-| edição publicada (Astra) | 46% | 41% | 21% |
-| proibir a palavra "Wait" (melhor de 3 ajustes) | 52% | 47% | 27% (primeiros 48) |
-| limite de raciocínio, 4.096 tokens (melhor de 2) | 48% | **63%** | 37% |
-| busca automática, sem agente | 27% | — | — |
-| fine-tuning (LoRA) | 29% | — | — |
-| **edição do agente (a1)** | **67%** | 56% | **47%** |
-| **edição do agente + limite de raciocínio** | **69%** | **63%** | **53%** |
+| método | prática (48) | teste trancado 1 (32) | teste trancado 2 (200) | matemática difícil (148) |
+|--------------------------------|-----------|-----------|-----------|-----------|
+| modelo original | 15% | 13% | 15,5% | 8% |
+| edição publicada (Astra) | 46% | 41% | 53,5% | 21% |
+| proibir a palavra "Wait" (melhor de 3 ajustes) | 52% | 47% | — | 27% (primeiros 48) |
+| limite de raciocínio, 4.096 tokens (melhor de 2) | 48% | **63%** | 61,0% | 37% |
+| busca automática, sem agente | 27% | — | — | — |
+| fine-tuning (LoRA) | 29% | — | — | — |
+| **edição do agente (a1)** | **67%** | 56% | 61,5% | **47%** |
+| **edição do agente + limite de raciocínio** | **69%** | **63%** | **69,5%** | **53%** |
 
 ![Figura 4](figures/headline.png)
 
-**Figura 4:** Parcela de problemas resolvidos por cada método nos três conjuntos de problemas (barras de erro: ±1 erro
+**Figura 4:** Parcela de problemas resolvidos por cada método nos quatro conjuntos de problemas (barras de erro: ±1 erro
 padrão).
 
 *Experimento 4*
@@ -423,6 +423,46 @@ resultados atuais; e uma conferência principal se um segundo defeito concentrad
 
 **Títulos alternativos:** *Agentes como Programadores do Espaço de Pesos: Corrigindo Loops de Raciocínio em Modelos de
 Linguagem Pequenos*; *Geração no Laço: o que Faz a Programação Agêntica no Espaço de Pesos Funcionar*.
+
+## Glossário
+
+- **Modelo de linguagem, pesos:** o modelo é uma grande coleção de números (os *pesos*) organizados em matrizes. O
+  Qwen3.5-0.8B tem cerca de 800 milhões deles. Treinar muda os pesos aos poucos, com gradientes. Aqui, um agente muda
+  poucos pesos de forma direta e deliberada.
+- **Token:** o pedaço de texto que o modelo lê e escreve de cada vez, cerca de ¾ de uma palavra.
+- **Raciocínio ("thinking"), loop:** antes de responder, o modelo escreve um rascunho entre `<think>` e `</think>`.
+  Ele está em *loop* quando repete o mesmo trecho ("Espera, deixa eu conferir…") até esgotar o espaço.
+- **Edição de posto 1 (rank-1):** a menor mudança estruturada numa matriz. Ela escolhe uma direção e um grupo de
+  *neurônios* (colunas da matriz) e muda só o quanto esses neurônios escrevem naquela direção. Cada correção usou no
+  máximo 4 dessas edições.
+- **Fine-tuning, LoRA:** o caminho usual, que é treinar o modelo com exemplos. LoRA é a versão barata, que treina só
+  pequenas matrizes acrescentadas ao modelo.
+- **Steering (direcionamento):** somar um vetor às ativações internas para empurrar o comportamento. A edição Astra é
+  desse tipo, só que gravada nos pesos.
+- **Decodificação:** como o texto é sorteado a partir das probabilidades do modelo. *Proibir a palavra* (logit bias) e
+  *limite de raciocínio* (budget forcing) mudam a decodificação, não os pesos.
+- **Agente:** um modelo de IA (aqui, Claude) que trabalha sozinho com ferramentas: lê os pesos, propõe edições, pede
+  avaliações e decide o próximo passo.
+- **Nota rápida (sonda) e teste real:**
+  - a nota rápida mede, em segundos, uma probabilidade interna (por exemplo, o quanto o modelo "quer" repetir);
+  - o teste real faz o modelo editado de fato resolver problemas e confere as respostas.
+  Lição central: notas rápidas podem ser burladas, e só o teste real é confiável.
+- **Conjunto de prática, teste trancado, pré-registro:** os agentes só viam problemas de prática. O *teste trancado*
+  fica lacrado até que cada método tenha escolhido sua versão final. As previsões foram escritas no caderno *antes*
+  de abrir os resultados (pré-registro).
+- **Erro-padrão (± EP), comparação pareada:** "+8,0 ± 3,4" quer dizer um ganho de 8 pontos com incerteza de cerca de
+  3,4. Uma diferença maior que ~2 EP raramente é sorte. Na comparação pareada, os dois métodos fazem os *mesmos*
+  problemas: *resgates* são os que só o primeiro acerta, e *perdas*, os que só o segundo acerta.
+- **GSM8K, MATH-500, IFEval:** conjuntos públicos de avaliação.
+  - GSM8K: matemática do ensino fundamental.
+  - MATH-500: matemática de competição.
+  - IFEval: seguir instruções verificáveis ("sem vírgulas", "tudo em minúsculas"...).
+- **Lei de Goodhart:** quando uma medida vira meta, ela deixa de ser uma boa medida. É o que aconteceu com as notas
+  rápidas.
+- **Atlas:** um mapa extra da atividade interna do modelo (quais neurônios disparam em loops), dado a metade dos
+  agentes.
+- **DeltaNet:** o tipo de camada ("atenção linear") que forma 18 das 24 camadas do Qwen3.5. Ela guarda uma memória
+  resumida do texto e tem *portões* que decidem o quanto esquecer.
 
 ## Referências (a conferir e completar)
 
