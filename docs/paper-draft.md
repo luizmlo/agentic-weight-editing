@@ -119,9 +119,14 @@ The two parts only work together. Our ablations, each a test run on 16 problems:
 
 A loop needs a way back in ("Wait, let me check") and no way out. The edit closes the first and opens the second.
 
-![Figure 2](figures/why.png)
+![Figure 2](figures/edit-anatomy.png)
 
-**Figure 2:** Across all 20 models and methods we tested, the fewer answers that run out of space, the more are correct
+**Figure 2:** Anatomy of the a1 edit. (A) A rank-1 edit changes only the part of what a neuron writes along one
+chosen direction. (B) a1 strengthens three neurons' brake on “Wait” and the `</think>` signal in the last layer.
+
+![Figure 3](figures/why.png)
+
+**Figure 3:** Across all 20 models and methods we tested, the fewer answers that run out of space, the more are correct
 (r = −0.99).
 
 *Experiment 3*
@@ -132,9 +137,9 @@ A loop needs a way back in ("Wait, let me check") and no way out. The edit close
 math, which was never used in any search, it solves 47%, against 21% for the published edit.** Compared problem by
 problem with the published edit on MATH, it rescued 44 problems and lost 6.
 
-![Figure 3](figures/difficulty.png)
+![Figure 4](figures/difficulty.png)
 
-**Figure 3:** The agent's edit (alone or with a thinking time limit) stays ahead at every difficulty level.
+**Figure 4:** The agent's edit (alone or with a thinking time limit) stays ahead at every difficulty level.
 
 With the edit, thinking pays off again: at 67%, the edited model beats the original model with thinking switched off
 (about 48%).
@@ -148,9 +153,9 @@ published edit by **8.0 ± 3.4 points** (32 rescues, 16 losses); over all 232 lo
 A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, tuned on
 48 problems (three times what the agents saw), which favors them.
 
-![Figure 4](figures/headline.png)
+![Figure 5](figures/headline.png)
 
-**Figure 4:** Share of problems solved by each method on the four problem sets (error bars: ±1 standard error).
+**Figure 5:** Share of problems solved by each method on the four problem sets (error bars: ±1 standard error).
 
 | method | practice set (48) | locked test 1 (32) | locked test 2 (200) | harder math (148) |
 |--------------------------------|-----------|-----------|-----------|-----------|
@@ -183,9 +188,9 @@ somewhere. On harder math the edit wins by 9.5 points, rescuing 23 problems and 
 all (53% on harder math, 69.5% on the 200-problem locked test, 8 points above either alone, with the fewest cut-off
 answers)**: the edit breaks loops from the inside, and the time limit catches what is left.
 
-![Figure 5](figures/paired.png)
+![Figure 6](figures/paired.png)
 
-**Figure 5:** Problem by problem, same problems and seeds: problems only the agent's edit solved (right) against
+**Figure 6:** Problem by problem, same problems and seeds: problems only the agent's edit solved (right) against
 problems only the other method solved (left).
 
 *Experiment 5*
@@ -215,9 +220,9 @@ test runs on the most promising candidates.
 **The script's best test run solved 3 of 16, and its pick reached 27% on the practice set, 40 points below the agents.**
 The tools and the feedback are not enough. What matters is what the agent chooses to try.
 
-![Figure 6](figures/search.png)
+![Figure 7](figures/search.png)
 
-**Figure 6:** Each searcher's 6 test runs (16 problems each). The two agents without the atlas reached 11 of 16; the
+**Figure 7:** Each searcher's 6 test runs (16 problems each). The two agents without the atlas reached 11 of 16; the
 agents with the atlas 5–7; the script 3.
 
 ## What we learned about the process
@@ -235,9 +240,9 @@ we tried broke once a strong optimizer pushed on it:
   doing nothing.** It blocked word-for-word copying, and the model simply looped in other ways (alternating values,
   growing lists).
 
-![Figure 7](figures/goodhart.png)
+![Figure 8](figures/goodhart.png)
 
-**Figure 7:** The quick score each agent's chosen edit achieved (left = looked better) against how often it actually
+**Figure 8:** The quick score each agent's chosen edit achieved (left = looked better) against how often it actually
 solved problems.
 
 Six real test runs fixed this. Under that protocol, both agents' best-scoring early ideas solved 0 of 16 in a test run,
@@ -255,9 +260,9 @@ the atlas, agents chased intricate internal mechanisms, such as a "re-checking" 
 "loop heads". These looked convincing in the data but did not stop the loops. Without it, agents went for the direct
 levers: the word "Wait" and the `</think>` signal. Three pairs make this suggestive, not proven.
 
-![Figure 8](figures/atlas.png)
+![Figure 9](figures/atlas.png)
 
-**Figure 8:** Each pair of agents had identical instructions; the agent without the atlas did better every time.
+**Figure 9:** Each pair of agents had identical instructions; the agent without the atlas did better every time.
 
 ## What did it cost?
 
@@ -279,9 +284,9 @@ levers: the word "Wait" and the `</think>` signal. Three pairs make this suggest
 - **The fine print.** We ran on a subscription, so the dollar figures are list-price estimates. On a very cheap rented
   GPU, fine-tuning could cost a few dollars less than the agent's usage, for less than half the improvement.
 
-![Figure 9](figures/cost.png)
+![Figure 10](figures/cost.png)
 
-**Figure 9:** Left: GPU-hours to produce each fix. Right: average answer length, which sets the cost of every future
+**Figure 10:** Left: GPU-hours to produce each fix. Right: average answer length, which sets the cost of every future
 answer.
 
 ## Did the surgery break anything?
@@ -291,9 +296,9 @@ requests) beyond about two standard errors. The edit acts where the loops happen
 skills alone. One side effect is positive: with thinking on, the published edit gets better at declining irrelevant
 tool calls (16 of 16 vs 11 of 16), probably because shorter thinking leaves less room to hallucinate a call.
 
-![Figure 10](figures/side-effects.png)
+![Figure 11](figures/side-effects.png)
 
-**Figure 10:** Accuracy on unrelated tasks for the original model, the published edit and the agent's edit.
+**Figure 11:** Accuracy on unrelated tasks for the original model, the published edit and the agent's edit.
 
 ## Does it work on a second defect?
 
@@ -398,7 +403,8 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 | Second defect without a keyword (IFEval) | done: negative, with fine-tuning and prompt baselines |
 | Concentrated second defect; second model | to do (needed for a main-track venue) |
 | Re-grade MATH with a symbolic checker | to do |
-| Verify citations; edit-anatomy diagram | to do |
+| Edit-anatomy diagram | done (Figure 2) |
+| Verify citations | to do |
 
 **Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
 main-track conference if a concentrated second defect works.

@@ -127,9 +127,14 @@ As duas partes só funcionam juntas. Nas nossas ablações, cada uma um teste re
 Um loop precisa de um caminho de volta ("Espera, deixa eu conferir") e de nenhuma saída. A edição fecha o primeiro e
 abre a segunda.
 
-![Figura 2](figures/why.png)
+![Figura 2](figures/edit-anatomy.png)
 
-**Figura 2:** Nos 20 modelos e métodos que testamos, quanto menos respostas ficam sem espaço, mais respostas estão
+**Figura 2:** Anatomia da edição a1. (A) Uma edição de posto 1 muda só a parte do que um neurônio escreve numa
+direção escolhida. (B) A a1 reforça o freio de três neurônios sobre “Wait” e o sinal de `</think>` na última camada.
+
+![Figura 3](figures/why.png)
+
+**Figura 3:** Nos 20 modelos e métodos que testamos, quanto menos respostas ficam sem espaço, mais respostas estão
 certas (r = −0,99).
 
 *Experimento 3*
@@ -140,9 +145,9 @@ certas (r = −0,99).
 competição, que nunca foi usada em nenhuma busca, ela resolve 47%, contra 21% da edição publicada.** Comparada problema
 por problema com a edição publicada no MATH, ela resgatou 44 problemas e perdeu 6.
 
-![Figura 3](figures/difficulty.png)
+![Figura 4](figures/difficulty.png)
 
-**Figura 3:** A edição do agente (sozinha ou com o limite de tempo de raciocínio) fica à frente em todos os níveis de
+**Figura 4:** A edição do agente (sozinha ou com o limite de tempo de raciocínio) fica à frente em todos os níveis de
 dificuldade.
 
 Com a edição, pensar volta a valer a pena: com 67%, o modelo editado supera o modelo original com o raciocínio
@@ -169,9 +174,9 @@ simples, ajustadas em 48 problemas (três vezes o que os agentes viram), o que a
 | **edição do agente (a1)** | **67%** | 56% | 61,5% | **47%** |
 | **edição do agente + limite de raciocínio** | **69%** | **63%** | **69,5%** | **53%** |
 
-![Figura 4](figures/headline.png)
+![Figura 5](figures/headline.png)
 
-**Figura 4:** Parcela de problemas resolvidos por cada método nos quatro conjuntos de problemas (barras de erro: ±1 erro
+**Figura 5:** Parcela de problemas resolvidos por cada método nos quatro conjuntos de problemas (barras de erro: ±1 erro
 padrão).
 
 *Experimento 4*
@@ -196,9 +201,9 @@ perdendo 9. **Juntos, os dois são o melhor de tudo (53% na matemática mais dif
 8 pontos acima de cada um sozinho, com o menor número de respostas cortadas)**: a edição quebra os loops por dentro,
 e o limite pega o que sobra.
 
-![Figura 5](figures/paired.png)
+![Figura 6](figures/paired.png)
 
-**Figura 5:** Problema por problema, com os mesmos problemas e sementes: problemas que só a edição do agente resolveu
+**Figura 6:** Problema por problema, com os mesmos problemas e sementes: problemas que só a edição do agente resolveu
 (direita) contra problemas que só o outro método resolveu (esquerda).
 
 *Experimento 5*
@@ -229,9 +234,9 @@ mesmo orçamento: 40 notas rápidas e mais 6 testes reais com os candidatos mais
 **O melhor teste real do script resolveu 3 de 16, e a escolha dele chegou a 27% no conjunto de prática, 40 pontos
 abaixo dos agentes.** As ferramentas e o retorno não bastam. O que importa é o que o agente decide testar.
 
-![Figura 6](figures/search.png)
+![Figura 7](figures/search.png)
 
-**Figura 6:** Os 6 testes reais de cada buscador (16 problemas cada). Os dois agentes sem o atlas chegaram a 11 de 16;
+**Figura 7:** Os 6 testes reais de cada buscador (16 problemas cada). Os dois agentes sem o atlas chegaram a 11 de 16;
 os agentes com o atlas, a 5–7; o script, a 3.
 
 ## O que aprendemos sobre o processo
@@ -249,9 +254,9 @@ rápido. Todo indicador que tentamos quebrou assim que um otimizador forte o pre
   do que não fazer nada.** Ela bloqueou a cópia palavra por palavra, e o modelo simplesmente entrou em loop de outras
   formas (valores alternados, listas crescentes).
 
-![Figura 7](figures/goodhart.png)
+![Figura 8](figures/goodhart.png)
 
-**Figura 7:** A nota rápida que a edição escolhida por cada agente obteve (à esquerda = parecia melhor) contra o quanto
+**Figura 8:** A nota rápida que a edição escolhida por cada agente obteve (à esquerda = parecia melhor) contra o quanto
 ela de fato resolveu problemas.
 
 Seis testes reais resolveram isso. Nesse protocolo, as primeiras ideias de melhor nota dos dois agentes resolveram 0 de
@@ -269,9 +274,9 @@ Com o atlas, os agentes perseguiram mecanismos internos elaborados, como um esta
 meio e "cabeças de loop". Pareciam convincentes nos dados, mas não paravam os loops. Sem ele, os agentes foram direto às
 alavancas: a palavra "Wait" e o sinal de `</think>`. Três pares tornam isso sugestivo, não comprovado.
 
-![Figura 8](figures/atlas.png)
+![Figura 9](figures/atlas.png)
 
-**Figura 8:** Cada par de agentes teve instruções idênticas; o agente sem o atlas foi melhor todas as vezes.
+**Figura 9:** Cada par de agentes teve instruções idênticas; o agente sem o atlas foi melhor todas as vezes.
 
 ## Quanto custou?
 
@@ -294,9 +299,9 @@ alavancas: a palavra "Wait" e o sinal de `</think>`. Três pares tornam isso sug
   GPU alugada muito barata, o fine-tuning poderia custar alguns dólares a menos que o uso do agente, entregando menos
   da metade da melhoria.
 
-![Figura 9](figures/cost.png)
+![Figura 10](figures/cost.png)
 
-**Figura 9:** À esquerda, horas de GPU para produzir cada correção. À direita, o comprimento médio das respostas, que
+**Figura 10:** À esquerda, horas de GPU para produzir cada correção. À direita, o comprimento médio das respostas, que
 define o custo de cada resposta futura.
 
 ## A cirurgia quebrou alguma coisa?
@@ -307,9 +312,9 @@ raciocínio, e deixa as outras habilidades em paz. Há um efeito colateral posit
 publicada fica melhor em recusar chamadas de ferramenta irrelevantes (16 de 16 contra 11 de 16), provavelmente porque um
 raciocínio mais curto deixa menos espaço para inventar uma chamada.
 
-![Figura 10](figures/side-effects.png)
+![Figura 11](figures/side-effects.png)
 
-**Figura 10:** Acerto em tarefas não relacionadas para o modelo original, a edição publicada e a edição do agente.
+**Figura 11:** Acerto em tarefas não relacionadas para o modelo original, a edição publicada e a edição do agente.
 
 ## Funciona num segundo defeito?
 
@@ -416,7 +421,8 @@ As transcrições completas dos agentes e as gerações brutas (~210 MB) serão 
 | Segundo defeito sem palavra-chave (IFEval) | feito: negativo, com comparações de fine-tuning e de prompt |
 | Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
 | Recorrigir o MATH com um verificador simbólico | a fazer |
-| Conferir as citações; diagrama da anatomia da edição | a fazer |
+| Diagrama da anatomia da edição | feito (Figura 2) |
+| Conferir as citações | a fazer |
 
 **Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os
 resultados atuais; e uma conferência principal se um segundo defeito concentrado funcionar.
