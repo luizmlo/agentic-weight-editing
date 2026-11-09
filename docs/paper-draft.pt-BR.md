@@ -1,6 +1,6 @@
 # Programação Agêntica no Espaço de Pesos como Alternativa ao Fine-Tuning em Modelos de Linguagem Pequenos
 
-**Autores:** Luiz Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 8 nov. 2026
+**Autores:** Luiz Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 9 nov. 2026
 
 *Rascunho de trabalho – o estado de cada resultado e o trabalho restante estão listados no final.*
 
@@ -20,6 +20,10 @@
   mesmo orçamento, mas sem o raciocínio de um agente, não encontrou. Toda nota rápida que demos aos agentes acabou
   sendo burlada, e só os testes reais os mantiveram honestos. Surpreendentemente, dar mais dados de interpretabilidade
   aos agentes piorou as correções que eles encontraram.
+- **Onde o método para de funcionar.** Num segundo defeito, espalhado (seguir instruções de formato, IFEval), nem os
+  agentes, nem um system prompt, nem o fine-tuning melhoraram o modelo. Todo candidato que parecia melhor nos testes
+  de prática perdeu de 3 a 7 pontos em prompts novos. O método funciona quando o defeito é concentrado e o efeito é
+  grande. Ele não acha efeitos menores que o próprio ruído de amostragem do teste.
 
 Tudo rodou em uma única placa de vídeo de jogos (GTX 1660 SUPER, 6 GB).
 
@@ -144,6 +148,11 @@ dificuldade.
 Com a edição, pensar volta a valer a pena: com 67%, o modelo editado supera o modelo original com o raciocínio
 desligado (cerca de 48%).
 
+**Um segundo teste trancado, maior, confirma.** Abrimos mais 200 problemas lacrados uma única vez, depois de anotar as
+previsões. A edição do agente resolve 61,5% (o original: 15,5%; a edição publicada: 53,5%). Problema por problema, ela
+vence a edição publicada por **8,0 ± 3,4 pontos** (32 resgates, 16 perdas). Somando os 232 problemas trancados, a
+vantagem é de 9,1 ± 3,1.
+
 ## É só um truque?
 
 Um cético perguntaria se a edição é só um jeito sofisticado de fazer algo mais simples. Testamos as alternativas mais
@@ -178,11 +187,14 @@ padrão).
 **Proibir a palavra é pior em todos os casos.** A edição não é uma proibição global. Ela age por meio de neurônios que
 disparam *quando o modelo está em loop*, então deixa "Wait" em paz quando ele é útil.
 
-**O limite de raciocínio é uma alternativa forte em matemática do ensino fundamental e é o melhor no teste trancado (63%
-contra 56%; 32 problemas são poucos para separar os dois).** Em problemas mais longos ele atrapalha, porque também corta
+**O limite de raciocínio é uma alternativa forte em matemática do ensino fundamental e empata com a edição nos testes
+trancados (61,0% contra 61,5% no teste de 200 problemas; +0,5 ± 3,4).** Mas chega lá a um custo maior: o dobro de
+respostas bate no teto de tokens (34% contra 17%), e ele escreve cerca de 40% mais tokens. Proibir o "Wait" impede o
+modelo de recomeçar, mas não faz ele concluir. Em problemas mais longos ele atrapalha, porque também corta
 raciocínios que estavam indo bem. Na matemática mais difícil, a edição vence por 9,5 pontos, resgatando 23 problemas e
-perdendo 9. **Juntos, os dois são o melhor de tudo (53%)**: a edição quebra os loops por dentro, e o limite pega o que
-sobra.
+perdendo 9. **Juntos, os dois são o melhor de tudo (53% na matemática mais difícil e 69,5% no teste trancado de 200 problemas,
+8 pontos acima de cada um sozinho, com o menor número de respostas cortadas)**: a edição quebra os loops por dentro,
+e o limite pega o que sobra.
 
 ![Figura 5](figures/paired.png)
 
@@ -299,6 +311,45 @@ raciocínio mais curto deixa menos espaço para inventar uma chamada.
 
 **Figura 10:** Acerto em tarefas não relacionadas para o modelo original, a edição publicada e a edição do agente.
 
+## Funciona num segundo defeito?
+
+**Não, e o jeito como falha é informativo.** Precisávamos de um defeito sem palavra-chave óbvia. JSON e chamadas de
+ferramenta quebrados não eram um problema para este modelo com o raciocínio desligado: ele estava perto do teto.
+Escolhemos então **seguir instruções** (IFEval: "não use vírgulas", "tudo em minúsculas", "termine com esta frase
+exata", "destaque pelo menos 3 seções"). Com o raciocínio desligado, o modelo segue todas as instruções em só cerca de
+55% dos prompts, e as falhas se espalham por muitos tipos de instrução.
+
+**Desenho**
+- **Mesmo protocolo dos loops:** um agente com 40 notas rápidas e 6 testes reais por geração, no máximo 4 edições
+  de posto 1.
+- **Comparações:** um system prompt pedindo cuidado, e fine-tuning LoRA em 414 respostas do próprio modelo que
+  passaram no verificador oficial (a mesma receita de antes).
+- **Confirmação:** em 152–200 prompts do IFEval nunca usados em nenhuma busca.
+
+| braço | mudança contra o original em prompts novos |
+|---|---|
+| agente, testes de 48 prompts (b1) | −3,3 ± 4,1 |
+| a edição dos loops (a1), sem ajuste para isto | −3,9 ± 4,3 |
+| system prompt | −6,6 ± 4,2 |
+| fine-tuning (época escolhida em 48 prompts) | −7,2 ± 4,3 |
+| agente, testes de 128 prompts (b2) | −6,0 ± 3,7 (200 prompts) |
+
+**Todo método pareceu melhor no próprio teste de prática (+5 a +12 pontos) e perdeu em prompts novos.** A causa é o
+ruído de amostragem. Duas execuções do modelo *sem mudança nenhuma*, com sementes diferentes, discordam em 23% dos
+prompts. Em 48 prompts, isso dá uma margem de erro de 8–9 pontos, maior que qualquer ganho plausível. Um teste maior,
+de 128 prompts, também não salvou o agente: o controle de sinal oposto da melhor edição também pareceu levemente
+positivo.
+
+**O que isso significa.** Nos loops, o efeito era de +46 pontos, e 16 problemas bastavam para vê-lo. Em seguir
+instruções, mudanças baratas de qualquer tipo (pesos, prompt, gradiente) parecem tirar o modelo de um ponto que já é
+quase o melhor da vizinhança, e nenhum teste desse tamanho acha as raras mudanças que ajudam. **O alcance do método é
+dado pela razão sinal/ruído do teste real, não só pelo agente.** O fine-tuning bate na mesma parede, então não é um
+caso de o agente perder para o gradiente.
+
+O agente da segunda execução também achou, só lendo os pesos, uma direção do fluxo residual que 99,7% das linhas dos
+portões de esquecimento das 288 cabeças DeltaNet leem com o mesmo sinal: um canal global de controle do esquecimento.
+Editá-la muda o modelo, mas não muda o seguimento de instruções. Fica para trabalho futuro.
+
 ## Contexto e trabalhos relacionados
 
 **Programação no espaço de pesos.** Takehi et al. (2026) mostraram que modelos de fronteira conseguem ler e escrever
@@ -324,10 +375,11 @@ com indicadores derivados de interpretabilidade.
 
 ## O que ainda não podemos afirmar, e o que vem a seguir?
 
-- **Amostras pequenas:** a maioria dos números se apoia em 32–148 problemas (±7–10 pontos nos conjuntos menores).
-  **Próximo passo:** um teste trancado com pelo menos 200 problemas para os métodos principais.
-- **Um modelo, um defeito:** "Wait" é uma palavra fácil de mirar. **Próximo passo:** um defeito sem palavra-chave
-  óbvia (formato de chamada de ferramenta quebrado, parar cedo demais, JSON inválido) e um segundo modelo.
+- **Tamanho das amostras:** as comparações principais agora se apoiam num teste trancado de 200 problemas (±3–4
+  pontos), mas os números de desenvolvimento e do MATH ainda se apoiam em 48–148 problemas.
+- **Um modelo, um defeito que funciona:** "Wait" é uma palavra fácil de mirar, e o segundo defeito (IFEval) deu um
+  resultado negativo bem controlado. **Próximo passo:** um defeito concentrado sem palavra-chave e um segundo modelo.
+  Qualquer segundo defeito precisa de um teste real com ruído bem abaixo do efeito esperado, medido antes da busca.
 - **Poucas réplicas:** o protocolo vencedor tem 2 agentes, e a comparação com e sem atlas tem 3 pares. **Próximo
   passo:** mais dois de cada.
 - **Uma receita de fine-tuning:** uma receita mais forte poderia fechar parte da diferença, a um custo maior.
@@ -335,8 +387,9 @@ com indicadores derivados de interpretabilidade.
 - **Amostrador diferente do estudo original:** os números absolutos mudam, mas toda comparação aqui usa as mesmas
   configurações.
 
-**Se o segundo defeito funcionar, a afirmação se torna geral: para defeitos de comportamento específicos, um agente
-editando pesos pode ser uma alternativa mais rápida, mais barata e mais interpretável ao fine-tuning.**
+**A afirmação, como está hoje: para defeitos de comportamento concentrados e de efeito grande, um agente editando pesos
+pode ser uma alternativa mais rápida, mais barata e mais interpretável ao fine-tuning. Para defeitos espalhados, como
+seguir instruções num modelo de 0,8B, nem ele nem um fine-tuning barato ajudaram.**
 
 ## Dados, código e registros
 
@@ -358,9 +411,10 @@ As transcrições completas dos agentes e as gerações brutas (~210 MB) serão 
 | 6 execuções de agente (2 protocolos, 3 pares com e sem atlas) | feito |
 | Alternativas de decodificação, busca ingênua, fine-tuning | feito |
 | Transferência para matemática mais difícil, efeitos colaterais, custo | feito |
-| Teste trancado com ≥ 200 problemas | a fazer (cerca de 1 hora de GPU por método) |
+| Teste trancado com ≥ 200 problemas | feito (t200: 5 métodos; faltam os braços "proibir Wait" e LoRA) |
 | Mais réplicas (2 + 2 agentes) | a fazer |
-| Segundo defeito sem palavra-chave; segundo modelo | a fazer (necessário para uma conferência principal) |
+| Segundo defeito sem palavra-chave (IFEval) | feito: negativo, com comparações de fine-tuning e de prompt |
+| Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
 | Recorrigir o MATH com um verificador simbólico | a fazer |
 | Conferir as citações; diagrama da anatomia da edição | a fazer |
 

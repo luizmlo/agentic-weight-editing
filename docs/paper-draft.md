@@ -1,6 +1,6 @@
 # Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models
 
-**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 8, 2026
+**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 9, 2026
 
 *Working draft – status of each result and remaining work are listed at the end.*
 
@@ -17,6 +17,10 @@
 - **What mattered.** Two independent agents found the same fix. A script with the same tools and budget, but no agent
   reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
   them honest. Surprisingly, giving agents more interpretability data made their fixes worse.
+- **Where it stops working.** On a second, diffuse defect (following formatting instructions, IFEval), neither the
+  agents, nor a system prompt, nor fine-tuning improved the model. Every candidate that looked better in practice
+  checks lost 3–7 points on fresh prompts. The method works when the defect is concentrated and its effect is large;
+  it cannot find effects smaller than the test's own sampling noise.
 
 Everything ran on one gaming graphics card (GTX 1660 SUPER, 6 GB).
 
@@ -135,6 +139,10 @@ problem with the published edit on MATH, it rescued 44 problems and lost 6.
 With the edit, thinking pays off again: at 67%, the edited model beats the original model with thinking switched off
 (about 48%).
 
+**A second, larger locked test confirms it.** We opened 200 more locked problems once, after writing down our
+predictions. The agent's edit solves 61.5% (original 15.5%, published edit 53.5%). Problem by problem, it beats the
+published edit by **8.0 ± 3.4 points** (32 rescues, 16 losses); over all 232 locked problems, by 9.1 ± 3.1.
+
 ## Is it just a trick?
 
 A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, tuned on
@@ -167,10 +175,13 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 **Banning the word is worse everywhere.** The edit is not a global ban. It works through neurons that fire *when the
 model is looping*, so it leaves "Wait" alone when it is useful.
 
-**The time limit is a strong baseline on grade-school math and is the best on the locked test (63% vs 56%; 32 problems
-are too few to separate them).** On longer problems it hurts, because it also cuts off reasoning that was going
+**The time limit is a strong baseline on grade-school math and ties the edit on the locked tests (61.0% vs 61.5% on
+the 200-problem test; +0.5 ± 3.4).** But it gets there at a higher cost: twice as many answers hit the token cap (34%
+vs 17%), and it writes about 40% more tokens. Banning "Wait" stops the model from restarting, but it does not make it
+conclude. On longer problems it hurts, because it also cuts off reasoning that was going
 somewhere. On harder math the edit wins by 9.5 points, rescuing 23 problems and losing 9. **Together they do best of
-all (53%)**: the edit breaks loops from the inside, and the time limit catches what is left.
+all (53% on harder math, 69.5% on the 200-problem locked test, 8 points above either alone, with the fewest cut-off
+answers)**: the edit breaks loops from the inside, and the time limit catches what is left.
 
 ![Figure 5](figures/paired.png)
 
@@ -284,6 +295,44 @@ tool calls (16 of 16 vs 11 of 16), probably because shorter thinking leaves less
 
 **Figure 10:** Accuracy on unrelated tasks for the original model, the published edit and the agent's edit.
 
+## Does it work on a second defect?
+
+**No, and the way it fails is informative.** We needed a defect with no obvious keyword. Broken JSON and tool calls
+turned out not to be a problem for this model with thinking off: it was near ceiling. So we chose **instruction
+following** (IFEval: "no commas", "all lowercase", "end with this exact phrase", "at least 3 highlighted sections").
+With thinking off, the model follows every instruction in only about 55% of prompts. Its failures are spread over many
+instruction types.
+
+**Setup**
+- **Same protocol as for the loops:** an agent with 40 cheap probe scores and 6 real generation checks, at most 4
+  rank-1 edits.
+- **Comparisons:** a system prompt asking for care, and LoRA fine-tuning on 414 of the model's own answers that passed
+  the official checker (same recipe as before).
+- **Confirmation:** on 152–200 IFEval prompts never used in any search.
+
+| arm | change vs original on fresh prompts |
+|---|---|
+| agent, 48-prompt checks (b1) | −3.3 ± 4.1 |
+| the loop edit (a1), not tuned for this | −3.9 ± 4.3 |
+| system prompt | −6.6 ± 4.2 |
+| fine-tuning (epoch chosen on 48 prompts) | −7.2 ± 4.3 |
+| agent, 128-prompt checks (b2) | −6.0 ± 3.7 (200 prompts) |
+
+**Every method looked better in its practice check (+5 to +12 points) and lost on fresh prompts.** The reason is
+sampling noise. Two runs of the *unchanged* model with different random seeds disagree on 23% of prompts. On 48
+prompts, that gives a margin of error of 8–9 points, larger than any plausible gain. A larger, 128-prompt check did
+not rescue the agent either: the best edit's own opposite-sign control also looked slightly positive.
+
+**What this means.** On the loops, the effect was +46 points and 16 problems were enough to see it. On instruction
+following, cheap changes of any kind (weights, prompt, gradient) seem to move the model away from a point that is
+already close to the best nearby, and no check of this size can find the rare changes that help. **The method's reach
+is set by the signal-to-noise ratio of the real test, not only by the agent.** Fine-tuning hits the same wall, so this
+is not a case of the agent losing to gradients.
+
+The agent of the second run also found, from the weights alone, a direction in the residual stream that 99.7% of the
+decay-gate rows of all 288 DeltaNet heads read with the same sign: a global "forgetting" control channel. Editing it
+changes the model, but not its instruction following. We leave it for future work.
+
 ## Background and related work
 
 **Weight-space programming.** Takehi et al. (2026) showed that frontier models can read and write neural network
@@ -308,10 +357,11 @@ derived from interpretability.
 
 ## What can't we claim yet, and what comes next?
 
-- **Small samples:** most numbers rest on 32–148 problems (±7–10 points on the smaller sets). **Next:** a locked test
-  with at least 200 problems for the main methods.
-- **One model, one defect:** "Wait" is an easy word to target. **Next:** a defect with no obvious keyword (broken
-  tool-call formats, stopping too early, invalid JSON) and a second model.
+- **Sample sizes:** the main comparisons now rest on a 200-problem locked test (±3–4 points), but dev and MATH numbers
+  still rest on 48–148 problems.
+- **One model, one defect that works:** "Wait" is an easy word to target, and the second defect (IFEval) gave a
+  well-controlled negative result. **Next:** a concentrated defect without a keyword, and a second model. Any second
+  defect needs a real test whose noise is well below the expected effect, measured before the search.
 - **Few replicates:** the winning protocol has 2 agents, and the atlas comparison has 3 pairs. **Next:** two more of
   each.
 - **One fine-tuning recipe:** a stronger recipe could close part of the gap, at a higher cost.
@@ -319,8 +369,9 @@ derived from interpretability.
 - **Different sampler from the original study:** absolute numbers shift, but every comparison here uses the same
   settings.
 
-**If the second defect works, the claim becomes general: for specific behavioral defects, an agent editing weights can
-be a faster, cheaper and more interpretable alternative to fine-tuning.**
+**The claim, as it stands: for concentrated behavioral defects with a large effect, an agent editing weights can be a
+faster, cheaper and more interpretable alternative to fine-tuning. For diffuse defects, such as instruction following
+in a 0.8B model, neither it nor cheap fine-tuning helped.**
 
 ## Data, code and logs
 
@@ -342,9 +393,10 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 | 6 agent runs (2 protocols, 3 with/without-atlas pairs) | done |
 | Decoding baselines, naive search, fine-tuning baseline | done |
 | Transfer to harder math, side effects, cost | done |
-| Locked test with ≥ 200 problems | to do (about 1 GPU-hour per method) |
+| Locked test with ≥ 200 problems | done (t200: 5 methods; the word-ban and LoRA arms still to run) |
 | More replicates (2 + 2 agents) | to do |
-| Second defect without a keyword; second model | to do (needed for a main-track venue) |
+| Second defect without a keyword (IFEval) | done: negative, with fine-tuning and prompt baselines |
+| Concentrated second defect; second model | to do (needed for a main-track venue) |
 | Re-grade MATH with a symbolic checker | to do |
 | Verify citations; edit-anatomy diagram | to do |
 
