@@ -1437,3 +1437,32 @@ pergunta aberta pela literatura (`docs/literatura-sparks.md`): editores diferent
   seção de réplicas precisa dizer isso.
 - Se convergirem para os mesmos neurônios: vira evidência de que a solução é uma propriedade do modelo-alvo, não do
   editor.
+
+## 2026-11-10 (10h55) — Revisão independente (Fable 5.2) e fila de correções. PRÉ-REGISTRO
+
+Uma revisão independente recalculou os números principais (todos conferem) e apontou quatro excessos de afirmação.
+Conferi dois deles nos arquivos (`final.json` do a1; sinais de α em a1 e a2):
+1. "a1 supera o Astra" só vale no teto de 12k: no t200, o Astra ainda sobe ~8 pp a cada 2k tokens ao bater no teto.
+2. A a1 do paper (`062959_102`) é a escolha nº 2 do agente. A nº 1 (`074537_659`) nunca foi a teste trancado.
+3. a1 e a2 editam L17n1915 e L22n573 com sinais opostos (α = −6 contra α = +10, com a mesma direção u).
+4. O custo do bf4096 é inflado por respostas forçadas que continuam em loop depois do `</think>`.
+
+**Fila 1 (GPU, hoje), braços fixados antes:**
+- `t200nt` (já pré-registrado às 09h40), sem o corte das 13h50.
+- **t200, braços novos `m2a_a1` (a nº 1 do agente a1) e `m2a_a2` (a nº 1 do agente a2).** Mesmo protocolo do t200.
+  São braços posteriores à abertura do t200. Nenhuma escolha depende deles.
+- Previsões:
+  - `m2a_a1` (nº 1): 0,55–0,65, sem diferença significativa da `062959_102` (|Δ| < 2 EP). No dev48 foram 0,646 e
+    0,667.
+  - `m2a_a2`: 0,52–0,64. No dev48 foi 0,646.
+  - As duas ficam acima do Astra (0,535) em ponto; não espero > 2 EP em cada uma.
+- **Regra de texto:** o paper passa a relatar a nº 1 do agente como "a escolha do agente" e a `062959_102` como a
+  variante escolhida pelo supervisor no dev48, com os dois números no t200.
+
+**Em CPU, hoje:** sinal das ativações de L17n1915, L18n881, L22n573 e L16n998 em textos em loop, e a mudança líquida
+no logit de "Wait" sob a1 e a2. Previsão: os neurônios disparam em média negativos nas posições antes de "Wait"
+(hipótese do agente a1). Se for verdade, a a2 (inversão) deveria *aumentar* "Wait" por esses neurônios, e o ganho
+dela viria de outra parte da edição (L16 ou a atenção da L22). Não sei qual das duas leituras vale: 50/50.
+
+**Depois, nesta ordem:** runs f1/f2 do Fable (pré-registro das 10h50); limite de raciocínio com teto para a resposta,
+varrido no dev48; braços `lbx_w10_t1` e `ft_sft_ep2` do t200; Astra contra a1 com teto longo.
