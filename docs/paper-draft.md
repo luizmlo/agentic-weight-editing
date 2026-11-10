@@ -53,8 +53,9 @@ lives in the model's habits, not in its instructions.
 ## The rules of the game
 
 **Setup**
-- **Model:** Qwen3.5-0.8B, the same revision as the original study.
-- **Task:** grade-school math (GSM8K) with thinking on and a 12,288-token budget.
+- **Model:** Qwen3.5-0.8B (Qwen Team, 2026), the same revision as the original study, run with llama.cpp
+  (Gerganov et al., 2023).
+- **Task:** grade-school math (GSM8K; Cobbe et al., 2021) with thinking on and a 12,288-token budget.
 - **Edits allowed:** at most 4. Each edit picks a group of "neurons" (columns of an output matrix in one layer), a
   direction in the model's internal space, and a strength. It then changes only how strongly those neurons write
   along that direction:
@@ -63,7 +64,7 @@ lives in the model's habits, not in its instructions.
 
   In words: $\alpha = 1$ deletes that part of what the neurons write, $\alpha > 1$ flips it, and $\alpha < 0$ makes it
   stronger. Each edit is a rank-1 change.
-- **Agents get:** the weights, a written brief, and a scorer with a fixed budget. The scorer offers 40 "quick scores",
+- **Agents get:** the weights, a written brief that describes the defect (the loops, with an example), and a scorer with a fixed budget. The scorer offers 40 "quick scores",
   which measure how much the model *wants* to repeat itself without letting it write. It also offers 6 "test runs",
   in which the edited model really solves 16 practice problems.
 - **Not allowed:** training, running the model outside the scorer, editing the vocabulary layers, or reading the
@@ -74,7 +75,8 @@ lives in the model's habits, not in its instructions.
 - **How we judge:**
   - **Practice set:** we confirm each agent's pick on 48 other problems (dev48).
   - **Locked test:** we run one pre-registered pick per method, once, on 32 sealed test problems.
-  - **Harder math:** we check transfer to 148 competition problems (MATH-500) that no search ever touched.
+  - **Harder math:** we check transfer to 148 competition problems (MATH-500; Hendrycks et al., 2021; Lightman et al., 2024)
+    that no search ever touched.
 - **Fair comparisons:** every method answers the same problems with the same random seeds, so we can count, problem
   by problem, who solved what.
 
@@ -175,7 +177,7 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 **Setup**
 - **Word ban:** while the model writes, make "Wait" (and variants) nearly impossible and nudge `</think>`. No weight
   change.
-- **Time limit ("budget forcing"):** after N tokens of thinking, cut it off and force an answer. No weight change.
+- **Time limit ("budget forcing", Muennighoff et al., 2025):** after N tokens of thinking, cut it off and force an answer. No weight change.
 
 **Banning the word is worse everywhere.** The edit is not a global ban. It works through neurons that fire *when the
 model is looping*, so it leaves "Wait" alone when it is useful.
@@ -201,7 +203,7 @@ problems only the other method solved (left).
 - **Data:** the model's own reasoning on 600 *other* GSM8K problems. Only 57 attempts finished cleanly and correctly.
   For 279 that looped, we cut the reasoning where the loop began, closed the thinking and let the model answer: 118
   answers were correct. That gives 175 training examples.
-- **Training:** LoRA, a standard and cheap fine-tuning method (rank 16, all layers, 3 rounds). We picked the best round
+- **Training:** LoRA (Hu et al., 2022), a standard and cheap fine-tuning method (rank 16, all layers, 3 rounds). We picked the best round
   on the same 16 problems the agents used for test runs.
 
 **Fine-tuning reached 29% on the practice set. That is better than the original (15%), but problem by problem the
@@ -304,7 +306,7 @@ tool calls (16 of 16 vs 11 of 16), probably because shorter thinking leaves less
 
 **No, and the way it fails is informative.** We needed a defect with no obvious keyword. Broken JSON and tool calls
 turned out not to be a problem for this model with thinking off: it was near ceiling. So we chose **instruction
-following** (IFEval: "no commas", "all lowercase", "end with this exact phrase", "at least 3 highlighted sections").
+following** (IFEval, Zhou et al., 2023: "no commas", "all lowercase", "end with this exact phrase", "at least 3 highlighted sections").
 With thinking off, the model follows every instruction in only about 55% of prompts. Its failures are spread over many
 instruction types.
 
@@ -334,8 +336,13 @@ already close to the best nearby, and no check of this size can find the rare ch
 is set by the signal-to-noise ratio of the real test, not only by the agent.** Fine-tuning hits the same wall, so this
 is not a case of the agent losing to gradients.
 
+**This does not contradict the IFEval gain reported for the published edit** (21.0% to 62.3%; Takehi et al., 2026).
+That number is with thinking on, where three quarters of the unedited model's answers never close their thinking and
+score zero: it is the loop defect again. With thinking off, an independent rerun finds that the published edit does not
+help (−2.3 points; exp8-loop-controls, 2026), the same as what we see for a1 (−3.9).
+
 The agent of the second run also found, from the weights alone, a direction in the residual stream that 99.7% of the
-decay-gate rows of all 288 DeltaNet heads read with the same sign: a global "forgetting" control channel. Editing it
+decay-gate rows of all 288 DeltaNet heads (Gated DeltaNet, Yang et al., 2025) read with the same sign: a global "forgetting" control channel. Editing it
 changes the model, but not its instruction following. We leave it for future work.
 
 ## Background and related work
@@ -352,13 +359,25 @@ formula.
 **Steering.** Adding a vector to the model's internal state at run time can steer its behavior (ActAdd, Turner et al.,
 2023; representation engineering, Zou et al., 2023). Our edits are permanent instead of applied at run time.
 
-**Overthinking.** Reasoning models often re-check more than they need to (Chen et al., 2024 [verify]). Known fixes
-include suppressing words like "Wait" (Wang et al., 2025 [verify]) and capping thinking time (Muennighoff et al., 2025).
+**Overthinking.** Reasoning models often re-check more than they need to (Chen et al., 2025). Known fixes
+include suppressing words like "Wait" (Wang et al., 2025) and capping thinking time (Muennighoff et al., 2025).
 We use both as baselines.
 
-**Agents and Goodhart.** Agents already run interpretability experiments (MAIA, Shaham et al., 2024). Strong
+**Agents and Goodhart.** Agents already run interpretability experiments (MAIA, Rott Shaham et al., 2024). Strong
 optimizers are known to game proxy objectives (Gao et al., 2023; Skalse et al., 2022). We see the same with proxies
 derived from interpretability.
+
+**Concurrent work.** *Sparks* drew fast follow-up, so far mostly preprints and public repositories without peer
+review. Hu et al. (2026) run 16 Astra editing trajectories on Qwen3.5-0.8B and 9B and report large held-out gains on
+MATH-500 and IFEval, all with thinking on and without decoding or fine-tuning baselines. Independent reruns of the Astra
+edit find that much of its gain is reachable without touching the weights: with thinking off and a long budget, the
+unedited model already scores about 50% on MATH-500 and 53–55% on IFEval (exp8-loop-controls, 2026; Zhang, 2026), and a
+difference-of-means direction found without an LLM recovers 79% of the MATH-500 gain (Zhang, 2026). A home replication
+with a Claude editor on a consumer GPU (tdotlab, 2026) independently located the same "Wait" brake neuron that our
+agents edited (layer 22, neuron 573), and found that its edit and a larger budget add roughly independently. IWIBench
+(von Csefalvay et al., 2026) proposes a benchmark for editor models. Our contribution is the controlled comparison:
+agent edits against decoding and fine-tuning baselines on a locked test, with compute accounting, evidence that agents
+game interpretability proxies, and a measured boundary where the method stops working.
 
 ## What can't we claim yet, and what comes next?
 
@@ -367,6 +386,13 @@ derived from interpretability.
 - **One model, one defect that works:** "Wait" is an easy word to target, and the second defect (IFEval) gave a
   well-controlled negative result. **Next:** a concentrated defect without a keyword, and a second model. Any second
   defect needs a real test whose noise is well below the expected effect, measured before the search.
+- **Thinking off as a baseline:** with thinking off, the unedited model solves 48.5% of 200 *other* locked problems
+  (1,024-token cap); independent reruns report 56–57% on full GSM8K with a long cap. The agent's edit with thinking on
+  (61.5%) and the edit plus time limit (69.5%) are above that, but the comparison is not yet paired. **Next:** run
+  thinking off on the same 200 locked problems with a long cap.
+- **No-LLM directions:** our difference-of-means edit (top-64 columns) recovered little of the published edit's gain
+  on 32 problems, and our scripted search reached 27%; a concurrent rerun reports that a difference-of-means direction
+  recovers 79% on MATH-500 (Zhang, 2026). **Next:** reconcile the two (column choice, contrast set, budget).
 - **Few replicates:** the winning protocol has 2 agents, and the atlas comparison has 3 pairs. **Next:** two more of
   each.
 - **One fine-tuning recipe:** a stronger recipe could close part of the gap, at a higher cost.
@@ -404,7 +430,8 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 | Concentrated second defect; second model | to do (needed for a main-track venue) |
 | Re-grade MATH with a symbolic checker | to do |
 | Edit-anatomy diagram | done (Figure 2) |
-| Verify citations | to do |
+| Thinking-off baseline on the t200 problems (long cap) | to do (~1 GPU-h; answers the main public critique) |
+| Verify citations | done (Nov 10; all 16 exist, 6 corrected, 5 added) |
 
 **Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
 main-track conference if a concentrated second defect works.
@@ -451,22 +478,55 @@ main-track conference if a concentrated second defect works.
 - **DeltaNet:** the layer type ("linear attention") that makes up 18 of Qwen3.5's 24 layers. It keeps a compressed
   memory of the text and has *gates* that decide how much to forget.
 
-## References (to verify and complete)
+## References
 
-- Takehi, R., Teoh, J., Zhang, M., Khattab, O. (2026). *Sparks of Weight-Space Programming.* MIT CSAIL.
+- Arditi, A., Obeso, O., Syed, A., Paleka, D., Panickssery, N., Gurnee, W., Nanda, N. (2024). Refusal in Language
+  Models Is Mediated by a Single Direction. NeurIPS 2024. arXiv:2406.11717.
+- Chen, X., Xu, J., Liang, T., He, Z., et al. (2025). Do NOT Think That Much for 2+3=? On the Overthinking of Long
+  Reasoning Models. ICML 2025, PMLR 267. arXiv:2412.21187.
+- Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., et al. (2021). Training Verifiers to Solve Math Word Problems.
+  arXiv:2110.14168.
+- Gao, L., Schulman, J., Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML 2023.
+  arXiv:2210.10760.
+- Gerganov, G., and contributors (2023–). llama.cpp. Software. <https://github.com/ggml-org/llama.cpp>.
+- Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song, D., Steinhardt, J. (2021). Measuring
+  Mathematical Problem Solving With the MATH Dataset. NeurIPS 2021 Datasets and Benchmarks Track. arXiv:2103.03874.
+- Hu, J., Tang, C., Li, W., Zhu, H., et al. (2026). Exploring Weight-Space Programming: Capabilities,
+  Generalization, and Limitations. arXiv:2611.09382.
+- Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., et al. (2022). LoRA: Low-Rank Adaptation of Large Language
+  Models. ICLR 2022. arXiv:2106.09685.
+- exp8-loop-controls (2026). Pre-registered controls for Experiment 8 of Sparks of Weight-Space Programming.
+  GitHub repository, <https://github.com/1099271/exp8-loop-controls>. Accessed Nov. 10, 2026.
+- Lightman, H., Kosaraju, V., Burda, Y., Edwards, H., et al. (2024). Let's Verify Step by Step. ICLR 2024.
+  arXiv:2305.20050.
+- Meng, K., Bau, D., Andonian, A., Belinkov, Y. (2022). Locating and Editing Factual Associations in GPT. NeurIPS 2022.
+  arXiv:2202.05262.
+- Meng, K., Sen Sharma, A., Andonian, A., Belinkov, Y., Bau, D. (2023). Mass-Editing Memory in a Transformer. ICLR
+  2023. arXiv:2210.07229.
+- Muennighoff, N., Yang, Z., Shi, W., Li, X. L., Fei-Fei, L., et al. (2025). s1: Simple test-time scaling. EMNLP 2025.
+  arXiv:2501.19393.
+- Qwen Team (2026). Qwen3.5: Towards Native Multimodal Agents. Blog post, <https://qwen.ai/blog?id=qwen3.5>. Model:
+  <https://huggingface.co/Qwen/Qwen3.5-0.8B>.
+- Rott Shaham, T., Schwettmann, S., Wang, F., Rajaram, A., Hernandez, E., Andreas, J., Torralba, A. (2024). A
+  Multimodal Automated Interpretability Agent. ICML 2024. arXiv:2404.14394.
+- Skalse, J., Howe, N. H. R., Krasheninnikov, D., Krueger, D. (2022). Defining and Characterizing Reward Gaming.
+  NeurIPS 2022. arXiv:2209.13085.
+- Takehi, R., Teoh, J., Zhang, A., Khattab, O. (2026). Sparks of Weight-Space Programming: LLMs Can Natively Read &
+  Write Neural Network Weights. Blog post, MIT CSAIL, Nov. 2, 2026.
   <https://rikiyat.github.io/blog/weight-space-programming/>. Logs: <https://github.com/RikiyaT/lm_understand-logs>.
-- Meng, K., Bau, D., Andonian, A., Belinkov, Y. (2022). Locating and Editing Factual Associations in GPT. NeurIPS.
-- Meng, K., Sen Sharma, A., Andonian, A., Belinkov, Y., Bau, D. (2023). Mass-Editing Memory in a Transformer. ICLR.
-- Arditi, A., et al. (2024). Refusal in Language Models Is Mediated by a Single Direction. NeurIPS.
-- Turner, A. M., et al. (2023). Steering Language Models With Activation Engineering. arXiv.
-- Zou, A., et al. (2023). Representation Engineering: A Top-Down Approach to AI Transparency. arXiv.
-- Muennighoff, N., et al. (2025). s1: Simple Test-Time Scaling. arXiv.
-- Chen, X., et al. (2024). Do NOT Think That Much for 2+3=? On the Overthinking of o1-like LLMs. arXiv. [verify]
-- Wang, C., et al. (2025). Wait, We Don't Need to "Wait"! Removing Thinking Tokens Improves Reasoning Efficiency. arXiv. [verify]
-- Shaham, T. R., et al. (2024). A Multimodal Automated Interpretability Agent. ICML.
-- Gao, L., Schulman, J., Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML.
-- Skalse, J., et al. (2022). Defining and Characterizing Reward Hacking. NeurIPS.
-- Hu, E. J., et al. (2022). LoRA: Low-Rank Adaptation of Large Language Models. ICLR.
-- Cobbe, K., et al. (2021). Training Verifiers to Solve Math Word Problems. arXiv.
-- Hendrycks, D., et al. (2021). Measuring Mathematical Problem Solving With the MATH Dataset. NeurIPS.
-- Lightman, H., et al. (2023). Let's Verify Step by Step. arXiv.
+- tdotlab (2026). weight-space-programming: a home replication with a Claude editor. GitHub repository,
+  <https://github.com/tdotlab/weight-space-programming>. Accessed Nov. 10, 2026.
+- Turner, A. M., Thiergart, L., Leech, G., Udell, D., Vazquez, J. J., Mini, U., MacDiarmid, M. (2023). Steering
+  Language Models With Activation Engineering. arXiv:2308.10248.
+- von Csefalvay, C., Doma, P., Unni Krishnan, A. (2026). IWIBench: Evaluating Gradient-Free Model Driven
+  Intra-weight Injection. arXiv:2611.08647.
+- Wang, C., Feng, Y., Chen, D., Chu, Z., Krishna, R., Zhou, T. (2025). Wait, We Don't Need to "Wait"! Removing
+  Thinking Tokens Improves Reasoning Efficiency. Findings of EMNLP 2025. arXiv:2506.08343.
+- Yang, S., Kautz, J., Hatamizadeh, A. (2025). Gated Delta Networks: Improving Mamba2 with Delta Rule. ICLR 2025.
+  arXiv:2412.06464.
+- Zhang, Y. (2026). Rethinking Weight-Space Programming. Blog post and repository,
+  <https://github.com/ZhangYiqun018/rethinking-weight-space-programming>. Accessed Nov. 10, 2026.
+- Zhou, J., Lu, T., Mishra, S., Brahma, S., Basu, S., Luan, Y., Zhou, D., Hou, L. (2023). Instruction-Following
+  Evaluation for Large Language Models. arXiv:2311.07911.
+- Zou, A., Phan, L., Chen, S., Campbell, J., et al. (2023). Representation Engineering: A Top-Down Approach to AI
+  Transparency. arXiv:2310.01405.

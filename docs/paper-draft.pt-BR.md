@@ -57,8 +57,9 @@ está nos hábitos do modelo, não nas instruções.
 ## As regras do jogo
 
 **Configuração**
-- **Modelo:** Qwen3.5-0.8B, na mesma revisão do estudo original.
-- **Tarefa:** matemática do ensino fundamental (GSM8K), com raciocínio ligado e orçamento de 12.288 tokens.
+- **Modelo:** Qwen3.5-0.8B (Qwen Team, 2026), na mesma revisão do estudo original, rodando no llama.cpp
+  (Gerganov et al., 2023).
+- **Tarefa:** matemática do ensino fundamental (GSM8K; Cobbe et al., 2021), com raciocínio ligado e orçamento de 12.288 tokens.
 - **Edições permitidas:** no máximo 4. Cada edição escolhe um grupo de "neurônios" (colunas de uma matriz de saída em
   uma camada), uma direção no espaço interno do modelo e uma intensidade. Ela muda apenas o quanto esses neurônios
   escrevem naquela direção:
@@ -67,7 +68,7 @@ está nos hábitos do modelo, não nas instruções.
 
   Em palavras: $\alpha = 1$ apaga essa parte do que os neurônios escrevem, $\alpha > 1$ inverte e $\alpha < 0$
   reforça. Cada edição é uma mudança de posto 1.
-- **Os agentes recebem:** os pesos, um briefing escrito e um avaliador com orçamento fixo. O avaliador oferece 40
+- **Os agentes recebem:** os pesos, um briefing escrito que descreve o defeito (os loops, com um exemplo) e um avaliador com orçamento fixo. O avaliador oferece 40
   "notas rápidas", que medem o quanto o modelo *quer* se repetir sem deixá-lo escrever. Também oferece 6 "testes
   reais", em que o modelo editado de fato resolve 16 problemas de prática.
 - **Não é permitido:** treinar, rodar o modelo fora do avaliador, editar as camadas de vocabulário, nem ler a edição
@@ -78,7 +79,8 @@ está nos hábitos do modelo, não nas instruções.
 - **Como julgamos:**
   - **Conjunto de prática:** confirmamos a escolha de cada agente em outros 48 problemas (dev48).
   - **Teste trancado:** rodamos uma única escolha pré-registrada por método, uma única vez, em 32 problemas lacrados.
-  - **Matemática mais difícil:** medimos a transferência para 148 problemas de competição (MATH-500) que nenhuma busca
+  - **Matemática mais difícil:** medimos a transferência para 148 problemas de competição (MATH-500; Hendrycks et al., 2021; Lightman et al.,
+    2024) que nenhuma busca
     tocou.
 - **Comparações justas:** todo método responde aos mesmos problemas com as mesmas sementes aleatórias, então dá para
   contar, problema por problema, quem resolveu o quê.
@@ -186,7 +188,7 @@ padrão).
 **Configuração**
 - **Proibir a palavra:** enquanto o modelo escreve, tornar "Wait" (e variantes) quase impossível e dar um empurrão em
   `</think>`. Nenhuma mudança nos pesos.
-- **Limite de raciocínio ("budget forcing"):** depois de N tokens de raciocínio, cortar e forçar uma resposta.
+- **Limite de raciocínio ("budget forcing", Muennighoff et al., 2025):** depois de N tokens de raciocínio, cortar e forçar uma resposta.
   Nenhuma mudança nos pesos.
 
 **Proibir a palavra é pior em todos os casos.** A edição não é uma proibição global. Ela age por meio de neurônios que
@@ -214,7 +216,7 @@ e o limite pega o que sobra.
 - **Dados:** o raciocínio do próprio modelo em 600 *outros* problemas do GSM8K. Só 57 tentativas terminaram de forma
   limpa e correta. Em 279 que entraram em loop, cortamos o raciocínio onde o loop começou, fechamos o raciocínio e
   deixamos o modelo responder: 118 respostas estavam certas. Isso dá 175 exemplos de treino.
-- **Treinamento:** LoRA, um método de fine-tuning padrão e barato (posto 16, todas as camadas, 3 rodadas).
+- **Treinamento:** LoRA (Hu et al., 2022), um método de fine-tuning padrão e barato (posto 16, todas as camadas, 3 rodadas).
   Escolhemos a melhor rodada nos mesmos 16 problemas que os agentes usaram nos testes reais.
 
 **O fine-tuning chegou a 29% no conjunto de prática. É melhor que o original (15%), mas, problema por problema, a
@@ -320,7 +322,7 @@ raciocínio mais curto deixa menos espaço para inventar uma chamada.
 
 **Não, e o jeito como falha é informativo.** Precisávamos de um defeito sem palavra-chave óbvia. JSON e chamadas de
 ferramenta quebrados não eram um problema para este modelo com o raciocínio desligado: ele estava perto do teto.
-Escolhemos então **seguir instruções** (IFEval: "não use vírgulas", "tudo em minúsculas", "termine com esta frase
+Escolhemos então **seguir instruções** (IFEval, Zhou et al., 2023: "não use vírgulas", "tudo em minúsculas", "termine com esta frase
 exata", "destaque pelo menos 3 seções"). Com o raciocínio desligado, o modelo segue todas as instruções em só cerca de
 55% dos prompts, e as falhas se espalham por muitos tipos de instrução.
 
@@ -351,8 +353,13 @@ quase o melhor da vizinhança, e nenhum teste desse tamanho acha as raras mudan�
 dado pela razão sinal/ruído do teste real, não só pelo agente.** O fine-tuning bate na mesma parede, então não é um
 caso de o agente perder para o gradiente.
 
+**Isso não contradiz o ganho no IFEval relatado para a edição publicada** (de 21,0% para 62,3%; Takehi et al., 2026).
+Esse número é com o raciocínio ligado, em que três quartos das respostas do modelo original nunca fecham o raciocínio e
+valem zero: é o defeito dos loops de novo. Com o raciocínio desligado, uma reexecução independente mostra que a edição
+publicada não ajuda (−2,3 pontos; exp8-loop-controls, 2026), o mesmo que vemos com a a1 (−3,9).
+
 O agente da segunda execução também achou, só lendo os pesos, uma direção do fluxo residual que 99,7% das linhas dos
-portões de esquecimento das 288 cabeças DeltaNet leem com o mesmo sinal: um canal global de controle do esquecimento.
+portões de esquecimento das 288 cabeças DeltaNet (Gated DeltaNet, Yang et al., 2025) leem com o mesmo sinal: um canal global de controle do esquecimento.
 Editá-la muda o modelo, mas não muda o seguimento de instruções. Fica para trabalho futuro.
 
 ## Contexto e trabalhos relacionados
@@ -370,13 +377,26 @@ comportamento, em vez de uma fórmula fixa.
 comportamento (ActAdd, Turner et al., 2023; engenharia de representações, Zou et al., 2023). Nossas edições são
 permanentes, em vez de aplicadas durante a execução.
 
-**Raciocínio excessivo.** Modelos de raciocínio costumam reconferir mais do que precisam (Chen et al., 2024 [verificar]).
-Correções conhecidas incluem suprimir palavras como "Wait" (Wang et al., 2025 [verificar]) e limitar o tempo de
+**Raciocínio excessivo.** Modelos de raciocínio costumam reconferir mais do que precisam (Chen et al., 2025).
+Correções conhecidas incluem suprimir palavras como "Wait" (Wang et al., 2025) e limitar o tempo de
 raciocínio (Muennighoff et al., 2025). Usamos as duas como alternativas de comparação.
 
-**Agentes e Goodhart.** Agentes já conduzem experimentos de interpretabilidade (MAIA, Shaham et al., 2024).
+**Agentes e Goodhart.** Agentes já conduzem experimentos de interpretabilidade (MAIA, Rott Shaham et al., 2024).
 Otimizadores fortes são conhecidos por burlar objetivos indiretos (Gao et al., 2023; Skalse et al., 2022). Vemos o mesmo
 com indicadores derivados de interpretabilidade.
+
+**Trabalhos concorrentes.** O *Sparks* gerou uma onda rápida de trabalhos, por enquanto quase todos preprints e
+repositórios públicos sem revisão por pares. Hu et al. (2026) rodam 16 trajetórias de edição com o Astra no
+Qwen3.5-0.8B e no 9B e relatam ganhos grandes no MATH-500 e no IFEval, todos com raciocínio ligado e sem comparações com
+decodificação ou fine-tuning. Reexecuções independentes da edição do Astra mostram que boa parte do ganho é alcançável
+sem mexer nos pesos: com o raciocínio desligado e orçamento longo, o modelo original já faz cerca de 50% no MATH-500 e
+53–55% no IFEval (exp8-loop-controls, 2026; Zhang, 2026), e uma direção de diferença de médias, achada sem LLM, recupera
+79% do ganho no MATH-500 (Zhang, 2026). Uma replicação caseira com Claude como editor, numa GPU de consumo (tdotlab,
+2026), achou de forma independente o mesmo neurônio-freio de "Wait" que nossos agentes editaram (camada 22, neurônio
+573), e viu que a edição e um orçamento maior se somam de forma quase independente. O IWIBench (von Csefalvay et al.,
+2026) propõe um benchmark para modelos editores. Nossa contribuição é a comparação controlada: edições de agente contra
+alternativas de decodificação e de fine-tuning num teste trancado, com contabilidade de custo, a evidência de que
+agentes burlam indicadores de interpretabilidade e uma fronteira medida de onde o método para de funcionar.
 
 ## O que ainda não podemos afirmar, e o que vem a seguir?
 
@@ -385,6 +405,14 @@ com indicadores derivados de interpretabilidade.
 - **Um modelo, um defeito que funciona:** "Wait" é uma palavra fácil de mirar, e o segundo defeito (IFEval) deu um
   resultado negativo bem controlado. **Próximo passo:** um defeito concentrado sem palavra-chave e um segundo modelo.
   Qualquer segundo defeito precisa de um teste real com ruído bem abaixo do efeito esperado, medido antes da busca.
+- **Raciocínio desligado como alternativa:** com o raciocínio desligado, o modelo original resolve 48,5% de 200
+  *outros* problemas lacrados (teto de 1.024 tokens); reexecuções independentes relatam 56–57% no GSM8K inteiro com
+  teto longo. A edição do agente com raciocínio (61,5%) e a edição com limite de raciocínio (69,5%) ficam acima, mas a
+  comparação ainda não é pareada. **Próximo passo:** rodar sem raciocínio nos mesmos 200 problemas, com teto longo.
+- **Direções sem LLM:** nossa edição por diferença de médias (64 colunas de maior peso) recuperou pouco do ganho da
+  edição publicada em 32 problemas, e nossa busca automática chegou a 27%; uma reexecução concorrente relata que uma
+  direção de diferença de médias recupera 79% no MATH-500 (Zhang, 2026). **Próximo passo:** conciliar as duas coisas
+  (escolha de colunas, conjunto de contraste, orçamento).
 - **Poucas réplicas:** o protocolo vencedor tem 2 agentes, e a comparação com e sem atlas tem 3 pares. **Próximo
   passo:** mais dois de cada.
 - **Uma receita de fine-tuning:** uma receita mais forte poderia fechar parte da diferença, a um custo maior.
@@ -401,7 +429,7 @@ seguir instruções num modelo de 0,8B, nem ele nem um fine-tuning barato ajudar
 Está tudo no repositório do projeto:
 - **Caderno de laboratório:** datado, com as previsões escritas antes dos resultados (`docs/CADERNO.md`).
 - **Registros de cada execução de agente:** briefings, anotações, registros do avaliador e cada edição submetida (267).
-- **Figuras:** o notebook que desenha cada gráfico deste texto (`notebooks/results.ipynb`).
+- **Figuras:** `notebooks/results.ipynb`, o notebook que desenha cada gráfico deste texto.
 - **Custo:** um estudo detalhado (`docs/cost.md`).
 
 As transcrições completas dos agentes e as gerações brutas (~210 MB) serão publicadas após revisão.
@@ -422,7 +450,8 @@ As transcrições completas dos agentes e as gerações brutas (~210 MB) serão 
 | Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
 | Recorrigir o MATH com um verificador simbólico | a fazer |
 | Diagrama da anatomia da edição | feito (Figura 2) |
-| Conferir as citações | a fazer |
+| Linha de base sem raciocínio nos problemas do t200 (teto longo) | a fazer (~1 GPU-h; responde à principal crítica pública) |
+| Conferir as citações | feito (10/11; as 16 existem, 6 corrigidas, 5 acrescentadas) |
 
 **Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os
 resultados atuais; e uma conferência principal se um segundo defeito concentrado funcionar.
@@ -470,22 +499,55 @@ Linguagem Pequenos*; *Geração no Laço: o que Faz a Programação Agêntica no
 - **DeltaNet:** o tipo de camada ("atenção linear") que forma 18 das 24 camadas do Qwen3.5. Ela guarda uma memória
   resumida do texto e tem *portões* que decidem o quanto esquecer.
 
-## Referências (a conferir e completar)
+## Referências
 
-- Takehi, R., Teoh, J., Zhang, M., Khattab, O. (2026). *Sparks of Weight-Space Programming.* MIT CSAIL.
-  <https://rikiyat.github.io/blog/weight-space-programming/>. Registros: <https://github.com/RikiyaT/lm_understand-logs>.
-- Meng, K., Bau, D., Andonian, A., Belinkov, Y. (2022). Locating and Editing Factual Associations in GPT. NeurIPS.
-- Meng, K., Sen Sharma, A., Andonian, A., Belinkov, Y., Bau, D. (2023). Mass-Editing Memory in a Transformer. ICLR.
-- Arditi, A., et al. (2024). Refusal in Language Models Is Mediated by a Single Direction. NeurIPS.
-- Turner, A. M., et al. (2023). Steering Language Models With Activation Engineering. arXiv.
-- Zou, A., et al. (2023). Representation Engineering: A Top-Down Approach to AI Transparency. arXiv.
-- Muennighoff, N., et al. (2025). s1: Simple Test-Time Scaling. arXiv.
-- Chen, X., et al. (2024). Do NOT Think That Much for 2+3=? On the Overthinking of o1-like LLMs. arXiv. [verificar]
-- Wang, C., et al. (2025). Wait, We Don't Need to "Wait"! Removing Thinking Tokens Improves Reasoning Efficiency. arXiv. [verificar]
-- Shaham, T. R., et al. (2024). A Multimodal Automated Interpretability Agent. ICML.
-- Gao, L., Schulman, J., Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML.
-- Skalse, J., et al. (2022). Defining and Characterizing Reward Hacking. NeurIPS.
-- Hu, E. J., et al. (2022). LoRA: Low-Rank Adaptation of Large Language Models. ICLR.
-- Cobbe, K., et al. (2021). Training Verifiers to Solve Math Word Problems. arXiv.
-- Hendrycks, D., et al. (2021). Measuring Mathematical Problem Solving With the MATH Dataset. NeurIPS.
-- Lightman, H., et al. (2023). Let's Verify Step by Step. arXiv.
+- Arditi, A., Obeso, O., Syed, A., Paleka, D., Panickssery, N., Gurnee, W., Nanda, N. (2024). Refusal in Language
+  Models Is Mediated by a Single Direction. NeurIPS 2024. arXiv:2406.11717.
+- Chen, X., Xu, J., Liang, T., He, Z., et al. (2025). Do NOT Think That Much for 2+3=? On the Overthinking of Long
+  Reasoning Models. ICML 2025, PMLR 267. arXiv:2412.21187.
+- Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., et al. (2021). Training Verifiers to Solve Math Word Problems.
+  arXiv:2110.14168.
+- Gao, L., Schulman, J., Hilton, J. (2023). Scaling Laws for Reward Model Overoptimization. ICML 2023.
+  arXiv:2210.10760.
+- Gerganov, G., and contributors (2023–). llama.cpp. Software. <https://github.com/ggml-org/llama.cpp>.
+- Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song, D., Steinhardt, J. (2021). Measuring
+  Mathematical Problem Solving With the MATH Dataset. NeurIPS 2021 Datasets and Benchmarks Track. arXiv:2103.03874.
+- Hu, J., Tang, C., Li, W., Zhu, H., et al. (2026). Exploring Weight-Space Programming: Capabilities,
+  Generalization, and Limitations. arXiv:2611.09382.
+- Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., et al. (2022). LoRA: Low-Rank Adaptation of Large Language
+  Models. ICLR 2022. arXiv:2106.09685.
+- exp8-loop-controls (2026). Pre-registered controls for Experiment 8 of Sparks of Weight-Space Programming.
+  GitHub repository, <https://github.com/1099271/exp8-loop-controls>. Accessed Nov. 10, 2026.
+- Lightman, H., Kosaraju, V., Burda, Y., Edwards, H., et al. (2024). Let's Verify Step by Step. ICLR 2024.
+  arXiv:2305.20050.
+- Meng, K., Bau, D., Andonian, A., Belinkov, Y. (2022). Locating and Editing Factual Associations in GPT. NeurIPS 2022.
+  arXiv:2202.05262.
+- Meng, K., Sen Sharma, A., Andonian, A., Belinkov, Y., Bau, D. (2023). Mass-Editing Memory in a Transformer. ICLR
+  2023. arXiv:2210.07229.
+- Muennighoff, N., Yang, Z., Shi, W., Li, X. L., Fei-Fei, L., et al. (2025). s1: Simple test-time scaling. EMNLP 2025.
+  arXiv:2501.19393.
+- Qwen Team (2026). Qwen3.5: Towards Native Multimodal Agents. Blog post, <https://qwen.ai/blog?id=qwen3.5>. Model:
+  <https://huggingface.co/Qwen/Qwen3.5-0.8B>.
+- Rott Shaham, T., Schwettmann, S., Wang, F., Rajaram, A., Hernandez, E., Andreas, J., Torralba, A. (2024). A
+  Multimodal Automated Interpretability Agent. ICML 2024. arXiv:2404.14394.
+- Skalse, J., Howe, N. H. R., Krasheninnikov, D., Krueger, D. (2022). Defining and Characterizing Reward Gaming.
+  NeurIPS 2022. arXiv:2209.13085.
+- Takehi, R., Teoh, J., Zhang, A., Khattab, O. (2026). Sparks of Weight-Space Programming: LLMs Can Natively Read &
+  Write Neural Network Weights. Blog post, MIT CSAIL, Nov. 2, 2026.
+  <https://rikiyat.github.io/blog/weight-space-programming/>. Logs: <https://github.com/RikiyaT/lm_understand-logs>.
+- tdotlab (2026). weight-space-programming: a home replication with a Claude editor. GitHub repository,
+  <https://github.com/tdotlab/weight-space-programming>. Accessed Nov. 10, 2026.
+- Turner, A. M., Thiergart, L., Leech, G., Udell, D., Vazquez, J. J., Mini, U., MacDiarmid, M. (2023). Steering
+  Language Models With Activation Engineering. arXiv:2308.10248.
+- von Csefalvay, C., Doma, P., Unni Krishnan, A. (2026). IWIBench: Evaluating Gradient-Free Model Driven
+  Intra-weight Injection. arXiv:2611.08647.
+- Wang, C., Feng, Y., Chen, D., Chu, Z., Krishna, R., Zhou, T. (2025). Wait, We Don't Need to "Wait"! Removing
+  Thinking Tokens Improves Reasoning Efficiency. Findings of EMNLP 2025. arXiv:2506.08343.
+- Yang, S., Kautz, J., Hatamizadeh, A. (2025). Gated Delta Networks: Improving Mamba2 with Delta Rule. ICLR 2025.
+  arXiv:2412.06464.
+- Zhang, Y. (2026). Rethinking Weight-Space Programming. Blog post and repository,
+  <https://github.com/ZhangYiqun018/rethinking-weight-space-programming>. Accessed Nov. 10, 2026.
+- Zhou, J., Lu, T., Mishra, S., Brahma, S., Basu, S., Luan, Y., Zhou, D., Hou, L. (2023). Instruction-Following
+  Evaluation for Large Language Models. arXiv:2311.07911.
+- Zou, A., Phan, L., Chen, S., Campbell, J., et al. (2023). Representation Engineering: A Top-Down Approach to AI
+  Transparency. arXiv:2310.01405.

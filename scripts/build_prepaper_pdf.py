@@ -171,6 +171,8 @@ with tempfile.TemporaryDirectory() as td:
             print(r.stdout[-3000:]); sys.exit(1)
     log = (td / "paper.log").read_text(errors="ignore")
     over = re.findall(r"Overfull \\hbox \((\d+\.\d+)pt", log)
+    for m in re.finditer(r"Overfull \\hbox \((\d+\.\d+)pt[^\n]*\n(.{0,160})", log):
+        if float(m.group(1)) > 5: print("  overfull", m.group(1), "pt:", m.group(2).replace("\n", " ")[:120])
     shutil.copy(td / "paper.pdf", OUT)
     pages = re.search(r"Output written on paper\.pdf \((\d+) pages", log)
 print(OUT, pages.group(1) if pages else "?", "pages;", nfig, "figures;", f"{len(over)} overfull boxes (max {max(map(float, over), default=0):.1f}pt)")
