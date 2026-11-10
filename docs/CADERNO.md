@@ -1551,3 +1551,14 @@ contra Astra, +42 / −14 (p < 0,001). a2 contra a1 + limite, +23 / −27 (p = 0
   reportá-la como "a escolha do agente"; a escolha do supervisor no dev48 não mudou o resultado.
 - A a2 entra na tabela principal. Ressalvas: 15,5% cortadas no teto (ainda pode subir com teto maior, como o Astra),
   custo de tokens 1,5× o da a1, e p = 0,10 contra a a1. Sem correção para múltiplas comparações.
+
+### 10/11, 15h50 — Runs f1 e f2 lançadas
+
+- Avaliador (`wsp-m2a`) no harness original; f1 e f2 lançadas juntas às 15h48, modelo Claude Fable 5.2.
+- Prompt: o do a2, com o id trocado e as regras do pré-registro (sem web, sem ler o repositório do paper).
+- **Desvios não previstos no pré-registro:**
+  1. Uma regra a mais no prompt: "não lance subagentes".
+  2. `sealed/holdout_cases.json` tinha sido movido para este repositório na migração de 08/11. Copiei de volta para
+     o harness original para o avaliador subir. O arquivo é o mesmo que o a2 usou; os agentes continuam proibidos de
+     ler `sealed/`.
+- O acompanhamento da a2 (ativações dentro do modelo editado) fica para depois das runs: a GPU está com o avaliador.
