@@ -1466,3 +1466,41 @@ dela viria de outra parte da edição (L16 ou a atenção da L22). Não sei qual
 
 **Depois, nesta ordem:** runs f1/f2 do Fable (pré-registro das 10h50); limite de raciocínio com teto para a resposta,
 varrido no dev48; braços `lbx_w10_t1` e `ft_sft_ep2` do t200; Astra contra a1 com teto longo.
+
+## 2026-11-10 (12h) — Sinal das ativações: o freio de "Wait" da a1 se confirma; a a2 age por outro caminho
+
+`scripts/act_sign_check.py` → `data/act_sign_check.json`. 12 textos em loop do base (dev48, cortados), primeiros 1.500
+tokens do raciocínio, 17.988 posições, 52 delas imediatamente antes de um "Wait". Rodou em GPU fp16: os kernels da
+DeltaNet não rodam em CPU.
+
+| neurônio | ativação média antes de "Wait" | fração negativa antes de "Wait" | uᵀw | escrita em u, base | depois da a1 | depois da a2 |
+|---|---|---|---|---|---|---|
+| L22n573 | −3,73 | 100% | +0,145 | −0,54 | −3,78 | +4,91 |
+| L17n1915 | −0,23 | 83% | +0,133 | −0,03 | −0,22 | +0,28 |
+| L18n881 | −0,02 | 44% | +0,136 | −0,003 | −0,02 | — |
+| L16n998 | −2,60 | 100% | −0,142 | +0,37 | — | −3,33 |
+
+Δ log p("Wait") contra o base, com o texto fixo (teacher-forced):
+
+| variante | antes de "Wait" | todas as posições | Δ log p(`</think>`), todas |
+|---|---|---|---|
+| a1 (062959_102) | −16,5 | −0,89 | +1,45 |
+| a1, só os 3 neurônios | −16,6 | −1,02 | −0,05 |
+| a1, só o MLP da L23 | +0,07 | +0,12 | +1,50 |
+| a1 nº 1 (074537_659) | −24,2 | −1,44 | +1,99 |
+| a2 | −25,9 | −3,28 | +0,78 |
+| a2, só os neurônios | −26,0 | −3,33 | +0,19 |
+| a2, só a atenção da L22 | +0,05 | +0,06 | +0,76 |
+
+**Leitura.**
+- **A história do freio vale para a a1.** L22n573 dispara negativo em 100% das posições antes de "Wait" e escreve
+  contra "Wait"; a a1 amplia essa escrita em 7×. As duas partes da a1 são separáveis: os neurônios tiram "Wait", o
+  MLP da L23 sobe `</think>`. L18n881 quase não participa.
+- **A a2 também derruba "Wait" (−26 nats), mas não pelo mesmo caminho direto.** Com as ativações do base, a inversão
+  de L22n573 empurraria "Wait" para cima (+4,9), e a de L16n998, que no base *promove* "Wait" (+0,37), empurra para
+  baixo (−3,3). A soma direta não explica −26 nats. O efeito precisa passar por camadas posteriores: as edições em
+  L16 e L17 mudam o que L22n573 recebe. **Falta medir as ativações dentro do modelo editado.**
+- Previsão (50/50 sobre qual leitura valia): a hipótese do agente a1 se confirma; a a2 fica em aberto.
+- **Para o paper:** "os dois agentes acharam os mesmos neurônios de 'Wait' e a mesma alavanca de `</think>`; a a1
+  amplia o freio, a a2 inverte neurônios a montante e chega ao mesmo efeito por um caminho indireto ainda não
+  mapeado". A Figura 2 vale para a a1.
