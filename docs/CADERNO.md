@@ -1562,3 +1562,18 @@ contra Astra, +42 / −14 (p < 0,001). a2 contra a1 + limite, +23 / −27 (p = 0
      o harness original para o avaliador subir. O arquivo é o mesmo que o a2 usou; os agentes continuam proibidos de
      ler `sealed/`.
 - O acompanhamento da a2 (ativações dentro do modelo editado) fica para depois das runs: a GPU está com o avaliador.
+
+### 10/11, 16h40 — Paper reescrito depois da revisão (en e pt-BR)
+
+Mudanças aplicadas em `docs/paper-draft.md` e `docs/paper-draft.pt-BR.md`; PDFs regerados (20 páginas).
+- Enquadramento de eficiência: tabela de acerto por orçamento de tokens no t200; "vence o Astra" só no teto de 12k.
+- Raciocínio desligado (58,5%) na tabela principal; a1 sozinha empata com ele.
+- A a1 do paper é a nº 2 do agente (escolha nossa); a nº 1 e a a2 entram como braços tardios (†).
+- Mesmos neurônios, sinais opostos; freio da a1 conferido nas ativações; caminho da a2 não mapeado.
+- Limite de raciocínio: sem alegação de custo (cortado em 6.144, faz 60,5% com 4.910 tokens).
+- O t12k virou "segundo conjunto de prática". Saiu a soma dos "232 problemas trancados".
+- Entraram: edição por diferença de médias (31%), acerto entre as respostas terminadas, lista de 7 previsões que
+  falharam, valores de p sem correção e o que sobra com Holm, ressalvas na tabela de custo, correção do MATH no
+  texto, réplicas que não convergem (MatinKhajavi, ajaygrover), seção de uso de IA.
+- **Pendente:** figuras 4–6 e 10 com os braços novos; README, `experiments.md` e `research-notes`.
+- **Para o autor conferir:** a redação da seção "Uso de ferramentas de IA".
