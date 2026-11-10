@@ -1577,3 +1577,27 @@ Mudanças aplicadas em `docs/paper-draft.md` e `docs/paper-draft.pt-BR.md`; PDFs
   texto, réplicas que não convergem (MatinKhajavi, ajaygrover), seção de uso de IA.
 - **Pendente:** figuras 4–6 e 10 com os braços novos; README, `experiments.md` e `research-notes`.
 - **Para o autor conferir:** a redação da seção "Uso de ferramentas de IA".
+
+## 2026-11-10 (16h55) — Fila 2: limite de raciocínio com teto para a resposta. PRÉ-REGISTRO
+
+**Motivo.** No `bf4096`, depois do `</think>` forçado a resposta pode usar o resto do teto (até 8.192 tokens), e 34%
+das respostas seguem em loop até o fim. Isso infla o custo do limite. A versão nova, `bf<N>a<M>`, dá no máximo M tokens
+à resposta depois do corte (`src/wsp/llama_gen.py`, `src/wsp/evalrun.py`).
+
+**Fila (`scripts/queue_fix2.sh`), roda depois da confirmação das escolhas do Fable:**
+1. dev48, modelo original: `bf1024a1024`, `bf2048a1024`, `bf4096a1024`.
+2. Regra de escolha, fixada antes: maior acerto no dev48; em empate, menos tokens.
+3. O vencedor no t200, sozinho e com a a1 (`m2a_a1_062959_102+<vencedor>`). Braços tardios.
+4. Cauda pré-registrada do t200: `lbx_w10_t1` e `ft_sft_ep2`.
+
+**Previsões.**
+- No dev48, `bf4096a1024` faz 0,44–0,52 (o `bf4096` fez 0,479) com bem menos tokens (< 5.500 de média, contra 8.073).
+- `bf1024a1024` fica abaixo de `bf4096a1024` no dev48: 65%. Motivo: com 1.024 tokens de raciocínio muitos problemas
+  ainda não chegaram à resposta.
+- No t200, o vencedor sozinho faz 0,56–0,64 e fica a menos de 2 EP da a1 (0,615) e do raciocínio desligado (0,585).
+- a1 + vencedor faz 0,65–0,72 e continua acima do raciocínio desligado (p < 0,05).
+- `lbx_w10_t1` no t200: 0,40–0,52. `ft_sft_ep2`: 0,22–0,34.
+
+**Regra de texto.** Se o vencedor sozinho ficar ≥ 2 EP acima da a1 no t200, o paper diz que o limite bem implementado
+supera a edição isolada. Se a1 + vencedor não ficar acima do raciocínio desligado, a frase "só a combinação fica
+claramente acima" sai.

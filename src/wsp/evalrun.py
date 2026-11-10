@@ -26,8 +26,9 @@ LEDGER = DATA / "ledger.jsonl"
 #   lb_w<A>_t<B>   logit bias -A em "Wait"/" Wait" (13784, 13428) e +B em "</think>" (248069); ex.: lb_w5_t1
 #   lbx_w<A>_t<B>  idem, incluindo "wait"/" wait" minúsculos (11158, 3655)
 #   bf<N>          budget forcing: se o raciocínio não fechou em N tokens, injeta "</think>" e segue até o teto
+#   bf<N>a<M>      idem, mas depois dos N tokens a resposta tem no máximo M tokens (não o resto do teto)
 WAIT_IDS, WAIT_LC_IDS, ENDTHINK_ID = (13784, 13428), (11158, 3655), 248069
-_DEC = re.compile(r"(lbx?)_w([\d.]+)_t([\d.]+)|bf(\d+)")
+_DEC = re.compile(r"(lbx?)_w([\d.]+)_t([\d.]+)|bf(\d+)(?:a(\d+))?")
 
 
 def decode_extra(arm: str) -> dict:
@@ -37,7 +38,7 @@ def decode_extra(arm: str) -> dict:
     if not m:
         return {}
     if m.group(4):
-        return {"think_budget": int(m.group(4))}
+        return {"think_budget": int(m.group(4)), **({"answer_cap": int(m.group(5))} if m.group(5) else {})}
     a, b = float(m.group(2)), float(m.group(3))
     ids = WAIT_IDS + (WAIT_LC_IDS if m.group(1) == "lbx" else ())
     return {"logit_bias": [[i, -a] for i in ids] + ([[ENDTHINK_ID, b]] if b else [])}

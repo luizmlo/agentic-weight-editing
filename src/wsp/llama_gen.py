@@ -47,6 +47,7 @@ async def _one(client, sem, i, prompt, max_new, seed, penalty_last_n, on_done, s
         # a saída inteira -> passar >= max_new. (O llama-server também alimenta o prompt no sampler.)
         sampling = dict(sampling)
         budget = sampling.pop("think_budget", None)  # budget forcing (s1): fecha o raciocínio em `budget` tokens
+        answer_cap = sampling.pop("answer_cap", None)  # teto da resposta depois do corte (bf<N>a<M>)
         t = time.time()
 
         async def call(p, n):
@@ -67,7 +68,7 @@ async def _one(client, sem, i, prompt, max_new, seed, penalty_last_n, on_done, s
                 if "</think>" not in text:  # força o fechamento e deixa responder com o resto do teto
                     text += "\n</think>\n\n"
                     forced = True
-                t2, n2, stop = await call(prompt + text, max_new - budget)
+                t2, n2, stop = await call(prompt + text, min(max_new - budget, answer_cap or max_new))
                 text, n = text + t2, n + n2
         out = {"text": text, "n_tokens": n, "done_reason": stop, "cut": stop == "limit", "forced": forced,
                "secs": time.time() - t}
