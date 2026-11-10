@@ -1467,7 +1467,7 @@ dela viria de outra parte da edição (L16 ou a atenção da L22). Não sei qual
 **Depois, nesta ordem:** runs f1/f2 do Fable (pré-registro das 10h50); limite de raciocínio com teto para a resposta,
 varrido no dev48; braços `lbx_w10_t1` e `ft_sft_ep2` do t200; Astra contra a1 com teto longo.
 
-## 2026-11-10 (12h) — Sinal das ativações: o freio de "Wait" da a1 se confirma; a a2 age por outro caminho
+## 2026-11-10 (11h15) — Sinal das ativações: o freio de "Wait" da a1 se confirma; a a2 age por outro caminho
 
 `scripts/act_sign_check.py` → `data/act_sign_check.json`. 12 textos em loop do base (dev48, cortados), primeiros 1.500
 tokens do raciocínio, 17.988 posições, 52 delas imediatamente antes de um "Wait". Rodou em GPU fp16: os kernels da

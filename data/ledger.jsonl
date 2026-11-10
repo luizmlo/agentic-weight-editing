@@ -60,3 +60,5 @@
 {"ts": "2026-11-09 10:47:17", "kind": "ifeval_eval", "tag": "ftsel_if", "split": "dev[0:48]", "arms": ["base", "ft_if_ep1", "ft_if_ep2", "ft_if_ep3"], "think": false}
 {"ts": "2026-11-09 11:00:03", "kind": "ifeval_eval", "tag": "dev152", "split": "dev[48:200]", "arms": ["ft_if_ep2"], "think": false}
 {"ts": "2026-11-09 13:02:03", "kind": "ifeval_eval", "tag": "dev200b2", "split": "dev[0:200]", "arms": ["base", "m2aif_b2"], "think": false}
+{"ts": "2026-11-10 10:50:35", "kind": "gen_eval", "tag": "t200nt", "split": "gsm8k_test[200:400]", "arms": ["base", "m2a_a1_062959_102", "astra"], "max_new": 8192}
+{"ts": "2026-11-10 11:13:54", "kind": "gen_eval", "tag": "t200nt", "split": "gsm8k_test[200:400]", "arms": ["base", "m2a_a1_062959_102", "astra"], "max_new": 8192}
