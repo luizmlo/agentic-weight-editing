@@ -1370,3 +1370,70 @@ pareadas (ganho ± EP; problemas que só o primeiro acerta / só o segundo):
 - **Para o paper:** o segundo defeito é um **resultado negativo bem controlado**. O método (e o FT) funcionam quando o
   defeito é concentrado e o sinal é grande (loops: +46 pp). Não funcionam quando o defeito é difuso e o efeito
   plausível fica abaixo do ruído de amostragem. Isso delimita o escopo da técnica.
+
+## 2026-11-10 (09h40) — t200 sem raciocínio: PRÉ-REGISTRO (resposta à crítica "é só desligar o raciocínio")
+
+**Motivo.** Reexecuções públicas do Experimento 8 do Sparks (exp8-loop-controls; Rethinking WSP; ver
+`docs/literatura-sparks.md`) mostram que o modelo original **sem raciocínio** já faz 56–57% no GSM8K inteiro com teto
+longo. Nosso único número sem raciocínio (0,485) é de test[0:200], com teto de 1.024 tokens. Ele não é pareado com o
+t200 (test[200:400]).
+
+**Conjunto e braços.** GSM8K test[200:400], os mesmos 200 problemas do t200, com as mesmas sementes por problema.
+- Raciocínio desligado, amostragem NOTHINK do model card (temp 0,7, top_p 0,8, presence 1,5), teto de 8.192.
+- Braços: base, a1 (`m2a_a1_062959_102`), astra.
+- Tag `t200nt`, script `scripts/queue_t200_nothink.sh`.
+- Em seguida, na mesma janela, retoma o braço pré-registrado `lbx_w10_t1` do t200, que é interrompível e retoma por
+  item.
+
+**Previsões, escritas antes:**
+1. base sem raciocínio: entre 0,50 e 0,60. Central: 0,55.
+2. a1 e astra sem raciocínio ≈ base (|Δ| < 5 pp): sem raciocínio não há loop longo para remover.
+3. a1 com raciocínio (0,615) − base sem raciocínio: positivo, mas pequeno (+3 a +10 pp). a1 + bf4096 (0,695) − base
+   sem raciocínio: ≥ +10 pp.
+
+**Regra de texto, fixada antes:**
+- Se o base sem raciocínio ficar ≥ 0,615, o paper passa a dizer explicitamente que a edição sozinha **não supera**
+  desligar o raciocínio no GSM8K. A afirmação principal passa a ser a combinação edição + limite, se ela continuar
+  acima.
+- Se ficar < 0,615, o paper relata a diferença pareada, com erro-padrão, como mais uma alternativa da tabela principal.
+
+A comparação entre modos é entre braços diferentes nos mesmos problemas: pareada por problema, mas não por semente.
+
+## 2026-11-10 (10h50) — Runs f1 e f2: Claude Fable 5.2 como editor. PRÉ-REGISTRO
+
+**Motivo.** O Fable 5.2 está disponível por tempo limitado na assinatura. Ele é um degrau acima do Opus 5.5 na escada
+do editor (`docs/linhas-futuras.md`, Linha 1) e serve de réplica do protocolo v2 sem atlas. Também responde a uma
+pergunta aberta pela literatura (`docs/literatura-sparks.md`): editores diferentes convergem para os mesmos neurônios
+(a1, a2 e o tdotlab em L22n573) ou acham direções diferentes (ajaygrover: Opus quase ortogonal ao Astra)?
+
+**Protocolo: idêntico ao do a2**, no harness original (`/mnt/dados/dev/deep_traces`, onde a1 e a2 rodaram).
+- Mesmo `BRIEF_v2.md`, sem mudança nenhuma, e o mesmo prompt do a2 (versão final, com o limite de memória).
+- Mesmo avaliador (`m2a_scorer.py`): 40 sondas e 6 checagens por geração.
+- Sem atlas. No máximo 4 edições de posto 1, |α| ≤ 10.
+- Duas runs, `f1` e `f2`, ao mesmo tempo, dividindo o avaliador, como a2 e r3.
+
+**Desvios, todos fixados antes:**
+1. O modelo do agente é o Claude Fable 5.2. a0–a2 e r1–r3 usaram o Opus 5.5.
+2. Regra nova no prompt: sem acesso à web, e sem ler `/mnt/dados/dev/agentic-weight-editing`. As respostas agora são
+   públicas (tdotlab e outros citam L22 col 573) e o repositório do paper não existia quando o a2 rodou.
+3. A auditoria das chamadas de ferramenta inclui buscas na web e os dois repositórios.
+
+**Confirmação.**
+- A escolha nº 1 de cada `final.json` vai para o dev48 (GSM8K train, teto 12.288, mesmas sementes), pareada contra o
+  base e contra a a1.
+- O melhor dos dois no dev48 roda no t200 como braço novo. **O t200 já foi aberto**: esse braço é posterior aos
+  resultados dos outros e será relatado assim. A escolha do braço usa só o dev48.
+
+**Previsões, escritas antes:**
+1. Pelo menos uma das duas runs chega a dev48 ≥ 0,60: 70%.
+2. As duas chegam a dev48 ≥ 0,50: 50%.
+3. Alguma run supera a a1 (0,667) no dev48 por ≥ 5 pp: 20%. Motivo: a a1 já remove a maior parte dos loops de
+   "Wait", e o resto do loop não é uma palavra só (tdotlab, rodada 2).
+4. Pelo menos uma run edita L22n573 ou um neurônio-freio de "Wait" em L17–L23: 65%.
+5. Custo: o Fable usa menos sondas que o Opus para chegar à primeira checagem positiva. Palpite fraco, 55%.
+
+**Leitura combinada, fixada antes:**
+- Se as duas ficarem < 0,40: o resultado da a1/a2 depende mais do agente (ou da sorte) do que o paper sugere, e a
+  seção de réplicas precisa dizer isso.
+- Se convergirem para os mesmos neurônios: vira evidência de que a solução é uma propriedade do modelo-alvo, não do
+  editor.
