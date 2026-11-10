@@ -1601,3 +1601,39 @@ das respostas seguem em loop até o fim. Isso infla o custo do limite. A versão
 **Regra de texto.** Se o vencedor sozinho ficar ≥ 2 EP acima da a1 no t200, o paper diz que o limite bem implementado
 supera a edição isolada. Se a1 + vencedor não ficar acima do raciocínio desligado, a frase "só a combinação fica
 claramente acima" sai.
+
+### 10/11, 18h40 — Runs f1 e f2 (Fable 5.2) terminadas; confirmação lançada
+
+| run | nº 1 | edição | checagem por geração (16) | sondas / checagens usadas |
+|---|---|---|---|---|
+| f1 | `165020_381` | L23, todas as colunas, direção de "Wait": `mlp.down_proj` α = 1 e `self_attn.o_proj` α = 2 (2 edições) | 9/16, cortes 0,375, 8 resgates / 0 perdas | 22 / 4 |
+| f2 | `162904_881` | saídas de atenção de L20–L23, todas as colunas, α = 4, direção "Wait" − 0,04·`</think>` (4 edições) | 10/16, cortes 0,25, 9 resgates / 0 perdas | 21 / 4 |
+
+Base nas mesmas 16: 1/16, cortes 1,0.
+
+**O que os agentes relatam.**
+- Os dois acharam os neurônios de "wait" (L17n1915, L18n881, L22n573; a f1 também L20n405) e **não** os usaram na
+  escolha final. A f1 testou invertê-los (α = 6): 0/16, com "WaitWaitWait…", o mesmo fracasso inicial da a1 e da a2.
+  Ela não tentou reforçá-los. A f2 concluiu que eles codificam o verbo e não os editou.
+- Os dois foram para edições em todas as colunas nas últimas camadas (edição direta dos logits de "Wait"), uma
+  família diferente da a1/a2 e mais próxima do Astra na forma.
+- Nos dois, a sonda de melhor nota não foi o melhor resultado por geração.
+- Os dois pararam com metade do orçamento, por tempo.
+
+**Previsões do pré-registro (10h50) já decididas.**
+- 4 (alguma run edita L22n573 ou um neurônio-freio em L17–L23): **errou** (eu dava 65%).
+- 5 (menos sondas que o Opus até a primeira checagem positiva): a conferir nos registros.
+- 1–3 dependem do dev48.
+
+**Desvios.**
+- As duas runs pararam ~50 min–1 h no limite de uso de 5 horas da assinatura e foram retomadas por mensagem ("continue
+  de onde parou"). O avaliador ficou ativo.
+- A fila compartilhada deixou as checagens por geração lentas (uma levou mais de 1 h), e isso encurtou as duas runs.
+
+**Auditoria das chamadas de ferramenta (f1: 145 Bash, 7 Read; f2: 42 Bash, 5 Read).** Nenhuma busca na web, nenhuma
+leitura do repositório do paper, de `docs/`, `scripts/wsp/`, `probes.py`, do atlas, de outras runs ou de
+`~/.claude/`. Única ocorrência: as duas rodaram `ls` na pasta `sealed/` da própria run no início (vazia naquele
+momento; nenhum arquivo lido).
+
+**Confirmação (`scripts/queue_fable.sh`, unit `wsp-fable`, 18h36):** nº 1 de cada no dev48; a melhor (maior acerto,
+empate → menos tokens) vai ao t200; em seguida roda a fila 2 (pré-registro das 16h55).
