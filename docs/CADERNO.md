@@ -1504,3 +1504,50 @@ DeltaNet não rodam em CPU.
 - **Para o paper:** "os dois agentes acharam os mesmos neurônios de 'Wait' e a mesma alavanca de `</think>`; a a1
   amplia o freio, a a2 inverte neurônios a montante e chega ao mesmo efeito por um caminho indireto ainda não
   mapeado". A Figura 2 vale para a a1.
+
+### 10/11, 15h30 — Resultado da fila 1 (t200 sem raciocínio; nº 1 do agente a1; a2)
+
+A fila terminou às 14h56. Mesmos 200 problemas trancados (test[200:400]); p é o teste do sinal exato sobre os pares
+discordantes.
+
+**Sem raciocínio, teto 8.192:**
+
+| braço | acerto | cortadas | tokens (média) | contra o original sem raciocínio |
+|---|---|---|---|---|
+| original | 58,5% | 5,0% | 1.263 | — |
+| a1 (062959_102) | 56,0% | 2,0% | 925 | +24 / −29 |
+| Astra | 57,5% | 5,5% | 1.384 | +22 / −24 |
+
+**Com raciocínio, teto 12.288 (braços novos):**
+
+| braço | acerto | cortadas | tokens (média) | contra o original |
+|---|---|---|---|---|
+| a1 nº 1 do agente (074537_659) | 62,0% | 5,5% | 2.269 | +97 / −4 |
+| a2 nº 1 (015739_897) | 67,5% | 15,5% | 4.387 | +107 / −3 |
+
+**Comparações pareadas contra o original sem raciocínio (58,5%):**
+
+| braço (com raciocínio) | acerto | pares | p |
+|---|---|---|---|
+| a1 do paper | 61,5% | +28 / −22 | 0,48 |
+| limite 4.096 | 61,0% | +29 / −24 | 0,58 |
+| a1 + limite | 69,5% | +37 / −15 | 0,003 |
+| a2 | 67,5% | +35 / −17 | 0,018 |
+| Astra | 53,5% | +25 / −35 | 0,25 |
+
+Outras: nº 1 do agente contra a1 do paper, +29 / −28 (p = 1,0). a2 contra a1 do paper, +29 / −17 (p = 0,10). a2
+contra Astra, +42 / −14 (p < 0,001). a2 contra a1 + limite, +23 / −27 (p = 0,67).
+
+**Previsões.**
+- Original sem raciocínio em 0,50–0,60: **acertou** (0,585). a1 e Astra ≈ original sem raciocínio: **acertou**.
+- nº 1 do agente em 0,55–0,65 e a menos de 2 EP da a1 do paper: **acertou** (0,62; diferença de 0,5 ponto).
+- a2 em 0,52–0,64: **errou para baixo** (0,675). A a2 é a melhor edição isolada no t200.
+
+**Regras de texto aplicadas.**
+- O original sem raciocínio ficou abaixo de 0,615, mas a diferença para a a1 (3 pontos, p = 0,48) não é
+  significativa. O paper diz: **a edição a1 sozinha empata com desligar o raciocínio**; só a1 + limite e a a2 ficam
+  acima (11 e 9 pontos). Com o raciocínio desligado, nenhuma edição ajuda nem atrapalha.
+- A nº 1 do agente a1 é indistinguível da a1 do paper e gasta menos tokens (2.269 contra ~2.900). O paper passa a
+  reportá-la como "a escolha do agente"; a escolha do supervisor no dev48 não mudou o resultado.
+- A a2 entra na tabela principal. Ressalvas: 15,5% cortadas no teto (ainda pode subir com teto maior, como o Astra),
+  custo de tokens 1,5× o da a1, e p = 0,10 contra a a1. Sem correção para múltiplas comparações.
