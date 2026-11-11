@@ -1893,7 +1893,7 @@ A reduzida escreve um pouco mais (2 cortes a mais respondem por boa parte da dif
 
 **Paper:** parágrafo do mecanismo e limitação atualizados (en e pt-BR). Sem t200 para as variantes.
 
-### 11/11, 17h40 — Revisão independente das mudanças desde 40feea4
+### 11/11, 17h40 — Revisão independente das mudanças desde c51b187
 
 Um agente novo, sem o meu contexto e só com leitura, conferiu contra os dados brutos o que mudou no paper e no README
 desde a revisão de 10/11. Todos os números conferem. As correções foram de afirmação e redação, e as apliquei em en e
