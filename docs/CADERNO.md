@@ -1715,3 +1715,15 @@ t200, tokens ou a1/a2). Os `final.json` das 18h40 foram guardados como `final_18
 de teste trancado) e a fila seguiu com vencedor vazio. Nenhum problema do teste foi gerado para os braços novos: o
 braço `m2a_a1_062959_102+` (a1 sem limite, duplicata) começou e foi parado e apagado antes de terminar. Corrigido
 (`--split train` e parada se não houver vencedor). A fila 2 roda depois da extensão.
+
+### 10/11, 23h30 — Extensão: f1 terminou; fila da madrugada lançada
+
+- **f1x:** nº 1 novo `224719_221` = edição das 18h40 + "Yes" em `layers.23.self_attn.o_proj` (α = 1). Checagem: 11/16,
+  cortes 0,19, média de 3.958 tokens, 10 resgates / 0 perdas (18h40: 9/16, cortes 0,375). Usou 33/40 sondas e 6/6
+  checagens. Testou L22n573 somado à edição: piorou. Diferenças entre os três do ranking dentro do ruído de 16.
+- **Desvio:** segundo limite de uso às ~23h00; as duas runs retomadas às 23h11 (pausa de ~10 min, avaliador ativo).
+- **f2x:** ainda rodando (33 sondas, 5 checagens às 23h29).
+- **Fila da madrugada (`scripts/queue_night.sh`, unit `wsp-night`):** espera o `final.json` novo da f2 até 00h50
+  (depois disso segue sem ela); copia as runs; confirma no dev48 cada nº 1 que mudou (`m2a_f1_224719_221`, e o da f2
+  se mudar); roda a fila 2 corrigida. A auditoria das chamadas da extensão fica para depois da fila; os braços são
+  posteriores e relatados assim.
