@@ -71,3 +71,4 @@
 {"ts": "2026-11-11 00:19:20", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["bf1024a1024", "bf2048a1024", "bf4096a1024"], "max_new": 12288}
 {"ts": "2026-11-11 01:14:32", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["bf4096a1024", "m2a_a1_062959_102+bf4096a1024"], "max_new": 12288}
 {"ts": "2026-11-11 04:24:00", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["lbx_w10_t1", "ft_sft_ep2"], "max_new": 12288}
+{"ts": "2026-11-11 15:20:03", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "m2a_a2", "m2a_a2_red", "m2a_a2_l16n998"], "max_new": 12288}

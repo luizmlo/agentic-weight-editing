@@ -155,8 +155,16 @@ model:
   to respond to an upstream push towards "Wait"; when that push is gone, it stops firing.
 
 So the two agents intervene on the same circuit at different points: a1 strengthens the brake in layer 22, and a2
-removes the push in layer 16. These are log-probabilities on fixed text, not test runs; we have not run a2's
-single-neuron edit on problems. Figure 2 describes a1.
+removes the push in layer 16. Those were log-probabilities on fixed text, so we then checked them with test runs on
+the 48 practice problems (predictions written down first):
+- **a2 works as a 2-edit fix.** Keeping only L16n998 and the `</think>` edit solves 69% (33 of 48), against 65% for
+  the full a2 (6 rescued, 4 lost, p = 0.75), with slightly longer answers (4,797 tokens against 3,910). The agent's
+  two other neuron edits did no measurable work.
+- **Lowering "Wait" is not enough to stop.** L16n998 alone, which gave all 26 nats on fixed text, solves 48% (23 of
+  48), and 25 of 48 answers run out of space. Against the 2-edit version it rescues 3 and loses 13 (p = 0.02). This
+  matches a1's ablations above: a loop needs both doors changed.
+
+Figure 2 describes a1.
 
 ![Figure 2](figures/edit-anatomy.png)
 
@@ -576,7 +584,7 @@ method stops working.
   rank close candidates.
 - **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
 - **Mechanism:** we checked a1's brake and a2's upstream neuron on 52 positions from 12 transcripts, with the text
-  held fixed. We have not confirmed by test runs that a2's single neuron is enough.
+  held fixed. Test runs of the reduced a2 used only the 48 practice problems, which detect only large differences.
 - **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
   gain without an LLM. **Next:** a targeted script (logit-lens directions, the same budget) against the agents.
 - **Finished-but-wrong answers:** the edits lower accuracy among finished answers (see side effects).

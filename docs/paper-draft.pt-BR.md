@@ -164,8 +164,16 @@ loop do modelo original:
   parece responder a um empurrão a montante na direção de "Wait"; sem o empurrão, ele para de disparar.
 
 Os dois agentes intervêm, então, no mesmo circuito em pontos diferentes: a a1 reforça o freio na camada 22, e a a2
-tira o empurrão na camada 16. Essas medidas são log-probabilidades com o texto fixo, não testes reais; não rodamos a
-edição de um neurônio só da a2 em problemas. A Figura 2 descreve a a1.
+tira o empurrão na camada 16. Essas medidas eram log-probabilidades com o texto fixo, então as conferimos com testes
+reais nos 48 problemas de prática (com as previsões registradas antes):
+- **A a2 funciona como uma correção de 2 edições.** Mantendo só o L16n998 e a edição de `</think>`, o modelo resolve
+  69% (33 de 48), contra 65% da a2 inteira (6 resgatados, 4 perdidos, p = 0,75), com respostas um pouco mais longas
+  (4.797 tokens contra 3.910). As outras duas edições de neurônio do agente não fizeram trabalho mensurável.
+- **Baixar "Wait" não basta para parar.** Só o L16n998, que dava os 26 nats inteiros com o texto fixo, resolve 48%
+  (23 de 48), e 25 de 48 respostas estouram o espaço. Contra a versão de 2 edições, resgata 3 e perde 13 (p = 0,02).
+  Isso bate com as ablações da a1 acima: num loop, as duas portas precisam mudar.
+
+A Figura 2 descreve a a1.
 
 ![Figura 2](figures/edit-anatomy.png)
 
@@ -603,7 +611,7 @@ para de funcionar.
   não ordena candidatos próximos.
 - **A variante da a1 foi escolha nossa:** o agente a pôs em segundo lugar (veja o Experimento 2).
 - **Mecanismo:** conferimos o freio da a1 e o neurônio a montante da a2 em 52 posições de 12 textos, com o texto
-  fixo. Não confirmamos com testes reais que o neurônio único da a2 basta.
+  fixo. Os testes reais da a2 reduzida usaram só os 48 problemas de prática, que detectam apenas diferenças grandes.
 - **Buscas sem LLM:** a nossa busca por script é uma comparação fraca, e trabalhos concorrentes obtêm a maior parte
   do ganho da edição publicada sem LLM. **Próximo passo:** um script dirigido (direções lidas pelo vocabulário, o
   mesmo orçamento) contra os agentes.

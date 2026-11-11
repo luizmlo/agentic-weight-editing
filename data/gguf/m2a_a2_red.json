@@ -1,0 +1,19 @@
+{
+ "method": "m2a_a2_red",
+ "layers": {
+  "0": {
+   "tensor": "model.language_model.layers.16.mlp.down_proj.weight",
+   "alpha": 10.0,
+   "n_cols": 1,
+   "rel_change": 0.08697453141212463
+  },
+  "1": {
+   "tensor": "model.language_model.layers.22.linear_attn.out_proj.weight",
+   "alpha": -4.0,
+   "n_cols": null,
+   "rel_change": 0.12488618493080139
+  }
+ },
+ "gguf": "/mnt/dados/dev/agentic-weight-editing/data/gguf/m2a_a2_red.gguf",
+ "gguf_bytes": 1557662688
+}

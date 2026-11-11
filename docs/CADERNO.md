@@ -1869,3 +1869,26 @@ Sem t200: não crio mais um braço posterior no teste trancado.
 - `m2a_a2_l16n998` corta mais que `m2a_a2_red` (pelo menos 4 problemas cortados a mais): 55%.
 
 **Limite.** Com 48 problemas, o erro padrão é de ~7 pontos; só diferenças grandes aparecem.
+
+### 11/11, 17h00 — Caminho da a2 por geração: resultado
+
+`data/gen_dev48.json` (fila `wsp-a2red`, 15h15 → ~16h50). dev48, teto 12k, pareado.
+
+| braço | acertos | cortadas | tokens |
+|---|---|---|---|
+| a2 (4 edições) | 31/48 (64,6%) | 4 | 3.910 |
+| a2 reduzida (L16n998 + `</think>`) | 33/48 (68,8%) | 6 | 4.797 |
+| só L16n998 | 23/48 (47,9%) | 25 | 8.617 |
+
+Pareados (sinal exato): reduzida × a2 +6/−4 (p = 0,75); só L16n998 × reduzida +3/−13 (p = 0,02); só L16n998 × a2
++3/−11 (p = 0,06); reduzida × a1 +4/−2; só L16n998 × base +19/−3.
+
+**Leitura.** A medição com texto fixo previu bem o comportamento. A a2 é, na prática, uma correção de 2 edições: tirar
+L16n3422, L17n1915 e L22n573 não muda nada mensurável. Mas baixar "Wait" sozinho não basta: sem a edição de
+`</think>`, metade das respostas estoura o teto, como nas ablações da a1 (supressão sozinha 44–50%, os dois juntos 69%).
+A reduzida escreve um pouco mais (2 cortes a mais respondem por boa parte da diferença).
+
+**Previsões.** Reduzida a até 4 problemas da a2 (65%): **acertou** (+2). Só L16n998 ≥ 4 abaixo da reduzida (55%):
+**acertou** (−10). Só L16n998 com ≥ 4 cortes a mais que a reduzida (55%): **acertou** (+19).
+
+**Paper:** parágrafo do mecanismo e limitação atualizados (en e pt-BR). Sem t200 para as variantes.
