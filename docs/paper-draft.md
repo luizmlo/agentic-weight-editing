@@ -18,8 +18,9 @@
 - **The simple alternatives are strong.** Capping thinking time (60–61%), banning the word "Wait" (60.0%) and
   switching thinking off (58.5%) all tie the first agent's edit on the locked test. Only two things are clearly above
   thinking off: that edit plus a thinking cap (69.5%) and the second agent's edit (67.5%).
-- **What mattered.** Two independent agents found the same "Wait" neurons and the same `</think>` lever, although
-  they pushed the shared neurons in opposite directions. Two later runs with another editor model saw the same
+- **What mattered.** Two independent agents found the same "Wait" neurons and the same `</think>` lever, but their
+  edits work at different points: one strengthens a brake neuron, the other flips a neuron upstream of it. Two later
+  runs with another editor model saw the same
   neurons and fixed the loops with a different kind of edit. A simple script with the same tools and budget, but no agent
   reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
   them honest. In three pairs of runs, agents given more interpretability data found worse fixes.
@@ -138,19 +139,24 @@ The two parts only work together. Our ablations, each a test run on 16 problems:
 
 A loop needs a way back in ("Wait, let me check") and no way out. The edit closes the first and opens the second.
 
-**The same neurons, opposite signs.** a1 and a2 share two neurons and the same "Wait" direction, but a1 makes their
+**Shared neurons, different levers.** a1 and a2 share two neurons and the same "Wait" direction, but a1 makes their
 writing 7× stronger and a2 flips it to −9×. We checked what the neurons do on 12 looping transcripts of the original
 model:
 - **a1 strengthens a brake.** Neuron L22n573 has a negative activation at every position just before a "Wait" (52 of
   52), and its output weights point towards "Wait", so it pushes *against* the word. a1 amplifies that push. With the
   text held fixed, a1's three neurons lower the log-probability of "Wait" at those positions by 16.6 nats, and its
   last-layer edit alone raises `</think>` by 1.5 nats. The two parts are separable. L18n881 contributes almost nothing.
-- **a2 reaches the same effect another way.** It also lowers "Wait" there (by 26 nats), but its flip of L22n573
-  alone would *raise* it. Its main lever is L16n998, which in the original model promotes "Wait" and after the edit
-  suppresses it. The direct effect of the four neurons does not add up to 26 nats, so most of it must pass through
-  later layers. We have not mapped that path.
+- **a2 works through one upstream neuron.** It also lowers "Wait" there (by 26 nats), and editing L16n998 alone
+  gives all of it (−26.2 nats). In the original model that neuron promotes "Wait"; after the edit it suppresses it.
+  The other three neuron edits change almost nothing: L16n3422 and L17n1915 move "Wait" by less than 0.3 nats, and
+  the flip of L22n573 alone *raises* it by 1.6.
+- **With L16n998 flipped, the brake goes quiet.** Inside the a2-edited model, the activation of L22n573 before a
+  "Wait" falls from −3.73 to −0.04, so a2's flip of that neuron has almost nothing left to act on. The brake seems
+  to respond to an upstream push towards "Wait"; when that push is gone, it stops firing.
 
-So the agents agree on where to intervene, not on how. Figure 2 describes a1.
+So the two agents intervene on the same circuit at different points: a1 strengthens the brake in layer 22, and a2
+removes the push in layer 16. These are log-probabilities on fixed text, not test runs; we have not run a2's
+single-neuron edit on problems. Figure 2 describes a1.
 
 ![Figure 2](figures/edit-anatomy.png)
 
@@ -543,7 +549,7 @@ with a Claude editor on a consumer GPU (tdotlab, 2026) independently located the
 agents edited (layer 22, neuron 573), and found that its edit and a larger budget add roughly independently. Not every
 replication converges: MatinKhajavi (2026) reruns the experiments with Claude Opus 5.5 and gets edits of another kind
 (zeroing attention heads, plus the same neuron 573), and ajaygrover (2026) finds a Claude direction almost orthogonal to
-Astra's that stacks with it. Our two Opus agents agree on neurons but disagree on sign, and two later runs with
+Astra's that stacks with it. Our two Opus agents edit shared neurons but act at different points of the circuit, and two later runs with
 another editor model left those neurons alone. This fits the picture: several different edits remove the loops. IWIBench
 (von Csefalvay et al., 2026) proposes a benchmark for editor models. Our contribution is the controlled comparison:
 agent edits against decoding, thinking-off and fine-tuning baselines on a locked test, with accuracy reported by token
@@ -569,7 +575,8 @@ method stops working.
 - **Noisy test runs:** the agents choose among candidates on 16 problems. The f1 extension shows that this cannot
   rank close candidates.
 - **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
-- **Mechanism:** we verified the brake story for a1 on 52 positions from 12 transcripts. a2's path is not mapped.
+- **Mechanism:** we checked a1's brake and a2's upstream neuron on 52 positions from 12 transcripts, with the text
+  held fixed. We have not confirmed by test runs that a2's single neuron is enough.
 - **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
   gain without an LLM. **Next:** a targeted script (logit-lens directions, the same budget) against the agents.
 - **Finished-but-wrong answers:** the edits lower accuracy among finished answers (see side effects).
@@ -634,7 +641,7 @@ and checked the work, and is responsible for the content.
 | Edit-anatomy diagram | done (Figure 2) |
 | Thinking-off baseline on the locked test (8k cap) | done (Nov 10): 58.5%, ties a1 |
 | Independent review of every claim against the data | done (Nov 10); this draft applies it |
-| Mechanism check on activations | done for a1; a2 to do |
+| Mechanism check on activations | done for a1 and a2 (Nov 11) |
 | Published edit vs a1 at a long budget | to do (5–8 GPU-h) |
 | Time limit with a cap on the answer | done (Nov 11): 60.0% alone, 69.5% with a1 |
 | Two agent runs with another editor (Claude Fable 5.2) | done (Nov 11); different conditions, reported as a replication |

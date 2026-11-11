@@ -1822,3 +1822,32 @@ antes de "Wait" da medição das 11h15 de ontem. Mede:
 - Dentro do modelo editado, a ativação de L22n573 antes de "Wait" troca de sinal ou cai para < 30% do valor do base
   (−3,73): 50%.
 - Tirar só a inversão de L22n573 deixa a supressão de "Wait" mais forte (a inversão atrapalha): 40%.
+
+### 11/11, 12h20 — Caminho da a2: resultado
+
+`data/act_a2_path.json`. 12 textos, 52 posições antes de "Wait", texto fixo.
+
+| variante | Δ log p("Wait") antes de "Wait" |
+|---|---|
+| a2 inteira | −25,9 |
+| só L16n998 | −26,2 |
+| todos menos L16n998 | +1,6 |
+| só L16n3422 | −0,01 |
+| só L17n1915 | +0,28 |
+| só L22n573 | +1,56 |
+| todos menos L22n573 | −26,3 |
+
+Ativação média antes de "Wait", base → dentro da a2: L22n573 −3,73 → −0,04 (ainda negativa em 96%); L17n1915
+−0,23 → +0,01; L16n998 −2,60 (igual; nada a montante foi editado). Só com as edições da L16 o resultado é o mesmo.
+
+**Leitura.** A a2 é, na prática, a edição de um neurônio: inverter L16n998 dá os 26 nats. Com ele invertido, o freio
+L22n573 quase para de disparar, e a inversão dele pela a2 não tem sobre o que agir. a1 e a2 mexem no mesmo circuito
+em pontos diferentes: a1 reforça o freio (L22), a2 tira o empurrão (L16). Limite: são log-probabilidades com texto
+fixo; a edição de um neurônio só não foi testada por geração.
+
+**Previsões.** L16n998 sozinho ≥ 60% do efeito (55%): **acertou** (100%). Ativação de L22n573 cai para < 30% (50%):
+**acertou** (1%). Tirar a inversão de L22n573 deixa a supressão mais forte (40%): **acertou por pouco** (−26,3
+contra −26,0; diferença de 0,3 nat, irrelevante).
+
+**Paper:** parágrafo do mecanismo reescrito ("Neurônios em comum, alavancas diferentes"), TL;DR, trabalhos
+concorrentes, limitações e status.

@@ -22,7 +22,8 @@
   claramente acima do raciocínio desligado: essa edição com um limite de raciocínio (69,5%) e a edição do segundo
   agente (67,5%).
 - **O que importou.** Dois agentes independentes acharam os mesmos neurônios de "Wait" e a mesma alavanca de
-  `</think>`, embora tenham empurrado os neurônios em comum em sentidos opostos. Duas execuções posteriores, com outro
+  `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, a outra inverte um neurônio
+  a montante dele. Duas execuções posteriores, com outro
   modelo editor, viram os mesmos neurônios e tiraram os loops com outro tipo de edição. Um script simples com as mesmas
   ferramentas e o mesmo orçamento, mas sem o raciocínio de um agente, não achou. Toda nota rápida que demos aos
   agentes acabou sendo burlada, e só os testes reais os mantiveram honestos. Em três pares de execuções, os agentes
@@ -146,7 +147,7 @@ As duas partes só funcionam juntas. Nas nossas ablações, cada uma um teste re
 Um loop precisa de um caminho de volta ("Espera, deixa eu conferir") e de nenhuma saída. A edição fecha o primeiro e
 abre a segunda.
 
-**Os mesmos neurônios, sinais opostos.** A a1 e a a2 têm dois neurônios em comum e a mesma direção de "Wait", mas a a1
+**Neurônios em comum, alavancas diferentes.** A a1 e a a2 têm dois neurônios em comum e a mesma direção de "Wait", mas a a1
 torna a escrita deles 7× mais forte e a a2 a inverte para −9×. Conferimos o que esses neurônios fazem em 12 textos em
 loop do modelo original:
 - **A a1 reforça um freio.** O neurônio L22n573 tem ativação negativa em todas as posições logo antes de um "Wait"
@@ -154,12 +155,17 @@ loop do modelo original:
   esse empurrão. Com o texto fixo, os três neurônios da a1 baixam a log-probabilidade de "Wait" nessas posições em
   16,6 nats, e a edição da última camada, sozinha, sobe a de `</think>` em 1,5 nat. As duas partes são separáveis. O
   L18n881 quase não contribui.
-- **A a2 chega ao mesmo efeito por outro caminho.** Ela também baixa "Wait" ali (em 26 nats), mas a inversão do
-  L22n573, sozinha, *subiria* a palavra. A alavanca principal dela é o L16n998, que no modelo original promove "Wait"
-  e, depois da edição, o suprime. O efeito direto dos quatro neurônios não soma 26 nats, então a maior parte passa
-  pelas camadas seguintes. Não mapeamos esse caminho.
+- **A a2 age por um único neurônio a montante.** Ela também baixa "Wait" ali (em 26 nats), e editar só o L16n998
+  dá o efeito inteiro (−26,2 nats). No modelo original esse neurônio promove "Wait"; depois da edição, ele o suprime.
+  As outras três edições de neurônio quase não mudam nada: L16n3422 e L17n1915 movem "Wait" em menos de 0,3 nat, e
+  a inversão do L22n573, sozinha, *sobe* a palavra em 1,6.
+- **Com o L16n998 invertido, o freio se cala.** Dentro do modelo editado pela a2, a ativação do L22n573 antes de um
+  "Wait" cai de −3,73 para −0,04, e a inversão desse neurônio pela a2 fica quase sem ter sobre o que agir. O freio
+  parece responder a um empurrão a montante na direção de "Wait"; sem o empurrão, ele para de disparar.
 
-Os agentes concordam, então, sobre onde intervir, não sobre como. A Figura 2 descreve a a1.
+Os dois agentes intervêm, então, no mesmo circuito em pontos diferentes: a a1 reforça o freio na camada 22, e a a2
+tira o empurrão na camada 16. Essas medidas são log-probabilidades com o texto fixo, não testes reais; não rodamos a
+edição de um neurônio só da a2 em problemas. A Figura 2 descreve a a1.
 
 ![Figura 2](figures/edit-anatomy.png)
 
@@ -566,7 +572,7 @@ sem mexer nos pesos: com o raciocínio desligado e orçamento longo, o modelo or
 573), e viu que a edição e um orçamento maior se somam de forma quase independente. Nem toda replicação converge:
 MatinKhajavi (2026) refaz os experimentos com o Claude Opus 5.5 e obtém edições de outro tipo (zerar cabeças de
 atenção, além do mesmo neurônio 573), e ajaygrover (2026) acha uma direção do Claude quase ortogonal à do Astra, que
-se soma a ela. Os nossos dois agentes Opus concordam nos neurônios e discordam no sinal, e duas execuções
+se soma a ela. Os nossos dois agentes Opus editam neurônios em comum, mas agem em pontos diferentes do circuito, e duas execuções
 posteriores com outro modelo editor deixaram esses neurônios de lado. Isso combina com o quadro: várias edições
 diferentes tiram os loops. O IWIBench (von Csefalvay et al., 2026) propõe um benchmark para modelos
 editores. Nossa contribuição é a comparação controlada: edições de agente contra alternativas de decodificação, de
@@ -596,7 +602,8 @@ para de funcionar.
 - **Testes reais ruidosos:** os agentes escolhem entre candidatos com 16 problemas. A extensão da f1 mostra que isso
   não ordena candidatos próximos.
 - **A variante da a1 foi escolha nossa:** o agente a pôs em segundo lugar (veja o Experimento 2).
-- **Mecanismo:** conferimos a história do freio da a1 em 52 posições de 12 textos. O caminho da a2 não está mapeado.
+- **Mecanismo:** conferimos o freio da a1 e o neurônio a montante da a2 em 52 posições de 12 textos, com o texto
+  fixo. Não confirmamos com testes reais que o neurônio único da a2 basta.
 - **Buscas sem LLM:** a nossa busca por script é uma comparação fraca, e trabalhos concorrentes obtêm a maior parte
   do ganho da edição publicada sem LLM. **Próximo passo:** um script dirigido (direções lidas pelo vocabulário, o
   mesmo orçamento) contra os agentes.
@@ -665,7 +672,7 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | Diagrama da anatomia da edição | feito (Figura 2) |
 | Raciocínio desligado no teste trancado (teto de 8k) | feito (10/11): 58,5%, empata com a a1 |
 | Revisão independente de cada afirmação contra os dados | feito (10/11); este rascunho a aplica |
-| Conferência do mecanismo nas ativações | feito para a a1; falta a a2 |
+| Conferência do mecanismo nas ativações | feito para a a1 e a a2 (11 nov.) |
 | Edição publicada contra a1 com orçamento longo | a fazer (5–8 GPU-h) |
 | Limite de raciocínio com teto para a resposta | feito (11 nov.): 60,0% sozinho, 69,5% com a a1 |
 | Duas execuções de agente com outro editor (Claude Fable 5.2) | feito (11 nov.); condições diferentes, relatado como réplica |
