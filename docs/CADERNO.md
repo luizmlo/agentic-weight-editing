@@ -1922,3 +1922,30 @@ As execuções f1/f2 foram uma checagem lateral, não o centro do estudo. No pap
 dev48 e 66,0% da f1 no t200, e a ressalva de que não dizem qual editor é melhor. Saíram das tabelas, do TL;DR, do
 README e da Figura 3 (agora 25 pontos, r = −0,98). Os detalhes continuam neste CADERNO (entradas de 10 e 11/11) e em
 `docs/experiments.md`. A escada de modelos editores fica para a continuação.
+
+### 11/11, 19h00 — Segundo teste novo (t400): pré-registro
+
+GSM8K test[400:600], 200 problemas que nenhum braço tocou (conferido no ledger: só [0:32], [0:200] e [200:400] foram
+usados). Tag `t400` (raciocínio ligado, teto 12.288) e `t400nt` (desligado, teto 8.192), mesmas condições do t200.
+Todos os braços abaixo foram escolhidos antes de abrir. Nada é escolhido ou reescolhido no t400. Ordem de prioridade
+(`scripts/queue_t400.sh`), para que um corte preserve as comparações principais:
+1. modelo original, raciocínio desligado (`t400nt base`);
+2. a2 (`m2a_a2`);
+3. a1 + limite com teto (`m2a_a1_062959_102+bf4096a1024`);
+4. a2 reduzida (`m2a_a2_red`);
+5. limite com teto sozinho (`bf4096a1024`);
+6. a1 (`m2a_a1_062959_102`).
+
+**Análise primária** (sinal exato pareado, Holm sobre as 5): a2 × raciocínio desligado; a1 + limite × raciocínio
+desligado; a1 + limite × limite sozinho; a2 reduzida × a2; a2 × a1. **Secundária:** t200 + t400 juntos (400
+problemas) para as mesmas comparações.
+
+**Previsões.**
+- Acertos no t400: raciocínio desligado 0,53–0,64; a2 0,60–0,72; a1 + limite 0,63–0,75; a2 reduzida 0,58–0,72;
+  limite sozinho 0,54–0,66; a1 0,55–0,67.
+- a1 + limite acima do raciocínio desligado com p < 0,05 no t400 sozinho: 70%.
+- a2 acima do raciocínio desligado com p < 0,05 no t400 sozinho: 45%; com t200 + t400 juntos: 65%.
+- a2 reduzida a até 5 pontos da a2 no t400: 65%.
+- a2 reduzida com média de tokens ≥ a da a2 (como no dev48): 60%.
+
+**Uso:** o t400 também é a validação da a2 (e da reduzida) para o Hugging Face.
