@@ -38,3 +38,26 @@ Budget 40 probe / 6 gen. Sources: weights + embeddings only.
 - (17:17 resumed after rate-limit interruption; 21 probes, 3 gens used) -> GEN4 on P21 (more close)
 - **GEN4 P21 (165242_565): acc .5625, cut .375, closed .625, rescues 8 losses 0, mean_tok 4419.** ~same as P14 within n=16 noise; more close (+2.18) not clearly better and is over the soft limit.
 - 18:23 stop (time budget). Used 21/40 probes, 4/6 gens. Final ranking: P14 > P21 > P9.
+
+## Extension (coordinator granted +75 min; 19 probes, 2 gens left)
+Plan: dose/layer variants of the wait-close family within limits, then 2 gens.
+- P22 b=.05 a=5 attn L19,21,22,23 (221910_000): rep -.717 prod -.009 close +1.75 neut -.006
+- P23 b=.035 a=4.5 L20-23: rep -.52 close +1.17 neut -.006
+- P24 b=.04 a=6 on L22,23 + a=4 on L20,21: rep -.744 prod -.012 close +2.51 neut -.018
+- P25 b=.04 a=6 L22,23 only: rep -.729 prod -.011 close +1.57 neut -.024 -> L22/23 carry nearly all effect (and neutral damage); L20/21 slots nearly free.
+- next: token test on L22,23 for cases 1-6 (Actually / Let / But,Hmm)
+- P26 b=.03 a=5 attn L19,21,22,23 (223733_914): rep -.717 prod -.010 close +1.04 neut -.006 (in limits, strongest clean)
+- token tests a=4 attn L22,23: Actually rep -.13 neut -.015; Let rep -.09 neut -.044; **But: rep -.54 with cases 1-6 at ~-0.85 (cases 7-12 -.09), prod -.011, close +.51, neut -.061** -> cases 1-6 are "But ..." re-checks. Neutral cost high; try single-form/lower alpha.
+- P30 'But'(no space) a=4 L22,23: rep -.37 (cases1-6 ~-.58) prod -.001 close +.44 neut -.025
+- P31 ' But' a=4: rep -.66 prod -.039 neut -.109 (bad)
+- P32 capital-minus-lowercase but: no effect
+- P33 combo wait-.04close a=4.5 + But(both) a=2 on L22,23 (230100_352): rep -.443 prod .000 close +.56 neut -.010; But at a=2 does nothing for cases 1-6 (nonlinear)
+- 23:12 resumed after 2nd rate-limit pause. Plan: P34 combo with 'But' a=3, then GEN5 on P26, GEN6 on combo if in limits.
+- P34 combo wait a=4.5 + 'But' a=3 on L22,23 (231211_541): rep -.408, cases 1-6 ~0 -> But edit ineffective when stacked at a<=3; prod -.011 neut -.009
+- **GEN5 P26 (223733_914): acc .625, cut .375, closed .625, rescues 9 losses 0, mean_tok 4441.** ties P14 on acc.
+- P35: wait on L22,23 + 'But' a=4 on L19,21 (separate matrices)
+- P35 (232419_040) wait a=4.5 L22,23 + 'But' a=4 L19,21: rep -.49 prod -.003 close +.71 neut -.007; cases 1-6 unchanged (But only works in L22/23)
+- P36 wait a=4.5 + 'But' a=4.5 both L22,23: cases 1-6 still ~0, prod -.034 -> But stacking fails (interference with wait edit). Abandon But.
+- GEN6 on P35 (in-limit; effectively the 2-layer wait/close edit)
+- **GEN6 P35 (232419_040): acc .5625, cut .375, closed .625, rescues 8 losses 0, mean_tok 4191.**
+- 23:38 done. Used 36/40 probes, 6/6 gens. Final ranking: P14 162904_881 > P26 223733_914 > P35 232419_040. All gen-checked wait-family candidates land at acc .44-.625 vs base .0625; differences within n=16 noise.

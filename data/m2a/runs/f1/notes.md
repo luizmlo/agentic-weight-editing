@@ -53,3 +53,18 @@
 - p22 181117_952: Wait L23 attn a=2.5 + mlp a=1: rep -0.297 prod +0.027 close +0.26 neutral -0.0067 (within limits) -> GEN4
 - **GEN4 (p22 181117_952): acc 9/16, cut 0.4375, closed_think 0.5625, mean_tokens 4709, rescues 8, losses 0.** Ties p19 on acc, slightly more cuts -> no gain from a=2.5.
 - FINAL ranking: p19 165020_381 > p22 181117_952 > p11 161317_630. Used 22/40 probes, 4/6 gens. Stopped for wall-clock.
+## Extension (22:19, +18 probes / 2 gens)
+- p23 221902_449: p19 + Yes a=2 on L23 attn only: rep -0.275 prod +0.022 close +0.56 neutral -0.0096 (borderline OK; MLP was the culprit in p21) -> GEN5
+- p24 222021_878: p19 + Wait a=1 on L19 self_attn + L21 linear_attn: identical to p19 -> earlier attn layers add nothing.
+- p25 222146_672: p19 + Yes a=1 + Is a=1 on L23 attn: neutral -0.017 -> "Is" too costly.
+- **GEN5 (p23 221902_449): acc 10/16, cut 0.4375, closed_think 0.625, mean_tokens 4772, rescues 9, losses 0.** Marginally best (within noise of p19).
+- p26 223629_056: p23 + No a=2 L23 attn: rep same, neutral -0.017. Dead.
+- p27 223749_176: p23 + But plain a=1 L23 attn only: rep same, neutral -0.012. Dead (But effect was MLP-side).
+- p28 223912_339: p23 + But a=1 on top-64 |proj| cols of L23 mlp: close +1.03 but neutral -0.034, rep same. Close and neutral harm are coupled in a few L23 neurons. Dead.
+- p29 224100_682: p23 + L22 n573 Wait-ablation a=1: rep worse (-0.21). Dead.
+- p30 224246_410: mlp wait 1.4 / attn wait 2 / attn yes 1.5: close +0.76 but neutral -0.024. MLP alpha=1 is a sharp optimum.
+- p31 224437_971: p23 + check a=2 attn: neutral -0.035. p32 224557_857: p23 + Actually a=2 attn: no gain. Dead.
+- p33 224719_221: p23-lite (Yes attn a=1): rep -0.254 prod +0.025 close +0.41 neutral -0.0053 -> GEN6 (safer neutral margin than p23).
+- **GEN6 (p33 224719_221): acc 11/16, cut 0.1875, closed_think 0.8125, mean_tokens 3958, rescues 10, losses 0.** Best of the run.
+  Remaining tails: "Is there any ambiguity in ...?" self-questioning (no verbatim loop visible in the 3 tails).
+- FINAL ranking: p33 224719_221 > p23 221902_449 > p19 165020_381. Used 33/40 probes, 6/6 gens. Further probes not useful without gens.

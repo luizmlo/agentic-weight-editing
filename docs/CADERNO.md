@@ -1727,3 +1727,16 @@ braço `m2a_a1_062959_102+` (a1 sem limite, duplicata) começou e foi parado e a
   (depois disso segue sem ela); copia as runs; confirma no dev48 cada nº 1 que mudou (`m2a_f1_224719_221`, e o da f2
   se mudar); roda a fila 2 corrigida. A auditoria das chamadas da extensão fica para depois da fila; os braços são
   posteriores e relatados assim.
+
+### 10/11, 23h45 — Extensão: f2 terminou; auditoria; fila seguiu
+
+- **f2x:** nº 1 **não mudou** (`162904_881`, 10/16, cortes 0,25). Usou 36/40 sondas e 6/6 checagens. As duas
+  checagens novas: `223733_914` (L19, 21, 22, 23, α = 5) 10/16 com cortes 0,375; `232419_040` (com edição de "But")
+  9/16. A direção "But" atinge os casos de sonda 1–6, mas com dano no indicador neutro; descartada.
+- **Auditoria das chamadas da extensão** (f1: 23 Bash; f2: 13 Bash; nenhuma outra ferramenta além da entrega do
+  relatório): nenhuma busca na web, nenhuma leitura do repositório do paper, de `sealed/`, `docs/`, `scripts/wsp/`,
+  do atlas, de outras runs ou de `~/.claude/`. As únicas ocorrências dos termos vigiados são a palavra "atlas" no
+  texto do `final.json` de cada run ("No atlas was used").
+- **Previsões da extensão (22h20):** "alguma run muda o nº 1" (55%): **acertou** (f1). "Alguma volta aos neurônios de
+  'wait' na escolha final" (20%): **não aconteceu**, como previsto. As duas sobre o dev48 dependem da confirmação.
+- **Fila:** às 23h39 a `wsp-night` seguiu: avaliador parado, `m2a_f1_224719_221` no dev48, depois a fila 2.
