@@ -1740,3 +1740,54 @@ braço `m2a_a1_062959_102+` (a1 sem limite, duplicata) começou e foi parado e a
 - **Previsões da extensão (22h20):** "alguma run muda o nº 1" (55%): **acertou** (f1). "Alguma volta aos neurônios de
   'wait' na escolha final" (20%): **não aconteceu**, como previsto. As duas sobre o dev48 dependem da confirmação.
 - **Fila:** às 23h39 a `wsp-night` seguiu: avaliador parado, `m2a_f1_224719_221` no dev48, depois a fila 2.
+
+## 2026-11-11 (09h10) — Resultados da madrugada: f1x no dev48 e fila 2
+
+**f1x no dev48 (`m2a_f1_224719_221`, com a edição de "Yes"):** 0,562; cortes 0,31; média de 7.181 tokens.
+- Contra a f1 das 18h40 (0,646): +2 / −6 (p = 0,29). Contra a a1: +5 / −10. Contra o Astra: +7 / −2.
+- A extensão **não melhorou** a f1: os 11/16 da checagem eram ruído de 16 problemas. Pela regra (22h20), a f1x não
+  vai ao t200. O resultado de f1 no paper continua sendo a escolha das 18h40.
+- Previsões da extensão: "algum nº 1 novo ≥ 0,70 no dev48" (15%): **não aconteceu**, como previsto. "Tokens do nº 1
+  novo > 5.000" (70%): **acertou**.
+
+**Varredura do limite com teto de resposta (dev48, modelo original):**
+
+| braço | acerto | cortes | tokens (média) |
+|---|---|---|---|
+| bf4096 (sem teto de resposta) | 0,479 | 0,458 | 8.073 |
+| bf1024a1024 | 0,458 | 0,479 | 1.692 |
+| bf2048a1024 | 0,458 | 0,417 | 2.649 |
+| **bf4096a1024** | 0,500 | 0,375 | 4.679 |
+
+Vencedor pela regra: `bf4096a1024`.
+
+**t200 (200 problemas, teto 12.288; braços posteriores):**
+
+| braço | acerto | cortes | tokens (média) | acerto entre terminadas |
+|---|---|---|---|---|
+| bf4096a1024 | 0,600 | 0,35 | 4.596 | 0,92 |
+| a1 + bf4096a1024 | 0,695 | 0,15 | 3.172 | 0,81 |
+| lbx_w10_t1 | 0,600 | 0,355 | 7.758 | 0,93 |
+
+- bf4096a1024 contra bf4096: +14 / −16. O teto de resposta não muda o acerto e corta os tokens de 7.012 para 4.596.
+- bf4096a1024 contra a a1: +20 / −23 (p = 0,76). Contra o original sem raciocínio: +30 / −27.
+- a1 + bf4096a1024 contra a1 + bf4096: +17 / −17 (mesmo acerto, 3.172 contra 4.081 tokens). Contra a a1: +26 / −10
+  (p = 0,011). Contra bf4096a1024: +33 / −14 (p = 0,008). Contra o original sem raciocínio: +37 / −15 (p = 0,003).
+  Contra a a2: +27 / −23. Contra a f1: +24 / −17.
+- lbx_w10_t1 contra bf4096: +23 / −25; contra a a1: +25 / −28; contra o Astra: +28 / −15 (p = 0,07).
+- Acerto por teto (2.048 / 4.096 / 6.144 / 8.192 / 12.288): bf4096a1024 2,5 / 5,0 / 60,0 / 60,0 / 60,0;
+  a1 + bf4096a1024 25,5 / 54,5 / 69,5 / 69,5 / 69,5; lbx_w10_t1 10,0 / 26,5 / 41,5 / 50,5 / 60,0.
+- Sem correção para múltiplas comparações.
+
+**Previsões da fila 2 (16h55).**
+- bf4096a1024 no dev48 em 0,44–0,52 com < 5.500 tokens: **acertou** (0,500; 4.679).
+- bf1024a1024 abaixo de bf4096a1024 no dev48: **acertou**.
+- Vencedor sozinho no t200 em 0,56–0,64 e a menos de 2 EP da a1 e do raciocínio desligado: **acertou** (0,600).
+- a1 + vencedor em 0,65–0,72 e acima do raciocínio desligado (p < 0,05): **acertou** (0,695; p = 0,003).
+- lbx_w10_t1 em 0,40–0,52: **errou para baixo** (0,600). A penalidade de logit com janela empata com o limite de
+  raciocínio e com a a1 no acerto, com mais tokens.
+- ft_sft_ep2: rodando (104/200 às 09h03).
+
+**Regras de texto.** O vencedor não ficou ≥ 2 EP acima da a1: nada muda. a1 + vencedor ficou acima do raciocínio
+desligado: a frase "só a combinação fica claramente acima" fica (junto com a a2, p = 0,018). Entra no paper: a
+penalidade de logit (60,0%) é mais uma alternativa sem edição que empata com a a1.
