@@ -1637,3 +1637,27 @@ momento; nenhum arquivo lido).
 
 **Confirmação (`scripts/queue_fable.sh`, unit `wsp-fable`, 18h36):** nº 1 de cada no dev48; a melhor (maior acerto,
 empate → menos tokens) vai ao t200; em seguida roda a fila 2 (pré-registro das 16h55).
+
+### 10/11, 21h55 — f1 e f2 no dev48
+
+| braço | acerto | cortes | tokens (média) | contra o original | contra a a1 do paper | contra o Astra |
+|---|---|---|---|---|---|---|
+| original | 0,146 | 0,854 | 11.714 | | | |
+| Astra | 0,458 | 0,479 | 9.404 | | | |
+| a1 do paper | 0,667 | 0,167 | 4.729 | | | |
+| a2 | 0,646 | 0,083 | 3.910 | | | |
+| **f1** | 0,646 | 0,250 | 6.711 | +25 / −1 | +6 / −7 (p = 1,0) | +9 / −0 (p = 0,004) |
+| **f2** | 0,604 | 0,271 | 6.618 | +22 / −0 | +4 / −7 (p = 0,55) | +10 / −3 (p = 0,09) |
+
+f1 contra f2: +9 / −7.
+
+**Previsões do pré-registro (10h50).**
+- 1 (alguma run ≥ 0,60): **acertou** (as duas).
+- 2 (as duas ≥ 0,50): **acertou**.
+- 3 (alguma supera a a1 por ≥ 5 pp): **não aconteceu**, como previsto (eu dava 20%).
+- Leitura combinada: nenhuma ficou < 0,40, e os editores **não** convergiram para os mesmos neurônios. O acerto é o
+  mesmo da a1/a2 dentro do ruído de 48 problemas, mas com ~40–70% mais tokens e mais cortes no teto (0,25 contra
+  0,08–0,17). Quatro runs, três famílias de edição, mesmo acerto: o ganho não depende de achar aqueles neurônios; o
+  custo em tokens, sim.
+
+**Fila.** f1 venceu (0,646 > 0,604) e está no t200 desde 19h55 (160/200 às 21h53). Depois entra a fila 2.
