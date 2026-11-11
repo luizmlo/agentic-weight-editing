@@ -56,3 +56,6 @@ __pycache__/
 /data/ft_if/*
 !/data/ft_if/sft_stats.json
 !/data/ft_if/pick.txt
+
+# resumo interno para a coordenação: fora do repositório público até revisão
+/docs/resumo-coordenacao.*
