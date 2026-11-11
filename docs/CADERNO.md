@@ -1892,3 +1892,25 @@ A reduzida escreve um pouco mais (2 cortes a mais respondem por boa parte da dif
 **acertou** (−10). Só L16n998 com ≥ 4 cortes a mais que a reduzida (55%): **acertou** (+19).
 
 **Paper:** parágrafo do mecanismo e limitação atualizados (en e pt-BR). Sem t200 para as variantes.
+
+### 11/11, 17h40 — Revisão independente das mudanças desde 40feea4
+
+Um agente novo, sem o meu contexto e só com leitura, conferiu contra os dados brutos o que mudou no paper e no README
+desde a revisão de 10/11. Todos os números conferem. As correções foram de afirmação e redação, e as apliquei em en e
+pt-BR depois de conferir as citações do CADERNO:
+- **Braços tardios:** não é verdade que "não são pré-registrados". A proibição da palavra e o LoRA estavam no
+  pré-registro original de 08/11 e só rodaram tarde. Os outros foram pré-registrados com previsões depois da
+  abertura. A lista ganhou "a1 + limite com teto" (são 8), e a tabela de status foi corrigida.
+- **TL;DR e raciocínio desligado:** a a2 contra o raciocínio desligado dá p = 0,02 sem correção e não sobrevive à de
+  Holm. Agora fica "acima com menos firmeza"; só a a1 + limite fica "claramente acima".
+- **Seção do Fable:** as comparações com a1 e a2 agora estão marcadas "só para orientação"; a tabela de orçamento
+  ganhou "outras condições"; a regra "sem subagentes" entrou na lista; a extensão da f1 ganhou p = 0,29; a previsão 5
+  (sondas) é dita não avaliada.
+- **Mecanismo:** "outras duas edições" virou "outros três neurônios"; "um pouco mais longas" virou "mais longas"; a
+  ativação do freio foi medida com os dois neurônios da L16, não só com o L16n998.
+- **Previsão 8 do Fable:** citada como foi pré-registrada.
+- **Figura 3:** agora diz que os 26 pontos são de antes das ablações da a2 (r = −0,98 com 26 ou 28).
+- **README:** "convergiram para o mesmo mecanismo" e "vence o logit bias em todo lugar" foram corrigidos.
+
+**Previsão 5 do Fable** (menos sondas que o Opus até o primeiro teste positivo, 55%): **não avaliada**, porque as
+interrupções tornam ambíguo o que é "primeiro".

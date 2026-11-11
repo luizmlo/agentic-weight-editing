@@ -79,9 +79,12 @@ problems): a1 vs Astra +9.1 ± 3.1, combo vs a1 +7.8 ± 2.8.
 What we have learned so far:
 
 1. **Agents find a strong, interpretable edit, and the result replicates.** Two independent no-atlas agents running protocol v2 (a1, a2)
-   converged on the same mechanism (shared "Wait" neurons L17n1915 and L22n573, plus a `</think>` lever) and reached
-   0.667 / 0.646 on dev48.
-2. **It is not just a decoding trick.** It beats a tuned logit bias everywhere. It ties budget forcing on GSM8K but
+   edited overlapping "Wait" neurons (L17n1915, L22n573) with the same two-part recipe (suppress "Wait", strengthen
+   `</think>`) and reached 0.667 / 0.646 on dev48. They act at different points of the circuit: a1 strengthens a brake
+   neuron (L22n573); a2 works through one upstream neuron (L16n998) plus its `</think>` edit, and a 2-edit version of
+   a2 matches the full edit on dev48 (0.688).
+2. **It is not just a decoding trick.** It beats a tuned logit bias on the practice sets and MATH, and ties it on the
+   locked test. It ties budget forcing on GSM8K but
    beats it on the longer MATH problems, and combining the two helps further.
 3. **The agent's reasoning matters.** A naive search with the same tools, the same budget and the same generation
    signal reaches 0.271 on dev48 (−38 pp).

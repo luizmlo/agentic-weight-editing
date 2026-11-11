@@ -18,9 +18,9 @@
   dados sustentam é eficiência: as edições dos agentes chegam ao patamar com cerca de um terço dos tokens. Elas
   superam uma receita barata de fine-tuning (29% nos problemas de prática, com 13× mais tempo de GPU).
 - **As alternativas simples são fortes.** Limitar o tempo de raciocínio (60–61%), proibir a palavra "Wait" (60,0%) e
-  desligar o raciocínio (58,5%) empatam com a edição do primeiro agente no teste trancado. Só duas coisas ficam
-  claramente acima do raciocínio desligado: essa edição com um limite de raciocínio (69,5%) e a edição do segundo
-  agente (67,5%).
+  desligar o raciocínio (58,5%) empatam com a edição do primeiro agente no teste trancado. Só essa edição com um
+  limite de raciocínio (69,5%) fica claramente acima do raciocínio desligado; a edição do segundo agente (67,5%) fica
+  acima com menos firmeza (p = 0,02 sem correção para comparações múltiplas).
 - **O que importou.** Dois agentes independentes acharam os mesmos neurônios de "Wait" e a mesma alavanca de
   `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, a outra inverte um neurônio
   a montante dele. Duas execuções posteriores, com outro
@@ -120,8 +120,9 @@ Nosso primeiro agente (a0) só tinha as notas rápidas. Ele encontrou uma ediç�
 copiar "Yes", "?" e "Wait" em duas camadas de atenção, e empatou com a edição publicada no segundo conjunto de prática
 (44% contra 41%).
 
-Depois acrescentamos os 6 testes reais. **Dois agentes, trabalhando de forma independente, convergiram para os mesmos
-neurônios e a mesma receita em duas partes, e ela é bem mais forte: 67% e 65% no conjunto de prática.**
+Depois acrescentamos os 6 testes reais. **Dois agentes, trabalhando de forma independente, editaram neurônios em comum
+com a mesma receita em duas partes (suprimir "Wait", reforçar `</think>`), e ela é bem mais forte: 67% e 65% no
+conjunto de prática.**
 
 | agente | o que a edição faz (≤ 4 edições de posto 1) | conjunto de prática |
 |------|----------------------------------------------|--------------|
@@ -159,16 +160,17 @@ loop do modelo original:
   dá o efeito inteiro (−26,2 nats). No modelo original esse neurônio promove "Wait"; depois da edição, ele o suprime.
   As outras três edições de neurônio quase não mudam nada: L16n3422 e L17n1915 movem "Wait" em menos de 0,3 nat, e
   a inversão do L22n573, sozinha, *sobe* a palavra em 1,6.
-- **Com o L16n998 invertido, o freio se cala.** Dentro do modelo editado pela a2, a ativação do L22n573 antes de um
-  "Wait" cai de −3,73 para −0,04, e a inversão desse neurônio pela a2 fica quase sem ter sobre o que agir. O freio
+- **Com a edição da camada 16 da a2, o freio se cala.** Dentro do modelo editado pela a2 (e com só os seus dois
+  neurônios da camada 16 editados), a ativação do L22n573 antes de um "Wait" cai de −3,73 para −0,04, e a inversão desse neurônio pela a2 fica quase sem ter sobre o que agir. O freio
   parece responder a um empurrão a montante na direção de "Wait"; sem o empurrão, ele para de disparar.
 
 Os dois agentes intervêm, então, no mesmo circuito em pontos diferentes: a a1 reforça o freio na camada 22, e a a2
 tira o empurrão na camada 16. Essas medidas eram log-probabilidades com o texto fixo, então as conferimos com testes
 reais nos 48 problemas de prática (com as previsões registradas antes):
 - **A a2 funciona como uma correção de 2 edições.** Mantendo só o L16n998 e a edição de `</think>`, o modelo resolve
-  69% (33 de 48), contra 65% da a2 inteira (6 resgatados, 4 perdidos, p = 0,75), com respostas um pouco mais longas
-  (4.797 tokens contra 3.910). As outras duas edições de neurônio do agente não fizeram trabalho mensurável.
+  69% (33 de 48), contra 65% da a2 inteira (6 resgatados, 4 perdidos, p = 0,75), com respostas mais longas
+  (4.797 tokens contra 3.910; 6 cortadas contra 4). Os outros três neurônios (L16n3422, L17n1915, L22n573) não
+  fizeram diferença mensurável em 48 problemas.
 - **Baixar "Wait" não basta para parar.** Só o L16n998, que dava os 26 nats inteiros com o texto fixo, resolve 48%
   (23 de 48), e 25 de 48 respostas estouram o espaço. Contra a versão de 2 edições, resgata 3 e perde 13 (p = 0,02).
   Isso bate com as ablações da a1 acima: num loop, as duas portas precisam mudar.
@@ -182,7 +184,7 @@ direção escolhida. (B) A a1 reforça o freio de três neurônios sobre “Wait
 
 ![Figura 3](figures/why.png)
 
-**Figura 3:** Nos 26 modelos e métodos que rodamos no conjunto de prática, quanto menos respostas ficam sem espaço, mais respostas estão
+**Figura 3:** Nos 26 modelos e métodos que rodamos no conjunto de prática antes das ablações da a2, quanto menos respostas ficam sem espaço, mais respostas estão
 certas (r = −0,98).
 
 *Experimento 3*
@@ -222,7 +224,7 @@ orçamento menor. Os braços marcados com † rodaram depois de o teste ter sido
 | edição do agente (a1) | 29,0% | 45,0% | 55,5% | 60,5% | 61,5% | 17,0% | 5.049 |
 | primeira escolha do agente a1 † | 46,5% | 60,0% | 61,5% | 62,0% | 62,0% | 5,5% | 2.269 |
 | edição do segundo agente (a2) † | 37,5% | 53,0% | 63,5% | 66,5% | 67,5% | 15,5% | 4.387 |
-| edição de uma execução do Fable (f1) † | 12,0% | 40,5% | 52,5% | 61,5% | 66,0% | 29,0% | 6.534 |
+| edição de uma execução do Fable (f1; outras condições) † | 12,0% | 40,5% | 52,5% | 61,5% | 66,0% | 29,0% | 6.534 |
 | a1 + limite de raciocínio | 25,0% | 49,0% | 67,5% | 69,0% | 69,5% | 9,5% | 4.081 |
 | a1 + limite, resposta com teto † | 25,5% | 54,5% | 69,5% | 69,5% | 69,5% | 15,0% ‡ | 3.172 |
 | modelo original, raciocínio desligado † | — | — | — | — | 58,5% | 5,0% | 1.263 |
@@ -249,15 +251,16 @@ contra a edição publicada e a1 + limite contra o raciocínio desligado continu
 
 ### Outro modelo editor acha a mesma correção?
 
-*Rodado depois de o teste trancado ter sido aberto, em condições diferentes. Não é comparável com a1 e a2.*
+*Rodado depois de o teste trancado ter sido aberto, em condições diferentes. Não é comparável diretamente com a1 e
+a2; mostramos lado a lado só para orientação.*
 
 Repetimos o protocolo vencedor (sem atlas, mesmo briefing, mesmo avaliador, mesmo orçamento) com dois agentes rodando
 o Claude Fable 5.2 no lugar do Opus 5.5: f1 e f2. Relatamos as duas como uma réplica da ideia, não como uma comparação
 entre modelos editores, porque as condições foram diferentes:
 - as duas execuções foram interrompidas duas vezes por um limite de uso da assinatura e retomadas;
 - elas dividiram uma fila lenta do avaliador e pararam primeiro por tempo de relógio, depois de 4 dos 6 testes reais;
-- o prompt tinha regras a mais (sem acesso à web, sem ler o repositório deste paper), porque a resposta já era
-  pública;
+- o prompt tinha regras a mais (sem acesso à web, sem ler o repositório deste paper, porque a resposta já era
+  pública; e sem subagentes);
 - estendemos as duas até os 6 testes reais depois de já termos visto os primeiros resultados.
 
 **As duas tiraram os loops com outro tipo de edição.** As duas acharam os neurônios de "Wait" que a1 e a2 editaram,
@@ -272,22 +275,25 @@ Na forma, elas estão mais perto da edição publicada do que da a1.
 |---|---|---|---|---|
 | f1 | 65% (25 resgatados, 1 perdido) | 25% | 6.711 | 66,0% † |
 | f2 | 60% (22 resgatados, 0 perdidos) | 27% | 6.618 | — |
-| a1, para referência | 67% | 17% | 4.729 | 61,5% |
+| a1 (só orientação) | 67% | 17% | 4.729 | 61,5% |
 
-- **Conjunto de prática.** As duas empatam com a a1 (f1: 6 resgates contra 7; f2: 4 contra 7). A f1 vence a edição
-  publicada (9 contra 0).
+- **Conjunto de prática.** A f1 vence a edição publicada (9 resgates contra 0). Só para orientação, as duas ficam
+  perto da a1 (f1: 6 resgates contra 7; f2: 4 contra 7).
 - **Teste trancado.** A f1 resolve 66,0%, com 101 resgates e nenhuma perda contra o original. Ela vence a edição
-  publicada (40 resgates, 15 perdas; p = 0,001) e empata com a a1 (28 contra 19) e com a a2 (21 contra 24).
+  publicada (40 resgates, 15 perdas; p = 0,001). Só para orientação, fica perto da a1 (28 contra 19) e da a2 (21
+  contra 24).
 - **A f1 é mais conservadora.** 29% das respostas dela ainda são cortadas e ela escreve mais tokens, mas 93% das
   respostas terminadas estão certas (a1: 74%; a2: 80%).
 - **A extensão não ajudou.** Com mais dois testes reais, a f1 trocou a escolha por uma variante que também suprime
   "Yes" (11 de 16 no teste dela, contra 9 de 16 antes). No conjunto de prática essa variante resolveu 56%, abaixo
-  da escolha anterior (2 resgates contra 6). A f2 manteve a escolha. Um teste real com 16 problemas não ordena
+  da escolha anterior (2 resgates contra 6; p = 0,29). A f2 manteve a escolha. Um teste real com 16 problemas não ordena
   candidatos tão próximos, e a mesma cautela vale para as escolhas dentro da a1 e da a2. Os números acima são das
   escolhas feitas antes da extensão.
 
 Isso sustenta uma coisa: outro modelo editor, com o mesmo briefing, também consertou o defeito, por um terceiro
-caminho. Não sustenta uma ordem entre modelos editores, nem a afirmação de que editores não convergem.
+caminho. Não sustenta uma ordem entre modelos editores, nem a afirmação de que editores não convergem. Também
+previmos que o Fable precisaria de menos notas rápidas que o Opus para chegar ao primeiro bom teste real (55%); não
+avaliamos isso, porque as interrupções tornam ambíguo o que é "primeiro".
 
 ## É só um truque?
 
@@ -355,7 +361,8 @@ contra 15; p = 0,003).
 **Raciocínio desligado.** Não rodamos o raciocínio desligado no nosso subconjunto do MATH. Reexecuções independentes
 relatam cerca de 50% no MATH-500 inteiro com o raciocínio desligado e orçamento de 32k (exp8-loop-controls, 2026), a
 mesma faixa dos 47–49% da a1 aqui. Neste modelo, edições que consertam o raciocínio recuperam, em boa parte, o que o
-modelo já faz sem raciocinar; só a combinação com o limite e a a2 ficam claramente acima disso no teste trancado.
+modelo já faz sem raciocinar; só a combinação com o limite fica claramente acima disso no teste trancado, e a a2 com
+menos firmeza.
 
 ![Figura 6](figures/paired.png)
 
@@ -600,15 +607,16 @@ para de funcionar.
   no teste trancado.
 - **Desligar o raciocínio é uma alternativa forte:** no teste trancado ela empata com a a1 e custa muito menos
   tokens. Não a rodamos no nosso subconjunto do MATH.
-- **Braços tardios:** a primeira escolha do agente a1, a a2, o raciocínio desligado, o limite com teto, a proibição
-  da palavra, o fine-tuning e a f1 rodaram no teste trancado depois de ele ter sido aberto. Não são braços
-  pré-registrados. O limite com teto e a f1 foram escolhidos no conjunto de prática, cada um entre dois ou três
-  candidatos.
+- **Braços tardios:** a primeira escolha do agente a1, a a2, o raciocínio desligado, o limite com teto, a a1 com o
+  limite com teto, a proibição da palavra, o fine-tuning e a f1 rodaram no teste trancado depois de ele ter sido
+  aberto. A proibição da palavra e o fine-tuning estavam no pré-registro original e só rodaram tarde. Os outros foram
+  pré-registrados, com previsões, depois da abertura, então a decisão de rodá-los pode refletir o que já tínhamos
+  visto. O limite com teto e a f1 foram escolhidos no conjunto de prática, cada um entre dois ou três candidatos.
 - **Modelos editores:** as duas execuções do Fable tiveram condições diferentes das de a1 e a2 e não dizem qual
   editor é melhor. **Próximo passo:** uma escada de modelos editores, incluindo menores, com várias execuções de
   cada um sob um só protocolo.
-- **Testes reais ruidosos:** os agentes escolhem entre candidatos com 16 problemas. A extensão da f1 mostra que isso
-  não ordena candidatos próximos.
+- **Testes reais ruidosos:** os agentes escolhem entre candidatos com 16 problemas. Isso não ordena candidatos
+  próximos; a extensão da f1 ilustra o problema.
 - **A variante da a1 foi escolha nossa:** o agente a pôs em segundo lugar (veja o Experimento 2).
 - **Mecanismo:** conferimos o freio da a1 e o neurônio a montante da a2 em 52 posições de 12 textos, com o texto
   fixo. Os testes reais da a2 reduzida usaram só os 48 problemas de prática, que detectam apenas diferenças grandes.
@@ -617,7 +625,8 @@ para de funcionar.
   mesmo orçamento) contra os agentes.
 - **Respostas terminadas e erradas:** as edições baixam o acerto entre as respostas terminadas (veja os efeitos
   colaterais).
-- **Poucas réplicas:** o protocolo vencedor tem 2 agentes, e a comparação com e sem atlas tem 3 pares. **Próximo
+- **Poucas réplicas:** o protocolo vencedor tem 2 agentes (mais as duas execuções do Fable, em outras condições), e a
+  comparação com e sem atlas tem 3 pares. **Próximo
   passo:** mais dois de cada.
 - **Uma receita de fine-tuning:** uma receita mais forte poderia fechar parte da diferença, a um custo maior.
 - **Correção do MATH:** o nosso corretor tem falsos negativos; os números corrigidos estão no texto, não nas tabelas.
@@ -635,7 +644,8 @@ para de funcionar.
 5. O primeiro agente do IFEval ganharia 5–9 pontos em prompts novos. Perdeu 3,3 ± 4,1.
 6. O segundo agente do IFEval, com testes maiores, ganharia 5–15 pontos. Perdeu 6,0 ± 3,7.
 7. A a2 faria 52–64% no teste trancado. Fez 67,5%.
-8. Pelo menos uma execução do Fable editaria os neurônios de "Wait" que a1 e a2 têm em comum. Nenhuma editou.
+8. Pelo menos uma execução do Fable editaria o L22n573 ou outro neurônio-freio de "Wait" nas camadas 17–23. Nenhuma
+   mirou neurônios isolados; as duas editaram camadas inteiras.
 9. Proibir a palavra faria 40–52% no teste trancado. Fez 60,0%.
 
 **A afirmação, como está hoje: para um defeito de comportamento concentrado e de efeito grande, um agente editando
@@ -672,7 +682,7 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | 6 execuções de agente (2 protocolos, 3 pares com e sem atlas) | feito |
 | Alternativas de decodificação, busca ingênua, fine-tuning | feito |
 | Transferência para matemática mais difícil, efeitos colaterais, custo | feito |
-| Teste trancado com ≥ 200 problemas | feito (5 métodos pré-registrados + 8 braços tardios) |
+| Teste trancado com ≥ 200 problemas | feito (7 braços pré-registrados antes da abertura, 2 rodados tarde; 6 acrescentados e pré-registrados depois) |
 | Mais réplicas (2 + 2 agentes) | a fazer |
 | Segundo defeito sem palavra-chave (IFEval) | feito: negativo, com comparações de fine-tuning e de prompt |
 | Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
@@ -685,7 +695,7 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | Limite de raciocínio com teto para a resposta | feito (11 nov.): 60,0% sozinho, 69,5% com a a1 |
 | Duas execuções de agente com outro editor (Claude Fable 5.2) | feito (11 nov.); condições diferentes, relatado como réplica |
 | Escada de modelos editores sob um só protocolo | a fazer (estudo seguinte) |
-| Figuras 5 e 6 com os braços novos | feito (11 nov.) |
+| Figuras 5 e 6 com os braços novos | feito (11 nov.); as Figuras 4 e 10 não têm braços novos |
 | Conferir as citações | feito (10/11; as 16 existem, 6 corrigidas, 5 acrescentadas) |
 
 **Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os
