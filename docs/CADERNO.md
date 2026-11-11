@@ -1851,3 +1851,21 @@ contra −26,0; diferença de 0,3 nat, irrelevante).
 
 **Paper:** parágrafo do mecanismo reescrito ("Neurônios em comum, alavancas diferentes"), TL;DR, trabalhos
 concorrentes, limitações e status.
+
+### 11/11, 15h15 — Caminho da a2 por geração: pré-registro
+
+A medição das 12h20 usou texto fixo. Agora o teste é com o modelo gerando. Dois braços no dev48 (GSM8K train[0:48],
+teto 12k, mesmas condições da a2), pareados com a a2 (31/48 = 64,6%; cortadas 8,3%; 3.910 tokens):
+- `m2a_a2_red`: L16n998 (α = +10) + a edição de `</think>` na L22 `linear_attn.out_proj` (α = −4). São 2 das 4
+  edições da a2, com os mesmos u e α.
+- `m2a_a2_l16n998`: só L16n998.
+
+`scripts/make_a2_variants.py` → `data/m2a/variants/`; GGUF por `scripts/poc7_build.py`; fila `scripts/queue_a2_red.sh`.
+Sem t200: não crio mais um braço posterior no teste trancado.
+
+**Previsões.**
+- `m2a_a2_red` fica a até 4 problemas da a2 (27–35 de 48): 65%.
+- `m2a_a2_l16n998` fica pelo menos 4 problemas abaixo de `m2a_a2_red`: 55%.
+- `m2a_a2_l16n998` corta mais que `m2a_a2_red` (pelo menos 4 problemas cortados a mais): 55%.
+
+**Limite.** Com 48 problemas, o erro padrão é de ~7 pontos; só diferenças grandes aparecem.
