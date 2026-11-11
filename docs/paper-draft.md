@@ -1,6 +1,6 @@
 # Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models
 
-**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 10, 2026
+**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 11, 2026
 
 *Working draft – status of each result and remaining work are listed at the end.*
 
@@ -15,11 +15,12 @@
   Weight-Space Programming* (53.5%), but that edit is still improving when it hits the budget. The supported claim is
   efficiency: the agents' edits reach their plateau with about a third of the tokens. They beat one cheap fine-tuning
   recipe (29% on practice problems, with 13× more GPU time).
-- **The simple alternatives are strong.** Capping thinking time (61.0%) and switching thinking off (58.5%) both tie
-  the first agent's edit on the locked test. Only two things are clearly above them: that edit plus a thinking cap
-  (69.5%) and the second agent's edit (67.5%).
+- **The simple alternatives are strong.** Capping thinking time (60–61%), banning the word "Wait" (60.0%) and
+  switching thinking off (58.5%) all tie the first agent's edit on the locked test. Only two things are clearly above
+  thinking off: that edit plus a thinking cap (69.5%) and the second agent's edit (67.5%).
 - **What mattered.** Two independent agents found the same "Wait" neurons and the same `</think>` lever, although
-  they pushed the shared neurons in opposite directions. A simple script with the same tools and budget, but no agent
+  they pushed the shared neurons in opposite directions. Two later runs with another editor model saw the same
+  neurons and fixed the loops with a different kind of edit. A simple script with the same tools and budget, but no agent
   reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
   them honest. In three pairs of runs, agents given more interpretability data found worse fixes.
 - **Where it stops working.** On a second, diffuse defect (following formatting instructions, IFEval), neither the
@@ -158,8 +159,8 @@ chosen direction. (B) a1 strengthens three neurons' brake on “Wait” and the 
 
 ![Figure 3](figures/why.png)
 
-**Figure 3:** Across all 20 models and methods we tested, the fewer answers that run out of space, the more are correct
-(r = −0.99).
+**Figure 3:** Across all 26 models and methods we ran on the practice set, the fewer answers that run out of space, the more are correct
+(r = −0.98).
 
 *Experiment 3*
 
@@ -183,18 +184,25 @@ budget, a1 solves 61.5% (original 15.5%, published edit 53.5%). Problem by probl
 **8.0 ± 3.4 points** (32 rescues, 16 losses; p = 0.03, uncorrected).
 
 **But the budget decides that comparison.** The table shows the share solved if we stop every answer at a smaller
-budget. Three arms (marked †) were run after the test was opened: the a1 agent's first pick, a2, and thinking off.
+budget. Arms marked † were run after the test was opened.
 
 | method | 2,048 | 4,096 | 6,144 | 8,192 | 12,288 | cut off at 12k | mean tokens |
 |---|---|---|---|---|---|---|---|
 | original model | 3.5% | 6.5% | 10.5% | 12.0% | 15.5% | 84.5% | 11,142 |
 | published edit (Astra) | 10.0% | 19.0% | 24.5% | 39.0% | 53.5% | 42.5% | 8,877 |
+| fine-tuning (LoRA) † | 12.5% | 20.5% | 26.0% | 30.0% | 33.0% | 65.5% | 9,354 |
+| ban the word "Wait" † | 10.0% | 26.5% | 41.5% | 50.5% | 60.0% | 35.5% | 7,758 |
 | thinking time limit, 4,096 | 4.0% | 6.5% | 60.5% | 60.5% | 61.0% | 34.0% | 7,012 |
+| time limit, answer capped at 1,024 † | 2.5% | 5.0% | 60.0% | 60.0% | 60.0% | 35.0% ‡ | 4,596 |
 | agent's edit (a1) | 29.0% | 45.0% | 55.5% | 60.5% | 61.5% | 17.0% | 5,049 |
 | a1 agent's first pick † | 46.5% | 60.0% | 61.5% | 62.0% | 62.0% | 5.5% | 2,269 |
 | second agent's edit (a2) † | 37.5% | 53.0% | 63.5% | 66.5% | 67.5% | 15.5% | 4,387 |
+| edit from a Fable run (f1) † | 12.0% | 40.5% | 52.5% | 61.5% | 66.0% | 29.0% | 6,534 |
 | a1 + time limit | 25.0% | 49.0% | 67.5% | 69.0% | 69.5% | 9.5% | 4,081 |
+| a1 + time limit, answer capped † | 25.5% | 54.5% | 69.5% | 69.5% | 69.5% | 15.0% ‡ | 3,172 |
 | original model, thinking off † | — | — | — | — | 58.5% | 5.0% | 1,263 |
+
+‡ With a capped answer, this column counts answers stopped by the answer cap.
 
 - **The published edit has not levelled off.** It gains 14.5 points between 8k and 12k, and 42.5% of its answers are
   still running at the cap. With a longer budget it would probably close some or all of the 8-point gap. We have not
@@ -212,6 +220,48 @@ All p-values are exact sign tests on discordant pairs, without correction for mu
 correction over the comparisons in this section, a1 against the published edit is no longer significant; a2 against
 the published edit and a1 + time limit against thinking off still are.
 
+### Does another editor model find the same fix?
+
+*Run after the locked test was opened, under different conditions. Not comparable with a1 and a2.*
+
+We repeated the winning protocol (no atlas, same brief, same scorer, same budget) with two agents running Claude
+Fable 5.2 instead of Opus 5.5: f1 and f2. We report them as a replication of the idea, not as a comparison between
+editor models, because the conditions differed:
+- both runs were interrupted twice by a subscription usage limit and resumed;
+- they shared a slow scorer queue and first stopped on wall-clock time, after 4 of their 6 test runs;
+- their prompt had extra rules (no web access, no reading of this paper's repository), because the answer was public
+  by then;
+- we extended both runs to the full 6 test runs after we had seen their first results.
+
+**Both runs fixed the loops with a different kind of edit.** Both found the "Wait" neurons that a1 and a2 edited,
+and neither used them in its final answer. f1 flipped them, got "WaitWaitWait…" (the same first failure as a1 and
+a2) and moved on. Both ended with edits on every column of the last layers, along the direction of the token "Wait":
+- **f1:** the MLP and attention outputs of layer 23 (2 edits);
+- **f2:** the attention outputs of layers 20–23, with a small `</think>` component (4 edits).
+
+In form these are closer to the published edit than to a1.
+
+| edit | practice set (48) | cut off | mean tokens | locked test (200) |
+|---|---|---|---|---|
+| f1 | 65% (25 rescued, 1 lost) | 25% | 6,711 | 66.0% † |
+| f2 | 60% (22 rescued, 0 lost) | 27% | 6,618 | — |
+| a1, for reference | 67% | 17% | 4,729 | 61.5% |
+
+- **Practice set.** Both tie a1 (f1: 6 rescues against 7; f2: 4 against 7). f1 beats the published edit (9 against
+  0).
+- **Locked test.** f1 solves 66.0%, with 101 rescues and no losses against the original. It beats the published edit
+  (40 rescues, 15 losses; p = 0.001) and ties a1 (28 against 19) and a2 (21 against 24).
+- **f1 is more conservative.** 29% of its answers are still cut off and it writes more tokens, but 93% of its
+  finished answers are right (a1: 74%; a2: 80%).
+- **The extension did not help.** With two more test runs, f1 changed its pick to a variant that also suppresses
+  "Yes" (11 of 16 on its own test run, against 9 of 16 before). On the practice set that variant solved 56%, below
+  the earlier pick (2 rescues against 6). f2 kept its pick. A 16-problem test run cannot rank candidates this close,
+  and the same caution applies to the choices inside a1 and a2. The numbers above are for the picks made before the
+  extension.
+
+This supports one thing: another editor model, given the same brief, also repaired the defect, by a third route. It
+does not support a ranking of editor models, or a claim that editors do not converge.
+
 ## Is it just a trick?
 
 A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, tuned on
@@ -226,14 +276,16 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 | original model | 15% | 13% | 15.5% | 8% |
 | original model, thinking off | — | — | 58.5% † | — |
 | published edit (Astra) | 46% | 41% | 53.5% | 21% |
-| ban the word "Wait" (best of 3 settings) | 52% | 47% | — | 27% (first 48) |
+| ban the word "Wait" (best of 3 settings) | 52% | 47% | 60.0% † | 27% (first 48) |
 | thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 61.0% | 37% |
+| time limit, answer capped at 1,024 (best of 3) | 50% | — | 60.0% † | — |
 | mean-difference edit, no agent (best of 6) | — | 31% | — | — |
 | scripted search, no agent | 27% | — | — | — |
-| fine-tuning (LoRA) | 29% | — | — | — |
+| fine-tuning (LoRA) | 29% | — | 33.0% † | — |
 | **agent's edit (a1)** | **67%** | 56% | 61.5% | **47%** |
 | a1 agent's first pick | 65% | — | 62.0% † | — |
 | second agent's edit (a2) | 65% | — | 67.5% † | — |
+| edit from a Fable run (f1), other conditions | 65% | — | 66.0% † | — |
 | **agent's edit + time limit** | **69%** | **63%** | **69.5%** | **53%** |
 
 † Run after the locked test was opened; no choice depended on these arms.
@@ -247,14 +299,18 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
   change.
 - **Time limit ("budget forcing", Muennighoff et al., 2025):** after N tokens of thinking, cut it off and force an answer. No weight change.
 
-**Banning the word is worse everywhere we ran it.** The edit is not a global ban. It works through neurons that are
+**Banning the word is worse on the practice sets and on harder math, and ties on the locked test.** There it solves
+60.0%, against 61.5% for a1 (25 rescues against 28), with 7,758 tokens per answer and 35.5% of answers cut off. We had
+predicted 40–52%. The edit is not a global ban. It works through neurons that are
 active when the model is about to restart, so it leaves "Wait" alone elsewhere.
 
 **The time limit ties the edit on the locked test (61.0% vs 61.5%; +0.5 ± 3.4).** Our implementation of the limit
 looks more expensive than it is. After the forced `</think>`, some answers keep looping until the 12k cap, which is why
 34% of them are cut off and the mean is 7,012 tokens. If we stop every answer at 6,144 tokens instead, the time limit
 keeps 60.5% at a mean of 4,910 tokens, about the same as a1 (5,049). So we do not claim that the edit is cheaper than
-a well-implemented time limit. A version with a cap on the answer is on our list.
+a well-implemented time limit. We later ran that version, with the answer capped at 1,024 tokens after the forced
+`</think>` (thinking limit chosen among three on the practice set). It solves 60.0% at a mean of 4,596 tokens, the
+same accuracy as the uncapped limit (14 rescues against 16).
 
 On harder math the edit is ahead of the time limit by 9.5 points, rescuing 23 problems and losing 9. Forcing an answer
 early works when the answer was already computed before the loop began, which is common in grade-school problems and
@@ -262,7 +318,9 @@ rarer in longer ones.
 
 **Together they do best of all (53% on harder math and 69.5% on the locked test, 8 points above either alone, with
 few cut-off answers).** The edit removes most loops, and the time limit catches what is left. An independent
-replication reports the same additivity on MATH subsets (tdotlab, 2026).
+replication reports the same additivity on MATH subsets (tdotlab, 2026). With the capped answer, the combination
+keeps 69.5% on the locked test and drops to 3,172 tokens per answer. It is above a1 alone (26 rescues, 10 losses;
+p = 0.01), the capped limit alone (33 against 14; p = 0.008) and thinking off (37 against 15; p = 0.003).
 
 **Thinking off.** We did not run thinking off on our MATH subset. Independent reruns report about 50% on the full
 MATH-500 with thinking off and a 32k budget (exp8-loop-controls, 2026), which is in the range of a1's 47–49% here. On
@@ -290,6 +348,9 @@ agent's edit rescued 18 problems that fine-tuning missed and lost 0.** The fine-
 71% of its answers (the edit: 17%). It learned what to write *after* a cut, not *when* to stop. This is one cheap
 recipe with 175 examples, and we did not tune it further. More data, a better data recipe or reinforcement learning
 might do better, at more GPU time (see below). The result is "this fine-tuning recipe lost", not "fine-tuning loses".
+
+On the locked test the fine-tuned model solves 33.0% and still runs out of space on 65.5% of its answers. a1 rescues
+69 problems it misses and loses 12.
 
 *Experiment 6*
 
@@ -372,7 +433,7 @@ ran under the older protocol without test runs, and we had predicted the opposit
   attempts.
 - **Running cost.** Against the original model with thinking on, the edited model's answers are 60% shorter on the
   practice set, 55% shorter on the locked test and 29% shorter on harder math. The a1 agent's first pick is 80% shorter
-  on the locked test. This saving repeats on every question. It is a saving only against thinking on: with thinking
+  on the locked test, and a1 with a capped time limit is 72% shorter. This saving repeats on every question. It is a saving only against thinking on: with thinking
   off, the unedited model writes about 1,300 tokens per answer, less than any edit.
 - **Compared with the original agent.** The published run used 86.8 M tokens read and 2.9 M written over 20 hours
   (from its public logs). Our agent used 16× and 60× less, in about 2 hours. The tools differ, so this is not a
@@ -482,8 +543,8 @@ with a Claude editor on a consumer GPU (tdotlab, 2026) independently located the
 agents edited (layer 22, neuron 573), and found that its edit and a larger budget add roughly independently. Not every
 replication converges: MatinKhajavi (2026) reruns the experiments with Claude Opus 5.5 and gets edits of another kind
 (zeroing attention heads, plus the same neuron 573), and ajaygrover (2026) finds a Claude direction almost orthogonal to
-Astra's that stacks with it. Our two agents agree on neurons but disagree on sign, which fits this picture: several
-different edits remove the loops. IWIBench
+Astra's that stacks with it. Our two Opus agents agree on neurons but disagree on sign, and two later runs with
+another editor model left those neurons alone. This fits the picture: several different edits remove the loops. IWIBench
 (von Csefalvay et al., 2026) proposes a benchmark for editor models. Our contribution is the controlled comparison:
 agent edits against decoding, thinking-off and fine-tuning baselines on a locked test, with accuracy reported by token
 budget, compute accounting, evidence that agents game interpretability proxies, and a measured boundary where the
@@ -500,8 +561,13 @@ method stops working.
   beats the published edit" is a statement about this budget. **Next:** both at a long budget on the locked test.
 - **Thinking off is a strong baseline:** on the locked test it ties a1 and costs far fewer tokens. We have not run it
   on our MATH subset.
-- **Late arms:** the a1 agent's first pick, a2 and thinking off were run on the locked test after it was opened. No
-  choice depended on them, but they are not pre-registered arms.
+- **Late arms:** the a1 agent's first pick, a2, thinking off, the capped time limit, the word ban, fine-tuning and
+  f1 were run on the locked test after it was opened. They are not pre-registered arms. The capped limit and f1 were
+  each chosen on the practice set among two or three candidates.
+- **Editor models:** the two Fable runs had different conditions from a1 and a2 and say nothing about which editor
+  is better. **Next:** a ladder of editor models, including smaller ones, with several runs each under one protocol.
+- **Noisy test runs:** the agents choose among candidates on 16 problems. The f1 extension shows that this cannot
+  rank close candidates.
 - **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
 - **Mechanism:** we verified the brake story for a1 on 52 positions from 12 transcripts. a2's path is not mapped.
 - **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
@@ -525,6 +591,8 @@ method stops working.
 5. The first IFEval agent would gain 5–9 points on fresh prompts. It lost 3.3 ± 4.1.
 6. The second IFEval agent, with larger checks, would gain 5–15 points. It lost 6.0 ± 3.7.
 7. a2 would score 52–64% on the locked test. It scored 67.5%.
+8. At least one Fable run would edit the "Wait" neurons that a1 and a2 share. Neither did.
+9. Banning the word would score 40–52% on the locked test. It scored 60.0%.
 
 **The claim, as it stands: for a concentrated behavioral defect with a large effect, an agent editing weights found a
 fix in about 2 hours on one consumer GPU. The fix is as accurate as the simple decoding alternatives, uses a third of
@@ -543,7 +611,7 @@ The agents' full transcripts and the raw generations (~210 MB) will be released 
 
 ## Use of AI tools
 
-The editing agents studied here are Claude Opus 5.5. Claude (Opus 5.5 and Fable 5.2, through Claude Code) was also
+The editing agents studied here are Claude Opus 5.5, and Claude Fable 5.2 in two later runs. Claude (Opus 5.5 and Fable 5.2, through Claude Code) was also
 used as a research assistant throughout: it wrote most of the code, ran the experiments, kept the lab notebook, drafted
 this text and did an independent review of the claims against the raw data. The author designed the study, supervised
 and checked the work, and is responsible for the content.
@@ -558,7 +626,7 @@ and checked the work, and is responsible for the content.
 | 6 agent runs (2 protocols, 3 with/without-atlas pairs) | done |
 | Decoding baselines, naive search, fine-tuning baseline | done |
 | Transfer to harder math, side effects, cost | done |
-| Locked test with ≥ 200 problems | done (5 pre-registered methods + 3 late arms; the word-ban and LoRA arms still to run) |
+| Locked test with ≥ 200 problems | done (5 pre-registered methods + 8 late arms) |
 | More replicates (2 + 2 agents) | to do |
 | Second defect without a keyword (IFEval) | done: negative, with fine-tuning and prompt baselines |
 | Concentrated second defect; second model | to do (needed for a main-track venue) |
@@ -568,9 +636,10 @@ and checked the work, and is responsible for the content.
 | Independent review of every claim against the data | done (Nov 10); this draft applies it |
 | Mechanism check on activations | done for a1; a2 to do |
 | Published edit vs a1 at a long budget | to do (5–8 GPU-h) |
-| Time limit with a cap on the answer | to do |
-| Two more agent runs with a stronger editor (Claude Fable 5.2) | running |
-| Figures 4–6 and 10 with the new arms | to do |
+| Time limit with a cap on the answer | done (Nov 11): 60.0% alone, 69.5% with a1 |
+| Two agent runs with another editor (Claude Fable 5.2) | done (Nov 11); different conditions, reported as a replication |
+| Ladder of editor models under one protocol | to do (follow-up study) |
+| Figures 5 and 6 with the new arms | done (Nov 11) |
 | Verify citations | done (Nov 10; all 16 exist, 6 corrected, 5 added) |
 
 **Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a

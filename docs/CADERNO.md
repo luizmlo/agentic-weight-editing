@@ -1791,3 +1791,20 @@ Vencedor pela regra: `bf4096a1024`.
 **Regras de texto.** O vencedor não ficou ≥ 2 EP acima da a1: nada muda. a1 + vencedor ficou acima do raciocínio
 desligado: a frase "só a combinação fica claramente acima" fica (junto com a a2, p = 0,018). Entra no paper: a
 penalidade de logit (60,0%) é mais uma alternativa sem edição que empata com a a1.
+
+### 11/11, 11h30 — Fim da fila 2; paper atualizado
+
+- **ft_sft_ep2 no t200:** 0,330; cortes 0,655; média de 9.354 tokens. Contra o original +44 / −9; a1 contra ele
+  +69 / −12. Previsão 0,22–0,34: **acertou**. Fim da fila 2 às 10h39.
+- **Decisão (Luiz):** sem orçamento para repetir as runs do Fable em condições limpas. Elas entram no paper como
+  réplica em condições diferentes, sem comparação com a1/a2. A escada de modelos editores (incluindo menores) fica
+  para um estudo seguinte; o paper fecha com o que há.
+- **Paper (en e pt-BR):** seção nova "Outro modelo editor acha a mesma correção?"; tabela por orçamento com 5 braços
+  tardios novos (LoRA, proibir a palavra, limite com teto, a1 + limite com teto, f1); tabela principal; proibir a
+  palavra empata no teste trancado; limite com teto; combinação com 3.172 tokens; limitações; previsões 8 e 9 na
+  lista das que falharam; tabela de status.
+- **Figuras:** Figura 5 com a a2 e os braços novos no teste trancado; Figura 6 com painel do teste trancado (três
+  painéis empilhados); Figura 3 com 26 pontos (r = −0,98, antes −0,99 com 20). O t12k passa a se chamar "segunda
+  prática" também nas figuras.
+- **PDFs:** en 22 pp, pt-BR 23 pp, impressão 25 pp (uma caixa 3,8 pt acima da margem) e 28 pp.
+- README e `docs/experiments.md` atualizados.

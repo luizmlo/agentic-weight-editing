@@ -63,3 +63,11 @@
 {"ts": "2026-11-10 10:50:35", "kind": "gen_eval", "tag": "t200nt", "split": "gsm8k_test[200:400]", "arms": ["base", "m2a_a1_062959_102", "astra"], "max_new": 8192}
 {"ts": "2026-11-10 11:13:54", "kind": "gen_eval", "tag": "t200nt", "split": "gsm8k_test[200:400]", "arms": ["base", "m2a_a1_062959_102", "astra"], "max_new": 8192}
 {"ts": "2026-11-10 12:26:34", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["m2a_a1", "m2a_a2"], "max_new": 12288}
+{"ts": "2026-11-10 18:38:25", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_f1"], "max_new": 12288}
+{"ts": "2026-11-10 19:16:34", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_f2"], "max_new": 12288}
+{"ts": "2026-11-10 19:54:55", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["m2a_f1"], "max_new": 12288}
+{"ts": "2026-11-10 22:16:28", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["", "m2a_a1_062959_102+"], "max_new": 12288}
+{"ts": "2026-11-10 23:40:35", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_f1_224719_221"], "max_new": 12288}
+{"ts": "2026-11-11 00:19:20", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["bf1024a1024", "bf2048a1024", "bf4096a1024"], "max_new": 12288}
+{"ts": "2026-11-11 01:14:32", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["bf4096a1024", "m2a_a1_062959_102+bf4096a1024"], "max_new": 12288}
+{"ts": "2026-11-11 04:24:00", "kind": "gen_eval", "tag": "t200", "split": "gsm8k_test[200:400]", "arms": ["lbx_w10_t1", "ft_sft_ep2"], "max_new": 12288}

@@ -1,0 +1,25 @@
+{
+ "method": "m2a_f1_224719_221",
+ "layers": {
+  "0": {
+   "tensor": "model.language_model.layers.23.mlp.down_proj.weight",
+   "alpha": 1.0,
+   "n_cols": null,
+   "rel_change": 0.02835998870432377
+  },
+  "1": {
+   "tensor": "model.language_model.layers.23.self_attn.o_proj.weight",
+   "alpha": 2.0,
+   "n_cols": null,
+   "rel_change": 0.05484611913561821
+  },
+  "2": {
+   "tensor": "model.language_model.layers.23.self_attn.o_proj.weight",
+   "alpha": 1.0,
+   "n_cols": null,
+   "rel_change": 0.026601362973451614
+  }
+ },
+ "gguf": "/mnt/dados/dev/agentic-weight-editing/data/gguf/m2a_f1_224719_221.gguf",
+ "gguf_bytes": 1557662720
+}

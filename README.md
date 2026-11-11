@@ -51,17 +51,21 @@ on 16 held-out GSM8K training problems. A supervisor then confirms the agent's t
 Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning agent found: it suppresses the
 "Wait" token through 3 MLP neurons and strengthens the `</think>` write in layer 23, using 4 rank-1 edits.
 
-| arm | GSM8K dev48 | GSM8K locked test (32) | GSM8K locked test t200 (200) | MATH-500 (148) |
+| arm | GSM8K dev48 | GSM8K second practice set (32) | GSM8K locked test t200 (200) | MATH-500 (148) |
 |---|---|---|---|---|
 | base | 0.146 | 0.125 | 0.155 | 0.081 |
 | Astra edit (paper) | 0.458 | 0.406 | 0.535 | 0.209 |
-| LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | — | — |
-| logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | — | 0.271¹ |
+| base, thinking off (cap 8,192) | — | — | 0.585† | — |
+| LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | 0.330† | — |
+| logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.600† | 0.271¹ |
 | budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.610 | 0.372 |
+| budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | — |
 | **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.466** |
+| second agent's edit a2 | 0.646 | — | 0.675† | — |
+| edit from a Claude Fable 5.2 run (f1; different conditions) | 0.646 | — | 0.660† | — |
 | **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | **0.527** |
 
-¹ MATH-500[0:48] only.
+¹ MATH-500[0:48] only. † Run after the locked test was opened.
 
 Paired differences on MATH-500 (148 problems): a1 vs Astra **+25.7 ± 4.3 pp** (44 rescues / 6 losses); a1 vs budget
 forcing **+9.5 ± 3.8 pp** (23/9); combo vs a1 **+6.1 ± 3.2 pp** (16/7). The search ran on GSM8K only, so MATH-500 is

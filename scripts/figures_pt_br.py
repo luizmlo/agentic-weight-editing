@@ -16,21 +16,22 @@ T("Modelo original: a maioria das respostas bate no limite. Com a edição do ag
 "Thinking time limit": "Limite de raciocínio",
 "Agent edit + time limit": "Edição do agente + limite",
 "Practice set (GSM8K, 48)": "Prática (GSM8K, 48)",
-"Locked test 1 (GSM8K, 32)": "Teste trancado 1 (GSM8K, 32)",
-"Locked test 2 (GSM8K, 200)": "Teste trancado 2 (GSM8K, 200)",
-"Harder math (MATH-500, 148)": "Matemática difícil (MATH-500, 148)",
-T("The agent's edit beats every other single fix on the practice set and on harder math", "Share of problems solved (thinking on, 12,288-token limit). Fine-tuning and the automated search were only run on the practice set."):
-T("A edição do agente supera todas as outras correções isoladas na prática e na matemática difícil", "Fração de problemas resolvidos (raciocínio ligado, limite de 12.288 tokens). Fine-tuning e busca automática só rodaram na prática."),
-"← competitor wins | edit wins →": "← o outro vence | a edição vence →",
-T("The agent's edit almost never loses a problem the others solve", "Problems where exactly one of the two was right (same problems, same random seed)"):
-T("A edição do agente quase nunca perde um problema que os outros resolvem", "Problemas em que exatamente um dos dois acertou (mesmos problemas, mesma semente)"),
+"Second practice set (GSM8K, 32)": "Segunda prática (GSM8K, 32)",
+"Agent edit, 2nd agent": "Edição do 2º agente",
+"Locked test (GSM8K, 200)": "Teste trancado (GSM8K, 200)",
+"Harder math (MATH-500, 148)": "Matemática difícil (MATH, 148)",
+T("Agents' edits lead in practice and on harder math; simple fixes tie on the locked test", "Share of problems solved (thinking on, 12,288-token limit). The automated search was only run on the practice set."):
+T("Edições dos agentes lideram na prática e na matemática difícil; no teste trancado há empate", "Fração de problemas resolvidos (raciocínio ligado, limite de 12.288 tokens). A busca automática só rodou no conjunto de prática."),
+"← other wins | edit wins →": "← o outro vence | a edição vence →",
+T("The edit rarely loses in practice and on harder math; on the locked test, simple fixes trade wins", "Problems where exactly one of the two was right (same problems, same random seed)"):
+T("A edição raramente perde na prática e na matemática difícil; no teste trancado, troca vitórias", "Problemas em que exatamente um dos dois acertou (mesmos problemas, mesma semente)"),
 "Agent edits (protocol with test runs)": "Edições de agentes (protocolo com testes reais)",
 "Other weight edits": "Outras edições de pesos",
 "Decoding tricks (no weight change)": "Truques de decodificação (sem mexer nos pesos)",
 "Fine-tuning": "Fine-tuning",
 "agent r1 (atlas)": "agente r1 (atlas)",
-T("The less a model runs out of space, the more it gets right", "Each dot = one model or method on the 48 practice problems (correlation r = -0.99)"):
-T("Quanto menos um modelo fica sem espaço, mais ele acerta", "Cada ponto = um modelo ou método nos 48 problemas de prática (correlação r = −0,99)"),
+T("The less a model runs out of space, the more it gets right", "Each dot = one model or method on the 48 practice problems (correlation r = -0.98)"):
+T("Quanto menos um modelo fica sem espaço, mais ele acerta", "Cada ponto = um modelo ou método nos 48 problemas de prática (correlação r = −0,98)"),
 "ran out of space (share of answers)": "ficou sem espaço (fração das respostas)",
 "solved (share)": "resolvidos (fração)",
 T("The agent's edit (alone or with the time limit) leads at every difficulty level", "Share solved by difficulty level, MATH-500 problems 1–148 (20–40 problems per level, so each point is noisy)"):
