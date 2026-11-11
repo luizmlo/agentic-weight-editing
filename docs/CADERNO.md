@@ -1808,3 +1808,17 @@ penalidade de logit (60,0%) é mais uma alternativa sem edição que empata com 
   prática" também nas figuras.
 - **PDFs:** en 22 pp, pt-BR 23 pp, impressão 25 pp (uma caixa 3,8 pt acima da margem) e 28 pp.
 - README e `docs/experiments.md` atualizados.
+
+### 11/11, 11h45 — Caminho da a2: ativações dentro do modelo editado. PRÉ-REGISTRO
+
+`scripts/act_a2_path.py` → `data/act_a2_path.json`. Mesmos 12 textos em loop do base, 1.500 tokens, mesmas 52 posições
+antes de "Wait" da medição das 11h15 de ontem. Mede:
+1. Δ log p("Wait") antes de "Wait" com cada neurônio da a2 editado sozinho e com todos menos um.
+2. A ativação de cada neurônio da a2 dentro do modelo editado (a2 inteira; só L16; só L16 + L17), contra o base.
+3. A escrita direta de cada neurônio na direção de "Wait" dentro do modelo editado.
+
+**Previsões.**
+- L16n998 sozinho dá ≥ 60% dos −26 nats: 55%.
+- Dentro do modelo editado, a ativação de L22n573 antes de "Wait" troca de sinal ou cai para < 30% do valor do base
+  (−3,73): 50%.
+- Tirar só a inversão de L22n573 deixa a supressão de "Wait" mais forte (a inversão atrapalha): 40%.
