@@ -4,7 +4,7 @@ set -uo pipefail
 cd /mnt/dados/dev/agentic-weight-editing
 echo "início da fila 2: $(date)"
 # 1) varredura no dev48 (prática), modelo original
-uv run --no-sync python -u scripts/gen_eval.py dev48 48 12288 bf1024a1024,bf2048a1024,bf4096a1024 --np 16
+uv run --no-sync python -u scripts/gen_eval.py dev48 48 12288 bf1024a1024,bf2048a1024,bf4096a1024 --np 16 --split train
 # 2) escolha pela regra pré-registrada: maior acerto no dev48; empate -> menos tokens
 W=$(uv run --no-sync python - <<'PY'
 import json
@@ -13,7 +13,7 @@ c=[(sum(bool(r['correct']) for r in d[a]['rows']), -sum(r['n_tokens'] for r in d
 print(max(c)[2])
 PY
 )
-echo "vencedor no dev48: $W"
+echo "vencedor no dev48: $W"; [[ -n "$W" ]] || { echo "sem vencedor; abortando"; exit 1; }
 # 3) vencedor no t200, sozinho e com a a1
 WSP_UNLOCK_TEST=1 uv run --no-sync python -u scripts/gen_eval.py t200 200 12288 "$W,m2a_a1_062959_102+$W" --np 16 --offset 200
 # 4) cauda pré-registrada do t200

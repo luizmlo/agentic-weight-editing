@@ -1661,3 +1661,57 @@ f1 contra f2: +9 / −7.
   custo em tokens, sim.
 
 **Fila.** f1 venceu (0,646 > 0,604) e está no t200 desde 19h55 (160/200 às 21h53). Depois entra a fila 2.
+
+### 10/11, 22h20 — Extensão das runs f1 e f2 (f1x, f2x). PRÉ-REGISTRO
+
+**Correção.** Escrevi às 18h40 que f1 e f2 "pararam com metade do orçamento". Em sondas isso engana: a1 usou 18 e a2
+17 das 40; f1 usou 22 e f2 21. A diferença real está nas checagens por geração: a1 e a2 usaram as 6; f1 e f2 só 4.
+
+**Causa.** O prompt (igual ao do a2) pede terminar em ~3,5 h de relógio. As duas runs ficaram ~1 h paradas no limite
+de uso e contaram essa hora; a fila compartilhada do avaliador também atrasou as checagens. As runs pararam por
+relógio, não por falta de ideias.
+
+**Extensão (pedido do Luiz).** Retomar as duas no mesmo contexto, com o orçamento que resta (f1: 18 sondas, 2
+checagens; f2: 19 sondas, 2 checagens) e ~1h15 de relógio. Mesmo brief, mesmas regras, mesmo avaliador.
+
+**Como relatar.**
+- A escolha nº 1 das 18h40 continua sendo o resultado pré-registrado de f1 e f2. O dev48 delas já foi visto por mim,
+  não pelos agentes; a mensagem de retomada não menciona dev48, t200, custo em tokens nem as edições a1/a2.
+- Se o nº 1 mudar, o novo vai ao dev48 como `m2a_f1x` / `m2a_f2x`, relatado como extensão posterior. Não vai ao t200
+  a menos que supere a f1 no dev48 por ≥ 5 pp.
+- A fila 2 fica para depois da extensão (a GPU de 6 GB não comporta avaliador e llama-server juntos).
+
+**Previsões.**
+- Alguma run muda o nº 1: 55%.
+- Algum nº 1 novo chega a ≥ 0,70 no dev48: 15%.
+- Alguma run volta aos neurônios de "wait" (L17n1915, L18n881, L22n573) na escolha final: 20%.
+- Tokens no dev48 do nº 1 novo continuam > 5.000: 70% (o avaliador não cobra tokens).
+
+### 10/11, 22h35 — f1 no t200 (braço posterior); extensão lançada; erro na fila 2
+
+**f1 no t200 (200 problemas, teto 12.288):** acerto 0,660; cortes 0,29; loop no teto 0,245; média de 6.534 tokens;
+101 resgates / 0 perdas contra o original.
+
+| contra | ganhos / perdas | p |
+|---|---|---|
+| a1 do paper (0,615) | +28 / −19 | 0,24 |
+| nº 1 do agente a1 (0,620) | +32 / −24 | 0,35 |
+| a2 (0,675) | +21 / −24 | 0,77 |
+| Astra (0,535) | +40 / −15 | 0,001 |
+| bf4096 (0,610) | +28 / −18 | 0,18 |
+| a1 + bf4096 (0,695) | +19 / −26 | 0,37 |
+| original sem raciocínio (0,585) | +36 / −21 | 0,06 |
+
+- Acerto por teto (2.048 / 4.096 / 6.144 / 8.192 / 12.288): 12,0 / 40,5 / 52,5 / 61,5 / 66,0. Com 29% cortadas no
+  teto e a curva ainda subindo, a f1 depende do teto como o Astra, mas num nível mais alto.
+- Acerto entre as respostas terminadas: 93% (132 de 142), contra 74% da a1 e 80% da a2. A f1 não perde nenhum
+  problema que o original acertava. Ela corta menos loops, mas estraga menos respostas.
+- Sem correção para múltiplas comparações; braço posterior à abertura do t200.
+
+**Extensão.** Avaliador religado às 22h30; f1 e f2 retomadas às 22h33 com a mensagem pré-registrada (sem dev48,
+t200, tokens ou a1/a2). Os `final.json` das 18h40 foram guardados como `final_1840.json`.
+
+**Erro na fila 2.** `queue_fix2.sh` chamava a varredura do dev48 sem `--split train`; o `gen_eval.py` recusou (split
+de teste trancado) e a fila seguiu com vencedor vazio. Nenhum problema do teste foi gerado para os braços novos: o
+braço `m2a_a1_062959_102+` (a1 sem limite, duplicata) começou e foi parado e apagado antes de terminar. Corrigido
+(`--split train` e parada se não houver vencedor). A fila 2 roda depois da extensão.
