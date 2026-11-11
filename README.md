@@ -62,7 +62,6 @@ Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning a
 | budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | — |
 | **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.466** |
 | second agent's edit a2 | 0.646 | — | 0.675† | — |
-| edit from a Claude Fable 5.2 run (f1; different conditions) | 0.646 | — | 0.660† | — |
 | **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | **0.527** |
 
 ¹ MATH-500[0:48] only. † Run after the locked test was opened.

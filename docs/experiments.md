@@ -69,7 +69,7 @@ Scorer v2 adds `submit_gen`: GGUF + llama-server on GSM8K train[200:216], 6k cap
 | noise | How noisy is a 48-prompt IFEval gen check? | — | two base samples (different seeds) disagree on 35/152 prompts (23%) → paired SE ≈ 8–9 pp on 48; every 48-prompt selector (agent, prompt, FT epoch) showed a winner's curse | `CADERNO.md` 2026-11-08/09 |
 | b2 | Agent edit with a 128-prompt synthetic gen check (declared deviation) | gain ≥ 8 pp on own check 35%; passes dev200 (> 2 SE) 20% | best check +4.7 (in noise; opposite sign also ≈ +2); **dev200 −6.0 ± 3.7** (22/34), refuted. Side finding: a shared residual direction read by 99.7% of DeltaNet decay-gate rows | `m2a_if/runs/b2` → `ifeval_dev200b2.json` |
 
-## Review fixes, late arms and the Fable replication (2026-11-10/11)
+## Review fixes, late arms and an exploratory Fable check (2026-11-10/11)
 
 All t200 arms below were run after the locked test was opened (late arms).
 
@@ -79,7 +79,7 @@ All t200 arms below were run after the locked test was opened (late arms).
 | a1 #1, a2 on t200 | Agent's own first pick and the second agent on the locked test | pick #1 .55–.65; a2 .52–.64 | pick #1 .620 (confirmed), a2 **.675** (above the range) | `queue_fix1.sh` → `gen_t200.json` |
 | bf+answer cap | Time limit with the answer capped at 1,024 tokens | dev48 .44–.52 at < 5,500 tokens; t200 .56–.64; with a1 .65–.72 and above thinking off | dev48 winner `bf4096a1024` .500 (4,679 tok); t200 .600 (4,596 tok); a1 + it **.695** (3,172 tok), vs thinking off +37/−15, p = .003 (all confirmed) | `queue_fix2.sh` → `gen_dev48.json`, `gen_t200.json` |
 | t200 tail | Word ban and LoRA on the locked test | lbx .40–.52; LoRA .22–.34 | lbx **.600** (above the range; ties a1, 7,758 tok); LoRA .330 (confirmed) | `queue_fix2.sh` → `gen_t200.json` |
-| f1, f2 | Protocol v2 without atlas, editor = Claude Fable 5.2 (different conditions: usage-limit pauses, shared scorer, extra prompt rules) | ≥ 1 run ≥ .60 on dev48 (70%); both ≥ .50 (50%); some run beats a1 by ≥ 5 pp (20%); some run edits the shared "Wait" neurons (65%) | dev48 f1 .646, f2 .604 (first three as predicted); **neither edited the neurons** (refuted): all-column edits on the last layers. f1 on t200 .660 (vs Astra +40/−15; ties a1, a2) | `m2a/runs/f1`, `f2` → `gen_dev48.json`, `gen_t200.json` |
+| f1, f2 | Protocol v2 without atlas, editor = Claude Fable 5.2 (exploratory; different conditions: paused and resumed, shared scorer, extra prompt rules) | ≥ 1 run ≥ .60 on dev48 (70%); both ≥ .50 (50%); some run beats a1 by ≥ 5 pp (20%); some run edits the shared "Wait" neurons (65%) | dev48 f1 .646, f2 .604 (first three as predicted); **neither edited the neurons** (refuted): all-column edits on the last layers. f1 on t200 .660 (vs Astra +40/−15; ties a1, a2) | `m2a/runs/f1`, `f2` → `gen_dev48.json`, `gen_t200.json` |
 | f1x, f2x | Extension to the full 6 generation checks, decided after seeing dev48/t200 | some pick changes (55%); new pick ≥ .70 on dev48 (15%) | f1 changed pick (11/16 on its check), dev48 **.562** < .646 (no gain); f2 unchanged | `queue_night.sh` → `gen_dev48.json` |
 
 ## Deviations from pre-registration

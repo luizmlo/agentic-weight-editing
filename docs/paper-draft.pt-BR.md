@@ -23,8 +23,7 @@
   acima com menos firmeza (p = 0,02 sem correção para comparações múltiplas).
 - **O que importou.** Dois agentes independentes acharam os mesmos neurônios de "Wait" e a mesma alavanca de
   `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, a outra inverte um neurônio
-  a montante dele. Duas execuções posteriores, com outro
-  modelo editor, viram os mesmos neurônios e tiraram os loops com outro tipo de edição. Um script simples com as mesmas
+  a montante dele. Um script simples com as mesmas
   ferramentas e o mesmo orçamento, mas sem o raciocínio de um agente, não achou. Toda nota rápida que demos aos
   agentes acabou sendo burlada, e só os testes reais os mantiveram honestos. Em três pares de execuções, os agentes
   que receberam mais dados de interpretabilidade acharam correções piores.
@@ -184,7 +183,7 @@ direção escolhida. (B) A a1 reforça o freio de três neurônios sobre “Wait
 
 ![Figura 3](figures/why.png)
 
-**Figura 3:** Nos 26 modelos e métodos que rodamos no conjunto de prática antes das ablações da a2, quanto menos respostas ficam sem espaço, mais respostas estão
+**Figura 3:** Em 25 modelos e métodos que rodamos no conjunto de prática (sem as execuções exploratórias do Fable), quanto menos respostas ficam sem espaço, mais respostas estão
 certas (r = −0,98).
 
 *Experimento 3*
@@ -224,7 +223,6 @@ orçamento menor. Os braços marcados com † rodaram depois de o teste ter sido
 | edição do agente (a1) | 29,0% | 45,0% | 55,5% | 60,5% | 61,5% | 17,0% | 5.049 |
 | primeira escolha do agente a1 † | 46,5% | 60,0% | 61,5% | 62,0% | 62,0% | 5,5% | 2.269 |
 | edição do segundo agente (a2) † | 37,5% | 53,0% | 63,5% | 66,5% | 67,5% | 15,5% | 4.387 |
-| edição de uma execução do Fable (f1; outras condições) † | 12,0% | 40,5% | 52,5% | 61,5% | 66,0% | 29,0% | 6.534 |
 | a1 + limite de raciocínio | 25,0% | 49,0% | 67,5% | 69,0% | 69,5% | 9,5% | 4.081 |
 | a1 + limite, resposta com teto † | 25,5% | 54,5% | 69,5% | 69,5% | 69,5% | 15,0% ‡ | 3.172 |
 | modelo original, raciocínio desligado † | — | — | — | — | 58,5% | 5,0% | 1.263 |
@@ -249,51 +247,19 @@ Todos os valores de p são testes do sinal exatos sobre os pares discordantes, s
 Com a correção de Holm sobre as comparações desta seção, a1 contra a edição publicada deixa de ser significativa; a2
 contra a edição publicada e a1 + limite contra o raciocínio desligado continuam sendo.
 
-### Outro modelo editor acha a mesma correção?
+### Uma checagem rápida com outro modelo editor
 
-*Rodado depois de o teste trancado ter sido aberto, em condições diferentes. Não é comparável diretamente com a1 e
-a2; mostramos lado a lado só para orientação.*
+*Checagem exploratória, rodada depois de o teste trancado ter sido aberto. Não é comparável com a1 e a2.*
 
-Repetimos o protocolo vencedor (sem atlas, mesmo briefing, mesmo avaliador, mesmo orçamento) com dois agentes rodando
-o Claude Fable 5.2 no lugar do Opus 5.5: f1 e f2. Relatamos as duas como uma réplica da ideia, não como uma comparação
-entre modelos editores, porque as condições foram diferentes:
-- as duas execuções foram interrompidas duas vezes por um limite de uso da assinatura e retomadas;
-- elas dividiram uma fila lenta do avaliador e pararam primeiro por tempo de relógio, depois de 4 dos 6 testes reais;
-- o prompt tinha regras a mais (sem acesso à web, sem ler o repositório deste paper, porque a resposta já era
-  pública; e sem subagentes);
-- estendemos as duas até os 6 testes reais depois de já termos visto os primeiros resultados.
-
-**As duas tiraram os loops com outro tipo de edição.** As duas acharam os neurônios de "Wait" que a1 e a2 editaram,
-e nenhuma os usou na resposta final. A f1 os inverteu, obteve "WaitWaitWait…" (o mesmo primeiro fracasso de a1 e a2)
-e seguiu adiante. As duas terminaram com edições em todas as colunas das últimas camadas, na direção do token "Wait":
-- **f1:** as saídas do MLP e da atenção da camada 23 (2 edições);
-- **f2:** as saídas da atenção das camadas 20–23, com um pequeno componente de `</think>` (4 edições).
-
-Na forma, elas estão mais perto da edição publicada do que da a1.
-
-| edição | conjunto de prática (48) | cortadas | tokens (média) | teste trancado (200) |
-|---|---|---|---|---|
-| f1 | 65% (25 resgatados, 1 perdido) | 25% | 6.711 | 66,0% † |
-| f2 | 60% (22 resgatados, 0 perdidos) | 27% | 6.618 | — |
-| a1 (só orientação) | 67% | 17% | 4.729 | 61,5% |
-
-- **Conjunto de prática.** A f1 vence a edição publicada (9 resgates contra 0). Só para orientação, as duas ficam
-  perto da a1 (f1: 6 resgates contra 7; f2: 4 contra 7).
-- **Teste trancado.** A f1 resolve 66,0%, com 101 resgates e nenhuma perda contra o original. Ela vence a edição
-  publicada (40 resgates, 15 perdas; p = 0,001). Só para orientação, fica perto da a1 (28 contra 19) e da a2 (21
-  contra 24).
-- **A f1 é mais conservadora.** 29% das respostas dela ainda são cortadas e ela escreve mais tokens, mas 93% das
-  respostas terminadas estão certas (a1: 74%; a2: 80%).
-- **A extensão não ajudou.** Com mais dois testes reais, a f1 trocou a escolha por uma variante que também suprime
-  "Yes" (11 de 16 no teste dela, contra 9 de 16 antes). No conjunto de prática essa variante resolveu 56%, abaixo
-  da escolha anterior (2 resgates contra 6; p = 0,29). A f2 manteve a escolha. Um teste real com 16 problemas não ordena
-  candidatos tão próximos, e a mesma cautela vale para as escolhas dentro da a1 e da a2. Os números acima são das
-  escolhas feitas antes da extensão.
-
-Isso sustenta uma coisa: outro modelo editor, com o mesmo briefing, também consertou o defeito, por um terceiro
-caminho. Não sustenta uma ordem entre modelos editores, nem a afirmação de que editores não convergem. Também
-previmos que o Fable precisaria de menos notas rápidas que o Opus para chegar ao primeiro bom teste real (55%); não
-avaliamos isso, porque as interrupções tornam ambíguo o que é "primeiro".
+Também rodamos o protocolo vencedor com dois agentes no Claude Fable 5.2 (f1, f2), para ver se outro modelo editor
+acharia algo diferente. As condições não foram as mesmas de a1 e a2: o prompt tinha regras a mais (sem acesso à web,
+sem ler o repositório deste paper, sem subagentes), as execuções foram pausadas e retomadas, e estendemos o orçamento
+delas depois de ver os primeiros resultados. As duas acharam os neurônios de "Wait" que a1 e a2 editaram, não os
+mantiveram e terminaram com edições de camada inteira na direção de "Wait" nas últimas camadas, mais parecidas na
+forma com a edição publicada do que com a a1. Resolveram 65% e 60% do conjunto de prática, e a escolha da f1 resolveu
+66,0% no teste trancado. Isso mostra só que outro modelo editor também consegue consertar o defeito, por outro
+caminho. Não diz qual editor é melhor; para isso serve a escada de modelos editores planejada como continuação, com
+várias execuções por modelo sob um só protocolo.
 
 ## É só um truque?
 
@@ -314,7 +280,6 @@ simples, ajustadas em 48 problemas (três vezes o que os agentes viram), o que a
 | **edição do agente (a1)** | **67%** | 56% | 61,5% | **47%** |
 | primeira escolha do agente a1 | 65% | — | 62,0% † | — |
 | edição do segundo agente (a2) | 65% | — | 67,5% † | — |
-| edição de uma execução do Fable (f1), outras condições | 65% | — | 66,0% † | — |
 | **edição do agente + limite de raciocínio** | **69%** | **63%** | **69,5%** | **53%** |
 
 † Rodado depois de o teste trancado ter sido aberto; nenhuma escolha dependeu desses braços.
@@ -612,11 +577,11 @@ para de funcionar.
   aberto. A proibição da palavra e o fine-tuning estavam no pré-registro original e só rodaram tarde. Os outros foram
   pré-registrados, com previsões, depois da abertura, então a decisão de rodá-los pode refletir o que já tínhamos
   visto. O limite com teto e a f1 foram escolhidos no conjunto de prática, cada um entre dois ou três candidatos.
-- **Modelos editores:** as duas execuções do Fable tiveram condições diferentes das de a1 e a2 e não dizem qual
-  editor é melhor. **Próximo passo:** uma escada de modelos editores, incluindo menores, com várias execuções de
+- **Modelos editores:** as duas execuções do Fable foram uma checagem exploratória e não dizem qual editor é
+  melhor. **Próximo passo:** uma escada de modelos editores, incluindo menores, com várias execuções de
   cada um sob um só protocolo.
-- **Testes reais ruidosos:** os agentes escolhem entre candidatos com 16 problemas. Isso não ordena candidatos
-  próximos; a extensão da f1 ilustra o problema.
+- **Testes reais ruidosos:** os agentes escolhem entre candidatos com 16 problemas, o que não ordena candidatos
+  próximos.
 - **A variante da a1 foi escolha nossa:** o agente a pôs em segundo lugar (veja o Experimento 2).
 - **Mecanismo:** conferimos o freio da a1 e o neurônio a montante da a2 em 52 posições de 12 textos, com o texto
   fixo. Os testes reais da a2 reduzida usaram só os 48 problemas de prática, que detectam apenas diferenças grandes.
@@ -625,7 +590,7 @@ para de funcionar.
   mesmo orçamento) contra os agentes.
 - **Respostas terminadas e erradas:** as edições baixam o acerto entre as respostas terminadas (veja os efeitos
   colaterais).
-- **Poucas réplicas:** o protocolo vencedor tem 2 agentes (mais as duas execuções do Fable, em outras condições), e a
+- **Poucas réplicas:** o protocolo vencedor tem 2 agentes (mais duas execuções exploratórias do Fable), e a
   comparação com e sem atlas tem 3 pares. **Próximo
   passo:** mais dois de cada.
 - **Uma receita de fine-tuning:** uma receita mais forte poderia fechar parte da diferença, a um custo maior.
@@ -693,7 +658,7 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | Conferência do mecanismo nas ativações | feito para a a1 e a a2 (11 nov.) |
 | Edição publicada contra a1 com orçamento longo | a fazer (5–8 GPU-h) |
 | Limite de raciocínio com teto para a resposta | feito (11 nov.): 60,0% sozinho, 69,5% com a a1 |
-| Duas execuções de agente com outro editor (Claude Fable 5.2) | feito (11 nov.); condições diferentes, relatado como réplica |
+| Execuções exploratórias com outro editor (Claude Fable 5.2) | feito (11 nov.); menção breve |
 | Escada de modelos editores sob um só protocolo | a fazer (estudo seguinte) |
 | Figuras 5 e 6 com os braços novos | feito (11 nov.); as Figuras 4 e 10 não têm braços novos |
 | Conferir as citações | feito (10/11; as 16 existem, 6 corrigidas, 5 acrescentadas) |

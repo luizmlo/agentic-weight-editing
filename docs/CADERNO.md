@@ -1914,3 +1914,11 @@ pt-BR depois de conferir as citações do CADERNO:
 
 **Previsão 5 do Fable** (menos sondas que o Opus até o primeiro teste positivo, 55%): **não avaliada**, porque as
 interrupções tornam ambíguo o que é "primeiro".
+
+### 11/11, 18h30 — Fable reduzido a uma menção breve (decisão do Luiz)
+
+As execuções f1/f2 foram uma checagem lateral, não o centro do estudo. No paper, a seção virou um parágrafo
+("Uma checagem rápida com outro modelo editor"): diferenças de condição, o que as execuções acharam, 65% e 60% no
+dev48 e 66,0% da f1 no t200, e a ressalva de que não dizem qual editor é melhor. Saíram das tabelas, do TL;DR, do
+README e da Figura 3 (agora 25 pontos, r = −0,98). Os detalhes continuam neste CADERNO (entradas de 10 e 11/11) e em
+`docs/experiments.md`. A escada de modelos editores fica para a continuação.

@@ -20,9 +20,7 @@
   (69.5%) is clearly above thinking off; the second agent's edit (67.5%) is above it less firmly (p = 0.02 before
   correction for multiple comparisons).
 - **What mattered.** Two independent agents found the same "Wait" neurons and the same `</think>` lever, but their
-  edits work at different points: one strengthens a brake neuron, the other flips a neuron upstream of it. Two later
-  runs with another editor model saw the same
-  neurons and fixed the loops with a different kind of edit. A simple script with the same tools and budget, but no agent
+  edits work at different points: one strengthens a brake neuron, the other flips a neuron upstream of it. A simple script with the same tools and budget, but no agent
   reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
   them honest. In three pairs of runs, agents given more interpretability data found worse fixes.
 - **Where it stops working.** On a second, diffuse defect (following formatting instructions, IFEval), neither the
@@ -174,7 +172,7 @@ chosen direction. (B) a1 strengthens three neurons' brake on “Wait” and the 
 
 ![Figure 3](figures/why.png)
 
-**Figure 3:** Across the 26 models and methods we ran on the practice set before the a2 ablations, the fewer answers that run out of space, the more are correct
+**Figure 3:** Across 25 models and methods we ran on the practice set (the exploratory Fable runs left out), the fewer answers that run out of space, the more are correct
 (r = −0.98).
 
 *Experiment 3*
@@ -212,7 +210,6 @@ budget. Arms marked † were run after the test was opened.
 | agent's edit (a1) | 29.0% | 45.0% | 55.5% | 60.5% | 61.5% | 17.0% | 5,049 |
 | a1 agent's first pick † | 46.5% | 60.0% | 61.5% | 62.0% | 62.0% | 5.5% | 2,269 |
 | second agent's edit (a2) † | 37.5% | 53.0% | 63.5% | 66.5% | 67.5% | 15.5% | 4,387 |
-| Fable run f1 (other conditions) † | 12.0% | 40.5% | 52.5% | 61.5% | 66.0% | 29.0% | 6,534 |
 | a1 + time limit | 25.0% | 49.0% | 67.5% | 69.0% | 69.5% | 9.5% | 4,081 |
 | a1 + time limit, answer capped † | 25.5% | 54.5% | 69.5% | 69.5% | 69.5% | 15.0% ‡ | 3,172 |
 | original model, thinking off † | — | — | — | — | 58.5% | 5.0% | 1,263 |
@@ -235,50 +232,18 @@ All p-values are exact sign tests on discordant pairs, without correction for mu
 correction over the comparisons in this section, a1 against the published edit is no longer significant; a2 against
 the published edit and a1 + time limit against thinking off still are.
 
-### Does another editor model find the same fix?
+### A quick check with another editor model
 
-*Run after the locked test was opened, under different conditions. Not comparable head-to-head with a1 and a2; we
-show them side by side only for orientation.*
+*Exploratory side check, run after the locked test was opened. Not comparable with a1 and a2.*
 
-We repeated the winning protocol (no atlas, same brief, same scorer, same budget) with two agents running Claude
-Fable 5.2 instead of Opus 5.5: f1 and f2. We report them as a replication of the idea, not as a comparison between
-editor models, because the conditions differed:
-- both runs were interrupted twice by a subscription usage limit and resumed;
-- they shared a slow scorer queue and first stopped on wall-clock time, after 4 of their 6 test runs;
-- their prompt had extra rules (no web access, no reading of this paper's repository, because the answer was public
-  by then; and no subagents);
-- we extended both runs to the full 6 test runs after we had seen their first results.
-
-**Both runs fixed the loops with a different kind of edit.** Both found the "Wait" neurons that a1 and a2 edited,
-and neither used them in its final answer. f1 flipped them, got "WaitWaitWait…" (the same first failure as a1 and
-a2) and moved on. Both ended with edits on every column of the last layers, along the direction of the token "Wait":
-- **f1:** the MLP and attention outputs of layer 23 (2 edits);
-- **f2:** the attention outputs of layers 20–23, with a small `</think>` component (4 edits).
-
-In form these are closer to the published edit than to a1.
-
-| edit | practice set (48) | cut off | mean tokens | locked test (200) |
-|---|---|---|---|---|
-| f1 | 65% (25 rescued, 1 lost) | 25% | 6,711 | 66.0% † |
-| f2 | 60% (22 rescued, 0 lost) | 27% | 6,618 | — |
-| a1 (orientation only) | 67% | 17% | 4,729 | 61.5% |
-
-- **Practice set.** f1 beats the published edit (9 rescues against 0). For orientation only, both are close to a1
-  (f1: 6 rescues against 7; f2: 4 against 7).
-- **Locked test.** f1 solves 66.0%, with 101 rescues and no losses against the original. It beats the published edit
-  (40 rescues, 15 losses; p = 0.001). For orientation only, it is close to a1 (28 against 19) and a2 (21 against 24).
-- **f1 is more conservative.** 29% of its answers are still cut off and it writes more tokens, but 93% of its
-  finished answers are right (a1: 74%; a2: 80%).
-- **The extension did not help.** With two more test runs, f1 changed its pick to a variant that also suppresses
-  "Yes" (11 of 16 on its own test run, against 9 of 16 before). On the practice set that variant solved 56%, below
-  the earlier pick (2 rescues against 6; p = 0.29). f2 kept its pick. A 16-problem test run cannot rank candidates this close,
-  and the same caution applies to the choices inside a1 and a2. The numbers above are for the picks made before the
-  extension.
-
-This supports one thing: another editor model, given the same brief, also repaired the defect, by a third route. It
-does not support a ranking of editor models, or a claim that editors do not converge. We also predicted that Fable
-would need fewer quick scores than Opus to reach its first good test run (55%); we have not scored this, because the
-interruptions make "first" ambiguous.
+We also ran the winning protocol with two agents on Claude Fable 5.2 (f1, f2), to see whether another editor model
+would find something different. The conditions were not the same as for a1 and a2: the prompt had extra rules (no web
+access, no reading of this paper's repository, no subagents), the runs were paused and resumed, and we extended their
+budget after seeing their first results. Both found the "Wait" neurons that a1 and a2 edited, did not keep them, and
+ended with whole-layer edits along "Wait" in the last layers, closer in form to the published edit than to a1. They
+solved 65% and 60% of the practice set, and f1's pick solved 66.0% on the locked test. This shows only that another
+editor model can also repair the defect, by another route. It says nothing about which editor is better; that needs
+the editor-model ladder planned as a follow-up, with several runs per model under one protocol.
 
 ## Is it just a trick?
 
@@ -303,7 +268,6 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 | **agent's edit (a1)** | **67%** | 56% | 61.5% | **47%** |
 | a1 agent's first pick | 65% | — | 62.0% † | — |
 | second agent's edit (a2) | 65% | — | 67.5% † | — |
-| edit from a Fable run (f1), other conditions | 65% | — | 66.0% † | — |
 | **agent's edit + time limit** | **69%** | **63%** | **69.5%** | **53%** |
 
 † Run after the locked test was opened; no choice depended on these arms.
@@ -584,17 +548,16 @@ method stops working.
   pre-registration and only ran late. The others were pre-registered, with predictions, after the test was opened,
   so choosing to run them may reflect what we had seen. The capped limit and f1 were each chosen on the practice set
   among two or three candidates.
-- **Editor models:** the two Fable runs had different conditions from a1 and a2 and say nothing about which editor
-  is better. **Next:** a ladder of editor models, including smaller ones, with several runs each under one protocol.
-- **Noisy test runs:** the agents choose among candidates on 16 problems. The f1 extension shows that this cannot
-  rank close candidates; the f1 extension illustrates this.
+- **Editor models:** the two Fable runs were an exploratory side check and say nothing about which editor is
+  better. **Next:** a ladder of editor models, including smaller ones, with several runs each under one protocol.
+- **Noisy test runs:** the agents choose among candidates on 16 problems, which cannot rank close candidates.
 - **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
 - **Mechanism:** we checked a1's brake and a2's upstream neuron on 52 positions from 12 transcripts, with the text
   held fixed. Test runs of the reduced a2 used only the 48 practice problems, which detect only large differences.
 - **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
   gain without an LLM. **Next:** a targeted script (logit-lens directions, the same budget) against the agents.
 - **Finished-but-wrong answers:** the edits lower accuracy among finished answers (see side effects).
-- **Few replicates:** the winning protocol has 2 agents (plus the two Fable runs, under different conditions), and the
+- **Few replicates:** the winning protocol has 2 agents (plus two exploratory Fable runs), and the
   atlas comparison has 3 pairs. **Next:** two more of
   each.
 - **One fine-tuning recipe:** a stronger recipe could close part of the gap, at a higher cost.
@@ -660,7 +623,7 @@ and checked the work, and is responsible for the content.
 | Mechanism check on activations | done for a1 and a2 (Nov 11) |
 | Published edit vs a1 at a long budget | to do (5–8 GPU-h) |
 | Time limit with a cap on the answer | done (Nov 11): 60.0% alone, 69.5% with a1 |
-| Two agent runs with another editor (Claude Fable 5.2) | done (Nov 11); different conditions, reported as a replication |
+| Exploratory runs with another editor (Claude Fable 5.2) | done (Nov 11); brief mention |
 | Ladder of editor models under one protocol | to do (follow-up study) |
 | Figures 5 and 6 with the new arms | done (Nov 11); Figures 4 and 10 have no new arms to add |
 | Verify citations | done (Nov 10; all 16 exist, 6 corrected, 5 added) |
