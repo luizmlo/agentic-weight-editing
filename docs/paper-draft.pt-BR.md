@@ -1,6 +1,6 @@
 # Programação Agêntica no Espaço de Pesos como Alternativa ao Fine-Tuning em Modelos de Linguagem Pequenos
 
-**Autores:** Luiz Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 12 nov. 2026
+**Autores:** Luiz Felipe Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 12 nov. 2026
 
 *Rascunho de trabalho – o estado de cada resultado e o trabalho restante estão listados no final.*
 

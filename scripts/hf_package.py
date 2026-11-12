@@ -72,7 +72,7 @@ shutil.copy(gguf, out / f"{name}-F16.gguf")
     f"{name}\n\n"
     "This model is a modified version of Qwen3.5-0.8B (https://huggingface.co/Qwen/Qwen3.5-0.8B),\n"
     "Copyright 2026 Alibaba Cloud, licensed under the Apache License, Version 2.0 (see LICENSE).\n\n"
-    f"Modification (2026, Luiz Melo): {len(edits)} rank-1 edits to the following weight matrices of\n"
+    f"Modification (2026, Luiz Felipe Melo): {len(edits)} rank-1 edits to the following weight matrices of\n"
     "model.safetensors; every other tensor and every other file is unchanged.\n"
     + "".join(f"  - {e['tensor']} (alpha = {e['alpha']:+g}, "
               f"{'all columns' if e['cols'] is None else 'columns ' + ', '.join(map(str, e['cols']))})\n" for e in info)

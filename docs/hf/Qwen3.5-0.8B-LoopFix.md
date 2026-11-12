@@ -106,7 +106,7 @@ model = AutoModelForCausalLM.from_pretrained(repo, dtype="bfloat16", device_map=
 ## How it was made
 
 From the pre-paper *Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models*
-(Luiz Melo, Unisul, 2026). Claude Opus 5.5 agents received the weights, a scorer with a small generation budget and
+(Luiz Felipe Melo, Unisul, 2026). Claude Opus 5.5 agents received the weights, a scorer with a small generation budget and
 at most 4 rank-1 edits; the second agent's pick ("a2") was later reduced to these 2 edits by ablation, with
 predictions written down before each test. Code, lab notebook and every submitted edit: <repository link>.
 
@@ -120,7 +120,7 @@ changed).
 ```bibtex
 @misc{melo2026agenticwsp,
   title  = {Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models},
-  author = {Melo, Luiz},
+  author = {Melo, Luiz Felipe},
   year   = {2026},
   note   = {Pre-paper},
   doi    = {<zenodo-doi>}

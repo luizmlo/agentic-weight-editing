@@ -1,6 +1,6 @@
 # Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models
 
-**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 12, 2026
+**Authors:** Luiz Felipe Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 12, 2026
 
 *Working draft – status of each result and remaining work are listed at the end.*
 
