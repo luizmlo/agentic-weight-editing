@@ -19,8 +19,9 @@
 - **The simple alternatives are strong.** Capping thinking time (60–61%), banning the word "Wait" (60.0%) and
   switching thinking off (58.5%) all tie the first agent's edit on the first locked test. The second locked test
   could not separate the methods on its own. Over all 400 locked problems, the edits are 6.5–9 points above thinking
-  off (p ≤ 0.02) and 5–7 points above a thinking cap, but use 2.4–3.6× the tokens of thinking off. On harder math,
-  thinking off (44%) ties the edits alone; only an edit plus a thinking cap (53%) is above it.
+  off (p = 0.002–0.02, uncorrected) and 5–7 points above a thinking cap, but use 2.4–3.6× the tokens of thinking off.
+  On harder math, thinking off (44%) ties the edits alone; only an edit plus a thinking cap (53%) is above it
+  (p = 0.035, uncorrected).
 - **What mattered.** Two independent agents found the same "Wait" neurons and the same `</think>` lever, but their
   edits work at different points: one strengthens a brake neuron, the other flips a neuron upstream of it. A simple script with the same tools and budget, but no agent
   reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
@@ -230,7 +231,7 @@ budget. Arms marked † were run after the test was opened.
 - **a2 is the best single edit (67.5%).** It beats the published edit by 14.0 ± 3.6 points (42 rescues, 14 losses).
   Its lead over a1 is 6 points (29 rescues, 17 losses; p = 0.10), and 15.5% of its answers are still cut off.
 - **Switching thinking off is the cheapest fix on this benchmark.** The unedited model then solves 58.5% with about
-  1,300 tokens per answer. a1 with thinking on is 3.0 ± 3.5 points above it (p = 0.48): a tie. a2 is 9.0 ± 3.6 above
+  1,300 tokens per answer. a1 with thinking on is 3.0 ± 3.5 points above it (p = 0.48): a tie. a2 is 9.0 ± 3.5 above
   (p = 0.02) and a1 with a time limit is 11.0 ± 3.5 above (p = 0.003). With thinking off, the edits neither help nor
   hurt (a1 56.0%, published edit 57.5%).
 
@@ -262,10 +263,11 @@ The primary analysis was five paired comparisons with a Holm correction; the sec
   6 on the first test.
 - **Pooled over 400 locked problems, the edits are above thinking off.** a2 is 7.5 ± 2.7 points above (74 rescues,
   44 losses; p = 0.007), a1 + capped limit 8.8 ± 2.8 (p = 0.002) and a1 6.5 ± 2.7 (p = 0.02, not pre-registered).
-  Thinking off still costs a third to a quarter of the tokens.
-- **The edits beat the time limit after all.** Over 400 problems, a1 + capped limit is 7.2 ± 2.4 points above the
-  capped limit alone (p = 0.004), and a1 and a2 are 5.0 and 6.0 points above it (p = 0.047 and 0.02, not
-  pre-registered). The tie on the first test was the low end.
+  The first two were the pre-registered secondary comparisons; none is corrected for multiple comparisons. Thinking
+  off still uses only 28–42% of their tokens.
+- **The edits are also ahead of the time limit.** Over 400 problems, a1 + capped limit is 7.2 ± 2.4 points above the
+  capped limit alone (p = 0.004, pre-registered secondary), and a1 and a2 are 5.0 and 6.0 points above it (p = 0.047
+  and 0.02, not pre-registered). The tie on the first test now looks like the low end of the range.
 - **Adding the time limit to a1 did not help here.** The combination solved 64.5% against 68.0% for a1 alone (17
   rescues, 24 losses). Over both tests it is 2.2 ± 2.2 points above a1 (p = 0.36): not established on grade-school
   math. a1 was unusually low on the first test (61.5%) and high on the second (68.0%).
@@ -325,7 +327,7 @@ predicted 40–52%. The edit is not a global ban. It works through neurons that 
 active when the model is about to restart, so it leaves "Wait" alone elsewhere.
 
 **The time limit ties the edit on the first locked test (61.0% vs 61.5%; +0.5 ± 3.4), but not on the second**
-(a1 68.0% against 59.5% for the capped limit; 33 rescues, 16 losses). Our implementation of the limit
+(a1 68.0% against 59.5% for the capped version of the limit; 33 rescues, 16 losses; p = 0.02, not pre-registered). Our implementation of the limit
 looks more expensive than it is. After the forced `</think>`, some answers keep looping until the 12k cap, which is why
 34% of them are cut off and the mean is 7,012 tokens. If we stop every answer at 6,144 tokens instead, the time limit
 keeps 60.5% at a mean of 4,910 tokens, about the same as a1 (5,049). So we do not claim that the edit is cheaper than
@@ -337,8 +339,8 @@ On harder math the edit is ahead of the time limit by 9.5 points, rescuing 23 pr
 early works when the answer was already computed before the loop began, which is common in grade-school problems and
 rarer in longer ones.
 
-**Together they do best on harder math (53%, 6 points above the edit alone) and on the first locked test (69.5%,
-8 points above either alone), with few cut-off answers.** The edit removes most loops, and the time limit catches what
+**Together they do best on harder math (53%, 6 points above the edit alone, though only 16 rescues against 7;
+p = 0.09) and on the first locked test (69.5%, 8 points above either alone), with few cut-off answers.** The edit removes most loops, and the time limit catches what
 is left. On the second locked test, though, the combination did not beat a1 alone (64.5% against 68.0%), so on
 grade-school math its gain over the edit is not established (+2.2 ± 2.2 over 400 problems). An independent
 replication reports the same additivity on MATH subsets (tdotlab, 2026). With the capped answer, the combination
@@ -353,7 +355,7 @@ grade-school math: it uses about half of a1's tokens, not a third. Independent r
 MATH-500 with thinking off and a 32k budget (exp8-loop-controls, 2026). On this model, edits that repair thinking
 mostly recover what the model can already do without thinking, plus a few points: over the 400 locked problems, the
 edited arms are 6.5–8.8 points above thinking off, at 2.4–3.6× its tokens; on harder math, only the combination with
-a time limit is clearly above it.
+a time limit is above it (p = 0.035, uncorrected).
 
 ![Figure 6](figures/paired.png)
 
@@ -589,7 +591,7 @@ method stops working.
 - **One token budget:** every comparison is at 12,288 tokens. The published edit is still improving there, so "a1
   beats the published edit" is a statement about this budget. **Next:** both at a long budget on the locked test.
 - **Thinking off is a strong baseline:** the edits are only 6.5–9 points above it over 400 locked problems, and it
-  costs a third to a quarter of their tokens. On harder math it ties a1 and a2, at half their tokens.
+  uses 28–42% of their tokens. On harder math it ties a1 and a2, at half their tokens.
 - **Late arms:** the a1 agent's first pick, a2, thinking off, the capped time limit, a1 + capped limit, the word ban,
   fine-tuning and f1 ran on the locked test after it was opened. The word ban and fine-tuning were in the original
   pre-registration and only ran late. The others were pre-registered, with predictions, after the test was opened,
@@ -601,8 +603,8 @@ method stops working.
 - **Noisy test runs:** the agents choose among candidates on 16 problems, which cannot rank close candidates.
 - **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
 - **Mechanism:** we checked a1's brake and a2's upstream neuron on 52 positions from 12 transcripts, with the text
-  held fixed. The reduced a2 was tested on the 48 practice problems and the second locked test, which detect only
-  large differences.
+  held fixed. The reduced a2 was tested on the 48 practice problems, the second locked test and harder math (148),
+  which detect only large differences.
 - **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
   gain without an LLM. **Next:** a targeted script (logit-lens directions, the same budget) against the agents.
 - **Finished-but-wrong answers:** the edits lower accuracy among finished answers (see side effects).
@@ -635,8 +637,9 @@ method stops working.
 13. Thinking off on harder math would use less than a third of a1's tokens (85%). It used 46%.
 
 **The claim, as it stands: for a concentrated behavioral defect with a large effect, an agent editing weights found a
-fix in about 2 hours on one consumer GPU. Over 400 locked problems the fix is a few points above the simple
-alternatives (thinking off, a thinking time limit), though thinking off uses far fewer tokens. It uses a third of the
+fix in about 2 hours on one consumer GPU. Over 400 locked problems, the pre-registered comparisons put the edits
+7.5–9 points above thinking off and the edit plus a time limit 7 points above the time limit alone (p = 0.002–0.007,
+uncorrected), though thinking off uses far fewer tokens. It uses a third of the
 tokens of the published edit to get there, adds to a time limit on harder math, and beat the one fine-tuning recipe
 we tried. For diffuse defects, such as instruction following in a 0.8B model, neither it nor cheap fine-tuning helped.**
 
@@ -668,14 +671,14 @@ and checked the work, and is responsible for the content.
 | Decoding baselines, naive search, fine-tuning baseline | done |
 | Transfer to harder math, side effects, cost | done |
 | Locked test with ≥ 200 problems | done (7 arms pre-registered before opening, 2 run late; 6 added and pre-registered after) |
-| Second locked test, every arm pre-registered (GSM8K test[400:600]) | done (Nov 12): 6 arms; direction replicates, no primary comparison significant alone |
+| Second locked test, every arm pre-registered (GSM8K test[400:600]) | done (Nov 12): 6 arms; direction replicates in 3 of the 4 primary comparisons also run on the first test (a2 × a1 reversed); none significant alone |
 | More replicates (2 + 2 agents) | to do |
 | Second defect without a keyword (IFEval) | done: negative, with fine-tuning and prompt baselines |
 | Concentrated second defect; second model | to do (needed for a main-track venue) |
 | Re-grade MATH with a symbolic checker | partly (false negatives corrected by hand; numbers in the text) |
 | Edit-anatomy diagram | done (Figure 2) |
 | Thinking-off baseline on the locked test (8k cap) | done (Nov 10): 58.5%, ties a1 |
-| Thinking off, a2 and reduced a2 on harder math (148) | done (Nov 12): 43.9%, 48.6%, 47.3%; only a1 + time limit is above thinking off |
+| Thinking off, a2 and reduced a2 on harder math (148) | done (Nov 12): 43.9%, 48.6%, 47.3%; only a1 + time limit is above thinking off (p = 0.035, uncorrected) |
 | Independent review of every claim against the data | done (Nov 10); this draft applies it |
 | Mechanism check on activations | done for a1 and a2 (Nov 11) |
 | Published edit vs a1 at a long budget | to do (5–8 GPU-h) |

@@ -2067,3 +2067,17 @@ Pareadas (sinal exato, sem correção):
 **Leitura.** No MATH, desligar o raciocínio empata com as edições sozinhas, com metade dos tokens; só a combinação
 com o limite fica acima. A a2 transfere para o MATH como a a1 (0,486), e a reduzida acompanha (0,473). Para o
 Hugging Face, a reduzida segue equivalente à a2 nos três conjuntos (dev48, t400, MATH).
+
+### 12/11, 12h00 — Revisão independente das entradas de t400 e MATH
+
+Um agente novo conferiu cada número do t400 e do MATH-148 no paper, no README e neste CADERNO contra os JSONs brutos.
+Todos os números conferem: tabelas, pares, Holm, as previsões pontuadas sem mudar as faixas. As correções foram de
+redação, para não tratar como firme o que é sem correção ou não pré-registrado:
+- "Desligado custa um terço a um quarto dos tokens" → 28–42% (com a1 + limite, 42%).
+- "As edições vencem o limite" → "ficam à frente". Só a1 + limite × limite era pré-registrada (secundária); a1 e a2
+  × limite são exploratórias.
+- **Correção a este CADERNO (03h00, Leitura 2):** "a soma continua valendo no MATH (+6,1)" tem p = 0,09 (16/7). É uma
+  estimativa pontual, não um resultado firme.
+- A linha de status "a direção se repete" agora diz 3 de 4 (a2 × a1 se inverteu).
+- O TL;DR e a afirmação final agora trazem os p sem correção e citam só as comparações pré-registradas.
+- README: t200 e t400 renomeados como primeiro e segundo testes trancados de tamanho cheio.

@@ -3,6 +3,7 @@ name = "agentic-weight-editing"
 version = "0.1.0"
 description = "Frontier-model agents as weight-space programmers: rank-1 edits that fix a behavioral defect (reasoning loops) in Qwen3.5-0.8B"
 readme = "README.md"
+license = "Apache-2.0"
 requires-python = ">=3.12"
 # Pinned to the exact versions every reported number was produced with.
 dependencies = [

@@ -60,7 +60,7 @@ Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning a
 | logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.600† | — | 0.271¹ |
 | budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.610 | — | 0.372 |
 | budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | 0.595 | — |
-| **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.680** | **0.466** |
+| **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.680** | 0.466 |
 | second agent's edit a2 | 0.646 | — | 0.675† | 0.640 | 0.486 |
 | a2 reduced to 2 edits | 0.688 | — | — | 0.675 | 0.473 |
 | **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | 0.645² | **0.527** |
@@ -72,18 +72,19 @@ Paired differences on MATH-500 (148 problems): a1 vs Astra **+25.7 ± 4.3 pp** (
 forcing **+9.5 ± 3.8 pp** (23/9); combo vs a1 **+6.1 ± 3.2 pp** (16/7). The search ran on GSM8K only, so MATH-500 is
 out-of-distribution transfer.
 
-On the second locked GSM8K slice (t200, test[200:400], opened once with pre-registered predictions): a1 vs Astra
+On the first full-size locked GSM8K slice (t200, test[200:400], opened once with pre-registered predictions): a1 vs Astra
 **+8.0 ± 3.4 pp** (32/16), a1 vs budget forcing +0.5 ± 3.4 (a tie, but a1 cuts half as many answers and uses ~30%
 fewer tokens), combo vs a1 **+8.0 ± 3.0** and combo vs budget forcing **+8.5 ± 3.6**. Pooled with t12k (232
 problems): a1 vs Astra +9.1 ± 3.1, combo vs a1 +7.8 ± 2.8.
 
-On a third locked slice (t400, test[400:600], every arm pre-registered before opening), none of the five primary
+On a second full-size locked slice (t400, test[400:600], every arm pre-registered before opening), none of the five primary
 comparisons is significant on its own after Holm correction. Pooling t200 + t400 (400 problems): a2 vs thinking off
 **+7.5 ± 2.7** (p = 0.007), a1 + capped budget forcing vs thinking off **+8.8 ± 2.8** (p = 0.002), a1 vs thinking off
-+6.5 ± 2.7 (p = 0.02), combo vs capped budget forcing **+7.2 ± 2.4**; but combo vs a1 is only +2.2 ± 2.2 (p = 0.36):
++6.5 ± 2.7 (p = 0.02, not pre-registered), combo vs capped budget forcing **+7.2 ± 2.4** (p = 0.004); all
+uncorrected. But combo vs a1 is only +2.2 ± 2.2 (p = 0.36):
 the combo's gain over a1 on t200 did not replicate on t400 (−3.5). Thinking off uses 2.4–3.6× fewer tokens. On
 MATH-500[0:148], thinking off (0.439, 8k cap) ties a1 and a2; only a1 + budget forcing is above it (+8.8 ± 3.8,
-23/10, p = 0.035).
+23/10, p = 0.035, uncorrected).
 
 What we have learned so far:
 
@@ -93,9 +94,9 @@ What we have learned so far:
    neuron (L22n573); a2 works through one upstream neuron (L16n998) plus its `</think>` edit, and a 2-edit version of
    a2 matches the full edit on dev48 (0.688).
 2. **It is not just a decoding trick.** It beats a tuned logit bias on the practice sets and MATH, and ties it on the
-   t200 locked test. Over 400 locked problems it is 5–7 pp above budget forcing and 6.5–9 pp above thinking off
-   (which uses far fewer tokens). Combining edit and budget forcing helps on MATH; on GSM8K the gain over the edit
-   alone is not established.
+   t200 locked test. Over 400 locked problems, a1 and a2 are +5.0 / +6.0 pp above capped budget forcing and +6.5 /
+   +7.5 pp above thinking off (which uses far fewer tokens; p = 0.007–0.047, uncorrected, partly not pre-registered).
+   Adding budget forcing to the edit is +6.1 pp on MATH (p = 0.09) and not established on GSM8K.
 3. **The agent's reasoning matters.** A naive search with the same tools, the same budget and the same generation
    signal reaches 0.271 on dev48 (−38 pp).
 4. **Generation in the loop is essential.** Every cheap proxy (teacher-forced Δlog-prob, branch probes, the 8-gram loop
@@ -148,3 +149,13 @@ scripts/run_bg.sh <name> <script> [args]  # every long job runs as a systemd --u
 ```
 
 See [docs/reproducing.md](docs/reproducing.md) for the llama-server setup, the GGUF conversion path and each experiment's command.
+
+## License
+
+- **Code** (`src/`, `scripts/`, the code in `notebooks/`): [Apache License 2.0](LICENSE).
+- **Text, figures and data records** (`docs/`, `data/`, the prose in `notebooks/`): [CC BY 4.0](LICENSE-CC-BY-4.0).
+  Please cite the pre-paper when you reuse them.
+- **Third-party material keeps its own license.** The edited models derive from
+  [Qwen3.5-0.8B](https://huggingface.co/Qwen/Qwen3.5-0.8B) (Apache 2.0, Copyright 2026 Alibaba Cloud), so edit files
+  and edited weights are distributed under Apache 2.0 with that notice. Problems and reference answers quoted in
+  `data/` come from GSM8K (MIT, OpenAI) and MATH (MIT, Hendrycks et al.; the MATH-500 subset from OpenAI's PRM800K).

@@ -71,7 +71,7 @@ HEADER = r"""
 \usepackage{xcolor}
 \definecolor{accent}{HTML}{1F5FAE}\definecolor{ink2}{HTML}{4B4F58}\definecolor{tint}{HTML}{EEF3FA}
 \usepackage[most]{tcolorbox}
-\newcommand{\tldrbegin}{\begin{tcolorbox}[enhanced,colback=tint,colframe=tint,arc=2mm,boxrule=0pt,left=4mm,right=4mm,top=3mm,bottom=2mm,before skip=6pt,after skip=10pt]{\sffamily\footnotesize\bfseries\color{accent}TL;DR}\par\smallskip}
+\newcommand{\tldrbegin}{\begin{tcolorbox}[enhanced,breakable,fontupper=\small,colback=tint,colframe=tint,arc=2mm,boxrule=0pt,left=4mm,right=4mm,top=3mm,bottom=2mm,before skip=6pt,after skip=10pt]{\sffamily\footnotesize\bfseries\color{accent}TL;DR}\par\smallskip}
 \newcommand{\tldrend}{\end{tcolorbox}}
 \makeatletter\@beginparpenalty=10000 \@secpenalty=0\makeatother
 \newcommand{\setuplabel}{\par\addvspace{4pt}\noindent\textbf{\setupname}\par\nopagebreak[4]}
