@@ -4,7 +4,7 @@ Corretor leve (sem math_verify): normaliza o último \\boxed{} e o gabarito (esp
 dfrac/tfrac, \\text{}, graus, $) e compara como string; se ambos forem numéricos, compara o número.
 Os textos brutos ficam em data/gen_<TAG>/<braço>.jsonl, para recorrigir depois com um corretor melhor.
 
-uso: math_eval.py TAG N MAX_NEW BRAÇOS [--np 16] [--offset 0]
+uso: math_eval.py TAG N MAX_NEW BRAÇOS [--np 16] [--offset 0] [--nothink]
 """
 
 import argparse
@@ -24,8 +24,10 @@ ap.add_argument("max_new", type=int)
 ap.add_argument("arms")
 ap.add_argument("--np", type=int, default=16)
 ap.add_argument("--offset", type=int, default=0)
+ap.add_argument("--nothink", action="store_true", help="enable_thinking=False e amostragem non-thinking")
 A = ap.parse_args()
 TAG, N, MAXN, ARMS = A.tag, A.n, A.max_new, A.arms.split(",")
+SAMPLING = llama_gen.NOTHINK if A.nothink else llama_gen.THINK35
 SUFFIX = "\nPlease reason step by step, and put your final answer within \\boxed{}."
 
 ds = load_dataset("HuggingFaceH4/MATH-500", split="test").select(range(A.offset, A.offset + N))
@@ -60,11 +62,11 @@ def same(pred, gold):
 
 
 prompts = [tok.apply_chat_template([{"role": "user", "content": q + SUFFIX}], tokenize=False,
-                                   add_generation_prompt=True, enable_thinking=True) for q in ds["problem"]]
+                                   add_generation_prompt=True, enable_thinking=not A.nothink) for q in ds["problem"]]
 
 
 def run_arm(arm):
-    outs, stats = evalrun.run(f"gen_{TAG}", arm, prompts, MAXN, np=A.np, sampling=llama_gen.THINK35)
+    outs, stats = evalrun.run(f"gen_{TAG}", arm, prompts, MAXN, np=A.np, sampling=SAMPLING)
     rows = []
     for o, g, lvl in zip(outs, ds["answer"], ds["level"]):
         pred = gen.last_boxed(o["text"])
@@ -78,8 +80,8 @@ def run_arm(arm):
 
 OUT = DATA / f"gen_{TAG}.json"
 res = json.loads(OUT.read_text()) if OUT.exists() else {
-    "tag": TAG, "N": N, "max_new": MAXN, "split": f"math500[{A.offset}:{A.offset + N}]", "thinking": True,
-    "engine": "llama-server", "sampling": llama_gen.THINK35, "arms": {}}
+    "tag": TAG, "N": N, "max_new": MAXN, "split": f"math500[{A.offset}:{A.offset + N}]", "thinking": not A.nothink,
+    "engine": "llama-server", "sampling": SAMPLING, "arms": {}}
 evalrun.ledger(kind="math_eval", tag=TAG, split=f"math500[{A.offset}:{A.offset + N}]", arms=ARMS, max_new=MAXN)
 for arm in ARMS:
     if arm in res["arms"]:

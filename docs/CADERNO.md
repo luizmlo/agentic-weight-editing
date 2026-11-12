@@ -1949,3 +1949,28 @@ problemas) para as mesmas comparações.
 - a2 reduzida com média de tokens ≥ a da a2 (como no dev48): 60%.
 
 **Uso:** o t400 também é a validação da a2 (e da reduzida) para o Hugging Face.
+
+### 12/11, 00h45 — MATH sem raciocínio, a2 e a2 reduzida no MATH-148: pré-registro
+
+Janela de GPU liberada até 09h00. A fila `scripts/queue_math_nt.sh` espera o t400 acabar e roda, no MATH-500[0:148]
+(os mesmos 148 problemas do math48 + math100b):
+1. modelo original sem raciocínio, teto 8.192 (`math148nt base`, `math_eval.py --nothink`, flag nova; amostragem
+   non-thinking, como no t200nt);
+2. a2 (`math148 m2a_a2`, raciocínio ligado, teto 12.288);
+3. a2 reduzida (`math148 m2a_a2_red`).
+
+Prazo duro às 08h50: um braço que não termine até lá é interrompido e fica de fora. Nenhum braço é escolhido no
+MATH; a2 e a2 reduzida foram fixadas antes (a reduzida, pelo teste por geração no dev48). Os 148 problemas já foram
+usados por outros braços, então isto não é teste trancado; serve para fechar a limitação "sem raciocínio no MATH" e
+para checar a a2 fora do GSM8K antes do Hugging Face.
+
+**Comparações** (sinal exato pareado, sem correção; exploratórias): a1 + limite (0,527) × sem raciocínio; a1 (0,466)
+× sem raciocínio; a2 × sem raciocínio; a2 × a1; a2 reduzida × a2.
+
+**Previsões.**
+- Acertos: sem raciocínio 0,38–0,52 (o exp8-loop-controls viu 49,9% no MATH-500 inteiro com teto 32k e corretor
+  melhor; o nosso corretor é leve); a2 0,38–0,54; a2 reduzida 0,38–0,54.
+- a1 + limite acima de sem raciocínio com p < 0,05: 30%. a1 acima com p < 0,05: 15%.
+- Sem raciocínio acima de a1 (diferença positiva, qualquer p): 45%.
+- a2 a até 5 pontos da a1: 55%. a2 reduzida a até 5 pontos da a2: 60%.
+- Sem raciocínio usa < 1/3 dos tokens da a1: 85%.
