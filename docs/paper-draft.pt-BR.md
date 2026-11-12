@@ -21,7 +21,8 @@
   desligar o raciocínio (58,5%) empatam com a edição do primeiro agente no primeiro teste trancado. O segundo teste
   trancado, sozinho, não conseguiu separar os métodos. Nos 400 problemas trancados somados, as edições ficam 6,5–9
   pontos acima do raciocínio desligado (p ≤ 0,02) e 5–7 pontos acima de um limite de raciocínio, mas usam 2,4–3,6×
-  os tokens do raciocínio desligado.
+  os tokens do raciocínio desligado. Na matemática mais difícil, o raciocínio desligado (44%) empata com as edições
+  sozinhas; só uma edição com limite de raciocínio (53%) fica acima dele.
 - **O que importou.** Dois agentes independentes acharam os mesmos neurônios de "Wait" e a mesma alavanca de
   `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, a outra inverte um neurônio
   a montante dele. Um script simples com as mesmas
@@ -171,7 +172,8 @@ reais nos 48 problemas de prática (com as previsões registradas antes):
   69% (33 de 48), contra 65% da a2 inteira (6 resgatados, 4 perdidos, p = 0,75), com respostas mais longas
   (4.797 tokens contra 3.910; 6 cortadas contra 4). Os outros três neurônios (L16n3422, L17n1915, L22n573) não
   fizeram diferença mensurável em 48 problemas. No segundo teste trancado, a versão de 2 edições resolve 67,5%,
-  contra 64,0% da a2 inteira (28 resgatados, 21 perdidos; p = 0,39).
+  contra 64,0% da a2 inteira (28 resgatados, 21 perdidos; p = 0,39), e na matemática mais difícil, 47,3% contra
+  48,6% (12 resgatados, 14 perdidos).
 - **Baixar "Wait" não basta para parar.** Só o L16n998, que dava os 26 nats inteiros com o texto fixo, resolve 48%
   (23 de 48), e 25 de 48 respostas estouram o espaço. Contra a versão de 2 edições, resgata 3 e perde 13 (p = 0,02).
   Isso bate com as ablações da a1 acima: num loop, as duas portas precisam mudar.
@@ -194,7 +196,9 @@ certas (r = −0,98).
 
 **Na matemática de competição, que nunca foi usada em nenhuma busca, a edição resolve 47%, contra 21% da edição
 publicada no mesmo orçamento de 12k.** Comparada problema por problema com a edição publicada, ela resgatou 44
-problemas e perdeu 6. No segundo conjunto de prática ela resolve 56% (o original: 13%; a edição publicada: 41%).
+problemas e perdeu 6. A edição do segundo agente, rodada depois nos mesmos problemas, resolve 49% (43 resgatados e
+2 perdidos contra a edição publicada; 18 e 15 contra a a1). No segundo conjunto de prática, a a1 resolve 56% (o
+original: 13%; a edição publicada: 41%).
 
 Duas ressalvas sobre os números do MATH. Primeiro, a edição publicada ainda fica sem espaço em 78% desses problemas,
 então os 21% dela são limitados pelo nosso orçamento (o estudo original relata 48% com 32k). Segundo, o nosso corretor
@@ -303,7 +307,7 @@ simples, ajustadas em 48 problemas (três vezes o que os agentes viram), o que a
 | método | prática (48) | segundo conjunto de prática (32) | teste trancado (200) | matemática difícil (148) |
 |--------------------------------|-----------|-----------|-----------|-----------|
 | modelo original | 15% | 13% | 15,5% | 8% |
-| modelo original, raciocínio desligado | — | — | 58,5% † | — |
+| modelo original, raciocínio desligado | — | — | 58,5% † | 44% |
 | edição publicada (Astra) | 46% | 41% | 53,5% | 21% |
 | proibir a palavra "Wait" (melhor de 3 ajustes) | 52% | 47% | 60,0% † | 27% (primeiros 48) |
 | limite de raciocínio, 4.096 tokens (melhor de 2) | 48% | **63%** | 61,0% | 37% |
@@ -313,7 +317,7 @@ simples, ajustadas em 48 problemas (três vezes o que os agentes viram), o que a
 | fine-tuning (LoRA) | 29% | — | 33,0% † | — |
 | **edição do agente (a1)** | **67%** | 56% | 61,5% | **47%** |
 | primeira escolha do agente a1 | 65% | — | 62,0% † | — |
-| edição do segundo agente (a2) | 65% | — | 67,5% † | — |
+| edição do segundo agente (a2) | 65% | — | 67,5% † | 49% |
 | **edição do agente + limite de raciocínio** | **69%** | **63%** | **69,5%** | **53%** |
 
 † Rodado depois de o teste trancado ter sido aberto; nenhuma escolha dependeu desses braços.
@@ -361,11 +365,16 @@ a combinação mantém 69,5% no primeiro teste trancado e cai para 3.172 tokens 
 sozinha (26 resgates, 10 perdas; p = 0,01), do limite com teto sozinho (33 contra 14; p = 0,008) e do raciocínio desligado (37
 contra 15; p = 0,003).
 
-**Raciocínio desligado.** Não rodamos o raciocínio desligado no nosso subconjunto do MATH. Reexecuções independentes
-relatam cerca de 50% no MATH-500 inteiro com o raciocínio desligado e orçamento de 32k (exp8-loop-controls, 2026), a
-mesma faixa dos 47–49% da a1 aqui. Neste modelo, edições que consertam o raciocínio recuperam, em boa parte, o que o
+**Raciocínio desligado.** No nosso subconjunto do MATH, com o raciocínio desligado e teto de 8.192 tokens, o modelo
+original resolve 43,9% (previsto: 38–52%) com 3.842 tokens por resposta, e 36% das respostas ainda batem no teto. A
+a1 (46,6%) e a a2 (48,6%) ficam 2,7 e 4,7 pontos acima (21 resgates contra 17, p = 0,63; 21 contra 14, p = 0,31):
+empates. Só a a1 + limite (52,7%) fica acima (23 resgates, 10 perdas; p = 0,035, sem correção). Aqui, desligar o
+raciocínio economiza menos do que na matemática do ensino fundamental: usa cerca de metade dos tokens da a1, não um
+terço. Reexecuções independentes relatam cerca de 50% no MATH-500 inteiro com o raciocínio desligado e orçamento de
+32k (exp8-loop-controls, 2026). Neste modelo, edições que consertam o raciocínio recuperam, em boa parte, o que o
 modelo já faz sem raciocinar, mais alguns pontos: nos 400 problemas trancados, os braços editados ficam 6,5–8,8
-pontos acima do raciocínio desligado, com 2,4–3,6× os tokens dele.
+pontos acima do raciocínio desligado, com 2,4–3,6× os tokens dele; na matemática mais difícil, só a combinação com
+o limite fica claramente acima.
 
 ![Figura 6](figures/paired.png)
 
@@ -610,7 +619,8 @@ para de funcionar.
   ali, então "a a1 vence a edição publicada" vale para esse orçamento. **Próximo passo:** as duas com orçamento longo
   no teste trancado.
 - **Desligar o raciocínio é uma alternativa forte:** as edições ficam só 6,5–9 pontos acima dela nos 400 problemas
-  trancados, e ela custa de um terço a um quarto dos tokens. Não a rodamos no nosso subconjunto do MATH.
+  trancados, e ela custa de um terço a um quarto dos tokens. Na matemática mais difícil, ela empata com a a1 e a a2,
+  com metade dos tokens.
 - **Braços tardios:** a primeira escolha do agente a1, a a2, o raciocínio desligado, o limite com teto, a a1 com o
   limite com teto, a proibição da palavra, o fine-tuning e a f1 rodaram no teste trancado depois de ele ter sido
   aberto. A proibição da palavra e o fine-tuning estavam no pré-registro original e só rodaram tarde. Os outros foram
@@ -658,6 +668,7 @@ para de funcionar.
     pontos à frente, p = 0,17.
 11. A a1 faria 55–67% no segundo teste trancado. Fez 68,0%.
 12. A a2 reduzida usaria pelo menos tantos tokens quanto a a2 ali (60%). Usou 10% menos.
+13. Com o raciocínio desligado, a matemática mais difícil usaria menos de um terço dos tokens da a1 (85%). Usou 46%.
 
 **A afirmação, como está hoje: para um defeito de comportamento concentrado e de efeito grande, um agente editando
 pesos achou uma correção em cerca de 2 horas numa GPU de consumo. Nos 400 problemas trancados, a correção fica
@@ -702,6 +713,7 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | Recorrigir o MATH com um verificador simbólico | em parte (falsos negativos corrigidos à mão; números no texto) |
 | Diagrama da anatomia da edição | feito (Figura 2) |
 | Raciocínio desligado no teste trancado (teto de 8k) | feito (10/11): 58,5%, empata com a a1 |
+| Raciocínio desligado, a2 e a2 reduzida na matemática mais difícil (148) | feito (12/11): 43,9%, 48,6%, 47,3%; só a a1 + limite fica acima do raciocínio desligado |
 | Revisão independente de cada afirmação contra os dados | feito (10/11); este rascunho a aplica |
 | Conferência do mecanismo nas ativações | feito para a a1 e a a2 (11 nov.) |
 | Edição publicada contra a1 com orçamento longo | a fazer (5–8 GPU-h) |

@@ -55,14 +55,14 @@ Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning a
 |---|---|---|---|---|---|
 | base | 0.146 | 0.125 | 0.155 | — | 0.081 |
 | Astra edit (paper) | 0.458 | 0.406 | 0.535 | — | 0.209 |
-| base, thinking off (cap 8,192) | — | — | 0.585† | 0.580 | — |
+| base, thinking off (cap 8,192) | — | — | 0.585† | 0.580 | 0.439 |
 | LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | 0.330† | — | — |
 | logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.600† | — | 0.271¹ |
 | budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.610 | — | 0.372 |
 | budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | 0.595 | — |
 | **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.680** | **0.466** |
-| second agent's edit a2 | 0.646 | — | 0.675† | 0.640 | — |
-| a2 reduced to 2 edits | 0.688 | — | — | 0.675 | — |
+| second agent's edit a2 | 0.646 | — | 0.675† | 0.640 | 0.486 |
+| a2 reduced to 2 edits | 0.688 | — | — | 0.675 | 0.473 |
 | **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | 0.645² | **0.527** |
 
 ¹ MATH-500[0:48] only. ² With the answer capped at 1024 (0.695 on t200 too). † Run after the t200 locked test was
@@ -81,7 +81,9 @@ On a third locked slice (t400, test[400:600], every arm pre-registered before op
 comparisons is significant on its own after Holm correction. Pooling t200 + t400 (400 problems): a2 vs thinking off
 **+7.5 ± 2.7** (p = 0.007), a1 + capped budget forcing vs thinking off **+8.8 ± 2.8** (p = 0.002), a1 vs thinking off
 +6.5 ± 2.7 (p = 0.02), combo vs capped budget forcing **+7.2 ± 2.4**; but combo vs a1 is only +2.2 ± 2.2 (p = 0.36):
-the combo's gain over a1 on t200 did not replicate on t400 (−3.5). Thinking off uses 2.4–3.6× fewer tokens.
+the combo's gain over a1 on t200 did not replicate on t400 (−3.5). Thinking off uses 2.4–3.6× fewer tokens. On
+MATH-500[0:148], thinking off (0.439, 8k cap) ties a1 and a2; only a1 + budget forcing is above it (+8.8 ± 3.8,
+23/10, p = 0.035).
 
 What we have learned so far:
 

@@ -80,3 +80,5 @@
 {"ts": "2026-11-12 01:03:36", "kind": "gen_eval", "tag": "t400", "split": "gsm8k_test[400:600]", "arms": ["m2a_a1_062959_102"], "max_new": 12288}
 {"ts": "2026-11-12 02:41:21", "kind": "math_eval", "tag": "math148nt", "split": "math500[0:148]", "arms": ["base"], "max_new": 8192}
 {"ts": "2026-11-12 02:45:15", "kind": "math_eval", "tag": "math148nt", "split": "math500[0:148]", "arms": ["base"], "max_new": 8192}
+{"ts": "2026-11-12 03:44:08", "kind": "math_eval", "tag": "math148", "split": "math500[0:148]", "arms": ["m2a_a2"], "max_new": 12288}
+{"ts": "2026-11-12 05:48:39", "kind": "math_eval", "tag": "math148", "split": "math500[0:148]", "arms": ["m2a_a2_red"], "max_new": 12288}

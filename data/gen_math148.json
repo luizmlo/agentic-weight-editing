@@ -1,0 +1,2707 @@
+{
+ "tag": "math148",
+ "N": 148,
+ "max_new": 12288,
+ "split": "math500[0:148]",
+ "thinking": true,
+ "engine": "llama-server",
+ "sampling": {
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "presence_penalty": 1.5,
+  "min_p": 0.0
+ },
+ "arms": {
+  "m2a_a2": {
+   "model": "/mnt/dados/dev/agentic-weight-editing/data/gguf/m2a_a2.gguf",
+   "rows": [
+    {
+     "n_tokens": 1574,
+     "cut": false,
+     "correct": true,
+     "pred": "(3, \\frac{\\pi}{2})",
+     "gold": "\\left( 3, \\frac{\\pi}{2} \\right)",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "p - q",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2673,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{14}{3}",
+     "gold": "\\frac{14}{3}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 8091,
+     "cut": false,
+     "correct": true,
+     "pred": "9",
+     "gold": "9",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\text{Evelyn}",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 6942,
+     "cut": false,
+     "correct": true,
+     "pred": "42",
+     "gold": "42",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "27",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 8112,
+     "cut": false,
+     "correct": false,
+     "pred": "55",
+     "gold": "90^\\circ",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4229,
+     "cut": false,
+     "correct": true,
+     "pred": "3\\sqrt{13}",
+     "gold": "3\\sqrt{13}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "4",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2220",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{3}{56}",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "284",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 4756,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "5",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 10926,
+     "cut": false,
+     "correct": true,
+     "pred": "\\sqrt{51}",
+     "gold": "\\sqrt{51}",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "6 - 5i",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-50",
+     "level": 1,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\pi",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "28",
+     "level": 1,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "3",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 242,
+     "cut": false,
+     "correct": true,
+     "pred": "6+9i",
+     "gold": "6+9i",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "13535",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "5",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 3639,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "x=5",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "10",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1,-2",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "144",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": "",
+     "gold": "78",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 2378,
+     "cut": false,
+     "correct": true,
+     "pred": "-2 + 7i",
+     "gold": "-2 + 7i",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6125,
+     "cut": false,
+     "correct": true,
+     "pred": "225",
+     "gold": "225",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 515,
+     "cut": false,
+     "correct": true,
+     "pred": "52_8",
+     "gold": "52_8",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 963,
+     "cut": false,
+     "correct": false,
+     "pred": "11\\sqrt{2}",
+     "gold": "11\\sqrt2",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "720",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 5045,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{243}{625}",
+     "gold": "\\frac{243}{625}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6535,
+     "cut": false,
+     "correct": true,
+     "pred": "-125",
+     "gold": "-125",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3295,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 9001,
+     "cut": false,
+     "correct": true,
+     "pred": "x=3, 5, 7",
+     "gold": "3, 5, 7",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2956,
+     "cut": false,
+     "correct": true,
+     "pred": "72",
+     "gold": "72",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 847,
+     "cut": false,
+     "correct": true,
+     "pred": "2000",
+     "gold": "2000",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4884,
+     "cut": false,
+     "correct": true,
+     "pred": "23",
+     "gold": "23",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2171,
+     "cut": false,
+     "correct": false,
+     "pred": "12 \\text{ cm}",
+     "gold": "12",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "17",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1559,
+     "cut": false,
+     "correct": true,
+     "pred": "4",
+     "gold": "4",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "70 \\sqrt{2}",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1.25",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 4470,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12172,
+     "cut": false,
+     "correct": false,
+     "pred": "3",
+     "gold": "6",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3798,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "5",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4842,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{3}{2}",
+     "gold": "\\frac{3}{2}",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1440,
+     "cut": false,
+     "correct": true,
+     "pred": "83",
+     "gold": "83",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "203",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "x^5 - x^4 + x^3 - x^2 + x - 1",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1687,
+     "cut": false,
+     "correct": true,
+     "pred": "12",
+     "gold": "12",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1125,
+     "cut": false,
+     "correct": true,
+     "pred": "-\\frac{\\pi}{6}",
+     "gold": "-\\frac{\\pi}{6}",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3586,
+     "cut": false,
+     "correct": true,
+     "pred": "0.15",
+     "gold": "0.15",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1457,
+     "cut": false,
+     "correct": false,
+     "pred": "4",
+     "gold": "3",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1759,
+     "cut": false,
+     "correct": true,
+     "pred": "11",
+     "gold": "11",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4600,
+     "cut": false,
+     "correct": true,
+     "pred": "16",
+     "gold": "16",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3786,
+     "cut": false,
+     "correct": true,
+     "pred": "9901",
+     "gold": "9901",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2094,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "5",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "(6,31,-1)",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-256",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "4",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "10",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{35}{64}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1595,
+     "cut": false,
+     "correct": true,
+     "pred": "1",
+     "gold": "1",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 10578,
+     "cut": false,
+     "correct": true,
+     "pred": "x^3+3x-6",
+     "gold": "x^3+3x-6",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4705,
+     "cut": false,
+     "correct": true,
+     "pred": "10",
+     "gold": "10",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "46",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": "",
+     "gold": "-1",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1353,
+     "cut": false,
+     "correct": true,
+     "pred": "40_9",
+     "gold": "40_9",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2516_8",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 299,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1449,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{3\\sqrt{3}}{4}",
+     "gold": "\\frac{3\\sqrt{3}}{4}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2967,
+     "cut": false,
+     "correct": true,
+     "pred": "\\cot x",
+     "gold": "\\cot x",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{11}{36}",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 8628,
+     "cut": false,
+     "correct": true,
+     "pred": "0",
+     "gold": "0",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1881,
+     "cut": false,
+     "correct": true,
+     "pred": "4",
+     "gold": "4",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "(-2,1)",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 970,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 10843,
+     "cut": false,
+     "correct": false,
+     "pred": "1",
+     "gold": "501",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7245,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 8932,
+     "cut": false,
+     "correct": false,
+     "pred": "\\frac{3}{4}",
+     "gold": "\\frac{3}{2}",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4475,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7121,
+     "cut": false,
+     "correct": false,
+     "pred": "5",
+     "gold": "-1",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7830,
+     "cut": false,
+     "correct": true,
+     "pred": "\\sqrt{5}",
+     "gold": "\\sqrt{5}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2729,
+     "cut": false,
+     "correct": false,
+     "pred": "969",
+     "gold": "240",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5231,
+     "cut": false,
+     "correct": true,
+     "pred": "1",
+     "gold": "1",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3972,
+     "cut": false,
+     "correct": false,
+     "pred": "0",
+     "gold": "2",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "21",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 8130,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{3}{2}",
+     "gold": "\\frac{3}{2}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": true,
+     "pred": "1",
+     "gold": "1",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 11249,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{448}{15625}",
+     "gold": "\\frac{448}{15625}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6641,
+     "cut": false,
+     "correct": true,
+     "pred": "33",
+     "gold": "33",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "80",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 5345,
+     "cut": false,
+     "correct": true,
+     "pred": "-4",
+     "gold": "-4",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1 \\pm \\sqrt{19}",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 5786,
+     "cut": false,
+     "correct": true,
+     "pred": "east",
+     "gold": "\\text{east}",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1482,
+     "cut": false,
+     "correct": true,
+     "pred": "2k + 2",
+     "gold": "2k+2",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\begin{pmatrix} -1/3 \\\\ 2/3 \\\\ 5/3 \\end{pmatrix}",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "145^\\circ",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "850",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2729,
+     "cut": false,
+     "correct": true,
+     "pred": "(a+5)(b+2)",
+     "gold": "(a+5)(b+2)",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "(3,4]",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "40",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 4362,
+     "cut": false,
+     "correct": false,
+     "pred": "25.5",
+     "gold": "29",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3996,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{4}{3}",
+     "gold": "\\frac43",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5510,
+     "cut": false,
+     "correct": true,
+     "pred": "9",
+     "gold": "9",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "120^\\circ",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "504",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1366,
+     "cut": false,
+     "correct": true,
+     "pred": "210",
+     "gold": "210",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7825,
+     "cut": false,
+     "correct": true,
+     "pred": "13",
+     "gold": "13",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4017,
+     "cut": false,
+     "correct": true,
+     "pred": "8000",
+     "gold": "8000",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 10864,
+     "cut": false,
+     "correct": true,
+     "pred": "-5",
+     "gold": "-5",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4343,
+     "cut": false,
+     "correct": true,
+     "pred": "1260",
+     "gold": "1260",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1406,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1237,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "81",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-9",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\text{even}",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2200,
+     "cut": false,
+     "correct": true,
+     "pred": "6",
+     "gold": "6",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1296,
+     "cut": false,
+     "correct": true,
+     "pred": "9",
+     "gold": "9",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "8",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{11}{2}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1704,
+     "cut": false,
+     "correct": true,
+     "pred": "-3",
+     "gold": "-3",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1+274i",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2389,
+     "cut": false,
+     "correct": false,
+     "pred": "4210_5",
+     "gold": "4210_{5}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "36",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{3840}{289}",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "13",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 2751,
+     "cut": false,
+     "correct": true,
+     "pred": "8",
+     "gold": "8",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3543,
+     "cut": false,
+     "correct": true,
+     "pred": "4",
+     "gold": "4",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6108,
+     "cut": false,
+     "correct": true,
+     "pred": "120",
+     "gold": "120",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1551,
+     "cut": false,
+     "correct": false,
+     "pred": "18",
+     "gold": "16",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "9",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "64",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "204_5",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{1}{3}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 9885,
+     "cut": false,
+     "correct": true,
+     "pred": "13",
+     "gold": "13",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2",
+     "level": 1,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 9957,
+     "cut": false,
+     "correct": false,
+     "pred": "4200",
+     "gold": "28800",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6779,
+     "cut": false,
+     "correct": true,
+     "pred": "3\\sqrt{5}",
+     "gold": "3 \\sqrt{5}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1129,
+     "cut": false,
+     "correct": true,
+     "pred": "(15, -29)",
+     "gold": "(15,-29)",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-2",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 725,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{\\sqrt{3}}{3}",
+     "gold": "\\frac{\\sqrt{3}}{3}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "16",
+     "level": 5,
+     "closed_think": false
+    }
+   ],
+   "summary": {
+    "secs_this_run": 7459,
+    "tok_s_this_run": 153.8,
+    "acc": 0.4864864864864865,
+    "cut": 0.42567567567567566,
+    "closed_think": 0.75,
+    "mean_tokens": 7753.554054054054
+   }
+  },
+  "m2a_a2_red": {
+   "model": "/mnt/dados/dev/agentic-weight-editing/data/gguf/m2a_a2_red.gguf",
+   "rows": [
+    {
+     "n_tokens": 1735,
+     "cut": false,
+     "correct": true,
+     "pred": "(3, \\frac{\\pi}{2})",
+     "gold": "\\left( 3, \\frac{\\pi}{2} \\right)",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 8908,
+     "cut": false,
+     "correct": true,
+     "pred": "p-q",
+     "gold": "p - q",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7062,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{14}{3}",
+     "gold": "\\frac{14}{3}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5026,
+     "cut": false,
+     "correct": true,
+     "pred": "9",
+     "gold": "9",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\text{Evelyn}",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 3797,
+     "cut": false,
+     "correct": true,
+     "pred": "42",
+     "gold": "42",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1938,
+     "cut": false,
+     "correct": true,
+     "pred": "27",
+     "gold": "27",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "90^\\circ",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1609,
+     "cut": false,
+     "correct": true,
+     "pred": "3\\sqrt{13}",
+     "gold": "3\\sqrt{13}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "4",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2220",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{3}{56}",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "284",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 10659,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "5",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\sqrt{51}",
+     "level": 1,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "6 - 5i",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3934,
+     "cut": false,
+     "correct": false,
+     "pred": "-9800",
+     "gold": "-50",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 9479,
+     "cut": false,
+     "correct": true,
+     "pred": "\\pi",
+     "gold": "\\pi",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "28",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "3",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 232,
+     "cut": false,
+     "correct": true,
+     "pred": "6+9i",
+     "gold": "6+9i",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "13535",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "5",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 10990,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "x=5",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "10",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": "1",
+     "gold": "1,-2",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "144",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "78",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 5684,
+     "cut": false,
+     "correct": true,
+     "pred": "-2 + 7i",
+     "gold": "-2 + 7i",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "225",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 523,
+     "cut": false,
+     "correct": true,
+     "pred": "52_8",
+     "gold": "52_8",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1544,
+     "cut": false,
+     "correct": false,
+     "pred": "11\\sqrt{2}",
+     "gold": "11\\sqrt2",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7645,
+     "cut": false,
+     "correct": false,
+     "pred": "45",
+     "gold": "720",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6033,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{243}{625}",
+     "gold": "\\frac{243}{625}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3996,
+     "cut": false,
+     "correct": true,
+     "pred": "-125",
+     "gold": "-125",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "3",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "3, 5, 7",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 2934,
+     "cut": false,
+     "correct": true,
+     "pred": "72",
+     "gold": "72",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2436,
+     "cut": false,
+     "correct": true,
+     "pred": "2000",
+     "gold": "2000",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4068,
+     "cut": false,
+     "correct": true,
+     "pred": "23",
+     "gold": "23",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3218,
+     "cut": false,
+     "correct": true,
+     "pred": "12",
+     "gold": "12",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "17",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1566,
+     "cut": false,
+     "correct": true,
+     "pred": "4",
+     "gold": "4",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "70 \\sqrt{2}",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2832,
+     "cut": false,
+     "correct": false,
+     "pred": "1.03",
+     "gold": "1.25",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2434,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "6",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 5889,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "5",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2456,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{3}{2}",
+     "gold": "\\frac{3}{2}",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2734,
+     "cut": false,
+     "correct": true,
+     "pred": "83",
+     "gold": "83",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "203",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5589,
+     "cut": false,
+     "correct": false,
+     "pred": "-2",
+     "gold": "x^5 - x^4 + x^3 - x^2 + x - 1",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1338,
+     "cut": false,
+     "correct": true,
+     "pred": "12",
+     "gold": "12",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1718,
+     "cut": false,
+     "correct": true,
+     "pred": "-\\frac{\\pi}{6}",
+     "gold": "-\\frac{\\pi}{6}",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1230,
+     "cut": false,
+     "correct": true,
+     "pred": "0.15",
+     "gold": "0.15",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6010,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2405,
+     "cut": false,
+     "correct": true,
+     "pred": "11",
+     "gold": "11",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6006,
+     "cut": false,
+     "correct": true,
+     "pred": "16",
+     "gold": "16",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3157,
+     "cut": false,
+     "correct": true,
+     "pred": "9901",
+     "gold": "9901",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2711,
+     "cut": false,
+     "correct": true,
+     "pred": "5",
+     "gold": "5",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "(6,31,-1)",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-256",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "4",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "10",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{35}{64}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1397,
+     "cut": false,
+     "correct": true,
+     "pred": "1",
+     "gold": "1",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": "",
+     "gold": "x^3+3x-6",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "10",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "46",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-1",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1171,
+     "cut": false,
+     "correct": true,
+     "pred": "40_9",
+     "gold": "40_9",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 8672,
+     "cut": false,
+     "correct": false,
+     "pred": "252",
+     "gold": "2516_8",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 335,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1905,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{3\\sqrt{3}}{4}",
+     "gold": "\\frac{3\\sqrt{3}}{4}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3163,
+     "cut": false,
+     "correct": true,
+     "pred": "\\cot x",
+     "gold": "\\cot x",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6645,
+     "cut": false,
+     "correct": false,
+     "pred": "11/36",
+     "gold": "\\frac{11}{36}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4732,
+     "cut": false,
+     "correct": true,
+     "pred": "0",
+     "gold": "0",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1429,
+     "cut": false,
+     "correct": true,
+     "pred": "4",
+     "gold": "4",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "(-2,1)",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1152,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "501",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 7919,
+     "cut": false,
+     "correct": true,
+     "pred": "3",
+     "gold": "3",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{3}{2}",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 7844,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-1",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1966,
+     "cut": false,
+     "correct": true,
+     "pred": "\\sqrt{5}",
+     "gold": "\\sqrt{5}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1928,
+     "cut": false,
+     "correct": true,
+     "pred": "240",
+     "gold": "240",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4389,
+     "cut": false,
+     "correct": true,
+     "pred": "1",
+     "gold": "1",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6437,
+     "cut": false,
+     "correct": true,
+     "pred": "21",
+     "gold": "21",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2584,
+     "cut": false,
+     "correct": true,
+     "pred": "\\dfrac{3}{2}",
+     "gold": "\\frac{3}{2}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5695,
+     "cut": false,
+     "correct": true,
+     "pred": "1",
+     "gold": "1",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3313,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{448}{15625}",
+     "gold": "\\frac{448}{15625}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2600,
+     "cut": false,
+     "correct": false,
+     "pred": "17",
+     "gold": "33",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "80",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4227,
+     "cut": false,
+     "correct": true,
+     "pred": "-4",
+     "gold": "-4",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1 \\pm \\sqrt{19}",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\text{east}",
+     "level": 1,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1588,
+     "cut": false,
+     "correct": true,
+     "pred": "2k + 2",
+     "gold": "2k+2",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\begin{pmatrix} -1/3 \\\\ 2/3 \\\\ 5/3 \\end{pmatrix}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "145^\\circ",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "850",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2665,
+     "cut": false,
+     "correct": true,
+     "pred": "(a+5)(b+2)",
+     "gold": "(a+5)(b+2)",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "(3,4]",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "40",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 6714,
+     "cut": false,
+     "correct": false,
+     "pred": "15.5",
+     "gold": "29",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2693,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{4}{3}",
+     "gold": "\\frac43",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 2104,
+     "cut": false,
+     "correct": false,
+     "pred": "8",
+     "gold": "9",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "120^\\circ",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "504",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 2160,
+     "cut": false,
+     "correct": true,
+     "pred": "210",
+     "gold": "210",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 9875,
+     "cut": false,
+     "correct": true,
+     "pred": "13",
+     "gold": "13",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5918,
+     "cut": false,
+     "correct": false,
+     "pred": "7900",
+     "gold": "8000",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12211,
+     "cut": false,
+     "correct": true,
+     "pred": "-5",
+     "gold": "-5",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": "",
+     "gold": "1260",
+     "level": 2,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 1823,
+     "cut": false,
+     "correct": true,
+     "pred": "2",
+     "gold": "2",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1363,
+     "cut": false,
+     "correct": true,
+     "pred": "x=3",
+     "gold": "3",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "81",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": "3",
+     "gold": "-9",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5771,
+     "cut": false,
+     "correct": true,
+     "pred": "even",
+     "gold": "\\text{even}",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1914,
+     "cut": false,
+     "correct": true,
+     "pred": "x = 6",
+     "gold": "6",
+     "level": 2,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 616,
+     "cut": false,
+     "correct": true,
+     "pred": "9",
+     "gold": "9",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "8",
+     "level": 4,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 6225,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{11}{2}",
+     "gold": "\\frac{11}{2}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 967,
+     "cut": false,
+     "correct": true,
+     "pred": "-3",
+     "gold": "-3",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1+274i",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1511,
+     "cut": false,
+     "correct": true,
+     "pred": "4210_{5}",
+     "gold": "4210_{5}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 6354,
+     "cut": false,
+     "correct": false,
+     "pred": "4",
+     "gold": "36",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "\\frac{3840}{289}",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12073,
+     "cut": false,
+     "correct": true,
+     "pred": "13",
+     "gold": "13",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3924,
+     "cut": false,
+     "correct": true,
+     "pred": "8",
+     "gold": "8",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 4025,
+     "cut": false,
+     "correct": true,
+     "pred": "4",
+     "gold": "4",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "120",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "16",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 5072,
+     "cut": false,
+     "correct": true,
+     "pred": "9",
+     "gold": "9",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "64",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 3501,
+     "cut": false,
+     "correct": false,
+     "pred": "41_5",
+     "gold": "204_5",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 11503,
+     "cut": false,
+     "correct": false,
+     "pred": "1",
+     "gold": "\\frac{1}{3}",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "1",
+     "level": 3,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "13",
+     "level": 4,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "2",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "28800",
+     "level": 5,
+     "closed_think": false
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "3 \\sqrt{5}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 1534,
+     "cut": false,
+     "correct": true,
+     "pred": "(15, -29)",
+     "gold": "(15,-29)",
+     "level": 1,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "-2",
+     "level": 5,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 429,
+     "cut": false,
+     "correct": true,
+     "pred": "\\frac{\\sqrt{3}}{3}",
+     "gold": "\\frac{\\sqrt{3}}{3}",
+     "level": 3,
+     "closed_think": true
+    },
+    {
+     "n_tokens": 12288,
+     "cut": true,
+     "correct": false,
+     "pred": null,
+     "gold": "16",
+     "level": 5,
+     "closed_think": true
+    }
+   ],
+   "summary": {
+    "secs_this_run": 7393,
+    "tok_s_this_run": 153.1,
+    "acc": 0.47297297297297297,
+    "cut": 0.43243243243243246,
+    "closed_think": 0.7567567567567568,
+    "mean_tokens": 7648.601351351352
+   }
+  }
+ }
+}

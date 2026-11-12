@@ -88,6 +88,12 @@ All t200 arms below were run after the locked test was opened (late arms).
 |---|---|---|---|---|
 | t400 | Fresh locked slice GSM8K test[400:600]; 6 arms fixed before opening; primary = 5 paired tests with Holm, secondary = t200 + t400 pooled | nt .53–.64, a2 .60–.72, a1 + capped bf .63–.75, a2_red .58–.72, capped bf .54–.66, a1 .55–.67; a1 + capped bf > nt at p < .05 (70%); a2 > nt at p < .05 (45%; pooled 65%); a2_red within 5 pp of a2 (65%); a2_red tokens ≥ a2 (60%) | nt .580, a2 .640, a1 + capped bf .645, a2_red .675, capped bf .595, a1 **.680** (above range). No primary test significant after Holm (all .83). Pooled 400: a2 − nt +7.5 ± 2.7 (p = .007), combo − nt +8.8 ± 2.8 (p = .002), combo − capped bf +7.2 ± 2.4 (p = .004), but combo − a1 only +2.2 ± 2.2 (t400: −3.5). a2_red within 5 pp of a2 (confirmed), fewer tokens than a2 (refuted) | `queue_t400.sh` → `gen_t400.json`, `gen_t400nt.json` |
 
+### Thinking off and a2 on harder math (CADERNO 2026-11-12 00h45)
+
+| exp | question | prediction | outcome | data |
+|---|---|---|---|---|
+| math148nt, math148 | MATH-500[0:148]: base with thinking off (8k cap, new `math_eval.py --nothink`), a2 and reduced a2 (thinking on, 12k) | nt .38–.52, a2 .38–.54, a2_red .38–.54; combo > nt at p < .05 (30%); a1 > nt at p < .05 (15%); a2 within 5 pp of a1 (55%); a2_red within 5 pp of a2 (60%); nt < 1/3 of a1's tokens (85%) | nt .439 (3,842 tok, 36% cut), a2 .486, a2_red .473 (all in range); combo − nt +8.8 ± 3.8, p = .035; a1 − nt +2.7 (tie); a2 − a1 +2.0; a2_red − a2 −1.4; nt used 46% of a1's tokens (**refuted**) | `queue_math_nt.sh` → `gen_math148nt.json`, `gen_math148.json` |
+
 ## Deviations from pre-registration
 
 - **2026-11-07, E4.2:** training max_len raised from 4096 (the automatic E4.0 pick) to 8192, *before* training. With

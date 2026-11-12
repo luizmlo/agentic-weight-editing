@@ -2033,3 +2033,37 @@ na direção prevista (+6 a +10 pontos).
    a ponta baixa.
 4. A a2 reduzida vai bem no teste novo (0,675, empata com a a1 e a a2, menos tokens que a a2). Fica como candidata
    para o Hugging Face, junto com a a1.
+
+### 12/11, 08h00 — MATH-148: raciocínio desligado, a2 e a2 reduzida (pré-registro de 12/11 00h45)
+
+Fila 02h45 → 07h52, sem erros. Na primeira subida, o servidor caiu para np 4; reiniciei a fila às 02h45 (retomou
+dos 7 problemas já feitos, np 16). Mesmos 148 problemas do math48 + math100b, mesmo corretor leve.
+
+| braço | acerto | cortadas | tokens/problema |
+|---|---|---|---|
+| original, raciocínio desligado (8k) | 0,439 | 35,8% | 3.842 |
+| a1 (já existente) | 0,466 | 45,9% | 8.399 |
+| a2 | 0,486 | 42,6% | 7.754 |
+| a2 reduzida | 0,473 | 43,2% | 7.649 |
+| a1 + limite (já existente) | 0,527 | 33,8% | 7.089 |
+
+Pareadas (sinal exato, sem correção):
+- a1 + limite × desligado: 23/10, +8,8 ± 3,8, p = 0,035;
+- a1 × desligado: 21/17, +2,7 ± 4,2, p = 0,63;
+- a2 × desligado: 21/14, +4,7 ± 4,0, p = 0,31;
+- a2 × a1: 18/15, +2,0 ± 3,9, p = 0,73;
+- a2 reduzida × a2: 12/14, −1,4 ± 3,4, p = 0,85;
+- extras: a2 × Astra 43/2 (+27,7); a2 × limite 24/7 (+11,5, p = 0,003); desligado × limite 24/14 (+6,8, p = 0,14).
+
+**Previsões.**
+- Faixas: desligado 0,439 ✓ (0,38–0,52); a2 0,486 ✓; a2 reduzida 0,473 ✓.
+- a1 + limite > desligado com p < 0,05 (30%): **aconteceu** (p = 0,035).
+- a1 > desligado com p < 0,05 (15%): não aconteceu.
+- Desligado acima da a1 (45%): não aconteceu (a1 +2,7).
+- a2 a até 5 pontos da a1 (55%): ✓ (+2,0). a2 reduzida a até 5 pontos da a2 (60%): ✓ (−1,4).
+- Desligado com < 1/3 dos tokens da a1 (85%): **errou**. Usou 46%, porque 36% das respostas sem raciocínio também
+  batem no teto de 8.192 (loops fora do bloco de raciocínio).
+
+**Leitura.** No MATH, desligar o raciocínio empata com as edições sozinhas, com metade dos tokens; só a combinação
+com o limite fica acima. A a2 transfere para o MATH como a a1 (0,486), e a reduzida acompanha (0,473). Para o
+Hugging Face, a reduzida segue equivalente à a2 nos três conjuntos (dev48, t400, MATH).
