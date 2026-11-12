@@ -1,0 +1,39 @@
+{
+ "_comment": "Metadata for the Zenodo record of the PAPER (manual upload: pre-paper.pdf + pre-paper.pt-BR.pdf). Fields follow the Zenodo deposit API; the same values go into the web form. Fill publication_date and the supplement DOI on submission.",
+ "metadata": {
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "title": "Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models",
+  "creators": [
+   {
+    "name": "Melo, Luiz Felipe",
+    "affiliation": "Universidade do Sul de Santa Catarina (Unisul)",
+    "orcid": "0009-0007-5134-9914"
+   }
+  ],
+  "publication_date": "YYYY-MM-DD",
+  "version": "v1 (pre-paper)",
+  "language": "eng",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "keywords": [
+   "weight editing",
+   "weight-space programming",
+   "rank-1 edits",
+   "LLM agents",
+   "mechanistic interpretability",
+   "reasoning loops",
+   "small language models",
+   "Qwen3.5",
+   "budget forcing",
+   "pre-registration"
+  ],
+  "description": "<p><strong>English.</strong> Small reasoning language models often fail by looping: with thinking on and a 12,288-token budget, Qwen3.5-0.8B runs out of space before answering on about 85% of grade-school math problems. We ask whether frontier-model agents can repair this defect by editing the weights directly, without gradients, and how the result compares with simpler fixes. Claude Opus 5.5 agents, given the weights, a small testing budget and at most four rank-1 edits, found fixes in about two hours on a single consumer GPU (GTX 1660 SUPER, 6 GB). The edits raise accuracy on 200 locked GSM8K test problems from 15.5% to 61.5–67.5%, and reach 64–68% on a second set of 200 locked problems whose arms and predictions were all registered before opening. Two independent agents edited overlapping “Wait” neurons and the same &lt;/think&gt; direction, at different points of one circuit. The edits reach their plateau with about a third of the tokens of the edit published in <em>Sparks of Weight-Space Programming</em>, and beat a LoRA fine-tuning baseline that used 13× more GPU time. Simple alternatives are strong: over the 400 locked problems, switching thinking off is only 6.5–9 points behind the edits (uncorrected p = 0.002–0.02) at 28–42% of their tokens, and it ties the edits alone on MATH-500. A scripted search with the same tools and budget but no agent reasoning failed, every cheap proxy score was eventually gamed, and more interpretability context hurt. On a diffuse defect (instruction following, IFEval), neither the agents, nor prompting, nor fine-tuning helped. Every prediction was written in a dated lab notebook before the result. The PDF is provided in English and in Brazilian Portuguese.</p><p><strong>Português.</strong> Modelos de linguagem pequenos com raciocínio costumam falhar entrando em loop: com o raciocínio ligado e orçamento de 12.288 tokens, o Qwen3.5-0.8B fica sem espaço antes de responder em cerca de 85% dos problemas de matemática do ensino fundamental. Perguntamos se agentes de um modelo de fronteira conseguem consertar esse defeito editando os pesos diretamente, sem gradientes, e como o resultado se compara com correções mais simples. Agentes Claude Opus 5.5, com os pesos, um pequeno orçamento de testes e no máximo quatro edições de posto 1, acharam correções em cerca de duas horas numa única GPU de consumo (GTX 1660 SUPER, 6 GB). As edições levam o acerto em 200 problemas trancados do GSM8K de 15,5% para 61,5–67,5%, e chegam a 64–68% num segundo conjunto de 200 problemas trancados cujos braços e previsões foram todos registrados antes da abertura. Dois agentes independentes editaram neurônios de “Wait” em comum e a mesma direção de &lt;/think&gt;, em pontos diferentes de um mesmo circuito. As edições chegam ao patamar com cerca de um terço dos tokens da edição publicada em <em>Sparks of Weight-Space Programming</em> e superam um fine-tuning LoRA que usou 13× mais tempo de GPU. As alternativas simples são fortes: nos 400 problemas trancados, desligar o raciocínio fica só 6,5–9 pontos atrás das edições (p sem correção = 0,002–0,02) com 28–42% dos tokens, e empata com as edições sozinhas no MATH-500. Uma busca por script com as mesmas ferramentas e orçamento, mas sem o raciocínio do agente, falhou; todo indicador barato acabou burlado; e mais contexto de interpretabilidade atrapalhou. Num defeito espalhado (seguir instruções, IFEval), nem os agentes, nem prompts, nem fine-tuning ajudaram. Toda previsão foi escrita num caderno de laboratório datado antes do resultado. O PDF está disponível em inglês e em português do Brasil.</p>",
+  "notes": "Use of AI tools: the editing agents studied are Claude Opus 5.5. Claude (through Claude Code) was also used as a research assistant: it wrote most of the code, ran the experiments, kept the lab notebook, drafted the text and reviewed the claims against the raw data. The author designed the study, supervised and checked the work, and is responsible for the content. Languages: English (pre-paper.pdf) and Brazilian Portuguese (pre-paper.pt-BR.pdf).",
+  "related_identifiers": [
+   {"relation": "isSupplementedBy", "identifier": "https://github.com/luizmlo/agentic-weight-editing", "resource_type": "software"},
+   {"relation": "isSupplementedBy", "identifier": "10.5281/zenodo.XXXXXXX", "resource_type": "software", "_comment": "DOI of the code/data record, once it exists"},
+   {"relation": "references", "identifier": "https://rikiyat.github.io/blog/weight-space-programming/", "resource_type": "publication"}
+  ]
+ }
+}

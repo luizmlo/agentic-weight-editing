@@ -1,0 +1,28 @@
+{
+ "upload_type": "software",
+ "title": "agentic-weight-editing: code, lab notebook and data for “Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models”",
+ "creators": [
+  {
+   "name": "Melo, Luiz Felipe",
+   "affiliation": "Universidade do Sul de Santa Catarina (Unisul)",
+   "orcid": "0009-0007-5134-9914"
+  }
+ ],
+ "license": "Apache-2.0",
+ "access_right": "open",
+ "keywords": [
+  "weight editing",
+  "weight-space programming",
+  "rank-1 edits",
+  "LLM agents",
+  "mechanistic interpretability",
+  "reasoning loops",
+  "Qwen3.5",
+  "reproducibility"
+ ],
+ "description": "<p>Code, dated lab notebook (pt-BR), experiment registry, result summaries, agent briefs and notes, and every weight edit submitted by the agents, for the pre-paper <em>Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models</em>. Claude agents repair thinking loops in Qwen3.5-0.8B with at most four rank-1 weight edits, compared against decoding baselines, thinking off, a scripted search and LoRA fine-tuning, on one consumer GPU.</p><p>Licenses: code under Apache-2.0 (LICENSE); text, figures and data records under CC BY 4.0 (LICENSE-CC-BY-4.0). Edits and edited weights derive from Qwen3.5-0.8B (Apache-2.0, Copyright 2026 Alibaba Cloud). Problems quoted in data/ come from GSM8K and MATH (both MIT).</p>",
+ "notes": "Raw generations (~210 MB) and GGUF models are not included; see README.md. Claude (through Claude Code) wrote most of the code and kept the lab notebook under the author's supervision; see the paper's section 'Use of AI tools'.",
+ "related_identifiers": [
+  {"relation": "isSupplementTo", "identifier": "10.5281/zenodo.XXXXXXX", "resource_type": "publication-preprint"}
+ ]
+}

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the pre-paper below."
+title: "agentic-weight-editing"
+authors:
+  - family-names: Melo
+    given-names: Luiz Felipe
+    affiliation: Universidade do Sul de Santa Catarina (Unisul)
+    orcid: "https://orcid.org/0009-0007-5134-9914"
+license: Apache-2.0
+repository-code: "https://github.com/luizmlo/agentic-weight-editing"
+keywords:
+  - weight editing
+  - weight-space programming
+  - LLM agents
+  - mechanistic interpretability
+preferred-citation:
+  type: article
+  status: preprint
+  title: "Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models"
+  authors:
+    - family-names: Melo
+      given-names: Luiz Felipe
+      affiliation: Universidade do Sul de Santa Catarina (Unisul)
+      orcid: "https://orcid.org/0009-0007-5134-9914"
+  year: 2026
+  # doi: 10.5281/zenodo.XXXXXXX   (fill in after the Zenodo record is published)
