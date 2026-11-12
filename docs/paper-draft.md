@@ -1,6 +1,6 @@
 # Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models
 
-**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 11, 2026
+**Authors:** Luiz Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 12, 2026
 
 *Working draft – status of each result and remaining work are listed at the end.*
 
@@ -10,15 +10,16 @@
   Out of every 100 grade-school math problems, Qwen3.5-0.8B runs out of space on 85 before writing an answer.
 - **The fix.** We gave Claude agents the model's weights and a small testing budget, and asked them to fix this by
   editing the weights directly, with no training. **With four tiny edits, the model went from solving 15% to 67% of
-  our practice problems, and from 15.5% to 61.5–67.5% of 200 locked test problems.**
+  our practice problems, and from 15.5% to 61.5–67.5% of 200 locked test problems (64–68% on a second locked set of
+  200, with every method fixed before opening).**
 - **The comparison.** At our 12k-token budget the agents' edits are ahead of the one published in *Sparks of
   Weight-Space Programming* (53.5%), but that edit is still improving when it hits the budget. The supported claim is
   efficiency: the agents' edits reach their plateau with about a third of the tokens. They beat one cheap fine-tuning
   recipe (29% on practice problems, with 13× more GPU time).
 - **The simple alternatives are strong.** Capping thinking time (60–61%), banning the word "Wait" (60.0%) and
-  switching thinking off (58.5%) all tie the first agent's edit on the locked test. Only that edit plus a thinking cap
-  (69.5%) is clearly above thinking off; the second agent's edit (67.5%) is above it less firmly (p = 0.02 before
-  correction for multiple comparisons).
+  switching thinking off (58.5%) all tie the first agent's edit on the first locked test. The second locked test
+  could not separate the methods on its own. Over all 400 locked problems, the edits are 6.5–9 points above thinking
+  off (p ≤ 0.02) and 5–7 points above a thinking cap, but use 2.4–3.6× the tokens of thinking off.
 - **What mattered.** Two independent agents found the same "Wait" neurons and the same `</think>` lever, but their
   edits work at different points: one strengthens a brake neuron, the other flips a neuron upstream of it. A simple script with the same tools and budget, but no agent
   reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
@@ -158,7 +159,8 @@ removes the push in layer 16. Those were log-probabilities on fixed text, so we 
 the 48 practice problems (predictions written down first):
 - **a2 works as a 2-edit fix.** Keeping only L16n998 and the `</think>` edit solves 69% (33 of 48), against 65% for
   the full a2 (6 rescued, 4 lost, p = 0.75), with longer answers (4,797 tokens against 3,910; 6 cut off against 4).
-  The other three neurons (L16n3422, L17n1915, L22n573) made no measurable difference on 48 problems.
+  The other three neurons (L16n3422, L17n1915, L22n573) made no measurable difference on 48 problems. On the second
+  locked test the 2-edit version solves 67.5%, against 64.0% for the full a2 (28 rescued, 21 lost; p = 0.39).
 - **Lowering "Wait" is not enough to stop.** L16n998 alone, which gave all 26 nats on fixed text, solves 48% (23 of
   48), and 25 of 48 answers run out of space. Against the 2-edit version it rescues 3 and loses 13 (p = 0.02). This
   matches a1's ablations above: a loop needs both doors changed.
@@ -232,6 +234,38 @@ All p-values are exact sign tests on discordant pairs, without correction for mu
 correction over the comparisons in this section, a1 against the published edit is no longer significant; a2 against
 the published edit and a1 + time limit against thinking off still are.
 
+### A second locked test, pre-registered in full
+
+On the first locked test, eight arms ran after it was opened. So we opened 200 more locked problems (GSM8K
+test[400:600]) with every arm, the comparisons and the predictions written down first, and nothing chosen on them.
+The primary analysis was five paired comparisons with a Holm correction; the secondary one pooled both locked tests.
+
+| method | second locked test (200) | cut off | mean tokens | both locked tests (400) |
+|---|---|---|---|---|
+| original model, thinking off | 58.0% | 7.5% | 1,365 | 58.3% |
+| time limit, answer capped at 1,024 | 59.5% | 34.5% ‡ | 4,620 | 59.8% |
+| second agent's edit (a2) | 64.0% | 15.5% | 4,701 | 65.8% |
+| a1 + time limit, answer capped | 64.5% | 15.5% ‡ | 3,104 | 67.0% |
+| a2 reduced to 2 edits | 67.5% | 12.0% | 4,217 | — |
+| agent's edit (a1) | 68.0% | 11.0% | 4,459 | 64.8% |
+
+‡ Counts answers stopped by the answer cap.
+
+- **On its own, the second test confirms none of the five primary comparisons.** Every edited arm is ahead of thinking
+  off in the predicted direction (a2 +6.0 ± 4.0, a1 + capped limit +6.5 ± 4.3), but no comparison survives the
+  correction (all Holm-adjusted p = 0.83). Two hundred problems cannot confirm differences of 5–7 points. Three of our
+  predictions failed here (see the list at the end), and a2 fell 4.0 points behind a1 (p = 0.30) after leading it by
+  6 on the first test.
+- **Pooled over 400 locked problems, the edits are above thinking off.** a2 is 7.5 ± 2.7 points above (74 rescues,
+  44 losses; p = 0.007), a1 + capped limit 8.8 ± 2.8 (p = 0.002) and a1 6.5 ± 2.7 (p = 0.02, not pre-registered).
+  Thinking off still costs a third to a quarter of the tokens.
+- **The edits beat the time limit after all.** Over 400 problems, a1 + capped limit is 7.2 ± 2.4 points above the
+  capped limit alone (p = 0.004), and a1 and a2 are 5.0 and 6.0 points above it (p = 0.047 and 0.02, not
+  pre-registered). The tie on the first test was the low end.
+- **Adding the time limit to a1 did not help here.** The combination solved 64.5% against 68.0% for a1 alone (17
+  rescues, 24 losses). Over both tests it is 2.2 ± 2.2 points above a1 (p = 0.36): not established on grade-school
+  math. a1 was unusually low on the first test (61.5%) and high on the second (68.0%).
+
 ### A quick check with another editor model
 
 *Exploratory side check, run after the locked test was opened. Not comparable with a1 and a2.*
@@ -286,7 +320,8 @@ A skeptic would ask whether the edit is a fancy way of doing something simpler. 
 predicted 40–52%. The edit is not a global ban. It works through neurons that are
 active when the model is about to restart, so it leaves "Wait" alone elsewhere.
 
-**The time limit ties the edit on the locked test (61.0% vs 61.5%; +0.5 ± 3.4).** Our implementation of the limit
+**The time limit ties the edit on the first locked test (61.0% vs 61.5%; +0.5 ± 3.4), but not on the second**
+(a1 68.0% against 59.5% for the capped limit; 33 rescues, 16 losses). Our implementation of the limit
 looks more expensive than it is. After the forced `</think>`, some answers keep looping until the 12k cap, which is why
 34% of them are cut off and the mean is 7,012 tokens. If we stop every answer at 6,144 tokens instead, the time limit
 keeps 60.5% at a mean of 4,910 tokens, about the same as a1 (5,049). So we do not claim that the edit is cheaper than
@@ -298,16 +333,18 @@ On harder math the edit is ahead of the time limit by 9.5 points, rescuing 23 pr
 early works when the answer was already computed before the loop began, which is common in grade-school problems and
 rarer in longer ones.
 
-**Together they do best of all (53% on harder math and 69.5% on the locked test, 8 points above either alone, with
-few cut-off answers).** The edit removes most loops, and the time limit catches what is left. An independent
+**Together they do best on harder math (53%, 6 points above the edit alone) and on the first locked test (69.5%,
+8 points above either alone), with few cut-off answers.** The edit removes most loops, and the time limit catches what
+is left. On the second locked test, though, the combination did not beat a1 alone (64.5% against 68.0%), so on
+grade-school math its gain over the edit is not established (+2.2 ± 2.2 over 400 problems). An independent
 replication reports the same additivity on MATH subsets (tdotlab, 2026). With the capped answer, the combination
-keeps 69.5% on the locked test and drops to 3,172 tokens per answer. It is above a1 alone (26 rescues, 10 losses;
-p = 0.01), the capped limit alone (33 against 14; p = 0.008) and thinking off (37 against 15; p = 0.003).
+keeps 69.5% on the first locked test and drops to 3,172 tokens per answer. There it is above a1 alone (26 rescues,
+10 losses; p = 0.01), the capped limit alone (33 against 14; p = 0.008) and thinking off (37 against 15; p = 0.003).
 
 **Thinking off.** We did not run thinking off on our MATH subset. Independent reruns report about 50% on the full
 MATH-500 with thinking off and a 32k budget (exp8-loop-controls, 2026), which is in the range of a1's 47–49% here. On
-this model, edits that repair thinking mostly recover what the model can already do without thinking; only the
-combination with a time limit is clearly above that on the locked test, and a2 less firmly.
+this model, edits that repair thinking mostly recover what the model can already do without thinking, plus a few
+points: over the 400 locked problems, the edited arms are 6.5–8.8 points above thinking off, at 2.4–3.6× its tokens.
 
 ![Figure 6](figures/paired.png)
 
@@ -534,26 +571,29 @@ method stops working.
 
 ## What can't we claim yet, and what comes next?
 
-- **Sample sizes:** the main comparisons now rest on a 200-problem locked test (±3–4 points), but dev and MATH numbers
-  still rest on 48–148 problems.
+- **Sample sizes:** the main comparisons rest on two 200-problem locked tests (±3–4 points each, ±2.5 pooled), but
+  dev and MATH numbers still rest on 48–148 problems. The second locked test alone confirmed none of its primary
+  comparisons.
 - **One model, one defect that works:** "Wait" is an easy word to target, and the second defect (IFEval) gave a
   well-controlled negative result. **Next:** a concentrated defect without a keyword, and a second model. Any second
   defect needs a real test whose noise is well below the expected effect, measured before the search.
 - **One token budget:** every comparison is at 12,288 tokens. The published edit is still improving there, so "a1
   beats the published edit" is a statement about this budget. **Next:** both at a long budget on the locked test.
-- **Thinking off is a strong baseline:** on the locked test it ties a1 and costs far fewer tokens. We have not run it
-  on our MATH subset.
+- **Thinking off is a strong baseline:** the edits are only 6.5–9 points above it over 400 locked problems, and it
+  costs a third to a quarter of their tokens. We have not run it on our MATH subset.
 - **Late arms:** the a1 agent's first pick, a2, thinking off, the capped time limit, a1 + capped limit, the word ban,
   fine-tuning and f1 ran on the locked test after it was opened. The word ban and fine-tuning were in the original
   pre-registration and only ran late. The others were pre-registered, with predictions, after the test was opened,
   so choosing to run them may reflect what we had seen. The capped limit and f1 were each chosen on the practice set
-  among two or three candidates.
+  among two or three candidates. The second locked test has no late arms. Every comparison there went in the same
+  direction as on the first, except the two against a1 alone (a2, and a1 + capped limit), where a1 did better.
 - **Editor models:** the two Fable runs were an exploratory side check and say nothing about which editor is
   better. **Next:** a ladder of editor models, including smaller ones, with several runs each under one protocol.
 - **Noisy test runs:** the agents choose among candidates on 16 problems, which cannot rank close candidates.
 - **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
 - **Mechanism:** we checked a1's brake and a2's upstream neuron on 52 positions from 12 transcripts, with the text
-  held fixed. Test runs of the reduced a2 used only the 48 practice problems, which detect only large differences.
+  held fixed. The reduced a2 was tested on the 48 practice problems and the second locked test, which detect only
+  large differences.
 - **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
   gain without an LLM. **Next:** a targeted script (logit-lens directions, the same budget) against the agents.
 - **Finished-but-wrong answers:** the edits lower accuracy among finished answers (see side effects).
@@ -579,11 +619,16 @@ method stops working.
 8. At least one Fable run would edit L22n573 or another "Wait"-brake neuron in layers 17–23. Neither targeted single
    neurons; both edited whole layers.
 9. Banning the word would score 40–52% on the locked test. It scored 60.0%.
+10. a1 + capped limit would beat thinking off at p < 0.05 on the second locked test (70%). It was 6.5 points
+    ahead, p = 0.17.
+11. a1 would score 55–67% on the second locked test. It scored 68.0%.
+12. The reduced a2 would use at least as many tokens as a2 there (60%). It used 10% fewer.
 
 **The claim, as it stands: for a concentrated behavioral defect with a large effect, an agent editing weights found a
-fix in about 2 hours on one consumer GPU. The fix is as accurate as the simple decoding alternatives, uses a third of
-the tokens of the published edit to get there, adds to a thinking time limit, and beat the one fine-tuning recipe we
-tried. For diffuse defects, such as instruction following in a 0.8B model, neither it nor cheap fine-tuning helped.**
+fix in about 2 hours on one consumer GPU. Over 400 locked problems the fix is a few points above the simple
+alternatives (thinking off, a thinking time limit), though thinking off uses far fewer tokens. It uses a third of the
+tokens of the published edit to get there, adds to a time limit on harder math, and beat the one fine-tuning recipe
+we tried. For diffuse defects, such as instruction following in a 0.8B model, neither it nor cheap fine-tuning helped.**
 
 ## Data, code and logs
 
@@ -613,6 +658,7 @@ and checked the work, and is responsible for the content.
 | Decoding baselines, naive search, fine-tuning baseline | done |
 | Transfer to harder math, side effects, cost | done |
 | Locked test with ≥ 200 problems | done (7 arms pre-registered before opening, 2 run late; 6 added and pre-registered after) |
+| Second locked test, every arm pre-registered (GSM8K test[400:600]) | done (Nov 12): 6 arms; direction replicates, no primary comparison significant alone |
 | More replicates (2 + 2 agents) | to do |
 | Second defect without a keyword (IFEval) | done: negative, with fine-tuning and prompt baselines |
 | Concentrated second defect; second model | to do (needed for a main-track venue) |

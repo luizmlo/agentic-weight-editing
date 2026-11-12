@@ -46,25 +46,27 @@ The scorer returns cheap teacher-forced probe metrics (40 calls per run) and, in
 on 16 held-out GSM8K training problems. A supervisor then confirms the agent's top candidate on a separate dev set
 (GSM8K train[0:48]) and runs the pre-registered winner once on a locked test split.
 
-## Headline results (as of 2026-11-08)
+## Headline results (as of 2026-11-12)
 
 Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning agent found: it suppresses the
 "Wait" token through 3 MLP neurons and strengthens the `</think>` write in layer 23, using 4 rank-1 edits.
 
-| arm | GSM8K dev48 | GSM8K second practice set (32) | GSM8K locked test t200 (200) | MATH-500 (148) |
-|---|---|---|---|---|
-| base | 0.146 | 0.125 | 0.155 | 0.081 |
-| Astra edit (paper) | 0.458 | 0.406 | 0.535 | 0.209 |
-| base, thinking off (cap 8,192) | — | — | 0.585† | — |
-| LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | 0.330† | — |
-| logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.600† | 0.271¹ |
-| budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.610 | 0.372 |
-| budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | — |
-| **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.466** |
-| second agent's edit a2 | 0.646 | — | 0.675† | — |
-| **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | **0.527** |
+| arm | GSM8K dev48 | GSM8K second practice set (32) | GSM8K locked test t200 (200) | GSM8K locked test t400 (200) | MATH-500 (148) |
+|---|---|---|---|---|---|
+| base | 0.146 | 0.125 | 0.155 | — | 0.081 |
+| Astra edit (paper) | 0.458 | 0.406 | 0.535 | — | 0.209 |
+| base, thinking off (cap 8,192) | — | — | 0.585† | 0.580 | — |
+| LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | 0.330† | — | — |
+| logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.600† | — | 0.271¹ |
+| budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.610 | — | 0.372 |
+| budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | 0.595 | — |
+| **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.680** | **0.466** |
+| second agent's edit a2 | 0.646 | — | 0.675† | 0.640 | — |
+| a2 reduced to 2 edits | 0.688 | — | — | 0.675 | — |
+| **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | 0.645² | **0.527** |
 
-¹ MATH-500[0:48] only. † Run after the locked test was opened.
+¹ MATH-500[0:48] only. ² With the answer capped at 1024 (0.695 on t200 too). † Run after the t200 locked test was
+opened. Every t400 arm (test[400:600]) was pre-registered before that slice was opened.
 
 Paired differences on MATH-500 (148 problems): a1 vs Astra **+25.7 ± 4.3 pp** (44 rescues / 6 losses); a1 vs budget
 forcing **+9.5 ± 3.8 pp** (23/9); combo vs a1 **+6.1 ± 3.2 pp** (16/7). The search ran on GSM8K only, so MATH-500 is
@@ -75,6 +77,12 @@ On the second locked GSM8K slice (t200, test[200:400], opened once with pre-regi
 fewer tokens), combo vs a1 **+8.0 ± 3.0** and combo vs budget forcing **+8.5 ± 3.6**. Pooled with t12k (232
 problems): a1 vs Astra +9.1 ± 3.1, combo vs a1 +7.8 ± 2.8.
 
+On a third locked slice (t400, test[400:600], every arm pre-registered before opening), none of the five primary
+comparisons is significant on its own after Holm correction. Pooling t200 + t400 (400 problems): a2 vs thinking off
+**+7.5 ± 2.7** (p = 0.007), a1 + capped budget forcing vs thinking off **+8.8 ± 2.8** (p = 0.002), a1 vs thinking off
++6.5 ± 2.7 (p = 0.02), combo vs capped budget forcing **+7.2 ± 2.4**; but combo vs a1 is only +2.2 ± 2.2 (p = 0.36):
+the combo's gain over a1 on t200 did not replicate on t400 (−3.5). Thinking off uses 2.4–3.6× fewer tokens.
+
 What we have learned so far:
 
 1. **Agents find a strong, interpretable edit, and the result replicates.** Two independent no-atlas agents running protocol v2 (a1, a2)
@@ -83,8 +91,9 @@ What we have learned so far:
    neuron (L22n573); a2 works through one upstream neuron (L16n998) plus its `</think>` edit, and a 2-edit version of
    a2 matches the full edit on dev48 (0.688).
 2. **It is not just a decoding trick.** It beats a tuned logit bias on the practice sets and MATH, and ties it on the
-   locked test. It ties budget forcing on GSM8K but
-   beats it on the longer MATH problems, and combining the two helps further.
+   t200 locked test. Over 400 locked problems it is 5–7 pp above budget forcing and 6.5–9 pp above thinking off
+   (which uses far fewer tokens). Combining edit and budget forcing helps on MATH; on GSM8K the gain over the edit
+   alone is not established.
 3. **The agent's reasoning matters.** A naive search with the same tools, the same budget and the same generation
    signal reaches 0.271 on dev48 (−38 pp).
 4. **Generation in the loop is essential.** Every cheap proxy (teacher-forced Δlog-prob, branch probes, the 8-gram loop
@@ -95,8 +104,9 @@ What we have learned so far:
    [docs/cost.md](docs/cost.md).
 6. **More interpretability context hurt.** Agents given an activation atlas found "internal-state" mechanisms that looked
    good on probes and generalized worse in generation. This held in 3 of 3 paired replicates.
-7. **It holds on a larger locked test.** On 200 more locked GSM8K problems, a1 beats the Astra edit by 8.0 ± 3.4 pp,
-   ties budget forcing with half the cut-off answers, and the combination is best (0.695).
+7. **It holds on larger locked tests.** On 200 more locked GSM8K problems, a1 beats the Astra edit by 8.0 ± 3.4 pp
+   and ties budget forcing with half the cut-off answers. A further 200, fully pre-registered, replicate the
+   direction against thinking off and budget forcing, but not the combination's lead over a1.
 8. **It does not work on a diffuse defect.** On instruction following (IFEval, thinking off), two agent runs, a
    system prompt and LoRA fine-tuning all lost 3–7 pp on fresh prompts after looking better on their practice
    checks. Sampling noise (23% of prompts flip between two runs of the unchanged model) swamps any plausible gain.

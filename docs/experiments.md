@@ -82,6 +82,12 @@ All t200 arms below were run after the locked test was opened (late arms).
 | f1, f2 | Protocol v2 without atlas, editor = Claude Fable 5.2 (exploratory; different conditions: paused and resumed, shared scorer, extra prompt rules) | ≥ 1 run ≥ .60 on dev48 (70%); both ≥ .50 (50%); some run beats a1 by ≥ 5 pp (20%); some run edits the shared "Wait" neurons (65%) | dev48 f1 .646, f2 .604 (first three as predicted); **neither edited the neurons** (refuted): all-column edits on the last layers. f1 on t200 .660 (vs Astra +40/−15; ties a1, a2) | `m2a/runs/f1`, `f2` → `gen_dev48.json`, `gen_t200.json` |
 | f1x, f2x | Extension to the full 6 generation checks, decided after seeing dev48/t200 | some pick changes (55%); new pick ≥ .70 on dev48 (15%) | f1 changed pick (11/16 on its check), dev48 **.562** < .646 (no gain); f2 unchanged | `queue_night.sh` → `gen_dev48.json` |
 
+### Second locked test, every arm pre-registered (CADERNO 2026-11-11 19h00)
+
+| exp | question | prediction | outcome | data |
+|---|---|---|---|---|
+| t400 | Fresh locked slice GSM8K test[400:600]; 6 arms fixed before opening; primary = 5 paired tests with Holm, secondary = t200 + t400 pooled | nt .53–.64, a2 .60–.72, a1 + capped bf .63–.75, a2_red .58–.72, capped bf .54–.66, a1 .55–.67; a1 + capped bf > nt at p < .05 (70%); a2 > nt at p < .05 (45%; pooled 65%); a2_red within 5 pp of a2 (65%); a2_red tokens ≥ a2 (60%) | nt .580, a2 .640, a1 + capped bf .645, a2_red .675, capped bf .595, a1 **.680** (above range). No primary test significant after Holm (all .83). Pooled 400: a2 − nt +7.5 ± 2.7 (p = .007), combo − nt +8.8 ± 2.8 (p = .002), combo − capped bf +7.2 ± 2.4 (p = .004), but combo − a1 only +2.2 ± 2.2 (t400: −3.5). a2_red within 5 pp of a2 (confirmed), fewer tokens than a2 (refuted) | `queue_t400.sh` → `gen_t400.json`, `gen_t400nt.json` |
+
 ## Deviations from pre-registration
 
 - **2026-11-07, E4.2:** training max_len raised from 4096 (the automatic E4.0 pick) to 8192, *before* training. With

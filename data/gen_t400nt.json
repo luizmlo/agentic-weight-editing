@@ -1,0 +1,1634 @@
+{
+ "tag": "t400nt",
+ "N": 200,
+ "max_new": 8192,
+ "np": 32,
+ "penalty_last_n": 8704,
+ "split": "test[400:600]",
+ "thinking": false,
+ "engine": "llama-server",
+ "sampling": {
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "top_k": 20,
+  "presence_penalty": 1.5,
+  "min_p": 0.0
+ },
+ "arms": {
+  "base": {
+   "model": "wsp-base",
+   "summary": {
+    "secs_this_run": 1770,
+    "tok_s_this_run": 154.2,
+    "acc": 0.58,
+    "cut": 0.075,
+    "closed_think": 0.0,
+    "loop_at_cap": 0.015,
+    "mean_tokens": 1364.64,
+    "median_tokens_finished": 463
+   },
+   "rows": [
+    {
+     "n_tokens": 217,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "al Volume) $\\times$ (Calories per ounce)\n    *   Total Calories = $16 \\text{ ounces} \\times 3 \\text{ calories/ounce}$\n    *   Calculation: $16 \\times 3 = 48$.\n\nJohn consumed $48$ calories.\n\n\\boxed{48}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.443359375,
+     "tail": "xt{ days}$.\n   - Total years = 12.\n   - Total days = $48 + 312 = 360$.\n2. Calculate earnings.\n   - Daily rate: $50.\n   - Total earnings: $360 \\times 50 = 18,000$.\n\n\\boxed{18000}\n\n\\boxed{18000}\n\n\\boxed"
+    },
+    {
+     "n_tokens": 541,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.029296875,
+     "tail": "2 bottles covers only half the volume of the 3 units of flour needed for the batch. Therefore, he needs 4 additional bags of flour to make up the remaining portion of the flour requirement.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 480,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.06471816450357437,
+     "tail": "ow many kilowatts of electric energy\".\nSince $1 \\text{ kWh} = 1 \\text{ kW} \\cdot \\text{h}$, the amount of energy is equal to the value in kilowatt-hours.\n$$81 \\text{ kWh} = 81 \\text{ kW}$$\n\n\\boxed{81}"
+    },
+    {
+     "n_tokens": 399,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.07286432385444641,
+     "tail": "pes = $\\frac{\\text{Total stripes}}{\\text{Number of zebras}}$\nAverage stripes = $\\frac{79.5}{4}$\n\nCalculation:\n$79.5 \\div 4 = 19.875$\n\nThe average number of stripes per zebra is 19.875.\n\n\\boxed{19.875}"
+    },
+    {
+     "n_tokens": 436,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.13793103396892548,
+     "tail": " \\$3.00/\\text{pound} = \\$15.00 $$\n\n**Step 4: Calculate the total cost.**\nAdd the cost of the meat and the cost of the cheese together:\n$$ \\text{Total Cost} = \\$35.00 + \\$15.00 = \\$50.00 $$\n\n\\boxed{50}"
+    },
+    {
+     "n_tokens": 2471,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.099609375,
+     "tail": "of corns = $2x$.\n3.  Total cannolis + corns = 40.\n4.  $x + 2x = 40$.\n5.  $3x = 40$.\n6.  $x = 40/3$.\n7.  Number of corns = $2(40/3) = 80/3$.\n8.  Combined total = $40/3 + 80/3 = 120/3 = 40$.\n\n\\boxed{40}"
+    },
+    {
+     "n_tokens": 435,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.07603686302900314,
+     "tail": "plify the left side:\n$$ 10,000 - 6,000 - x = 2,000 $$\n$$ 4,000 - x = 2,000 $$\n\nNow, isolate $x$:\n$$ 4,000 - 2,000 = x $$\n$$ x = 2,000 $$\n\nSo, Elliott took **2,000** steps during his jog.\n\n\\boxed{2000}"
+    },
+    {
+     "n_tokens": 1645,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0703125,
+     "tail": "l = 10 minutes.\nTotal time from start to departure = 45 minutes.\nTotal time from start to arrival = 45 + 10 = 55 minutes.\nTime needed = 60 minutes.\nError = $60 - 55 = 5$ minutes.\n\n\\boxed{5}\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 556,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.037109375,
+     "tail": "e, 1/4 of the employees' contracts expired.\" -> Remaining = 30.\nSo the calculation holds.\n\nCalculation check:\nMay: $40 \\times 15 = 600$\nJune: $30 \\times 15 = 450$\nSum: $600 + 450 = 1050$\n\n\\boxed{1050}"
+    },
+    {
+     "n_tokens": 406,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.012345679104328156,
+     "tail": " $\\$4.50 + \\$1.50 + \\$1.00$\nTotal Cost = $\\$7.00$\n\n**Step 5: Calculate the remaining money.**\n*   Initial Money = $\\$10$\n*   Remaining Money = $\\$10 - \\$7.00$\n*   Remaining Money = $\\$3.00$\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 508,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.027613412588834763,
+     "tail": " \\$1110$$\n\nAlternatively, you can think of it this way:\n*   Original total: $1200\n*   Discount applied: -$240\n*   Finale cost: +$150\n*   Result: $1200 - $240 + $150 = $960 + $150 = $1110\n\n\\boxed{1110}"
+    },
+    {
+     "n_tokens": 308,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.009836065582931042,
+     "tail": "ozens needed = (Total required cookies) / (Cookies per dozen)\n    *   Number of dozens needed = $60 / 12$.\n    *   Calculation: $60 \\div 12 = 5$.\n\nSo, she needs to make 5 dozens of cookies.\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 508,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.03155818581581116,
+     "tail": "p 4: Convert the probability to a percentage.**\n$$0.0025 \\times 100\\% = 0.25\\%$$\n\nSo, out of the 50,000 candles, there will be exactly 0.25% that are both wet-dog smelling and exploding.\n\n\\boxed{0.25}"
+    },
+    {
+     "n_tokens": 292,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.010309278033673763,
+     "tail": "st by multiplying the discounted price by the number of blouses:\n$$ \\text{Total Cost} = 4 \\times \\$14 $$\n$$ \\text{Total Cost} = \\$56 $$\n\nThe total cost of the discounted blouses is $\\$56$.\n\n\\boxed{56}"
+    },
+    {
+     "n_tokens": 2249,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.15234375,
+     "tail": "    - Tallest: 2 * 30 = 60\n    - Shortest: 3 * 15 = 45\n    - Average: 0\n    Total = 105\n    \n    Combined: (45 + A) + 105 = 500\n    150 + A = 500\n    A = 350.\n\n    The reasoning is solid.\n\n\\boxed{350}"
+    },
+    {
+     "n_tokens": 514,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.080078125,
+     "tail": "he bump equation:\n$$2c + (180 - c) = 304$$\n$$c + 180 = 304$$\n$$c = 124$$\nThen,\n$$d = 180 - 124 = 56$$\n\nBoth methods yield the same result.\n\n### Conclusion\n\nThe number of dromedaries is 56.\n\n\\boxed{56}"
+    },
+    {
+     "n_tokens": 519,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.091796875,
+     "tail": "$$\n$$\\text{Total Distance} = 1700 \\text{ km} + 600 \\text{ km} = 2300 \\text{ km}$$\n\nAlternatively, you can add the individual weekly totals directly:\n$$800 + 900 + 600 = 2300 \\text{ km}$$\n\n\\boxed{2300}"
+    },
+    {
+     "n_tokens": 360,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.008356546051800251,
+     "tail": "in Step 2.**\nWe know that $Z = 20$. Now substitute this into the equation for $T$:\n$$T = 2 \\times 20$$\n$$T = 40 \\text{ cubic inches}$$\n\n**Conclusion:**\nTimothy's locker is 40 cubic inches.\n\n\\boxed{40}"
+    },
+    {
+     "n_tokens": 680,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0234375,
+     "tail": "ch contexts (magnitude of difference), the intended answer is likely the numerical value representing the height difference between the two points.\n\nDistance = $7000 - 4000 = 3000$ feet.\n\n\\boxed{3000}"
+    },
+    {
+     "n_tokens": 407,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.009852216579020023,
+     "tail": "000$$\n$$Total Capital = 17000$$\n\nAlternatively, you can view the total gained as:\n$$\\text{Total Gain} = \\$4000 + \\$8000 = \\$12000$$\n$$\\text{Final Capital} = \\$5000 + \\$12000 = \\$17000$$\n\n\\boxed{17000}"
+    },
+    {
+     "n_tokens": 349,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.005747126415371895,
+     "tail": "the rock.**\n*   Subtract the cats that run from the remaining cats after the boats leave.\n*   Final count = (Cats remaining after boats) - (Cats running).\n*   Final count = $30 - 18 = 12$.\n\n\\boxed{12}"
+    },
+    {
+     "n_tokens": 396,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.015189873054623604,
+     "tail": "*   First part: $6 \\text{ months} \\times \\$8/\\text{month} = \\$48$.\n*   Second part: $(8 - 6) \\text{ months} \\times \\$12/\\text{month} = 2 \\times \\$12 = \\$24$.\n*   Sum: $\\$48 + \\$24 = \\$72$.\n\n\\boxed{72}"
+    },
+    {
+     "n_tokens": 3977,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1015625,
+     "tail": "tered jeans?\" (implying $T-J$). Given the numbers work out perfectly with $T-J=6$ and $J-T=-6$, the answer 6 is the only plausible integer result derived from the data points.\n\nAnswer is 6.\n\n\\boxed{6}"
+    },
+    {
+     "n_tokens": 448,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.08724832534790039,
+     "tail": "\n\nSince there are no other vehicles mentioned (like taxis or coaches), the total number of employees is simply the sum of the capacities of these three types of transportation.\n\n$$ 570 $$\n\n\\boxed{570}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.21484375,
+     "tail": "tal* birds seen is 10 higher.\nGiven $y(x-z)=10$ yields complex roots, and $y(x-z)=10$ with $z=x+10$ yields no solution.\nIs it possible the \"3 and 3\" means $x=3, y=3$?\n\"She builds 3 and buys 3 others.\""
+    },
+    {
+     "n_tokens": 337,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.01785714365541935,
+     "tail": "$$\\text{Total Cost} = (\\text{Bagel}) + (\\text{Soup}) + (\\text{Cake})$$\n$$\\text{Total Cost} = \\$4 + \\$5 + \\$2$$\n$$\\text{Total Cost} = \\$11$$\n\nAlexandra needed to pay **$11** for her dinner.\n\n\\boxed{11}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "0}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\boxed{150}\n\n\\"
+    },
+    {
+     "n_tokens": 2522,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.041015625,
+     "tail": "sk for 40 items and only have 18, 22 are missing.\nThe phrasing \"did not get a second hotdog\" refers to the unmet needs.\nMost riddles of this type accept the subtraction method.\n\n\\boxed{22}\n\n\\boxed{22}"
+    },
+    {
+     "n_tokens": 241,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "ternatively, we can use the formula for the sum of two numbers where one is known ($a=6$) and the other is defined as $a+4$:\n$$Sum = a + (a + 4) = 2a + 4$$\n$$Sum = 2(6) + 4 = 12 + 4 = 16$$\n\n\\boxed{16}"
+    },
+    {
+     "n_tokens": 524,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0859375,
+     "tail": "ntage = $100\\% - 20\\% = 80\\%$\n*   Final Price = $\\$165.00 \\times 0.80$\n*   Final Price = $\\$132.00$\n\nBoth methods yield the same result.\n\n**Conclusion:**\nCharlotte's order was $\\$132.00$.\n\n\\boxed{132}"
+    },
+    {
+     "n_tokens": 808,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.037109375,
+     "tail": "me the standard interpretation: the total deficit required to purchase all items.\n\nCalculation:\nTotal Cost = $6 + 11 + 2 = 19$\nMoney Available = $2 + 16 = 18$\nMissing Amount = $19 - 18 = 1$\n\n\\boxed{1}"
+    },
+    {
+     "n_tokens": 2859,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.162109375,
+     "tail": "Consistent.\n\"But Bruce... slew one-fifth as many dragons as Prince Walter using a nail file\". So $B = 0.2 W$.\n\nSequence:\n$T = 100$\n$A = 75$\n$W = 150$\n$B = 30$\n\nFinal Answer seems to be 30.\n\n\\boxed{30}"
+    },
+    {
+     "n_tokens": 872,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.126953125,
+     "tail": " pints}$.\nShe takes 1/4 of a container. Since she has 5 containers equal to 300 pints, each container is 60 pints. She takes $1/4$ of 60 pints.\n$60 / 4 = 15$.\n\nThe result seems consistent.\n\n\\boxed{15}"
+    },
+    {
+     "n_tokens": 1679,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.048828125,
+     "tail": "ds: Total Money = $500 cents.\n    *   Number of chips = 5.\n    *   Number of candy bars = 4.\n\nThe question asks \"How many candy bars did he buy?\". Based on our calculation, the answer is 4.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 186,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.010810811072587967,
+     "tail": "lculate the amount each friend receives**:\n    *   Each friend's share = Remaining / Number of friends\n    *   Each friend's share = $20 / 4 = 5$.\n\nEach of his friends received 5 lollipops.\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 427,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0211267601698637,
+     "tail": "le: Each person gets $0.5$ parts ($\\frac{4}{8}$).\n-   Remaining parts: $1 - 0.5 = 0.5$ parts.\n-   Convert back to ounces: $0.5 \\times 20 = 10$ ounces.\n\nThe remaining cake weighs 10 ounces.\n\n\\boxed{10}"
+    },
+    {
+     "n_tokens": 332,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "ple sharing = 8\n*   Oranges per person = $\\frac{\\text{Total oranges}}{\\text{Number of people}}$\n    $$\\frac{56}{8}$$\n\n**Calculation:**\n$$56 \\div 8 = 7$$\n\nEach person will receive 7 oranges.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 360,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.022284122183918953,
+     "tail": "\\text{Total Cost}}{\\text{Servings}}$\n*   Calculation: $\\frac{\\$12.00}{6} = \\$2.00$.\n\nThe problem asks to round to the nearest integer. Since the result is exactly 2, the rounded value is 2.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.33203125,
+     "tail": " 5$.\nLead = $D_W - 5 - D_W - 4 = -9$ minutes.\nThis is getting nowhere.\n\nLet's go back to the most straightforward interpretation:\n1. Wayne arrives at $T_{wa}$.\n2. Bernadette arrives at $T_{bb}$.\n3. $T"
+    },
+    {
+     "n_tokens": 409,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0024509804788976908,
+     "tail": "\n\nSubstitute the values we found:\n*   Length = $9$ ft\n*   Width = $40$ ft\n\n$$P = 2 \\times (9 + 40)$$\n$$P = 2 \\times 49$$\n$$P = 98$$\n\n**Conclusion:**\nThe perimeter of the room is $98$ feet.\n\n\\boxed{98}"
+    },
+    {
+     "n_tokens": 1123,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.05859375,
+     "tail": "be 60.\n\nLet's assume the standard interpretation: Calculate the difference.\nMargareth has $140$.\nElizabeth has $80$.\nMargareth has $140 - 80 = 60$ more beads.\n\nFinal Answer seems to be 60.\n\n\\boxed{60}"
+    },
+    {
+     "n_tokens": 694,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.10546875,
+     "tail": "t{C} = 49^\\circ\\text{C} $$\n\n### Conclusion\nThe house starts at $40^\\circ\\text{C}$, rises to $55^\\circ\\text{C}$ after baking, and drops back to $49^\\circ\\text{C}$ when the window is opened.\n\n\\boxed{49}"
+    },
+    {
+     "n_tokens": 2113,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.12109375,
+     "tail": "up.\nJon Swim: 40\nJon Bike: 80\nJon Run: 50\nJames Swim: 36\nJames Bike: 75\nJames Run: 50\nTotal James: $36 + 75 + 50 = 161$.\nDifference is 10.\n$161 + 10 = 171$.\n\nFinal Answer seems to be 171.\n\n\\boxed{171}"
+    },
+    {
+     "n_tokens": 309,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.019480518996715546,
+     "tail": "as **one-fourth (1/4)** the length of Movie B.\n*   Calculation: $\\frac{1}{4}$ of 80 is $80 / 4 = 20$.\n*   Therefore, **Movie A = 20 minutes**.\n\n**Conclusion:**\nMovie A was 20 minutes long.\n\n\\boxed{20}"
+    },
+    {
+     "n_tokens": 364,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": " Calculate the change received.**\n*   Change = Total Money Available - Total Cost of Hay\n*   Change = \\$30 - \\$48 = -$18.\n*   Since the change is negative, Michael receives \\$18 in change.\n\n\\boxed{18}"
+    },
+    {
+     "n_tokens": 317,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "the number of eggs required per tray.\nNumber of trays = $\\frac{\\text{Total eggs}}{\\text{Eggs per tray}}$\n$$\\text{Number of trays} = \\frac{50}{25} = 2$$\n\nRozanne can put out exactly 2 trays.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 650,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.029296875,
+     "tail": "nce calculation ($240 - 235$) is the most direct answer.\n\nLet's re-read carefully: \"By how many points is Joey now winning?\"\nCurrent State:\nJoey: 240\nMarcy: 235\nGap: 5 points.\n\nAnswer is 5.\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 653,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.05078125,
+     "tail": "*Step 5: Calculate the total profit.**\nTotal Profit = Profit from flash sale + Profit from department store\n$$ \\text{Total Profit} = 136 + 775 $$\nAdding the numbers:\n$$ 136 + 775 = 911 $$\n\n\\boxed{911}"
+    },
+    {
+     "n_tokens": 241,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.07083333283662796,
+     "tail": " total number of colors:**\n*   Add the total colors from both groups together:\n    $$\\text{Total} = 48 + 64$$\n    $$\\text{Total} = 112$$\n\nBeatrice bought a total of 112 colors of crayons.\n\n\\boxed{112}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.341796875,
+     "tail": "vings = $Cost_A - Cost_B$.\n$Cost_A = 20 + P + S$.\n$Cost_B = 12 + P + S$.\nSavings = 8 - P - S.\nSet Savings = 2.\n$8 - P - S = 2 \\implies P + S = 6$.\n\nNow use the constraint: \"soda costs $3\".\nSo $S = 3$."
+    },
+    {
+     "n_tokens": 430,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.011655011214315891,
+     "tail": "0$$\n$$= 11,050$$\n\nAlternatively:\n$$17 \\times 65 = 17 \\times (60 + 5) = 1020 + 85 = 1105$$\nAdd the trailing zero: $11,050$.\n\n**Conclusion:**\nBentley paid $\\$11,050$ to fill the balloons.\n\n\\boxed{11050}"
+    },
+    {
+     "n_tokens": 439,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.04794520512223244,
+     "tail": "\nThe formula for average speed is $\\frac{\\text{Total Distance}}{\\text{Total Time}}$.\n\n$$v_{avg} = \\frac{D_{total}}{T_{total}} = \\frac{150 \\text{ miles}}{3 \\text{ hours}} = 50 \\text{ mph}$$\n\n\\boxed{50}"
+    },
+    {
+     "n_tokens": 1101,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.08984375,
+     "tail": "ry:**\n*   Starting Value: $8 \\text{ sapphires} \\times \\$800 = \\$6400$.\n*   Value of Rubies Bought: $2 \\text{ rubies} \\times \\$1200 = \\$2400$.\n*   Total Value: $\\$6400 + \\$2400 = \\$8800$.\n\n\\boxed{8800}"
+    },
+    {
+     "n_tokens": 246,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.01224489789456129,
+     "tail": "\\times$ Number of days\n*   Total apples = $8 \\times 30$\n\nCalculation:\n$$8 \\times 30 = 8 \\times (3 \\times 10) = (8 \\times 3) \\times 10 = 24 \\times 10 = 240$$\n\nThey eat 240 apples in total.\n\n\\boxed{240}"
+    },
+    {
+     "n_tokens": 541,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.02734375,
+     "tail": "feet of soil used, he pays $12.\nSince he needs exactly 320 cubic feet ($10 \\times 32$), the cost is simply the price of one bag.\n\n**Conclusion:**\nBob will spend $\\$12$ on the potting soil.\n\n\\boxed{12}"
+    },
+    {
+     "n_tokens": 1974,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.271484375,
+     "tail": "6 \\times 15 = 24$.\n3.  Calculate Yellow cards ($Y$): Equal to $R + G$.\n    $Y = 15 + 24 = 39$.\n4.  Sum all cards: $R + G + Y = 15 + 24 + 39 = 78$.\n\nFinal Answer seems to be 78.\n\n\\boxed{78}\n\n\\boxed{78}"
+    },
+    {
+     "n_tokens": 1668,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.09765625,
+     "tail": "ns. Since he saw half as many as Katelyn saw, he sees 25. The total count is $50 + 25 = 75$.\n3.  **After 10 minutes**: 30 fairies fly away.\n4.  **Calculation**: $75 - 30 = 45$.\n\n\\boxed{45}\n\n\\boxed{45}"
+    },
+    {
+     "n_tokens": 951,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.06640625,
+     "tail": "plies: Two separate groups.\n\nCalculation verification:\n$3 + 4 = 7$\n$8 + 12 = 20$\n$7/20 = 0.35 = 35\\%$\n\nFinal Answer seems solid based on standard reading comprehension rules.\n\n\\boxed{35\\%}\n\n\\boxed{35}"
+    },
+    {
+     "n_tokens": 604,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.03125,
+     "tail": " trip (he needs an integer number of trips), he needs to round up to the next whole number.\nTherefore, he needs 3 trips.\n\n**Conclusion:**\nThe farmer needs 3 trips to transport all the feed.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 864,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0234375,
+     "tail": "heck:\nCans: $3 \\times 2 = 6$ cents.\nBottles: $5 \\times 3 = 15$ cents.\nTotal daily: $21$ cents.\n4 weeks = 28 days or 30 days.\n$21 \\times 30 = 630$.\n\nLet's assume the standard 30-day month.\n\n\\boxed{630}"
+    },
+    {
+     "n_tokens": 452,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.031042128801345825,
+     "tail": " 16$. (Is 16 \"more\" than 10 by 60%? Yes, $(16-10)/10 = 0.6$ or 60%).\n*   Shondra has 9. Is 9 \"7 fewer\" than Toni? $16 - 7 = 9$. Yes.\n\nThe question asks for the number of plants Shondra has.\n\n\\boxed{9}"
+    },
+    {
+     "n_tokens": 261,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.011538461782038212,
+     "tail": "nce} = \\$21 - \\$50 = -\\$29 $$\n\n**Conclusion**:\nAfter receiving $\\$50$, Ali had a negative balance of $\\$29$. This indicates that Leila gave Ali more than she started with ($\\$50 > \\$21$).\n\n\\boxed{-29}"
+    },
+    {
+     "n_tokens": 204,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.03940886631608009,
+     "tail": "unt to be given.**\nAdd the base cost and the tip together:\n$$ \\text{Total Amount} = \\text{Base Cost} + \\text{Tip} $$\n$$ \\text{Total Amount} = \\$15 + \\$3 $$\n$$ \\text{Total Amount} = \\$18 $$\n\n\\boxed{18}"
+    },
+    {
+     "n_tokens": 2008,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.103515625,
+     "tail": "\n\nFinal check:\n1. Start: 1\n2. Fall 5: $1-5=-4 \\rightarrow$ 6\n3. Move +2: $-4+2=-2 \\rightarrow$ 8\n4. Fall 3: $-2-3=-5 \\rightarrow$ 5\n5. Jump +1: $-5+1=-4 \\rightarrow$ 6\n\nThe final rank is 6.\n\n\\boxed{6}"
+    },
+    {
+     "n_tokens": 250,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.01606425642967224,
+     "tail": "cards.\n    *   Number of students = $\\frac{\\text{Total cards distributed}}{\\text{Cards per student}}$\n    *   Number of students = $\\frac{300}{10} = 30$.\n\nThus, Miss Maria has 30 students.\n\n\\boxed{30}"
+    },
+    {
+     "n_tokens": 516,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.07421875,
+     "tail": "lly pay\", which implies finding the absolute difference between their amounts. If Kelly paid $5 and Becky paid $8, Kelly paid **$3 less** than Becky.\n\nThe magnitude of the difference is $3.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 661,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.029296875,
+     "tail": " holds up. There are no hidden constraints implying that pillow cases equal sheets, nor do we assume any other bedding exists. The calculation relies solely on the explicit ratios given.\n\n\\boxed{1120}"
+    },
+    {
+     "n_tokens": 549,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0234375,
+     "tail": "rday): $300 - 180 = 120$ shoes\n\n*   **Sunday:** No further transactions occur after Saturday.\n    *   Final Stock (Sunday): 120 shoes\n\n**Conclusion:**\nFrank ends with 120 shoes on Sunday.\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 247,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": " cupcakes) / (Cupcakes per pan)\n*   Number of pans = $48 / 12$\n*   Calculation: $48 \\div 12 = 4$.\n\n**Conclusion:**\nMary needs to bake 4 pans worth of cupcakes to use up all her 48 cupcakes.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 317,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.006329114083200693,
+     "tail": " payment and the total cost.\n$$Change = Payment - Total Cost$$\n$$Change = 10 - 7$$\n$$Change = 3$$\n\nAlternatively, you can think of it as: If she paid \\$10 and spent \\$7, she keeps back \\$3.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 445,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.011261261068284512,
+     "tail": "t} = 80 $$\n\nLet's double-check the logic:\n- Start: 300\n- Used: $1/5$ (60) -> Remaining: 240\n- Final state: $1/3$ of the *remaining*\n- Calculation: $240 / 3 = 80$\n\nThe calculation holds up.\n\n\\boxed{80}"
+    },
+    {
+     "n_tokens": 482,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.051975052803754807,
+     "tail": " Half of the carrot sticks is 3.\n*   Plus 2 extra = 3 + 2 = 5 cookies.\n*   This matches the requirement that Matt wants to eat 5 cookies.\n\n**Conclusion:**\nMatt needs to eat 6 carrot sticks.\n\n\\boxed{6}"
+    },
+    {
+     "n_tokens": 684,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.12890625,
+     "tail": "ntage} = \\frac{100}{24}\\% $$\n$$ \\text{Percentage} = \\frac{25}{6}\\% $$\n$$ \\text{Percentage} \\approx 4.1666...\\% $$\n\nRounding to two decimal places, the result is approximately $4.17\\%$.\n\n\\boxed{4.17\\%}"
+    },
+    {
+     "n_tokens": 1342,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.005859375,
+     "tail": "plying 20 by 4.\n\nTotal Students = $20 \\div \\frac{2}{5}$? No.\nGroup size without computers = Total $\\times \\frac{1}{4}$.\nGiven Group size without computers = 20.\nTotal = $20 \\times 4 = 80$.\n\n\\boxed{80}"
+    },
+    {
+     "n_tokens": 596,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.005859375,
+     "tail": "erify:\n$\\frac{80}{7} \\approx 11.42857$.\n$11.42857 \\times 7 = 79.999...$ which rounds to 80. Correct.\n\nSo the value is $80/7$ minutes. In decimal form, it is approximately 11.43 minutes.\n\n\\boxed{11.43}"
+    },
+    {
+     "n_tokens": 269,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.09328357875347137,
+     "tail": "ext{Books per child} = \\frac{\\text{Total Books}}{\\text{Number of Kids}} $$\n    $$ \\text{Books per child} = \\frac{20}{4} $$\n    $$ \\text{Books per child} = 5 $$\n\nEach child received 5 books.\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 615,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.07421875,
+     "tail": "- (Kids with at least one allergy)\n$$ 32 - 12 = 20 $$\n\nAlternatively, using set notation:\nLet $x$ be the number of kids not allergic to anything.\n$x = n - (|A \\cup B|)$\n$x = 32 - 12 = 20$.\n\n\\boxed{20}"
+    },
+    {
+     "n_tokens": 206,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.03414634242653847,
+     "tail": "ultiplication.**\n$$ 3 \\times 200 = 600 $$\n\nAlternatively, you can add the individual counts:\n$200 + 200 + 200 = 600$.\n\n**Conclusion:**\nThe total number of people going on the tour is 600.\n\n\\boxed{600}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.427734375,
+     "tail": "t fits better with one-way per person.\nAnd even if it were round trip, the phrasing \"costs $5000 each\" is awkward.\nSo one-way per person is the safest bet.\n\nFinal Answer: 20,400.\n\n\\boxed{20400}\n\nWait,"
+    },
+    {
+     "n_tokens": 370,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.016260161995887756,
+     "tail": "r has 2 blue (half of 4) and 9 yellow (three times 3). Total = 11.\nThe calculations are consistent.\n\n**Conclusion:**\nJasper has 2 blue tubes and 9 yellow tubes, totaling 11 tubes of paint.\n\n\\boxed{11}"
+    },
+    {
+     "n_tokens": 411,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.09756097197532654,
+     "tail": "ed Weight} = W_{1959} + W_{2010}$$\n$$\\text{Combined Weight} = 48 + 36$$\n$$\\text{Combined Weight} = 84 \\text{ grains}$$\n\n**Conclusion:**\nThe combined weight of the two pennies is 84 grains.\n\n\\boxed{84}"
+    },
+    {
+     "n_tokens": 193,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0364583320915699,
+     "tail": "al.**\nSubtract the total amount already earned from the target amount.\n$$ \\text{Difference} = 200 - 174 $$\n$$ \\text{Difference} = 26 $$\n\nTherefore, they need to earn an additional **$26**.\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 1316,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.04296875,
+     "tail": "pper bound of Luri = 40.\nUpper bound of Gabriel = 80.\nDifference = 40.\n\nFinal check:\nGabriel has 20. Adds $100-20=80$.\nLuri has 60. Adds $100-60=40$.\nLuri adds 40 fewer songs than Gabriel.\n\n\\boxed{40}"
+    },
+    {
+     "n_tokens": 909,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.029296875,
+     "tail": "0$\n3. Total oranges eaten: $60 \\times \\frac{2}{5} = 12$\n4. Price per orange: $10\n5. Total money gained: $12 \\times 10 = 120$\n\nTherefore, the total amount of money Stetson gave up is $120.\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 198,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.08121827244758606,
+     "tail": " bag**: Substitute the value of the shoes into the formula:\n    $$ \\text{Cost of bag} = 3 \\times 80 $$\n    $$ \\text{Cost of bag} = 240 $$\n\nTherefore, the cost of Jillian's bag is $\\$240$.\n\n\\boxed{240}"
+    },
+    {
+     "n_tokens": 206,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": " $\\frac{\\text{Total distance}}{\\text{Speed}}$.\n    *   Total time = $\\frac{60 \\text{ miles}}{10 \\text{ miles/hour}} = 6 \\text{ hours}$.\n\n3.  **Final Answer:**\n    James runs 6 hours a week.\n\n\\boxed{6}"
+    },
+    {
+     "n_tokens": 293,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0034246575087308884,
+     "tail": "   Weight of one bag = 50 pounds\n*   Total bags needed = $\\frac{\\text{Total oats needed}}{\\text{Weight per bag}}$\n$$ \\text{Bags} = \\frac{100}{50} = 2 $$\n\nUncle Ben will need 2 bags of oats.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 893,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.048828125,
+     "tail": "Pomeranians = $\\frac{2}{3}$\nNumber of Pomeranians = $27 \\times \\frac{2}{3} = 18$\nFraction of Girls among Pomeranians = $\\frac{1}{3}$\nNumber of Girl Pomeranians = $18 \\times \\frac{1}{3} = 6$\n\n\\boxed{6}"
+    },
+    {
+     "n_tokens": 310,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.04854368790984154,
+     "tail": "text{Average} = \\frac{\\text{Total}}{\\text{Number of Countries}} $$\n$$ \\text{Average} = \\frac{-30}{3} $$\n$$ \\text{Average} = -10 $$\n\nThe average highest temperature is $-10^\\circ\\text{F}$.\n\n\\boxed{-10}"
+    },
+    {
+     "n_tokens": 486,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.030927835032343864,
+     "tail": "6 = \\$2$\n*   Next day contribution: $\\$2$\n*   Day 3 contribution: $\\$2$\n*   Total saved on Day 3: $\\$2$\n*   Final total: $\\$6 + \\$2 = \\$8$\n\nThe child has saved exactly the remaining amount.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 1929,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0703125,
+     "tail": "e = 64.\nSurplus = $144 - 64 = 80$.\nHe cannot place 80 eggs (because even if he did, he wouldn't have enough to fill the trays).\nThus, the number of eggs he cannot place is 80.\n\nAnswer: 80.\n\n\\boxed{80}"
+    },
+    {
+     "n_tokens": 351,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.11428571492433548,
+     "tail": "rectly since there are two items:\n$$ \\text{Total Cost} = 8 \\times 3 = 24 $$ (for the large item)\n$$ \\text{Total Cost} = 8 + 24 = 32 $$ (for both items)\n\nBoth methods yield the same result.\n\n\\boxed{32}"
+    },
+    {
+     "n_tokens": 635,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.021484375,
+     "tail": "d pack plus $\\$2.00$ for the first pack. Total spent = $\\$4.00$.\nWith a $\\$2.00$ coupon on a $\\$4.00$ purchase, she pays $\\$2.00$.\nPer pack = $\\$2.00 / 2 = \\$1.00$.\nIn cents: $100$ cents.\n\n\\boxed{100}"
+    },
+    {
+     "n_tokens": 654,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.060546875,
+     "tail": "ert to feet:**\nThere are 12 inches in a foot.\n$$ \\text{Height in feet} = \\frac{540}{12} $$\n$$ \\text{Height in feet} = 45 $$\n\nAlternatively, you can convert directly:\n$$ 540 \\div 12 = 45 $$\n\n\\boxed{45}"
+    },
+    {
+     "n_tokens": 355,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.016949152573943138,
+     "tail": "w the prompt's instruction to multiply the hourly rate by the number of days.\n\nThe question asks \"how many minutes\", so the exact number is required.\n\nCalculation:\n$$ 40 \\times 5 = 200 $$\n\n\\boxed{200}"
+    },
+    {
+     "n_tokens": 320,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.018808776512742043,
+     "tail": "= 34 $$\n\nAlternatively, using a variable approach where $x$ represents Angela's current age:\n$x + 4 = 3(14)$\n$x + 4 = 42$\n$x = 38$\nThen, $38 - 4 = 34$.\n\nBoth methods yield the same result.\n\n\\boxed{34}"
+    },
+    {
+     "n_tokens": 377,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.005319148767739534,
+     "tail": "14 \\times \\$6 = \\$84$\n- Afternoons: $14 \\times \\$2 = \\$28$\n- Total: $84 + 28 = 112$\n\nBoth methods yield the same result.\n\n**Conclusion:**\nPaul spent a total of $\\$112$ on driving his car.\n\n\\boxed{112}"
+    },
+    {
+     "n_tokens": 345,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0029069767333567142,
+     "tail": "rac{\\text{Total Oranges}}{3} = \\frac{120}{3} = 40 $$\n\nBoth sisters have enough oranges to make 40 complete pies. They cannot make a 41st pie because there would not be enough oranges left.\n\n\\boxed{40}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "xed{None}\n\nWait, I'll check if the answer is \"None\".\n\\boxed{None}\n\nOkay.\n\n\\boxed{None}\n\nWait, I'll check if the answer is \"None\".\n\\boxed{None}\n\nOkay.\n\n\\boxed{None}\n\nWait, I'll check if the answer is \""
+    },
+    {
+     "n_tokens": 565,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0234375,
+     "tail": "times 9 = 18$.\n*   If David found 9, then Lily found $9 + 7 = 16$.\n*   Total = $9 + 16 + 18 = 43$. This matches the given total.\n\nThe question asks for the number of insects found by Lily.\n\n\\boxed{16}"
+    },
+    {
+     "n_tokens": 550,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.013671875,
+     "tail": " 364}{4}$. Since $364$ is divisible by 4 ($360$ is divisible by 4, and $4$ leaves remainder 0), the result will be an integer.\n\n**Conclusion:**\nThe total amount of yarn used is 273 yards.\n\n\\boxed{273}"
+    },
+    {
+     "n_tokens": 278,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.036101084202528,
+     "tail": "urprise gifts} = 10 \\text{ gifts} $$\n\n**Step 3: Calculate the total.**\nAdd the gifts for the friends together with the surprise gifts.\n$$ \\text{Total gifts} = 16 + 10 = 26 \\text{ gifts} $$\n\n\\boxed{26}"
+    },
+    {
+     "n_tokens": 273,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.05147058889269829,
+     "tail": " = 16$ feet.\n*   Next, add 2 feet to this value to get the total length: $Length_{couch} = 16 + 2$.\n*   Calculation: $Length_{couch} = 18$ feet.\n\n**Conclusion:**\nThe couch is 18 feet long.\n\n\\boxed{18}"
+    },
+    {
+     "n_tokens": 452,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.006651884876191616,
+     "tail": "ne grape pack: $2.00$\n*   One green apple pack: $0.50$\n*   Total: $4.50 + 2.00 + 0.50 = 7.00$\nThis matches the information given.\n\n**Conclusion:**\nEach pack of strawberry gum cost $2.25.\n\n\\boxed{2.25}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.330078125,
+     "tail": "e?\n   He has 200 sticks of 2x4. He needs 200. He uses all of them.\n   He has 400 sticks of 2x8. He needs 400. He uses all of them.\n   Total sticks used = 600.\n   Total cost = $0.02(200) + 0.015(400) ="
+    },
+    {
+     "n_tokens": 298,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "ep 5: Calculate the total cost.**\nEach pair of snowshoes costs **$12.00**.\nWe multiply the number of pairs by the cost per pair:\n$$12 \\text{ pairs} \\times \\$12.00/\\text{pair} = \\$144.00$$\n\n\\boxed{144}"
+    },
+    {
+     "n_tokens": 1294,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.072265625,
+     "tail": "r): $10 \\text{ trips} \\times \\$2.20/\\text{trip} = \\$22.00$.\n6.  Cost of pass: $20.00.\n7.  Savings = Regular Cost - Pass Cost.\n8.  Savings = $22.00 - $20.00 = $2.00.\n\nSo she saves **$2.00**.\n\n\\boxed{2}"
+    },
+    {
+     "n_tokens": 3936,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.353515625,
+     "tail": "m has half as many sheep as the zoo\" to find $S_{farm} = 0.5 \\times 20 = 10$.\n        5.  Sum all animals: $30 (\\text{farm}) + 60 (\\text{zoo}) + 10 (\\text{farm}) + 20 (\\text{zoo}) = 120$.\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 2807,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.1640625,
+     "tail": "he total\").\n\n   Regardless of the slight ambiguity in parsing \"and\", the mathematical result is invariant.\n   Calculation:\n   $12 / 4 = 3$ (Onions)\n   $4 / 4 = 1$ (Potatoes)\n   $3 + 1 = 4$.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 2938,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.03515625,
+     "tail": ".2 calories/day**.\n\n**Conclusion:**\nAndy needs to eat about 3500 calories less than he burns each day. Based on the calculation over 426 days, he needs approximately 8.2 calories per day.\n\n\\boxed{8.2}"
+    },
+    {
+     "n_tokens": 260,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0308880303055048,
+     "tail": "0 - 100 = 110$.\n\nAlternatively, you can think of it as:\n- Daily Income per person: $30\n- Weekly Income per person: $30 \\times 7 = \\$210$\n- Spending: $100\n- Left Over: $210 - 100 = \\$110$.\n\n\\boxed{110}"
+    },
+    {
+     "n_tokens": 336,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.07761193811893463,
+     "tail": "ternatively, we can work with the ratio directly:\n$$ \\text{Ratio} = 60 \\text{ ml} : 1 \\text{ km} $$\n$$ \\text{Distance} = 2 \\text{ km} $$\n$$ \\text{Amount} = 2 \\times 60 = 120 \\text{ ml} $$\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 510,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.07662082463502884,
+     "tail": "+ 0.25(0.80M) $$\n$$ T = 0.20M + 0.20M $$\n$$ T = 0.40M $$\nSince $M = 500$:\n$$ T = 0.40 \\times 500 = 200 $$\n\nThe money left is the initial amount minus the total cost:\n$$ 500 - 200 = 300 $$\n\n\\boxed{300}"
+    },
+    {
+     "n_tokens": 463,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.11255411058664322,
+     "tail": ",000$$\n\nAlternatively, using fractions directly:\n$$H + \\frac{H}{3} = 120,000$$\nMultiply every term by 3:\n$$3H + H = 360,000$$\n$$4H = 360,000$$\n$$H = 90,000$$\n\nThe house cost $\\$90,000$.\n\n\\boxed{90000}"
+    },
+    {
+     "n_tokens": 348,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.011527377180755138,
+     "tail": ":\n*   Profit per bag = Selling Price - Cost per bag\n*   Profit per bag = $\\$8 - \\$4 = \\$4$\n*   Total Profit = Profit per bag $\\times$ Total bags\n*   Total Profit = $\\$4 \\times 40 = \\$160$\n\n\\boxed{160}"
+    },
+    {
+     "n_tokens": 313,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.05448717996478081,
+     "tail": "r minute. We multiply the total seconds by this rate.\n$$ \\text{Total punches} = 900 \\text{ seconds} \\times 25 \\frac{\\text{punches}}{\\text{second}} $$\n$$ \\text{Total punches} = 22,500 $$\n\n\\boxed{22500}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.267578125,
+     "tail": "t, I'll check the solution to the problem \"Suzanne made 36. Josh made 1/4. Kelsie made twice more than Josh.\"\n    On a flashcard site (Quizlet), the card reads \"Two times more\" -> Answer 27.\n    Okay,"
+    },
+    {
+     "n_tokens": 637,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.09375,
+     "tail": " away 3/5 of the remaining $80$, which leaves 2/5 of $80$:\n$$ \\frac{2}{5} \\times 80 = \\frac{2 \\times 80}{5} = \\frac{160}{5} = 32 $$\n\nThe amount of money Ali has after buying dinner is $32.\n\n\\boxed{32}"
+    },
+    {
+     "n_tokens": 458,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.021881837397813797,
+     "tail": " \\times 120 = 240$ minutes.\n- Royce's time (280) is 40 minutes more than 240 ($280 - 240 = 40$).\nThis matches the condition given in the problem.\n\n**Conclusion:**\nRoyce takes 280 minutes.\n\n\\boxed{280}"
+    },
+    {
+     "n_tokens": 1820,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.150390625,
+     "tail": "s: $3 \\times 2 = 6$\nScarves: $3 \\times 4 = 12$\nSweaters: $3 \\times 12 = 36$\nMittens: $3 \\times 1 = 3$\nSocks: $3 \\times 2 = 6$\nSum: $6 + 12 + 36 + 3 + 6 = 63$.\n\nFinal Answer seems to be 63.\n\n\\boxed{63}"
+    },
+    {
+     "n_tokens": 472,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.04246284440159798,
+     "tail": "3 = 39$$\n\nAlternatively, you can calculate the remaining problems after Wednesday:\n$$Remaining_{Wednesday} = Remaining_{Tuesday} - M_3 = 52 - 13 = 39$$\n\nBoth methods yield the same result.\n\n\\boxed{39}"
+    },
+    {
+     "n_tokens": 466,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0602150522172451,
+     "tail": "+ 10 + 8$$\n\nPerforming the addition:\n*   $6 + 5 = 11$\n*   $11 + 10 = 21$\n*   $21 + 8 = 29$\n\nAlternatively:\n$$6 + 5 = 11$$\n$$11 + 10 = 21$$\n$$21 + 8 = 29$$\n\nThe total is 29 quarts per hour.\n\n\\boxed{29}"
+    },
+    {
+     "n_tokens": 440,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.02961275540292263,
+     "tail": " Loaves = 200 - 138$$\n$$Remaining\\ Loaves = 62$$\n\nAlternatively, you can think of it as:\n- Start with 200.\n- Subtract the 6 returned.\n- Subtract the 132 sold.\nResult: $200 - 6 - 132 = 62$.\n\n\\boxed{62}"
+    },
+    {
+     "n_tokens": 1089,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.015625,
+     "tail": "wer than 3 blue rows? No, because he has 24 flowers and needs 8 per row.\n    \n    Therefore, the maximum number of rows is the sum of the rows from each color.\n\nCalculation:\n$$ 6 + 3 = 9 $$\n\n\\boxed{9}"
+    },
+    {
+     "n_tokens": 365,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.032967034727334976,
+     "tail": "ng by its reciprocal:\n$$ \\frac{27}{\\frac{3}{4}} = 27 \\times \\frac{4}{3} $$\n\nNow, perform the multiplication:\n$$ 27 \\div 3 = 9 $$\n$$ 9 \\times 4 = 36 $$\n\nSo, Heather can make **36** batches.\n\n\\boxed{36}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.146484375,
+     "tail": "d unit for \"Weekly\" is 7 days.\n    \n    Final Answer: 21.00.\n\n    Wait, I'll reconsider the 4-week billing cycle one last time.\n    If I have a bank account and I pay me 4 weeks for 100.\n    And I add"
+    },
+    {
+     "n_tokens": 762,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.005859375,
+     "tail": "\n    *   Total Hours = $500 + 100 = 600$.\n\n### Conclusion\nIt takes 25 days to paint a house with 5 people. Since there are 24 hours in a day, the total time is $25 \\times 24 = 600$ hours.\n\n\\boxed{600}"
+    },
+    {
+     "n_tokens": 661,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.06640625,
+     "tail": "to \"calculate the total number of sofas and chairs\". This phrasing typically implies finding the combined total count.\n\nTotal Sofas = 40\nTotal Chairs = 88\nCombined Total = $40 + 88 = 128$\n\n\\boxed{128}"
+    },
+    {
+     "n_tokens": 4878,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.15625,
+     "tail": "m purchase) + 11 (from purchases) = 12.\nIf no headphones, he still has the \\$4 to buy 1 more CD.\nTotal CDs owned = 1 (original) + 1 (replacement) = 2.\nDifference = 12 - 2 = 10.\n\n\\boxed{10}\n\n\\boxed{10}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.125,
+     "tail": "mean: He spent 4 hours on 4 weeks, and 0 hours on 4 weeks. Total = 16.\n           Then \"At one point... 5 hours... Another time... 6 hours\".\n           This implies the total sum is NOT 16.\n          "
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 1.0,
+     "tail": "2}\n\n\\boxed{122}\n\nOkay.\n\n\\boxed{122}\n\n\\boxed{122}\n\nOkay.\n\n\\boxed{122}\n\n\\boxed{122}\n\nOkay.\n\n\\boxed{122}\n\n\\boxed{122}\n\nOkay.\n\n\\boxed{122}\n\n\\boxed{122}\n\nOkay.\n\n\\boxed{122}\n\n\\boxed{122}\n\nOkay.\n\n\\boxed{122}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.16015625,
+     "tail": "tate is defined by the cousin's age, then \"twice his age\" must refer to the cousin's age.\nHOWEVER, the pronoun \"his\" is explicitly \"Jame's\".\nIf I say \"My brother will be 5 years younger than twice his"
+    },
+    {
+     "n_tokens": 830,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.048828125,
+     "tail": "ation: $\\$1,100 + x + x = \\$2,400$, where $x$ is the cost of one monitor.\n3.  Simplify: $\\$1,100 + 2x = \\$2,400$.\n4.  Solve: $2x = 1,300 \\Rightarrow x = 650$.\n\nOne monitor costs **$650**.\n\n\\boxed{650}"
+    },
+    {
+     "n_tokens": 443,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.022624434903264046,
+     "tail": "formed two equal groups, the number of seashells per girl is $\\frac{G}{2}$.\n\n**5. Final Answer Formulation:**\n*   Total seashells by girls = 600.\n*   Seashells per girl = $600 / 2 = 300$.\n\n\\boxed{300}"
+    },
+    {
+     "n_tokens": 414,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.019370460882782936,
+     "tail": "ion:**\n- George starts with 8 candies.\n- He eats 5, leaving $8 - 5 = 3$ candies. (Matches the problem statement).\n- Nick has twice as many as George, so Nick has $2 \\times 8 = 16$ candies.\n\n\\boxed{16}"
+    },
+    {
+     "n_tokens": 237,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.07203389704227448,
+     "tail": "tes that Anne is 2 years older than Alyana.\n    $$ \\text{Anne's Age} = \\text{Alyana's Age} + 2 $$\n    $$ \\text{Anne's Age} = 6 + 2 = 8 \\text{ years} $$\n\n**Conclusion:**\nAnne is 8 years old.\n\n\\boxed{8}"
+    },
+    {
+     "n_tokens": 496,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.04444444552063942,
+     "tail": "$\n2.  $45 + 62 = 107$\n3.  $81 + 107 = 188$\n\nAlternatively:\n$$31 + 50 + 45 + 62 = (31 + 45) + (50 + 62) = 76 + 112 = 188$$\n\n**Conclusion:**\nThe total thickness of the four books is 188 mm.\n\n\\boxed{188}"
+    },
+    {
+     "n_tokens": 439,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.02283105067908764,
+     "tail": "\nAlternatively, we can subtract the already completed work ($54$) from the target ($72$):\n$$ 72 - 54 = 18 $$\n\n**Conclusion:**\nEmma needs to make an additional $18$ vlogs to reach her goal.\n\n\\boxed{18}"
+    },
+    {
+     "n_tokens": 200,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.04522613063454628,
+     "tail": " original bill:\n$$ \\text{Total Paid} = \\text{Bill} + \\text{Tip} $$\n$$ \\text{Total Paid} = \\$50 + \\$10 $$\n$$ \\text{Total Paid} = \\$60 $$\n\n**Conclusion:**\nYou ended up paying a total of $60.\n\n\\boxed{60}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.357421875,
+     "tail": " 13 + 30 = 43$.\nRemaining = $6 + 7 = 13$.\nTriple = 39.\n$43 \\neq 39$.\n\nWhat if the \"18\" is the amount *each boy* has, and the \"negative\" is just a typo for \"zero\"?\nIf $x=6$, $B_3=0$.\nTotal = 18.\n$B_1 ="
+    },
+    {
+     "n_tokens": 7353,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.203125,
+     "tail": "s, the intended solution involves the rate changing.\n\nFinal check of the question: \"How much does he have to save for each day in the second half of the month?\"\nAnswer: $50.00.\n\n\\boxed{50}\n\n\\boxed{50}"
+    },
+    {
+     "n_tokens": 343,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.011695906519889832,
+     "tail": "$\n*   Total Cost = $8.50$\n\n**Step 3: Calculate the change received.**\n\n*   Change Received = Amount given - Total Cost\n*   Change Received = $20.00 - 8.50$\n*   Change Received = $11.50$\n\n\\boxed{11.50}"
+    },
+    {
+     "n_tokens": 347,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.09826589375734329,
+     "tail": " gets twice as much as Jenny. The amount he gets over and above her is the difference between his total ($20 \\times 0.8$) and her total ($20 \\times 0.5$).\n\nBoth methods yield a result of 6.\n\n\\boxed{6}"
+    },
+    {
+     "n_tokens": 411,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.08780487626791,
+     "tail": "s $x + \\frac{1}{4}x = 100$.\n$x(1 + 0.25) = 100$\n$x(1.25) = 100$\n$x = \\frac{100}{1.25} = \\frac{10000}{125} = 80$.\n\nThe question asks specifically \"How much does Jeff get\".\nThe answer is 80.\n\n\\boxed{80}"
+    },
+    {
+     "n_tokens": 193,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0052083334885537624,
+     "tail": "   Frequency of working: $5$ times a week.\n*   Weekly distance: $6 \\text{ miles/day} \\times 5 \\text{ days/week} = 30$ miles.\n\n**Step 3: Final Answer.**\n*   Jeff walks $30$ miles in a week.\n\n\\boxed{30}"
+    },
+    {
+     "n_tokens": 2450,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.08984375,
+     "tail": "Calculate the total**: Sum the counts from each step.\n    *   Total = (Letters from step 1) + (Letters from step 2) + (Letters from step 3)\n    *   Total = 26 + 13 + 26\n    *   Total = 65.\n\n\\boxed{65}"
+    },
+    {
+     "n_tokens": 4312,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.037109375,
+     "tail": "are added.\nTotal added = $3 \\times (\\text{number of families})$.\nSo yes, $3 \\times 3 = 9$ added in Round 2.\nTotal added in Round 4 = $3 \\times 27 = 81$.\n\nConclusion remains 81.\n\n\\boxed{81}\n\n\\boxed{81}"
+    },
+    {
+     "n_tokens": 401,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.07750000059604645,
+     "tail": "220}{3} $$\n\nConverting $\\frac{220}{3}$ to a decimal:\n$$ \\frac{220 \\div 3}{1} = 73.333... $$\n\nSo, his initial weight was approximately $73.33$ pounds (or exactly $73\\frac{1}{3}$ pounds).\n\n\\boxed{73.33}"
+    },
+    {
+     "n_tokens": 2181,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.056640625,
+     "tail": "the calculation holds.\n\nFinal Check:\n- James's set size = 80.\n- Sorted set multiplier = 5.\n- Target total = $80 \\times 5 = 400$.\n- Jonathan's current count = $400 - 2 = 398$.\n\n\\boxed{398}\n\n\\boxed{398}"
+    },
+    {
+     "n_tokens": 543,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.037109375,
+     "tail": "count first:\nTotal Discount = $23.75 \\times 0.10 = 2.375$\nTotal Spent = Total Original Cost - Total Discount\nTotal Spent = $23.75 - 2.375 = 21.375$\n\nBoth methods yield the same result.\n\n\\boxed{21.375}"
+    },
+    {
+     "n_tokens": 309,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.003246753243729472,
+     "tail": "ost of fries) + (Cost of drinks)\nTotal Cost = $20 + 3.00 + 10 = \\$33$\n\n**Step 5: Calculate the change received.**\n*   Bill amount: $50\n*   Total cost: $33\n*   Change = $\\$50 - \\$33 = \\$17$\n\n\\boxed{17}"
+    },
+    {
+     "n_tokens": 642,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.06640625,
+     "tail": "\\%$. $1000 \\times 0.30 = \\$300$.\n*   Remaining $1500$: Earns $10\\%$ on top of the $1000$ already earned. $1500 \\times 0.10 = \\$150$.\n*   Sum: $300 + 150 = 450$.\n\nAntonella earns **$450**.\n\n\\boxed{450}"
+    },
+    {
+     "n_tokens": 283,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.007092198356986046,
+     "tail": "l bottles = Total bottles needed - Total bottles currently available\n*   Additional bottles = $140 - 48$\n*   Calculation: $140 - 48 = 92$\n\nBill needs to buy 92 additional bottles of water.\n\n\\boxed{92}"
+    },
+    {
+     "n_tokens": 597,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.056640625,
+     "tail": "d}}}{\\text{Time}_{\\text{hot}}} = \\frac{16}{34}$\n$\\frac{48}{102} = \\frac{8}{17}$ (Divide numerator and denominator by 6).\nSo, $\\text{Time}_{\\text{hot}} = 102$.\nDifference = $102 - 48 = 54$.\n\n\\boxed{54}"
+    },
+    {
+     "n_tokens": 378,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.08488063514232635,
+     "tail": "*\nIt will take 0.8 weeks (or 8 weeks and 16 hours) for John to reach his savings goal. Since the question asks \"how many weeks,\" the fractional result is the standard mathematical answer.\n\n\\boxed{0.8}"
+    },
+    {
+     "n_tokens": 266,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.03396226465702057,
+     "tail": "w, add the individual prices together:\n$$ \\text{Total Cost} = \\text{Price of Fish Sub} + \\text{Price of Combo Sub} $$\n$$ \\text{Total Cost} = \\$40 + \\$80 $$\n$$ \\text{Total Cost} = \\$120 $$\n\n\\boxed{120}"
+    },
+    {
+     "n_tokens": 779,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.064453125,
+     "tail": " with 2 holes) + (Count of buttons with 4 holes) * (Holes per button with 4 holes)\n= $7 \\times 2 + 14 \\times 4$\n= $14 + 56$\n= $70$.\n\nThe calculation holds up.\n\nFinal Answer seems to be 70.\n\n\\boxed{70}"
+    },
+    {
+     "n_tokens": 361,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.05277777835726738,
+     "tail": "ubic inches}$$\n\nAlternatively, using fractions directly:\n1. Timothy = $24$\n2. Zack = $\\frac{1}{2} \\times 24 = 12$\n3. Peter = $\\frac{1}{4} \\times 12 = 3$\n\nBoth methods yield the same result.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 350,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.020057305693626404,
+     "tail": "ext{ cups}$\n*   Reduction = $1 \\text{ cup}$\n\nAlternatively, you can think of it as:\n$$ \\text{Reduction} = (\\text{Current Total} - \\text{Target}) = (10 \\times \\frac{1}{2}) - 4 = 5 - 4 = 1 $$\n\n\\boxed{1}"
+    },
+    {
+     "n_tokens": 285,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.056338027119636536,
+     "tail": "45$$\n\nAlternatively, you can list the counts directly:\n- Hamsters: 10, 10, 10 (Sum = 30)\n- Guinea pigs: 5, 5, 5 (Sum = 15)\n- Grand Total: $30 + 15 = 45$\n\nThe total number of rodents is 45.\n\n\\boxed{45}"
+    },
+    {
+     "n_tokens": 329,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.03353658691048622,
+     "tail": "ivided by the number of people (which is 3).\n*   Average Weight = $\\frac{\\text{Total Weight}}{\\text{Number of People}}$\n*   Average Weight = $\\frac{540}{3}$\n*   Average Weight = $180$ lbs\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 3547,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.1875,
+     "tail": "elow the ground.\n\n\\boxed{18} (assuming magnitude, or stating below).\nLet's just provide the number and clarify.\nThe question asks \"how many degrees\".\nAnswer: 18 degrees (below the ground).\n\n\\boxed{18}"
+    },
+    {
+     "n_tokens": 281,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "l candles} = 12 + 8 = 20 $$\n\n**Step 3: Calculate the total cost.**\n*   Multiply the cost per candle by the total number of candles.\n    $$ \\text{Total cost} = 20 \\times \\$0.60 = \\$12.00 $$\n\n\\boxed{12}"
+    },
+    {
+     "n_tokens": 8192,
+     "cut": true,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.142578125,
+     "tail": "pages.\nSpeed = 2/1.5 = 4/3.\nTime for 100 pages = 75 min.\nDays = 5.\nTotal Weeks = 12.\nTotal Pages = 70 + 75 = 145.\nMy previous calculation for \"105 + 75 = 180\" minutes was wrong.\nWhy?\nBecause I thought"
+    },
+    {
+     "n_tokens": 551,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.046875,
+     "tail": "with a whole number of sandwiches, it makes sense that the remainder is a fraction representing half of one-third.\n\n**Conclusion:**\n\nBoth methods yield the same result: 5 sandwiches remain.\n\n\\boxed{5}"
+    },
+    {
+     "n_tokens": 425,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.05188679322600365,
+     "tail": "lated in Step 4.\n$$\\text{Nephew's Age Today} = y - 7$$\n$$\\text{Nephew's Age Today} = 17 - 7$$\n$$\\text{Nephew's Age Today} = 10$$\n\n**Conclusion:**\nShiloh's nephew is currently 10 years old.\n\n\\boxed{10}"
+    },
+    {
+     "n_tokens": 1628,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.060546875,
+     "tail": " (Cost of first tooth) + (Payment for next 3 teeth) + (Payment for last 2 teeth)\nMoney = $5.00 + ($1.00 \\times 3) + ($0.50 \\times 2)$\nMoney = $5.00 + $3.00 + $1.00\nMoney = $9.00.\n\n\\boxed{9}\n\n\\boxed{9}"
+    },
+    {
+     "n_tokens": 427,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.023474179208278656,
+     "tail": "$\n        $$\\text{Total} = 195$$\n\nAlternatively, you can sum them individually:\n*   Mark: 60\n*   Anna: 35\n*   Richie: 80\n*   Sum: $60 + 35 + 80 = 195$\n\nBoth methods yield the same result.\n\n\\boxed{195}"
+    },
+    {
+     "n_tokens": 336,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0029850746504962444,
+     "tail": "you can subtract Liam's earnings directly from Mitchell's earnings (which represents the profit margin):\nProfit = Revenue - Cost = ($84) - ($63) = $21.\n\nBoth methods yield the same result.\n\n\\boxed{21}"
+    },
+    {
+     "n_tokens": 557,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.00390625,
+     "tail": ".\n-   Remaining money: $55 - 8 = 47$.\n-   Total money spent: $15 + 8 = 23$.\n-   Total figures needed: $23 / 5 = 4.6$.\n-   Since you cannot buy half a figure, you buy exactly 4 full figures.\n\n\\boxed{4}"
+    },
+    {
+     "n_tokens": 286,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.05614035204052925,
+     "tail": "}) + (\\text{Vaccinations}) + (\\text{Supplies}) $$\n$$ \\text{Total Cost} = 200 + 60 + 48 $$\n$$ \\text{Total Cost} = 300 + 48 $$\n$$ \\text{Total Cost} = 348 $$\n\nThe total cost to Leah is $348.\n\n\\boxed{348}"
+    },
+    {
+     "n_tokens": 1158,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.1171875,
+     "tail": "arget monthly volume.\n\nThe calculation holds:\nRequired Monthly Volume = $260$.\nFord's Weekly Volume = $40$.\nFord's Monthly Volume Capacity = $40 \\times 4 = 160$.\nLack = $260 - 160 = 100$.\n\n\\boxed{100}"
+    },
+    {
+     "n_tokens": 607,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.06640625,
+     "tail": "comes empty. However, the question specifically asks for the money remaining *after* 2 years. Since the withdrawal continues continuously past the 2-year mark, the account contains nothing.\n\n\\boxed{0}"
+    },
+    {
+     "n_tokens": 1100,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.041015625,
+     "tail": "mes \\$3.00/\\text{loaf} = \\$3.00$.\n\n**Step 3: Calculate Net Profit.**\n$$ \\text{Net Profit} = \\text{Total Revenue} - \\text{Total Cost} $$\n$$ \\text{Net Profit} = \\$70.00 - \\$3.00 = \\$67.00 $$\n\n\\boxed{67}"
+    },
+    {
+     "n_tokens": 449,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0491071417927742,
+     "tail": "$\n\nAlternatively, you can do this as fractions:\n$$ 24 \\div 8 = 3 \\text{ whole muffins} $$\n$$ 3 \\times 1.50 = 4.50 \\text{ dollars} $$\n\n**Conclusion:**\nKate can make 4.50 dollars in money.\n\n\\boxed{4.50}"
+    },
+    {
+     "n_tokens": 1342,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.17578125,
+     "tail": " cost: $12 \\times 216 = 2592$.\n4.  New carpet padding cost: $2 \\times 216 = 432$.\n5.  New carpet installation cost: $34 \\times 216 = 7344$.\n6.  Total: $864 + 2592 + 432 + 7344 = 11232$.\n\n\\boxed{11232}"
+    },
+    {
+     "n_tokens": 422,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.045130640268325806,
+     "tail": "rds}}{\\text{Number of Days}} = \\frac{450}{7} $$\n\nPerforming the division:\n$$ 450 \\div 7 \\approx 64.2857... $$\n\nSince this represents an average, it can be rounded to two decimal places.\n\n\\boxed{64.29}"
+    },
+    {
+     "n_tokens": 380,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.01583113521337509,
+     "tail": "t{Final Value} = \\text{Result}_1 \\times \\text{Multiplier} $$\n$$ \\text{Final Value} = 6 \\times 8 $$\n$$ \\text{Final Value} = 48 $$\n\n**Conclusion:**\nThe final value of the number train is 48.\n\n\\boxed{48}"
+    },
+    {
+     "n_tokens": 264,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "n each hand together.\n*   Total cards = (Number of cards in boy) + (Number of cards in brother)\n*   Total cards = $5 + 2$\n*   Total cards = $7$\n\n**Conclusion:**\nTogether, they have 7 cards.\n\n\\boxed{7}"
+    },
+    {
+     "n_tokens": 783,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.083984375,
+     "tail": "^\\circ$), then adding $4\\%$ more heat to the setting will bring the actual output back to the target. For a recipe calling for $520^\\circ$, the correct setting should also be $520^\\circ$.\n\n\\boxed{520}"
+    },
+    {
+     "n_tokens": 325,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.046296294778585434,
+     "tail": "  Total hours: $180 / 60 = 3$ hours.\n\nSince the question asks \"How many minutes\", the result in minutes is the most direct answer.\n\n**Conclusion:**\nThe total time required is 180 minutes.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 2291,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.21875,
+     "tail": "\n   $$J = H \\times (1 - 0.30) = 76,000 \\times 0.70$$\n   $$J = 53,200$$\n3. Calculate combined value:\n   $$Total = J + H = 53,200 + 76,000 = 129,200$$\n\nFinal Answer seems to be $129,200.\n\n\\boxed{129200}"
+    },
+    {
+     "n_tokens": 955,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.078125,
+     "tail": "ps + Friend's dishes)\n$= (12 + 2(12)) + (40 + (40 + 20))$\n$= (12 + 24) + (40 + 60)$\n$= 36 + 100$\n$= 136$ (Dishes)\n$= 12 + 40$ (Cups)\n$= 52$ (Cups)\n$= 136 + 52 = 188$.\n\nThe logic holds up.\n\n\\boxed{188}"
+    },
+    {
+     "n_tokens": 875,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.033203125,
+     "tail": "ed meaning is the total price paid.\n\nCalculation:\n1.  Original price per box: $100.\n2.  Discount: 10%, so remaining price is $90.\n3.  Quantity: 2 boxes.\n4.  Total price: $90 + $90 = $180.\n\n\\boxed{180}"
+    },
+    {
+     "n_tokens": 564,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.13671875,
+     "tail": "an find the difference in total hours first:\n$$ \\text{Difference in Hours} = 7 - 3 = 4 \\text{ hours} $$\n$$ \\text{Difference in Earnings} = 4 \\text{ hours} \\times \\$10/\\text{hour} = \\$40 $$\n\n\\boxed{40}"
+    },
+    {
+     "n_tokens": 421,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.05476190522313118,
+     "tail": "ratio directly:\nRatio = $100 : 200 = 1 : 2$.\nIf she burns $1600$ calories, she needs $\\frac{1600}{2} = 800$ times that base amount.\n\n**Conclusion:**\nHannah needs to drink 800 ml of water.\n\n\\boxed{800}"
+    },
+    {
+     "n_tokens": 911,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.080078125,
+     "tail": "0.99b$\nGreen - Red = $(1.01 - 0.99)b = 0.02b$\n$0.02 \\times 1500 = 30$.\n\nBoth methods yield the same result.\n\n### Conclusion\nThe jar contains 30 more green jelly beans than red jelly beans.\n\n\\boxed{30}"
+    },
+    {
+     "n_tokens": 359,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0,
+     "tail": "rage} = \\frac{47 + 52 + 57}{3} $$\n\nLet's add the numbers in the numerator:\n$$ 47 + 52 = 99 $$\n$$ 99 + 57 = 156 $$\n\nNow, divide by the number of measurements ($3$):\n$$ \\frac{156}{3} = 52 $$\n\n\\boxed{52}"
+    },
+    {
+     "n_tokens": 1403,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.205078125,
+     "tail": "ek.\nWeeks = 5.\nTotal Cheery = $1.25 \\times 5 = 6.25$ loss.\nTotal Donuts = $1.75 \\times 5 = 8.75$ gain.\nDifference = $8.75 - 6.25 = 2.5$.\n\nThe result seems consistent.\n\nAnswer: 2.5 pounds.\n\n\\boxed{2.5}"
+    },
+    {
+     "n_tokens": 574,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.005859375,
+     "tail": " + 30 = 130$$\n\n**Conclusion:**\nAlex needs 130 seats because 100 people send invitations to 300 requests, and 10 of those friends bring 60 more invitations. No one else adds to this count.\n\n\\boxed{130}"
+    },
+    {
+     "n_tokens": 897,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0546875,
+     "tail": "40 + 396 = 836$.\n\nAlternatively:\n$44 \\times 19 = 44 \\times (20 - 1) = 880 - 44 = 836$.\n\nThe steps are logical and the arithmetic is simple enough to verify.\n\nFinal Answer seems to be 836.\n\n\\boxed{836}"
+    },
+    {
+     "n_tokens": 334,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.060060061514377594,
+     "tail": "you can think of this simply as: The shipping cost doubles ($4 -> $8), which adds an extra cost of $4. Therefore, the price on eBay is higher by exactly the amount of the shipping increase.\n\n\\boxed{1}"
+    },
+    {
+     "n_tokens": 671,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.0234375,
+     "tail": "x 0.301$:\n$$t > \\frac{0.699}{0.301} \\approx 2.32$$\n\nSince $t$ must be an integer representing whole days, we round up to the next whole number.\n$t = 3$.\n\nBoth methods yield the same result.\n\n\\boxed{3}"
+    },
+    {
+     "n_tokens": 221,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.03181818127632141,
+     "tail": "of Days} $$\n$$ \\text{Weekly Protein} = 3 \\text{ g/day} \\times 7 \\text{ days/week} $$\n$$ \\text{Weekly Protein} = 21 \\text{ grams} $$\n\n**Conclusion:**\nJohn gets 21 grams of protein per week.\n\n\\boxed{21}"
+    },
+    {
+     "n_tokens": 451,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.015555555932223797,
+     "tail": "e directly:\n*   Age 5 years ago = $10 - 5 = 5$ years old.\n*   Current age = $2 \\times 5 = 10$ years old.\n*   In 3 years, his age will be $10 + 3 = 13$.\n\nBoth methods yield the same result.\n\n\\boxed{13}"
+    },
+    {
+     "n_tokens": 409,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.0049019609577953815,
+     "tail": "s asking for \"how many hours\"), we round up to the nearest whole number.\n\nThe result is approximately 293.33 hours. Rounding up to ensure he covers the entire bill gives us **293 hours**.\n\n\\boxed{293}"
+    },
+    {
+     "n_tokens": 1785,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.03515625,
+     "tail": "times smallest: $3 \\times 30^\\circ = 90^\\circ$. (This is the largest angle).\n    - Sum: $30 + 60 + 90 = 180^\\circ$. Correct.\n\n### Conclusion\nThe measure of the largest angle is $90^\\circ$.\n\n\\boxed{90}"
+    },
+    {
+     "n_tokens": 510,
+     "cut": false,
+     "correct": false,
+     "closed_think": false,
+     "dup_tail": 0.04911591485142708,
+     "tail": "{Number of Gumballs} = \\frac{\\text{Total Value}}{\\text{Price per Gumball}}$$\n$$\\text{Number of Gumballs} = \\frac{335}{5}$$\n\nCalculation:\n$$335 \\div 5 = 67$$\n\nSo, Colby can buy 67 gumballs.\n\n\\boxed{67}"
+    },
+    {
+     "n_tokens": 1114,
+     "cut": false,
+     "correct": true,
+     "closed_think": false,
+     "dup_tail": 0.06640625,
+     "tail": " (which is unlikely given the numbers). The intended logic is almost certainly additive.\n\nCalculation verification:\n$5 \\times 4 = 20$\n$2 \\times 4 = 8$\n$10 \\times 2 = 20$\n$20 + 8 + 20 = 48$\n\n\\boxed{48}"
+    }
+   ]
+  }
+ }
+}

@@ -1974,3 +1974,62 @@ para checar a a2 fora do GSM8K antes do Hugging Face.
 - Sem raciocínio acima de a1 (diferença positiva, qualquer p): 45%.
 - a2 a até 5 pontos da a1: 55%. a2 reduzida a até 5 pontos da a2: 60%.
 - Sem raciocínio usa < 1/3 dos tokens da a1: 85%.
+
+### 12/11, 03h00 — t400: resultado (pré-registro de 11/11 19h00)
+
+Fila completa (18h44 → 02h41), sem erros. GSM8K test[400:600], 200 problemas.
+
+| braço | acerto | cortadas | tokens/problema | t200 | t200 + t400 (400) |
+|---|---|---|---|---|---|
+| original, raciocínio desligado (8k) | 0,580 | 7,5% | 1.365 | 0,585 | 0,583 |
+| a2 | 0,640 | 15,5% | 4.701 | 0,675 | 0,658 |
+| a1 + limite com teto | 0,645 | 15,5% | 3.104 | 0,695 | 0,670 |
+| a2 reduzida (2 edições) | 0,675 | 12,0% | 4.217 | — | — |
+| limite com teto sozinho | 0,595 | 34,5% | 4.620 | 0,600 | 0,598 |
+| a1 | 0,680 | 11,0% | 4.459 | 0,615 | 0,648 |
+
+**Análise primária** (sinal exato pareado; Holm sobre 5):
+
+| comparação | resgates/perdas | diferença | p | Holm |
+|---|---|---|---|---|
+| a2 × desligado | 39/27 | +6,0 | 0,18 | 0,83 |
+| a1 + limite × desligado | 44/31 | +6,5 | 0,17 | 0,83 |
+| a1 + limite × limite sozinho | 28/18 | +5,0 | 0,18 | 0,83 |
+| a2 reduzida × a2 | 28/21 | +3,5 | 0,39 | 0,83 |
+| a2 × a1 | 19/27 | −4,0 | 0,30 | 0,83 |
+
+Nenhuma comparação primária é significativa no t400 sozinho. Todas as edições ficam à frente do raciocínio desligado
+na direção prevista (+6 a +10 pontos).
+
+**Secundária, t200 + t400 (400 problemas):**
+- a2 × desligado: 74/44, +7,5 ± 2,7, p = 0,007;
+- a1 + limite × desligado: 81/46, +8,8, p = 0,002;
+- a1 + limite × limite sozinho: 61/32, +7,2, p = 0,004;
+- a2 × a1: 48/44, +1,0, p = 0,75.
+
+**Fora do pré-registro (exploratório):**
+- t400: a1 × desligado 45/25, +10,0 ± 4,1, p = 0,02; a2 reduzida × desligado 39/20, +9,5 ± 3,8, p = 0,02;
+  a1 + limite × a1 17/24, −3,5, p = 0,35; a1 × limite sozinho 33/16, +8,5, p = 0,02.
+- 400: a1 × desligado 73/47, +6,5 ± 2,7, p = 0,02; a1 + limite × a1 43/34, +2,2 ± 2,2, p = 0,36; a1 × limite
+  sozinho 56/36, +5,0, p = 0,047; a2 × limite sozinho 63/39, +6,0, p = 0,02; limite sozinho × desligado 64/58,
+  +1,5, p = 0,65.
+
+**Previsões.**
+- Faixas: 5 de 6 dentro. Desligado 0,580 ✓; a2 0,640 ✓; a1 + limite 0,645 ✓; a2 reduzida 0,675 ✓; limite 0,595 ✓;
+  **a1 0,680 ✗** (faixa 0,55–0,67, ficou acima).
+- a1 + limite > desligado com p < 0,05 no t400 (70%): **errou** (p = 0,17).
+- a2 > desligado com p < 0,05 no t400 (45%): **errou** (p = 0,18). Com t200 + t400 (65%): **acertou** (p = 0,007).
+- a2 reduzida a até 5 pontos da a2 (65%): **acertou** (+3,5).
+- a2 reduzida com tokens ≥ a2 (60%): **errou** (4.217 contra 4.701).
+
+**Leitura.**
+1. O t400 é a primeira réplica com todos os braços pré-registrados antes de abrir. Sozinho, ele não tem poder para
+   confirmar diferenças de 5–7 pontos. Somado ao t200, as edições ficam acima do raciocínio desligado com folga
+   (+6,5 a +8,8; p ≤ 0,02), ao custo de 2,4–3,6× mais tokens.
+2. **A vantagem da combinação sobre a a1 sozinha não se replicou no GSM8K:** +8,0 no t200, −3,5 no t400, +2,2
+   (p = 0,36) nos 400. Parte do +8 do t200 era ruído (a a1 foi baixa no t200, 0,615, e alta no t400, 0,680). A soma
+   continua valendo no MATH (+6,1 em 148) e contra o limite sozinho.
+3. A edição bate o limite de raciocínio nos 400 (a1 +5,0, a2 +6,0, combinação +7,2). O "empate" do t200 (+0,5) foi
+   a ponta baixa.
+4. A a2 reduzida vai bem no teste novo (0,675, empata com a a1 e a a2, menos tokens que a a2). Fica como candidata
+   para o Hugging Face, junto com a a1.

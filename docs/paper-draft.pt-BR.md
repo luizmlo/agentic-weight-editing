@@ -1,6 +1,6 @@
 # Programação Agêntica no Espaço de Pesos como Alternativa ao Fine-Tuning em Modelos de Linguagem Pequenos
 
-**Autores:** Luiz Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 11 nov. 2026
+**Autores:** Luiz Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 12 nov. 2026
 
 *Rascunho de trabalho – o estado de cada resultado e o trabalho restante estão listados no final.*
 
@@ -12,15 +12,16 @@
 - **A correção.** Demos a agentes Claude os pesos do modelo e um pequeno orçamento de testes, e pedimos que
   resolvessem isso editando os pesos diretamente, sem treinamento. **Com quatro edições minúsculas, o modelo passou de
   15% para 67% de acerto nos nossos problemas de prática, e de 15,5% para 61,5–67,5% em 200 problemas de um teste
-  trancado.**
+  trancado (64–68% num segundo teste trancado de 200, com todos os métodos fixados antes da abertura).**
 - **A comparação.** No nosso orçamento de 12 mil tokens, as edições dos agentes ficam à frente da publicada em *Sparks
   of Weight-Space Programming* (53,5%), mas aquela edição ainda está melhorando quando bate no orçamento. O que os
   dados sustentam é eficiência: as edições dos agentes chegam ao patamar com cerca de um terço dos tokens. Elas
   superam uma receita barata de fine-tuning (29% nos problemas de prática, com 13× mais tempo de GPU).
 - **As alternativas simples são fortes.** Limitar o tempo de raciocínio (60–61%), proibir a palavra "Wait" (60,0%) e
-  desligar o raciocínio (58,5%) empatam com a edição do primeiro agente no teste trancado. Só essa edição com um
-  limite de raciocínio (69,5%) fica claramente acima do raciocínio desligado; a edição do segundo agente (67,5%) fica
-  acima com menos firmeza (p = 0,02 sem correção para comparações múltiplas).
+  desligar o raciocínio (58,5%) empatam com a edição do primeiro agente no primeiro teste trancado. O segundo teste
+  trancado, sozinho, não conseguiu separar os métodos. Nos 400 problemas trancados somados, as edições ficam 6,5–9
+  pontos acima do raciocínio desligado (p ≤ 0,02) e 5–7 pontos acima de um limite de raciocínio, mas usam 2,4–3,6×
+  os tokens do raciocínio desligado.
 - **O que importou.** Dois agentes independentes acharam os mesmos neurônios de "Wait" e a mesma alavanca de
   `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, a outra inverte um neurônio
   a montante dele. Um script simples com as mesmas
@@ -169,7 +170,8 @@ reais nos 48 problemas de prática (com as previsões registradas antes):
 - **A a2 funciona como uma correção de 2 edições.** Mantendo só o L16n998 e a edição de `</think>`, o modelo resolve
   69% (33 de 48), contra 65% da a2 inteira (6 resgatados, 4 perdidos, p = 0,75), com respostas mais longas
   (4.797 tokens contra 3.910; 6 cortadas contra 4). Os outros três neurônios (L16n3422, L17n1915, L22n573) não
-  fizeram diferença mensurável em 48 problemas.
+  fizeram diferença mensurável em 48 problemas. No segundo teste trancado, a versão de 2 edições resolve 67,5%,
+  contra 64,0% da a2 inteira (28 resgatados, 21 perdidos; p = 0,39).
 - **Baixar "Wait" não basta para parar.** Só o L16n998, que dava os 26 nats inteiros com o texto fixo, resolve 48%
   (23 de 48), e 25 de 48 respostas estouram o espaço. Contra a versão de 2 edições, resgata 3 e perde 13 (p = 0,02).
   Isso bate com as ablações da a1 acima: num loop, as duas portas precisam mudar.
@@ -247,6 +249,38 @@ Todos os valores de p são testes do sinal exatos sobre os pares discordantes, s
 Com a correção de Holm sobre as comparações desta seção, a1 contra a edição publicada deixa de ser significativa; a2
 contra a edição publicada e a1 + limite contra o raciocínio desligado continuam sendo.
 
+### Um segundo teste trancado, todo pré-registrado
+
+No primeiro teste trancado, oito braços rodaram depois da abertura. Por isso abrimos mais 200 problemas trancados
+(GSM8K test[400:600]) com todos os braços, as comparações e as previsões registrados antes, e nada escolhido neles. A
+análise primária eram cinco comparações pareadas com correção de Holm; a secundária somava os dois testes trancados.
+
+| método | segundo teste trancado (200) | cortadas | média de tokens | os dois testes (400) |
+|---|---|---|---|---|
+| modelo original, raciocínio desligado | 58,0% | 7,5% | 1.365 | 58,3% |
+| limite, resposta limitada a 1.024 | 59,5% | 34,5% ‡ | 4.620 | 59,8% |
+| edição do segundo agente (a2) | 64,0% | 15,5% | 4.701 | 65,8% |
+| a1 + limite, resposta limitada | 64,5% | 15,5% ‡ | 3.104 | 67,0% |
+| a2 reduzida a 2 edições | 67,5% | 12,0% | 4.217 | — |
+| edição do agente (a1) | 68,0% | 11,0% | 4.459 | 64,8% |
+
+‡ Conta as respostas paradas pelo teto da resposta.
+
+- **Sozinho, o segundo teste não confirma nenhuma das cinco comparações primárias.** Todos os braços editados ficam à
+  frente do raciocínio desligado na direção prevista (a2 +6,0 ± 4,0, a1 + limite com teto +6,5 ± 4,3), mas nenhuma
+  comparação sobrevive à correção (todos os p ajustados por Holm = 0,83). Duzentos problemas não confirmam diferenças
+  de 5–7 pontos. Três das nossas previsões falharam aqui (veja a lista no fim), e a a2 ficou 4,0 pontos atrás da a1
+  (p = 0,30) depois de estar 6 à frente no primeiro teste.
+- **Somando os 400 problemas trancados, as edições ficam acima do raciocínio desligado.** A a2 fica 7,5 ± 2,7 pontos
+  acima (74 resgates, 44 perdas; p = 0,007), a a1 + limite com teto 8,8 ± 2,8 (p = 0,002) e a a1 6,5 ± 2,7 (p = 0,02,
+  não pré-registrada). O raciocínio desligado continua custando de um terço a um quarto dos tokens.
+- **No fim, as edições vencem o limite de raciocínio.** Nos 400 problemas, a a1 + limite com teto fica 7,2 ± 2,4
+  pontos acima do limite com teto sozinho (p = 0,004), e a a1 e a a2 ficam 5,0 e 6,0 pontos acima dele (p = 0,047 e
+  0,02, não pré-registradas). O empate do primeiro teste era a ponta baixa.
+- **Somar o limite à a1 não ajudou aqui.** A combinação resolveu 64,5% contra 68,0% da a1 sozinha (17 resgates, 24
+  perdas). Nos dois testes juntos, fica 2,2 ± 2,2 pontos acima da a1 (p = 0,36): não está estabelecido em matemática
+  do ensino fundamental. A a1 foi baixa fora do comum no primeiro teste (61,5%) e alta no segundo (68,0%).
+
 ### Uma checagem rápida com outro modelo editor
 
 *Checagem exploratória, rodada depois de o teste trancado ter sido aberto. Não é comparável com a1 e a2.*
@@ -304,7 +338,8 @@ ela resolve 60,0%, contra 61,5% da a1 (25 resgates contra 28), com 7.758 tokens 
 cortadas. Tínhamos previsto 40–52%. A edição não é uma proibição global. Ela age por
 meio de neurônios que estão ativos quando o modelo está prestes a recomeçar, então deixa "Wait" em paz no resto.
 
-**O limite de raciocínio empata com a edição no teste trancado (61,0% contra 61,5%; +0,5 ± 3,4).** A nossa
+**O limite de raciocínio empata com a edição no primeiro teste trancado (61,0% contra 61,5%; +0,5 ± 3,4), mas não
+no segundo** (a1 68,0% contra 59,5% do limite com teto; 33 resgates, 16 perdas). A nossa
 implementação do limite parece mais cara do que é. Depois do `</think>` forçado, algumas respostas continuam em loop
 até o teto de 12k, e por isso 34% delas são cortadas e a média é de 7.012 tokens. Se cortarmos toda resposta em 6.144
 tokens, o limite mantém 60,5% com média de 4.910 tokens, mais ou menos o mesmo que a a1 (5.049). Não afirmamos,
@@ -316,18 +351,21 @@ Na matemática mais difícil, a edição fica 9,5 pontos à frente do limite, re
 uma resposta cedo funciona quando a resposta já tinha sido calculada antes de o loop começar, o que é comum em
 problemas do ensino fundamental e mais raro nos longos.
 
-**Juntos, os dois são o melhor de tudo (53% na matemática mais difícil e 69,5% no teste trancado, 8 pontos acima de
-cada um sozinho, com poucas respostas cortadas).** A edição tira a maior parte dos loops, e o limite pega o que sobra.
+**Juntos, os dois são o melhor na matemática mais difícil (53%, 6 pontos acima da edição sozinha) e no primeiro
+teste trancado (69,5%, 8 pontos acima de cada um sozinho), com poucas respostas cortadas.** A edição tira a maior
+parte dos loops, e o limite pega o que sobra. No segundo teste trancado, porém, a combinação não superou a a1 sozinha
+(64,5% contra 68,0%), então, em matemática do ensino fundamental, o ganho sobre a edição não está estabelecido
+(+2,2 ± 2,2 nos 400 problemas).
 Uma replicação independente relata a mesma soma em subconjuntos do MATH (tdotlab, 2026). Com o teto para a resposta,
-a combinação mantém 69,5% no teste trancado e cai para 3.172 tokens por resposta. Ela fica acima da a1 sozinha (26
-resgates, 10 perdas; p = 0,01), do limite com teto sozinho (33 contra 14; p = 0,008) e do raciocínio desligado (37
+a combinação mantém 69,5% no primeiro teste trancado e cai para 3.172 tokens por resposta. Ali, ela fica acima da a1
+sozinha (26 resgates, 10 perdas; p = 0,01), do limite com teto sozinho (33 contra 14; p = 0,008) e do raciocínio desligado (37
 contra 15; p = 0,003).
 
 **Raciocínio desligado.** Não rodamos o raciocínio desligado no nosso subconjunto do MATH. Reexecuções independentes
 relatam cerca de 50% no MATH-500 inteiro com o raciocínio desligado e orçamento de 32k (exp8-loop-controls, 2026), a
 mesma faixa dos 47–49% da a1 aqui. Neste modelo, edições que consertam o raciocínio recuperam, em boa parte, o que o
-modelo já faz sem raciocinar; só a combinação com o limite fica claramente acima disso no teste trancado, e a a2 com
-menos firmeza.
+modelo já faz sem raciocinar, mais alguns pontos: nos 400 problemas trancados, os braços editados ficam 6,5–8,8
+pontos acima do raciocínio desligado, com 2,4–3,6× os tokens dele.
 
 ![Figura 6](figures/paired.png)
 
@@ -562,21 +600,24 @@ para de funcionar.
 
 ## O que ainda não podemos afirmar, e o que vem a seguir?
 
-- **Tamanho das amostras:** as comparações principais agora se apoiam num teste trancado de 200 problemas (±3–4
-  pontos), mas os números de desenvolvimento e do MATH ainda se apoiam em 48–148 problemas.
+- **Tamanho das amostras:** as comparações principais se apoiam em dois testes trancados de 200 problemas (±3–4
+  pontos cada, ±2,5 somados), mas os números de desenvolvimento e do MATH ainda se apoiam em 48–148 problemas. O
+  segundo teste trancado, sozinho, não confirmou nenhuma das suas comparações primárias.
 - **Um modelo, um defeito que funciona:** "Wait" é uma palavra fácil de mirar, e o segundo defeito (IFEval) deu um
   resultado negativo bem controlado. **Próximo passo:** um defeito concentrado sem palavra-chave e um segundo modelo.
   Qualquer segundo defeito precisa de um teste real com ruído bem abaixo do efeito esperado, medido antes da busca.
 - **Um único orçamento de tokens:** toda comparação é com 12.288 tokens. A edição publicada ainda está melhorando
   ali, então "a a1 vence a edição publicada" vale para esse orçamento. **Próximo passo:** as duas com orçamento longo
   no teste trancado.
-- **Desligar o raciocínio é uma alternativa forte:** no teste trancado ela empata com a a1 e custa muito menos
-  tokens. Não a rodamos no nosso subconjunto do MATH.
+- **Desligar o raciocínio é uma alternativa forte:** as edições ficam só 6,5–9 pontos acima dela nos 400 problemas
+  trancados, e ela custa de um terço a um quarto dos tokens. Não a rodamos no nosso subconjunto do MATH.
 - **Braços tardios:** a primeira escolha do agente a1, a a2, o raciocínio desligado, o limite com teto, a a1 com o
   limite com teto, a proibição da palavra, o fine-tuning e a f1 rodaram no teste trancado depois de ele ter sido
   aberto. A proibição da palavra e o fine-tuning estavam no pré-registro original e só rodaram tarde. Os outros foram
   pré-registrados, com previsões, depois da abertura, então a decisão de rodá-los pode refletir o que já tínhamos
-  visto. O limite com teto e a f1 foram escolhidos no conjunto de prática, cada um entre dois ou três candidatos.
+  visto. O limite com teto e a f1 foram escolhidos no conjunto de prática, cada um entre dois ou três candidatos. O
+  segundo teste trancado não tem braços tardios. Todas as comparações ali foram na mesma direção do primeiro, exceto
+  as duas contra a a1 sozinha (a a2, e a a1 + limite com teto), em que a a1 foi melhor.
 - **Modelos editores:** as duas execuções do Fable foram uma checagem exploratória e não dizem qual editor é
   melhor. **Próximo passo:** uma escada de modelos editores, incluindo menores, com várias execuções de
   cada um sob um só protocolo.
@@ -584,7 +625,8 @@ para de funcionar.
   próximos.
 - **A variante da a1 foi escolha nossa:** o agente a pôs em segundo lugar (veja o Experimento 2).
 - **Mecanismo:** conferimos o freio da a1 e o neurônio a montante da a2 em 52 posições de 12 textos, com o texto
-  fixo. Os testes reais da a2 reduzida usaram só os 48 problemas de prática, que detectam apenas diferenças grandes.
+  fixo. A a2 reduzida foi testada nos 48 problemas de prática e no segundo teste trancado, que detectam apenas
+  diferenças grandes.
 - **Buscas sem LLM:** a nossa busca por script é uma comparação fraca, e trabalhos concorrentes obtêm a maior parte
   do ganho da edição publicada sem LLM. **Próximo passo:** um script dirigido (direções lidas pelo vocabulário, o
   mesmo orçamento) contra os agentes.
@@ -612,11 +654,16 @@ para de funcionar.
 8. Pelo menos uma execução do Fable editaria o L22n573 ou outro neurônio-freio de "Wait" nas camadas 17–23. Nenhuma
    mirou neurônios isolados; as duas editaram camadas inteiras.
 9. Proibir a palavra faria 40–52% no teste trancado. Fez 60,0%.
+10. A a1 + limite com teto venceria o raciocínio desligado com p < 0,05 no segundo teste trancado (70%). Ficou 6,5
+    pontos à frente, p = 0,17.
+11. A a1 faria 55–67% no segundo teste trancado. Fez 68,0%.
+12. A a2 reduzida usaria pelo menos tantos tokens quanto a a2 ali (60%). Usou 10% menos.
 
 **A afirmação, como está hoje: para um defeito de comportamento concentrado e de efeito grande, um agente editando
-pesos achou uma correção em cerca de 2 horas numa GPU de consumo. A correção acerta tanto quanto as alternativas
-simples de decodificação, usa um terço dos tokens da edição publicada para chegar lá, soma-se a um limite de
-raciocínio e superou a única receita de fine-tuning que testamos. Para defeitos espalhados, como seguir instruções num
+pesos achou uma correção em cerca de 2 horas numa GPU de consumo. Nos 400 problemas trancados, a correção fica
+alguns pontos acima das alternativas simples (raciocínio desligado, limite de raciocínio), embora o raciocínio
+desligado use muito menos tokens. Ela usa um terço dos tokens da edição publicada para chegar lá, soma-se a um limite
+de raciocínio na matemática mais difícil e superou a única receita de fine-tuning que testamos. Para defeitos espalhados, como seguir instruções num
 modelo de 0,8B, nem ela nem um fine-tuning barato ajudaram.**
 
 ## Dados, código e registros
@@ -648,6 +695,7 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | Alternativas de decodificação, busca ingênua, fine-tuning | feito |
 | Transferência para matemática mais difícil, efeitos colaterais, custo | feito |
 | Teste trancado com ≥ 200 problemas | feito (7 braços pré-registrados antes da abertura, 2 rodados tarde; 6 acrescentados e pré-registrados depois) |
+| Segundo teste trancado, todos os braços pré-registrados (GSM8K test[400:600]) | feito (12 nov.): 6 braços; a direção se repete, nenhuma comparação primária significativa sozinha |
 | Mais réplicas (2 + 2 agentes) | a fazer |
 | Segundo defeito sem palavra-chave (IFEval) | feito: negativo, com comparações de fine-tuning e de prompt |
 | Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
