@@ -1,159 +1,156 @@
 # Agentic Weight Editing
 
-**Can a frontier-model agent repair a specific behavioral defect in a small language model by editing its weights
-directly, with no gradients, and do it better and cheaper than fine-tuning?**
+**Claude agents repair a thinking loop in a small language model by editing its weights directly: no training, no
+gradients, one gaming GPU.**
 
-This repository holds the code, experiment records and research notes for a local, low-budget follow-up to
-*Sparks of Weight-Space Programming* (Takehi, Teoh, Zhang, Khattab, MIT CSAIL, 2026). In that paper, GPT-6 "Astra"
-edited 0.016% of the weights of Qwen3.5-0.8B and lifted MATH-500 from 7.9% to 48.1% by removing a direction that
-sustains repetition loops in the model's reasoning. Here we ask whether this is reproducible, whether it is more than a
-decoding trick, and what part of the agent's process matters, all on a single consumer GPU (GTX 1660 SUPER, 6 GB).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24208535.svg)](https://doi.org/10.5281/zenodo.24208535)
+[![Paper (PDF)](https://img.shields.io/badge/paper-PDF%20(EN)-1F5FAE)](docs/pre-paper.pdf)
+[![Artigo (PDF)](https://img.shields.io/badge/artigo-PDF%20(pt--BR)-1F5FAE)](docs/pre-paper.pt-BR.pdf)
+[![Code: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-555)](LICENSE)
+[![Text and data: CC BY 4.0](https://img.shields.io/badge/text%20%26%20data-CC%20BY%204.0-555)](LICENSE-CC-BY-4.0)
 
-> **New here?** Start with [notebooks/results.ipynb](notebooks/results.ipynb): a plain-language, visual tour of the
-> results, with hover tooltips explaining every number.
+**TL;DR.** Small "thinking" models often get stuck repeating themselves: *"Wait, let me check… Yes… Wait…"*. We gave
+Claude agents the weights of Qwen3.5-0.8B and a small testing budget, and asked them to fix this by editing the weights
+directly. **With at most four rank-1 edits, the model went from 15.5% to 61.5–68% on locked grade-school math
+problems.** That matches the edit that GPT-6 "Astra" wrote in the MIT CSAIL study
+[*Sparks of Weight-Space Programming*](https://rikiyat.github.io/blog/weight-space-programming/) (Takehi et al.,
+2026), with about half the tokens, and beats a cheap fine-tuning recipe. Simple alternatives come close, though:
+switching thinking off solves 58% at a fraction of the cost. The method worked on a concentrated defect and failed on
+a diffuse one.
 
-> Status: **pre-paper research notes**. All numbers are small-n (32–148 problems per evaluation) and come from one
-> model and one defect. See [docs/research-notes.md](docs/research-notes.md).
+![Before and after: the original model loops on "Wait, 120 / 8 = 15" until it runs out of space; a Claude agent edits two weight matrices; the edited model checks once, stops thinking and answers correctly in 1,299 tokens.](docs/figures/hero.png)
 
-## The defect
+| **Fix** | **Efficient** | **Honest** |
+|---|---|---|
+| ![](docs/figures/defect.png) | ![](docs/figures/frontier.png) | ![](docs/figures/goodhart.png) |
+| Most of the original model's answers hit the 12k-token limit. With the agent's edit, most finish early. Six agent runs of the same protocol all landed at 58–67% on practice problems, where the original solves 15%. | Astra's edit reaches the same accuracy once it gets 20k tokens; the agents' edits are nearly there by 8k, without ever being asked to save tokens. | Every cheap shortcut score we gave the agents was eventually gamed. Only real test runs kept them honest, and more interpretability data made them worse. |
 
-With thinking enabled, Qwen3.5-0.8B tends to fall into **reasoning loops** ("Wait, ... Yes, ... Wait, ...") and never
-closes `</think>`. On GSM8K with a 12k-token cap, the base model solves 14.6% of dev problems and **85% of its
-generations hit the cap**. Prompting does not fix it: anti-repetition system prompts perform the same as a placebo prompt.
+> **Status: pre-paper.** One model, one defect that works, tests of 48–200 problems. Every prediction was written in a
+> dated lab notebook before the result, and the ones that failed are listed in the paper.
 
-## The intervention
+## What the agents did
 
-Agents (Claude Opus 5.5 subagents, supervised by Claude Code) get the model weights, a budgeted **scorer daemon** and a
-brief. They may change the model with at most **4 edits**. Each edit targets one output projection: an MLP
-`down_proj`, a linear-attention `out_proj` or an attention `o_proj`. Such a matrix $W \in \mathbb{R}^{d \times k}$ maps
-$k$ neurons (or head channels) into the residual stream, and each column $w_j$ is what neuron $j$ writes there. An edit
-picks a unit direction $u \in \mathbb{R}^{d}$ in the residual stream, a set $S$ of columns and a strength $\alpha$, and
-changes only the part of those columns that lies along $u$:
+Qwen3.5-0.8B thinks in a scratchpad and closes it with `</think>`. With a 12,288-token budget, **85% of its answers on
+grade-school math never get there**, and no prompt fixes it. Each agent (Claude Opus 5.5, about two hours per run)
+received the weights, a brief describing the loops, and a scorer with 40 quick scores and 6 real test runs on 16
+practice problems. It could make at most four edits of this form:
 
-$$
-w_j \leftarrow w_j - \alpha \,(u^\top w_j)\, u \quad \text{for } j \in S, \qquad |\alpha| \le 10 .
-$$
+$$w_j \leftarrow w_j - \alpha\,(u^\top w_j)\,u, \qquad |\alpha| \le 10$$
 
-So the selected neurons' write along $u$ is scaled by $(1-\alpha)$:
+Each edit picks a few neurons (columns $w_j$ of one layer's output matrix), a direction $u$, and a strength $\alpha$,
+and changes only how strongly those neurons write along $u$: $\alpha = 1$ deletes that part, $\alpha > 1$ flips it,
+$\alpha < 0$ makes it stronger.
 
-- $\alpha = 1$ removes it;
-- $\alpha = 6$ flips it to $-5\times$ (the Astra edit);
-- $\alpha < 0$ amplifies it.
+**The agents read the weights "through the vocabulary"**, asking which word each neuron pushes the model to say, and
+found neurons that push towards "Wait". Their first idea, deleting those neurons, made the model say "wait wait
+wait…" and solve nothing; that told them the neurons were *brakes*, and they strengthened them instead. Every winning
+edit has two parts, because a loop needs two doors changed: **make "Wait" less likely, and make `</think>` more
+likely.** Either part alone solves 19–50% of practice problems; together, 69%.
 
-Everything else in $W$ is untouched, and each edit is a rank-1 update.
+![Anatomy of the a1 edit: a rank-1 edit scales one component of what a neuron writes; a1 strengthens three "Wait"-brake neurons in layers 17, 18 and 22 and the </think> signal of layer 23.](docs/figures/edit-anatomy.png)
 
-The scorer returns cheap teacher-forced probe metrics (40 calls per run) and, in protocol v2, **6 generation checks**
-on 16 held-out GSM8K training problems. A supervisor then confirms the agent's top candidate on a separate dev set
-(GSM8K train[0:48]) and runs the pre-registered winner once on a locked test split.
+## Results
 
-## Headline results (as of 2026-11-12)
+Thinking on, 12,288-token budget, llama.cpp. Each locked test has 200 GSM8K problems, opened once after predictions
+were written; the second had every method fixed in advance.
 
-Accuracy with thinking on and a 12,288-token cap. "a1" is the edit the winning agent found: it suppresses the
-"Wait" token through 3 MLP neurons and strengthens the `</think>` write in layer 23, using 4 rank-1 edits.
+| method | locked test 1 | locked test 2 | tokens per answer |
+|---|---|---|---|
+| original model | 15.5% | — | 11,142 |
+| Astra's edit (Takehi et al., 2026) | 53.5% (65.0% with 20k tokens) | — | 8,877 |
+| original model, thinking off | 58.5% | 58.0% | about 1,300 |
+| agent edit a1 | 61.5% | 68.0% | about 4,800 |
+| agent edit a2 | 67.5% | 64.0% | about 4,500 |
+| a2 reduced to 2 edits ([released](docs/hf/Qwen3.5-0.8B-LoopFix.md)) | — | 67.5% | 4,217 |
 
-| arm | GSM8K dev48 | GSM8K second practice set (32) | GSM8K locked test t200 (200) | GSM8K locked test t400 (200) | MATH-500 (148) |
-|---|---|---|---|---|---|
-| base | 0.146 | 0.125 | 0.155 | — | 0.081 |
-| Astra edit (paper) | 0.458 | 0.406 | 0.535 | — | 0.209 |
-| base, thinking off (cap 8,192) | — | — | 0.585† | 0.580 | 0.439 |
-| LoRA-SFT on self-distilled traces (E4, ~17 GPU-h) | 0.292 | — | 0.330† | — | — |
-| logit bias (best of 3, tuned on dev48) | 0.521 | 0.469 | 0.600† | — | 0.271¹ |
-| budget forcing at 4096 (best of 2, tuned on dev48) | 0.479 | **0.625** | 0.610 | — | 0.372 |
-| budget forcing at 4096, answer capped at 1024 | 0.500 | — | 0.600† | 0.595 | — |
-| **agent edit a1** | **0.667** | 0.562 | 0.615 | **0.680** | 0.466 |
-| second agent's edit a2 | 0.646 | — | 0.675† | 0.640 | 0.486 |
-| a2 reduced to 2 edits | 0.688 | — | — | 0.675 | 0.473 |
-| **a1 + budget forcing** | **0.688** | **0.625** | **0.695** | 0.645² | **0.527** |
+- **Transfer to harder math.** On 148 MATH-500 problems never used in any search, a1 solves 47% against 21% for
+  Astra's edit at the same budget (44 problems rescued, 6 lost).
+- **Against simple tricks.** Banning the word "Wait", a thinking time limit and thinking off all tie a1 on the first
+  locked test. Over both tests the edits are 5–9 points ahead, but thinking off uses a third of their tokens.
+- **Against fine-tuning.** LoRA on the model's own reasoning reached 29% of the practice set with 13× the GPU time of
+  an agent run.
+- **Against a script.** A search with the agents' tools and budget but no reasoning reached 27%, 40 points below.
+- **On a second, diffuse defect** (instruction following, IFEval) nothing helped, agent or not: every candidate that
+  looked better on a 48-prompt check lost 3–7 points on fresh prompts, because the check's own noise was larger than
+  any plausible gain.
 
-¹ MATH-500[0:48] only. ² With the answer capped at 1024 (0.695 on t200 too). † Run after the t200 locked test was
-opened. Every t400 arm (test[400:600]) was pre-registered before that slice was opened.
+The paper has the paired comparisons, p-values, budget curves and side-effect checks
+([English PDF](docs/pre-paper.pdf), [Portuguese PDF](docs/pre-paper.pt-BR.pdf)).
 
-Paired differences on MATH-500 (148 problems): a1 vs Astra **+25.7 ± 4.3 pp** (44 rescues / 6 losses); a1 vs budget
-forcing **+9.5 ± 3.8 pp** (23/9); combo vs a1 **+6.1 ± 3.2 pp** (16/7). The search ran on GSM8K only, so MATH-500 is
-out-of-distribution transfer.
+## Explore
 
-On the first full-size locked GSM8K slice (t200, test[200:400], opened once with pre-registered predictions): a1 vs Astra
-**+8.0 ± 3.4 pp** (32/16), a1 vs budget forcing +0.5 ± 3.4 (a tie, but a1 cuts half as many answers and uses ~30%
-fewer tokens), combo vs a1 **+8.0 ± 3.0** and combo vs budget forcing **+8.5 ± 3.6**. Pooled with t12k (232
-problems): a1 vs Astra +9.1 ± 3.1, combo vs a1 +7.8 ± 2.8.
+| | |
+|---|---|
+| [`docs/pre-paper.pdf`](docs/pre-paper.pdf) · [`pt-BR`](docs/pre-paper.pt-BR.pdf) | the pre-paper (copies with line numbers and a notes margin: `*.print.pdf`) |
+| [`notebooks/results.ipynb`](notebooks/results.ipynb) | a plain-language, visual tour of the results, with hover tooltips on every number |
+| [`docs/CADERNO.md`](docs/CADERNO.md) | the lab notebook (pt-BR): every pre-registration and result, timestamped |
+| [`docs/experiments.md`](docs/experiments.md) | registry of every experiment: question, prediction, outcome, data |
+| [`data/m2a/runs/`](data/m2a/runs/) | each agent run: brief, notes, scorer ledger and every edit submitted (310) |
+| [`docs/hf/`](docs/hf/Qwen3.5-0.8B-LoopFix.md) | model card of the released 2-edit fix |
+| [`docs/cost.md`](docs/cost.md) | cost study: GPU-hours, agent tokens, serving cost |
+| [`docs/reproducing.md`](docs/reproducing.md) | environment, hardware notes and the command for each stage |
 
-On a second full-size locked slice (t400, test[400:600], every arm pre-registered before opening), none of the five primary
-comparisons is significant on its own after Holm correction. Pooling t200 + t400 (400 problems): a2 vs thinking off
-**+7.5 ± 2.7** (p = 0.007), a1 + capped budget forcing vs thinking off **+8.8 ± 2.8** (p = 0.002), a1 vs thinking off
-+6.5 ± 2.7 (p = 0.02, not pre-registered), combo vs capped budget forcing **+7.2 ± 2.4** (p = 0.004); all
-uncorrected. But combo vs a1 is only +2.2 ± 2.2 (p = 0.36):
-the combo's gain over a1 on t200 did not replicate on t400 (−3.5). Thinking off uses 2.4–3.6× fewer tokens. On
-MATH-500[0:148], thinking off (0.439, 8k cap) ties a1 and a2; only a1 + budget forcing is above it (+8.8 ± 3.8,
-23/10, p = 0.035, uncorrected).
-
-What we have learned so far:
-
-1. **Agents find a strong, interpretable edit, and the result replicates.** Two independent no-atlas agents running protocol v2 (a1, a2)
-   edited overlapping "Wait" neurons (L17n1915, L22n573) with the same two-part recipe (suppress "Wait", strengthen
-   `</think>`) and reached 0.667 / 0.646 on dev48. They act at different points of the circuit: a1 strengthens a brake
-   neuron (L22n573); a2 works through one upstream neuron (L16n998) plus its `</think>` edit, and a 2-edit version of
-   a2 matches the full edit on dev48 (0.688). Four later runs of the same protocol (a3, a4 on Opus; f1, f2 on Fable)
-   reached 0.58–0.65: all six runs land at 0.58–0.67 (mean 0.62), and a4 rediscovered a1's brake mechanism on its own.
-2. **It is not just a decoding trick.** It beats a tuned logit bias on the practice sets and MATH, and ties it on the
-   t200 locked test. Over 400 locked problems, a1 and a2 are +5.0 / +6.0 pp above capped budget forcing and +6.5 /
-   +7.5 pp above thinking off (which uses far fewer tokens; p = 0.007–0.047, uncorrected, partly not pre-registered).
-   Adding budget forcing to the edit is +6.1 pp on MATH (p = 0.09) and not established on GSM8K.
-3. **The agent's reasoning matters.** A naive search with the same tools, the same budget and the same generation
-   signal reaches 0.271 on dev48 (−38 pp).
-4. **Generation in the loop is essential.** Every cheap proxy (teacher-forced Δlog-prob, branch probes, the 8-gram loop
-   detector) was Goodharted by a strong optimizer at least once.
-5. **It beats fine-tuning at a fraction of the compute.** LoRA-SFT on 175 self-distilled traces (17 GPU-hours)
-   reaches 0.292 on dev48, 37.5 pp below a1 (0 rescues, 18 losses). An agent run uses 1.3 GPU-hours plus about $5–7
-   of agent tokens at API prices. The edited model also generates 60% fewer tokens per problem. See
-   [docs/cost.md](docs/cost.md).
-6. **More interpretability context hurt.** Agents given an activation atlas found "internal-state" mechanisms that looked
-   good on probes and generalized worse in generation. This held in 3 of 3 paired replicates.
-7. **It holds on larger locked tests.** On 200 more locked GSM8K problems, a1 beats the Astra edit by 8.0 ± 3.4 pp
-   and ties budget forcing with half the cut-off answers. A further 200, fully pre-registered, replicate the
-   direction against thinking off and budget forcing, but not the combination's lead over a1.
-8. **Against the Astra edit, the advantage is efficiency, not accuracy.** With a 20,480-token cap on t200, Astra
-   reaches 0.650, tying a1 (0.680) and a2 (0.635), which barely move after 12k. At the same cap the agent edits use
-   1.7–1.9× fewer tokens. Rerunning the same arm with different server batching moved it by up to 5.5 pp, so a1 and
-   a2 cannot be ranked against each other.
-9. **It does not work on a diffuse defect.** On instruction following (IFEval, thinking off), two agent runs, a
-   system prompt and LoRA fine-tuning all lost 3–7 pp on fresh prompts after looking better on their practice
-   checks. Sampling noise (23% of prompts flip between two runs of the unchanged model) swamps any plausible gain.
-   The method's reach is set by the signal-to-noise ratio of the real test. See `docs/CADERNO.md` (2026-11-08/09).
-
-## Repository layout
+<details>
+<summary><b>Repository layout</b></summary>
 
 ```
 src/wsp/            library: model I/O, probes, generation (llama-server client), evaluation runner, agent scorer API
-scripts/            experiments (poc*, m2a_*, ft_*), evaluation (gen_eval, math_eval, tool_eval), queues (queue_*.sh)
+scripts/            experiments (poc*, m2a_*, ft_*), evaluation (gen_eval, math_eval, tool_eval), queues (queue_*.sh),
+                    figures (draw_*.py, export_figures*.py) and the PDF build (build_prepaper_pdf.py)
 notebooks/
-  results.ipynb       visual, plain-language tour of the results (plotly; static PNG copies for GitHub)
+  results.ipynb       visual tour of the results (plotly; static PNG copies in docs/figures/)
 docs/
-  research-notes.md   findings, with evidence and caveats (start here)
-  experiments.md      registry of every experiment: question, pre-registered prediction, outcome, data
-  paper-draft.md      pre-paper (English; pt-BR version in paper-draft.pt-BR.md; PDFs in pre-paper*.pdf, print copies
-                      with line numbers and notes margin in pre-paper*.print.pdf)
-  reproducing.md      environment, hardware gotchas, how to run each stage
-  cost.md             cost study: GPU-hours, agent tokens, serving cost, comparison with Astra
+  paper-draft.md      pre-paper source (pt-BR: paper-draft.pt-BR.md); PDFs in pre-paper*.pdf
   CADERNO.md          original lab notebook (pt-BR), timestamped pre-registrations; the primary record
-  PLANO.md            original experiment plan (pt-BR)
-  linhas-futuras.md   future research lines to mature (editor ladder, small-edits-large, self-editing; pt-BR)
-  literatura-sparks.md  literature around Sparks of WSP (Nov 10 survey): concurrent work, positioning, urgency; pt-BR
-data/               only small records are versioned (see .gitignore): result summaries (*.json), agent briefs,
-                    per-run scorer ledgers / final picks / agent notes, every submitted edit
-                    (`m2a/runs/*/done/*.pt`), E4 configs and logs
+  experiments.md      registry of every experiment
+  research-notes.md   findings, with evidence and caveats
+  reproducing.md      how to run each stage
+  cost.md             cost study
+  hf/                 model card and packaging notes for the released edit
+  zenodo/             Zenodo metadata
+  PLANO.md, linhas-futuras.md, literatura-sparks.md   plan, future lines and literature survey (pt-BR)
+data/               small records only (see .gitignore): result summaries (*.json), agent briefs, per-run scorer
+                    ledgers, final picks, agent notes, every submitted edit (m2a/runs/*/done/*.pt), E4 configs and logs
 ```
 
-Raw generations (~210 MB), GGUF models (~31 GB) and agent work directories stay local and will be released separately.
-Agent briefs and notes are kept verbatim, as the agents saw them (see [data/m2a/README.md](data/m2a/README.md)).
+Raw generations (~210 MB), GGUF models (~31 GB) and agent work directories stay local and will be released
+separately. Agent briefs and notes are kept verbatim, as the agents saw them ([data/m2a/README.md](data/m2a/README.md)).
+</details>
 
-## Quick start
+## Reproduce
 
 ```bash
 uv sync                                   # pinned stack: torch 2.14.1+cu130, transformers 5.22.1, fla 0.6.0, peft 0.21.2
 scripts/run_bg.sh <name> <script> [args]  # every long job runs as a systemd --user unit (wsp-<name>), log in data/logs/
+uv run python scripts/build_prepaper_pdf.py [--lang pt-BR] [--print]   # rebuild the PDFs
 ```
 
-See [docs/reproducing.md](docs/reproducing.md) for the llama-server setup, the GGUF conversion path and each experiment's command.
+Everything ran on one GTX 1660 SUPER (6 GB). See [docs/reproducing.md](docs/reproducing.md) for the llama-server
+setup, the GGUF conversion path and each experiment's command.
+
+## Use of AI tools
+
+The editing agents studied here are Claude Opus 5.5, and Claude Fable 5.2 in two exploratory runs. Claude, through
+Claude Code, was also the research assistant: it wrote most of the code, ran the experiments, kept the lab notebook
+and drafted the text. The author designed the study, supervised and checked the work, and is responsible for the
+content.
+
+## Citation
+
+```bibtex
+@misc{melo2026agenticwsp,
+  title     = {Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models},
+  author    = {Melo, Luiz Felipe},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24208535},
+  url       = {https://doi.org/10.5281/zenodo.24208535},
+  note      = {Pre-paper}
+}
+```
+
+This work builds on Takehi, Teoh, Zhang and Khattab (2026),
+[*Sparks of Weight-Space Programming*](https://rikiyat.github.io/blog/weight-space-programming/), MIT CSAIL.
 
 ## License
 
