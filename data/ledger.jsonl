@@ -82,3 +82,14 @@
 {"ts": "2026-11-12 02:45:15", "kind": "math_eval", "tag": "math148nt", "split": "math500[0:148]", "arms": ["base"], "max_new": 8192}
 {"ts": "2026-11-12 03:44:08", "kind": "math_eval", "tag": "math148", "split": "math500[0:148]", "arms": ["m2a_a2"], "max_new": 12288}
 {"ts": "2026-11-12 05:48:39", "kind": "math_eval", "tag": "math148", "split": "math500[0:148]", "arms": ["m2a_a2_red"], "max_new": 12288}
+{"ts": "2026-11-13 02:48:43", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "m2a_a2_red", "m2a_a2"], "think": false}
+{"ts": "2026-11-13 02:51:50", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "m2a_a2_red", "m2a_a2"], "think": false}
+{"ts": "2026-11-13 03:07:09", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[0:200]", "arms": ["base", "m2a_a2_red", "m2a_a2"], "max_new": 1024}
+{"ts": "2026-11-13 03:39:26", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "m2a_a2_red", "m2a_a2"], "think": true}
+{"ts": "2026-11-13 03:47:41", "kind": "gen_eval", "tag": "t200L", "split": "gsm8k_test[200:400]", "arms": ["astra"], "max_new": 20480}
+{"ts": "2026-11-13 06:29:56", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a3"], "max_new": 12288}
+{"ts": "2026-11-13 07:04:43", "kind": "gen_eval", "tag": "dev48", "split": "gsm8k_train[0:48]", "arms": ["base", "astra", "m2a_a4"], "max_new": 12288}
+{"ts": "2026-11-13 07:45:31", "kind": "tool_eval", "tag": "nothink_dev300", "split": "dev", "n": 300, "arms": ["base", "m2a_a2_red", "m2a_a2"], "think": false}
+{"ts": "2026-11-13 07:45:37", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[0:200]", "arms": ["base", "m2a_a2_red", "m2a_a2"], "max_new": 1024}
+{"ts": "2026-11-13 07:45:42", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "m2a_a2_red", "m2a_a2"], "think": true}
+{"ts": "2026-11-13 07:45:49", "kind": "gen_eval", "tag": "t200L", "split": "gsm8k_test[200:400]", "arms": ["astra"], "max_new": 20480}

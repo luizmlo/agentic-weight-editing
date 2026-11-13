@@ -1,0 +1,8 @@
+{
+ "ranked": [
+  "052632_317",
+  "050005_601",
+  "054108_646"
+ ],
+ "rationale": "No-atlas arm. Mechanism: 4 lexical 'wait' neurons (L17n1915, L18n881, L20n405, L22n573; found by weight-only direct-logit attribution through tied embeddings) act as a Wait BRAKE in loop contexts: knocking out L20n405+L22n573 (alpha=1) or flipping them (alpha=2) produced 'Wait, wait, wait' spam in generation even though branch_rep improved. Amplifying them (alpha=-4..-8, which keeps their sign) is the main gain; a mild sign-preserving </think> boost on end-token neurons (L23 n1116,2025,576,422) adds a bit. Gen checks (16 GSM8K, cap 6144, base 1/16 acc, cut 1.0): #1 052632_317 [L23 close a=-6 + brake x9 on L18/L20/L22] acc 8/16, cut 0.44, 7 rescues, 0 losses, probes rep -0.134, prod -0.003, close +0.33, neutral -0.009. #2 050005_601 [C1b close boost L23+L22 a=-8 + brake x5 on L20/L22] acc 7/16, cut 0.50, 6 rescues/0 losses, close +0.73. #3 054108_646 [brake-only x9 on all four, no close boost] acc 7/16, cut 0.56, 6 rescues/0 losses, close -0.37 (less stopping; may do relatively better at 12k cap)."
+}

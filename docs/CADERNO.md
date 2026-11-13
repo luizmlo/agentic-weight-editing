@@ -2081,3 +2081,173 @@ redação, para não tratar como firme o que é sem correção ou não pré-regi
 - A linha de status "a direção se repete" agora diz 3 de 4 (a2 × a1 se inverteu).
 - O TL;DR e a afirmação final agora trazem os p sem correção e citam só as comparações pré-registradas.
 - README: t200 e t400 renomeados como primeiro e segundo testes trancados de tamanho cheio.
+
+### 13/11, 02h55 — Efeitos colaterais da a2 reduzida e Astra com teto longo: pré-registro
+
+Janela de GPU noturna, prazo duro às 08h50. Nenhum teste trancado é aberto: tudo roda em splits já usados.
+Fila `scripts/queue_side_long.sh`, nesta ordem:
+1. **Efeitos colaterais da a2 reduzida e da a2** (o modelo do Hugging Face ainda não tem esse painel). O mesmo painel
+   da a1: tool calling sem raciocínio (dev300), GSM8K sem raciocínio (test[0:200], teto 1024) e tool calling com
+   raciocínio (dev100, teto 3072).
+2. **Astra com teto de 20.480** no t200 (`gen_t200L`). O paper diz que o Astra não estabilizou em 12k (42,5% cortados)
+   e que "não rodamos isso". A tabela por orçamento sai da mesma rodada.
+3. Se sobrar tempo: **a2 com teto de 20.480** (mesmo split), para comparar com o mesmo orçamento.
+4. Se ainda sobrar: a1 com teto de 20.480.
+
+Um braço que não termine até 08h50 é interrompido e fica de fora. Nada é escolhido com estes resultados; servem para
+o card do Hugging Face e para fechar a limitação do teto no paper.
+
+**Comparações** (sinal exato pareado, sem correção; exploratórias): cada edição × original nos três painéis do item 1;
+Astra a 20k × a1 a 12k e × a2 a 12k (as respostas de a1 e a2 do t200 já gravadas); Astra truncado em 12k nesta rodada
+× Astra a 12k gravado (checagem de ruído).
+
+**Previsões.**
+- a2 reduzida e a2 a menos de 2 erros-padrão do original nos três painéis: 80%.
+- a2 reduzida acerta pelo menos tantas tarefas *irrelevance* com raciocínio quanto o original (11/16): 60%.
+- Astra a 20k: acerto entre 0,58 e 0,68: 80%. Pelo menos o da a1 a 12k (0,615): 55%. Pelo menos o da a2 a 12k (0,675):
+  15%. Cortados a 20k entre 15% e 30%: 65%. Média de tokens acima do dobro da a2 (4.387): 90%.
+- Astra truncado em 12k nesta rodada a até 6 pontos de 0,535: 85%.
+- a2 a 20k no máximo 2 pontos acima da a2 a 12k: 75%.
+- **03h00, antes de qualquer resultado:** o Luiz liberou a GPU até a fila acabar. O prazo das 08h50 saiu, e os quatro
+  itens rodam até o fim. A fila foi reiniciada; os itens já gerados são retomados do disco.
+
+### 13/11, 03h20 — Réplicas a3 e a4 do protocolo vencedor: pré-registro
+
+**Motivo.** O paper apoia o protocolo v2 sem atlas em duas runs do Opus (a1, a2), mais duas exploratórias do Fable.
+A limitação "poucas réplicas" pede mais duas. O Luiz liberou às 03h05.
+
+**Protocolo: idêntico ao das f1/f2**, só que com o Opus 5.5, o editor da a1 e da a2.
+- Harness original (`/mnt/dados/dev/deep_traces`), `BRIEF_v2.md` sem mudança e o prompt da a2 com o id trocado.
+- Mesmo avaliador (`m2a_scorer.py`): 40 sondas e 6 checagens por geração. Sem atlas. No máximo 4 edições de
+  posto 1, |α| ≤ 10.
+- Duas runs, `a3` e `a4`, ao mesmo tempo, dividindo o avaliador.
+- Regras das f1/f2: sem web, sem ler `/mnt/dados/dev/agentic-weight-editing`, sem subagentes.
+- Auditoria das chamadas de ferramenta depois, como nas f1/f2.
+
+**Ordem da GPU.** A fila `side-long` termina os efeitos colaterais e para antes do Astra a 20k. O avaliador roda
+durante as runs. Depois vêm a confirmação das escolhas nº 1 no dev48 (pareada com o original e a a1) e então a fila
+do teto longo, retomada do disco. Nenhuma escolha usa o t200, o t400 ou o MATH.
+
+**Previsões, escritas antes:**
+1. Pelo menos uma das duas chega a dev48 ≥ 0,60: 75% (a1, a2 e f1 chegaram; f2 ficou em 0,604).
+2. As duas chegam a dev48 ≥ 0,50: 60%.
+3. Alguma supera a a1 (0,667) no dev48 por ≥ 5 pontos: 15%.
+4. Pelo menos uma usa um neurônio-freio de "Wait" (L16n998, L17n1915, L18n881, L20n405 ou L22n573) na escolha nº 1:
+   55%. O Opus fez isso duas vezes em duas, e o Fable nenhuma em duas.
+5. Pelo menos uma inclui uma alavanca de `</think>` na escolha nº 1: 70%.
+
+**Leitura fixada antes.** Se as duas ficarem abaixo de 0,50 no dev48, a seção de réplicas do paper passa a dizer que
+o resultado depende da run, com 4 de 6 runs do Opus/Fable no nível da a1. Se as duas chegarem a ≥ 0,60, o protocolo
+fica com 5 de 6 runs nesse nível.
+
+### 13/11, 04h00 — Efeitos colaterais da a2 reduzida e da a2: resultado (pré-registro de 13/11 02h55)
+
+Mesmo painel da a1. Pareado contra o original nos mesmos itens e sementes; sinal exato, sem correção.
+
+| painel | original | a2 reduzida | a2 | a1 (05/11) |
+|---|---|---|---|---|
+| tool calling sem raciocínio (dev300) | 0,897 | 0,903 (+0,7 ± 1,4; 10/8) | 0,910 (+1,3 ± 1,4; 11/7) | 0,927 (+3,0 ± 1,6) |
+| GSM8K sem raciocínio (test[0:200], teto 1024) | 0,485 | 0,460 (−2,5 ± 3,1; 17/22, p = 0,52) | 0,510 (+2,5 ± 3,6; 29/24) | 0,485 (25/25) |
+| tool calling com raciocínio (dev100, teto 3072) | 0,93 | 0,94 (2/1) | 0,92 (2/3) | 0,94 |
+| *irrelevance* com raciocínio (16) | 11 | 12 | 10 | 11 |
+
+**Previsões.**
+- a2 reduzida e a2 a menos de 2 erros-padrão do original nos três painéis: **acertou** (o maior |Δ|/EP é 0,9).
+- a2 reduzida com pelo menos 11/16 em *irrelevance*: **acertou** (12/16).
+
+**Leitura.** Como a a1, as duas variantes da a2 não mudam nada detectável fora do raciocínio longo. Também não
+herdam o ganho do Astra em recusar chamadas irrelevantes (16/16). O card do Hugging Face deixa de dizer "não
+medido". Painéis pequenos: detectam só diferenças de uns 5 a 7 pontos.
+
+### 13/11, 04h15 — Respostas terminadas mas erradas: seleção ou conclusão precipitada? (análise post hoc, só CPU)
+
+O paper diz que não separou as duas explicações. Esta análise usa só respostas já gravadas do t200. **Não foi
+pré-registrada.** As comparações são exploratórias, e o Holm vai sobre as 8 linhas da segunda tabela.
+
+**1. Nos 31 problemas que o original termina (fáceis; ele acerta 30):**
+- Astra 30/31, limite 30/31 e 31/31;
+- a1 27/31, nº 1 da a1 26/31 (0 ganhos e 4 perdas entre os que os dois terminam, p = 0,12);
+- a2 27/31; f1 30/31.
+
+**2. Pareado contra outro braço, só nos problemas que os dois terminam:**
+
+| edição | × Astra | × limite com teto (bf4096a1024) |
+|---|---|---|
+| a1 | 94 × 100 de 107 (4/10, p = 0,18) | 103 × 113 de 122 (3/13, p = 0,021) |
+| nº 1 da a1 | 94 × 105 de 115 (5/16, p = 0,027) | 102 × 119 de 129 (4/21, **p = 0,001; Holm 0,008**) |
+| a2 | 98 × 96 de 105 (6/4) | 103 × 110 de 117 (3/10, p = 0,09) |
+| f1 | 96 × 94 de 99 (4/2) | 109 × 107 de 113 (5/3) |
+
+**Leitura.**
+- Nos mesmos problemas terminados, a a1 e principalmente a nº 1 da a1 erram mais que o Astra e o limite. Logo, não é
+  só seleção. As edições que empurram `</think>` com mais força fazem o modelo concluir antes da hora, como o paper
+  suspeitava.
+- A a2 mostra um sinal pequeno. A f1, que não tem alavanca de `</think>`, não mostra nenhum.
+- Só a comparação nº 1 da a1 × limite sobrevive ao Holm.
+- Isto entra no paper como análise post hoc, na seção de efeitos colaterais, no lugar de "não separamos as duas".
+
+### 13/11, 06h30 — Réplicas a3 e a4 terminadas; confirmação lançada
+
+| run | nº 1 | edição | checagem por geração (16) | sondas / checagens |
+|---|---|---|---|---|
+| a3 | `044757_970` | direção de hesitação ("Wait" ×4, "Hmm", "Actually", "Alternatively"; leitura `(1+g)⊙E`) ortogonalizada a `</think>`, todas as colunas: L22 down_proj α = 4, L16 down_proj α = 6, L19 e L15 o_proj α = 6 (4 edições) | 10/16, cortes 0,25, 9 resgates / 0 perdas | 26 / 5 |
+| a4 | `052632_317` | freio de "Wait" amplificado ×9 (α = −8 na própria coluna) em L18n881, L20n405 e L22n573, mais reforço de `</think>` em L23 down_proj, 4 colunas de fim de turno, α = −6 (4 edições) | 8/16, cortes 0,44, 7 / 0 | 17 / 6 |
+
+Base nas mesmas 16: 1/16.
+
+**O que os agentes relatam.**
+- A a4 refez de forma independente o mecanismo da a1: neurônios-freio de "Wait" **amplificados**, mantendo o sinal,
+  mais uma alavanca de `</think>`. Inverter ou remover os freios levou a 0/16 com "wait wait wait…", a mesma falha
+  inicial da a1, da a2 e da f1. Só o freio já faz 7/16; o reforço de `</think>` sozinho faz 3/16.
+- A a3 achou os mesmos cinco neurônios de "wait" por logit lens, mas editar só eles quase não teve efeito. A escolha
+  dela é outra família: inverter a direção de hesitação em escritores tardios, com todas as colunas. Fica mais perto
+  da f2 e do Astra na forma.
+- Reforçar `</think>` por fora piorou a geração na a3 (0,4375). A ortogonalização a `</think>` foi o que evitou a
+  queda no `close`.
+- Nas duas, as falhas restantes são cópia literal de linhas, reinterpretação da pergunta ("Could it mean…") e
+  respostas cortadas depois de fechar o raciocínio.
+- Nas duas, o sinal decisivo veio da geração, não das sondas. Na a4, a sonda deu o sinal oposto ao da geração na
+  família inverter/remover. A a3 parou com uma checagem sobrando.
+
+**Auditoria das chamadas de ferramenta** (a3: 51 Bash, 3 Read, 1 Monitor; a4: 79 Bash, 3 Read, 7 Write, 2 TaskStop).
+- Nenhuma busca na web, nenhum subagente.
+- Nenhuma leitura de `docs/`, `refs/`, `scripts/wsp/`, `probes.py`, de outras runs, de `sealed/`, do atlas, do
+  `gen_ref_base`, de `~/.claude` ou do repositório do paper.
+- As únicas ocorrências de "atlas" são as notas dos próprios agentes dizendo que não o usaram.
+
+**Previsões já decididas:**
+- 4. Pelo menos uma usa um neurônio-freio na nº 1: **acertou** (a4).
+- 5. Pelo menos uma inclui uma alavanca de `</think>` na nº 1: **acertou** (a4, reforço em L23; a a3 só ortogonaliza).
+
+Fila `scripts/queue_after_reps.sh` (unit wsp-after-reps), às 06h28: copia as runs, confirma a nº 1 de cada no dev48
+e retoma a fila do teto longo.
+
+### 13/11, 07h50 — Réplicas a3 e a4 no dev48: resultado (pré-registro de 13/11 03h20)
+
+GSM8K train[0:48], teto 12.288, mesmas sementes; pareado, sinal exato.
+
+| run | dev48 | cortes | tokens | × original (0,146) | × a1 (0,667) |
+|---|---|---|---|---|---|
+| a3 | 0,583 | 0,250 | 6.006 | +22 / −1 | +3 / −7 (p = 0,34) |
+| a4 | 0,583 | 0,354 | 7.179 | +22 / −1 | +5 / −9 (p = 0,42) |
+| *a1* | 0,667 | 0,167 | 4.729 | +26 / −1 | — |
+| *a2* | 0,646 | 0,083 | 3.910 | +24 / −0 | +4 / −5 |
+| *f1 (Fable)* | 0,646 | 0,250 | 6.711 | +25 / −1 | +6 / −7 |
+| *f2 (Fable)* | 0,604 | 0,271 | 6.618 | +22 / −0 | +4 / −7 |
+
+Astra no mesmo conjunto: 0,458.
+
+**Previsões.**
+1. Pelo menos uma chega a ≥ 0,60: **errou** (as duas ficaram em 0,583, um problema abaixo). Eu dava 75%.
+2. As duas chegam a ≥ 0,50: **acertou** (60%).
+3. Alguma supera a a1 por ≥ 5 pontos: não aconteceu, como eu esperava (dava 15%).
+
+**Leitura.** Nenhum dos dois casos da leitura fixada antes. As seis runs do protocolo v2 sem atlas (4 Opus, 2 Fable)
+ficam todas entre 0,58 e 0,67 no dev48, todas 22 a 26 problemas acima do original e acima do Astra. Nenhuma difere da
+a1 de forma significativa.
+- O protocolo é confiável em produzir um ganho grande.
+- O nível exato da a1 e da a2 (0,65–0,67) é o topo dessa faixa, não o centro: a média das seis é 0,62.
+- As duas réplicas novas cortam mais e gastam mais tokens (6–7k contra 4–5k da a1 e da a2).
+
+No paper: "few replicates" passa a 6 runs; a frase sobre o protocolo cita a faixa e a média, não só a1/a2. As
+réplicas não vão ao t200: o pré-registro previa só o dev48.

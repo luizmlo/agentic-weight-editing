@@ -98,9 +98,13 @@ model = AutoModelForCausalLM.from_pretrained(repo, dtype="bfloat16", device_map=
 - **Thinking off is cheaper.** See the first section. On MATH it ties this edit at about half the tokens.
 - **Finished-but-wrong answers.** Among answers that finish, the edited models are somewhat less accurate than the
   rare original answers that finish; the gain comes from finishing far more often.
-- **Side effects not measured for this variant.** In the study, the first agent's edit (a1, same recipe, different
-  neurons) did not change accuracy on math with thinking off or on tool calling (within ±2 standard errors); we did
-  not repeat those checks for this 2-edit version. No safety evaluation beyond the original model's was done.
+- **Side effects: none detected, on small panels.** Paired with the original model on the same items and seeds:
+  - tool calling with thinking off, 300 requests: 90.3% vs 89.7%;
+  - grade-school math with thinking off, 200 problems: 46.0% vs 48.5% (17 gained, 22 lost; p = 0.52);
+  - tool calling with thinking on, 100 requests: 94% vs 93%.
+
+  All are within one standard error. These panels only detect changes of about 5–7 points. No safety evaluation
+  beyond the original model's was done.
 - **Sampler.** Numbers are from llama.cpp with the settings above; other samplers shift absolute numbers.
 
 ## How it was made
