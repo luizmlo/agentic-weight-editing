@@ -91,9 +91,9 @@ T("A correção do agente levou 13× menos tempo de GPU que o fine-tuning, e as 
 "Text the agent wrote (millions of tokens)": "Texto que o agente escreveu (milhões de tokens)",
 T("Our agent found a stronger edit while reading 16× less and writing 60× less than the original agent", "AI-agent usage for one complete search (Astra's numbers from the paper's public logs; 20.3 h vs 2.1 h wall-clock)"):
 T("Nosso agente achou uma edição melhor lendo 16× menos e escrevendo 60× menos que o agente original", "Uso do agente de IA numa busca completa (números do Astra pelos registros públicos do artigo; 20,3 h contra 2,1 h de relógio)"),
-"Math, thinking off (200 problems)": "Matemática, sem raciocínio (200 problemas)",
-"Tool calling, thinking off (300 requests)": "Chamada de ferramentas, sem raciocínio (300 pedidos)",
-"Tool calling, thinking on (100 requests)": "Chamada de ferramentas, com raciocínio (100 pedidos)",
+"Math, thinking off<br>(200 problems)": "Matemática, sem raciocínio<br>(200 problemas)",
+"Tool calling, thinking off<br>(300 requests)": "Chamada de ferramentas, sem raciocínio<br>(300 pedidos)",
+"Tool calling, thinking on<br>(100 requests)": "Chamada de ferramentas, com raciocínio<br>(100 pedidos)",
 T("No damage: the edited models perform like the original on unrelated tasks", "Share correct. Differences are small (≤ 2 error bars); the Astra edit is slightly better at tool calling with thinking on."):
 T("Sem estragos: os modelos editados vão como o original em tarefas não relacionadas", "Fração de acertos. As diferenças são pequenas (≤ 2 barras de erro); a edição Astra é um pouco melhor em ferramentas com raciocínio."),
 "correct (share)": "acertos (fração)",

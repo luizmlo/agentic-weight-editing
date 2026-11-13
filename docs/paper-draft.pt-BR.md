@@ -138,7 +138,7 @@ direção escolhida. (B) A a1 reforça o freio de três neurônios sobre “Wait
 
 ![Figura 4](figures/why.png)
 
-**Figura 4:** Em 25 modelos e métodos que rodamos no conjunto de prática, quanto menos respostas ficam sem espaço,
+**Figura 4:** Em 27 modelos e métodos que rodamos no conjunto de prática, quanto menos respostas ficam sem espaço,
 mais respostas estão certas (r = −0,98).
 
 *Experimento 3*

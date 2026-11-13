@@ -130,7 +130,7 @@ chosen direction. (B) a1 strengthens three neurons' brake on “Wait” and the 
 
 ![Figure 4](figures/why.png)
 
-**Figure 4:** Across 25 models and methods we ran on the practice set, the fewer answers that run out of space, the
+**Figure 4:** Across 27 models and methods we ran on the practice set, the fewer answers that run out of space, the
 more are correct (r = −0.98).
 
 *Experiment 3*
