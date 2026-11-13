@@ -1,5 +1,5 @@
 {
- "_comment": "Metadata for the Zenodo record of the PAPER (manual upload: pre-paper.pdf + pre-paper.pt-BR.pdf). Fields follow the Zenodo deposit API; the same values go into the web form. Fill publication_date and the supplement DOI on submission.",
+ "_comment": "Metadata for the Zenodo record of the PAPER (manual upload: pre-paper.pdf + pre-paper.pt-BR.pdf). Fields follow the Zenodo deposit API; the same values go into the web form. Fill publication_date and the supplement DOI on submission. DOI reserved 2026-11-13; the code record's DOI is added as isSupplementedBy once it exists.",
  "metadata": {
   "upload_type": "publication",
   "publication_type": "preprint",
@@ -11,7 +11,7 @@
     "orcid": "0009-0007-5134-9914"
    }
   ],
-  "publication_date": "YYYY-MM-DD",
+  "publication_date": "2026-11-13",
   "version": "v1 (pre-paper)",
   "language": "eng",
   "access_right": "open",
@@ -37,16 +37,11 @@
     "resource_type": "software"
    },
    {
-    "relation": "isSupplementedBy",
-    "identifier": "10.5281/zenodo.XXXXXXX",
-    "resource_type": "software",
-    "_comment": "DOI of the code/data record, once it exists"
-   },
-   {
     "relation": "references",
     "identifier": "https://rikiyat.github.io/blog/weight-space-programming/",
     "resource_type": "publication"
    }
-  ]
+  ],
+  "doi": "10.5281/zenodo.24208535"
  }
 }

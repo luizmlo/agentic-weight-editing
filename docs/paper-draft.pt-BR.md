@@ -1,6 +1,6 @@
 # Programação Agêntica no Espaço de Pesos como Alternativa ao Fine-Tuning em Modelos de Linguagem Pequenos
 
-**Autores:** Luiz Felipe Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 13 nov. 2026
+**Autores:** Luiz Felipe Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 13 nov. 2026 · **DOI:** [10.5281/zenodo.24208535](https://doi.org/10.5281/zenodo.24208535)
 
 *Rascunho de trabalho – o estado de cada resultado e o trabalho restante estão listados no final.*
 
@@ -406,7 +406,7 @@ agentes burlam indicadores de interpretabilidade e uma fronteira medida de onde 
 
 ## Dados, código e registros
 
-Tudo está no repositório do projeto: o caderno de laboratório com previsões datadas (`docs/CADERNO.md`), os registros
+Tudo está no repositório do projeto, <https://github.com/luizmlo/agentic-weight-editing>: o caderno de laboratório com previsões datadas (`docs/CADERNO.md`), os registros
 de cada execução de agente e de cada edição submetida (310), o notebook que desenha cada gráfico
 (`notebooks/results.ipynb`) e um estudo de custo (`docs/cost.md`). As transcrições completas dos agentes e as gerações
 brutas (~210 MB) serão publicadas depois da revisão.

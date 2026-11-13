@@ -23,4 +23,7 @@ preferred-citation:
       affiliation: Universidade do Sul de Santa Catarina (Unisul)
       orcid: "https://orcid.org/0009-0007-5134-9914"
   year: 2026
-  # doi: 10.5281/zenodo.XXXXXXX   (fill in after the Zenodo record is published)
+  doi: 10.5281/zenodo.24208535
+  url: "https://doi.org/10.5281/zenodo.24208535"
+  publisher:
+    name: Zenodo

@@ -1,6 +1,6 @@
 # Agentic Weight-Space Programming as an Alternative to Fine-Tuning in Small Language Models
 
-**Authors:** Luiz Felipe Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 13, 2026
+**Authors:** Luiz Felipe Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 13, 2026 · **DOI:** [10.5281/zenodo.24208535](https://doi.org/10.5281/zenodo.24208535)
 
 *Working draft – status of each result and remaining work are listed at the end.*
 
@@ -387,7 +387,7 @@ interpretability proxies, and a measured boundary where the method stops working
 
 ## Data, code and logs
 
-Everything is in the project repository: the lab notebook with dated predictions (`docs/CADERNO.md`), the records of
+Everything is in the project repository, <https://github.com/luizmlo/agentic-weight-editing>: the lab notebook with dated predictions (`docs/CADERNO.md`), the records of
 every agent run and every edit submitted (310), the notebook that draws every chart (`notebooks/results.ipynb`) and a
 cost study (`docs/cost.md`). Full agent transcripts and raw generations (~210 MB) will be released after review.
 

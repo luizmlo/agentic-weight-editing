@@ -125,7 +125,11 @@ if PRINT:  # review copy: room to write, line numbers to point at, page X of Y, 
 
 def tex_escape(s):
     s = re.sub(r"\*\*(.+?)\*\*", r"@B{\1}", s)
+    links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", s)  # markdown links (e.g. the DOI) -> \href
+    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", "@L", s)
     s = s.replace("&", r"\&").replace("%", r"\%").replace("#", r"\#").replace("_", r"\_")
+    for text, url in links:
+        s = s.replace("@L", rf"\href{{{url}}}{{{text}}}", 1)
     return s.replace("@B{", r"\textbf{")
 
 BEFORE = rf"""
