@@ -6,100 +6,78 @@
 
 **TL;DR**
 
-- **The defect.** Small "thinking" models often get stuck repeating themselves: *"Wait, let me check… Yes… Wait…"*.
-  Out of every 100 grade-school math problems, Qwen3.5-0.8B runs out of space on 85 before writing an answer.
-- **The fix.** We gave Claude agents the model's weights and a small testing budget, and asked them to fix this by
-  editing the weights directly, with no training. **With four tiny edits, the model went from solving 15% to 67% of
-  our practice problems, and from 15.5% to 61.5–67.5% of 200 locked test problems (64–68% on a second locked set of
-  200, with every method fixed before opening).** Six agent runs under the same protocol all landed between 58% and
-  67% on the practice problems.
-- **The comparison.** At our 12k-token budget the edit published in *Sparks of Weight-Space Programming* solves
-  53.5%, but it is still improving. With 20k tokens it reaches 65.0%, the same as the agents' edits (63.5–68.0%),
-  which stop improving by about 12k. The supported claim is efficiency: the same accuracy with 1.7–1.9× fewer tokens.
-  The agents' edits beat one cheap fine-tuning recipe (29% on practice problems, with 13× more GPU time).
-- **The simple alternatives are strong.** Capping thinking time (60–61%), banning the word "Wait" (60.0%) and
-  switching thinking off (58.5%) all tie the first agent's edit on the first locked test. The second locked test
-  could not separate the methods on its own. Over all 400 locked problems, the edits are 6.5–9 points above thinking
-  off (p = 0.002–0.02, uncorrected) and 5–7 points above a thinking cap, but use 2.4–3.6× the tokens of thinking off.
-  On harder math, thinking off (44%) ties the edits alone; only an edit plus a thinking cap (53%) is above it
-  (p = 0.035, uncorrected).
-- **What mattered.** Independent agents kept finding the same "Wait" neurons and the same `</think>` lever, but their
-  edits work at different points: one strengthens a brake neuron, another flips a neuron upstream of it, and a later
-  replicate rediscovered the first mechanism on its own. A simple script with the same tools and budget, but no agent
-  reasoning, did not. Every cheap shortcut score we gave the agents was eventually gamed, and only real test runs kept
-  them honest. In three pairs of runs, agents given more interpretability data found worse fixes.
-- **Where it stops working.** On a second, diffuse defect (following formatting instructions, IFEval), neither the
-  agents, nor a system prompt, nor fine-tuning improved the model. Every candidate that looked better in practice
-  checks lost 3–7 points on fresh prompts. The method works when the defect is concentrated and its effect is large;
-  it cannot find effects smaller than the test's own sampling noise.
+Small "thinking" models often get stuck repeating themselves: *"Wait, let me check… Yes… Wait…"*. We gave Claude
+agents the weights of Qwen3.5-0.8B and a small testing budget, and asked them to fix this by editing the weights
+directly, with no training. **With at most four rank-1 edits, the model went from 15.5% to 61.5–68% on locked
+grade-school math problems.** That matches an edit written by GPT-6 Astra with about half the tokens, and beats a
+cheap fine-tuning recipe. Simple alternatives come close, though: switching thinking off solves 58% at a fraction of
+the cost. The method worked on a concentrated defect and failed on a diffuse one.
 
 Everything ran on one gaming graphics card (GTX 1660 SUPER, 6 GB).
+
+**An agent can repair a model by editing its weights.** In about two hours per run, Claude agents read the weights
+"through the vocabulary", found neurons that push the model to say "Wait", and changed how strongly they write. Six
+runs of the same protocol all landed between 58% and 67% on practice problems, where the original model solves 15%.
+
+**The gain is efficiency, not magic.** The edit published in *Sparks of Weight-Space Programming* reaches the same
+accuracy once it gets 20k tokens to think; the agents' edits are nearly there by 8k. Switching thinking off is cheaper
+still, and over 400 locked problems the edits are only 6.5–9 points above it.
+
+**Real tests mattered more than clever tools.** Every cheap shortcut score we gave the agents was eventually gamed,
+and only real test runs kept them honest. Agents given more interpretability data found worse fixes in all three
+pairs we ran.
 
 ![Figure 1](figures/hero.png)
 
 **Figure 1:** One real practice problem, same random seed. The original model has the answer early, then repeats
-"Wait, 120 / 8 = 15" until it runs out of space. The released 2-edit version of the second agent's fix (Experiment 2)
-checks once, closes its thinking and answers. Bottom row: the original model on the first locked test; the edited
-model and the unedited model with thinking off on the second (200 problems each).
+"Wait, 120 / 8 = 15" until it runs out of space. The released 2-edit version of the second agent's fix checks once,
+closes its thinking and answers. Bottom row: the original model on the first locked test; the edited model and the
+unedited model with thinking off on the second.
 
 ---
 
 A small model that loops is usually treated as a training problem: collect examples of good reasoning and fine-tune.
-That works, but for a looping model even collecting the examples is expensive, because most of its attempts never end.
+For a looping model, even collecting the examples is expensive, because most of its attempts never end.
 
-Recently, Takehi et al. showed something different. A frontier model (GPT-6 "Astra") read the raw weights of this same
-model and edited 0.016% of them, and MATH-500 accuracy went from 7.9% to 48.1%. We wanted to know three things:
-
-1. **Does it reproduce,** on a cheap setup, and what exactly did that edit do?
-2. **Is it more than a trick?** Could a decoding setting or ordinary fine-tuning do the same?
-3. **What in the agent's process actually matters?**
+Takehi et al. (2026) showed another way. A frontier model, GPT-6 "Astra", read the raw weights of this same model,
+edited 0.016% of them, and its MATH-500 accuracy went from 7.9% to 48.1%. We asked three questions. Does it
+reproduce on a cheap setup, with a Claude agent as the editor? Is it more than a trick that a decoding setting or
+ordinary fine-tuning could match? And what in the agent's process actually matters?
 
 ## The defect: a model that can't stop thinking
 
-Qwen3.5-0.8B "thinks" in a scratchpad before answering and ends its thinking with a special `</think>` marker. With a
-budget of 12,288 tokens (about 9,000 words), most of its answers never get there.
+Qwen3.5-0.8B "thinks" in a scratchpad before answering and closes it with a special `</think>` marker. With a budget
+of 12,288 tokens (about 9,000 words), most of its answers never get there.
 
 ![Figure 2](figures/defect.png)
 
-**Figure 2:** Length of each of 48 practice answers. Most of the original model's answers hit the space limit; with the
-agent's edit, most finish early.
+**Figure 2:** Length of each of 48 practice answers. Most of the original model's answers hit the space limit; with
+the agent's edit, most finish early.
 
 Prompting does not help. A system prompt telling the model not to repeat itself does no better than a meaningless
-placebo prompt. Both actually *raise* the loop rate slightly (31% and 30%, against 23% without a prompt). The loop
-lives in the model's habits, not in its instructions.
+placebo prompt; both slightly *raise* the loop rate. The loop lives in the model's habits, not in its instructions.
 
 ## The rules of the game
 
 **Setup**
-- **Model:** Qwen3.5-0.8B (Qwen Team, 2026), the same revision as the original study, run with llama.cpp
-  (Gerganov et al., 2023).
-- **Task:** grade-school math (GSM8K; Cobbe et al., 2021) with thinking on and a 12,288-token budget.
-- **Edits allowed:** at most 4. Each edit picks a group of "neurons" (columns of an output matrix in one layer), a
-  direction in the model's internal space, and a strength. It then changes only how strongly those neurons write
-  along that direction:
-
-  $$w_j \leftarrow w_j - \alpha\,(u^\top w_j)\,u, \qquad |\alpha| \le 10.$$
-
-  In words: $\alpha = 1$ deletes that part of what the neurons write, $\alpha > 1$ flips it, and $\alpha < 0$ makes it
-  stronger. Each edit is a rank-1 change.
-- **Agents get:** the weights, a written brief that describes the defect (the loops, with an example), and a scorer with a fixed budget. The scorer offers 40 "quick scores",
-  which measure how much the model *wants* to repeat itself without letting it write. It also offers 6 "test runs",
-  in which the edited model really solves 16 practice problems.
+- **Model and task:** Qwen3.5-0.8B (Qwen Team, 2026) run with llama.cpp (Gerganov et al., 2023), solving grade-school math (GSM8K; Cobbe et
+  al., 2021) with thinking on and a 12,288-token budget.
+- **Edits:** at most 4. Each picks a group of neurons (columns of one layer's output matrix), a direction $u$ in the
+  model's internal space, and a strength $\alpha$, and changes only how strongly those neurons write along $u$:
+  $w_j \leftarrow w_j - \alpha\,(u^\top w_j)\,u$, with $|\alpha| \le 10$. $\alpha = 1$ deletes that part, $\alpha > 1$
+  flips it, $\alpha < 0$ makes it stronger.
+- **What agents get:** the weights, a brief describing the loops, and a scorer with 40 "quick scores" (how much the
+  model *wants* to repeat itself, measured in seconds) and 6 "test runs" (the edited model really solves 16 practice
+  problems, about 10 minutes each).
 - **Not allowed:** training, running the model outside the scorer, editing the vocabulary layers, or reading the
-  original study's edit, our notes, other agents' work or the scorer's code. These rules were not enforced in software:
-  we audited every action in every agent's log afterwards and found no violations.
-- **Agents:** Claude Opus 5.5, one per run, about 2 hours each. Some runs also got an **atlas**: a detailed scan of the
-  model's internal activity while looping.
-- **How we judge:**
-  - **Practice set:** we confirm each agent's pick on 48 other problems (dev48).
-  - **Second practice set:** 32 test problems. We had already used them in exploratory runs, so they are not a
-    sealed test.
-  - **Locked test:** 200 test problems, opened once, after we wrote down our predictions. Three arms were added later
-    and are marked as such.
-  - **Harder math:** we check transfer to 148 competition problems (MATH-500; Hendrycks et al., 2021; Lightman et al., 2024)
-    that no search ever touched.
-- **Fair comparisons:** every method answers the same problems with the same random seeds, so we can count, problem
-  by problem, who solved what.
+  original study's edit, our notes or other agents' work. We audited every agent's log afterwards and found no
+  violations.
+- **Agents:** Claude Opus 5.5, about 2 hours per run. Some runs also got an *atlas*, a detailed scan of the model's
+  internal activity while looping.
+- **How we judge:** each pick is confirmed on 48 other practice problems; final comparisons use two locked tests of
+  200 GSM8K problems each, opened once after predictions were written, and 148 competition problems (MATH-500;
+  Hendrycks et al., 2021; Lightman et al., 2024) that no search ever touched. Every method answers the same problems with the same seeds,
+  so we can count, problem by problem, who solved what.
 
 ## Can an agent fix the loops by editing weights?
 
@@ -107,78 +85,41 @@ lives in the model's habits, not in its instructions.
 
 ### Can we reproduce the published edit?
 
-The published edit changes only two matrices, in layers 15 and 19. We recovered it exactly. Each change is a single
-rank-1 edit with strength 6: it takes the part of 64 neurons' output that lies along one "repetition direction" and
-flips it to −5× its original size. Both layers use almost the same direction, written by different neurons.
-
-**On our setup, the published edit lifts the practice set from 15% to 46%, and harder math from 8% to 21%.** Our
-absolute MATH numbers are lower than the paper's because our token budget is 12k rather than 32k. All methods here share
-our budget. This matters for the published edit more than for the others: it is still improving when it hits 12k,
-and with 20k tokens it catches up with the agents' edits (see the locked test below).
+**Yes, exactly.** The published edit changes two matrices, in layers 15 and 19. In each, it takes what 64 neurons
+write along one "repetition direction" and flips it to −5× its size. On our setup it lifts the practice set from 15%
+to 46% and harder math from 8% to 21%. Our absolute MATH numbers are lower than the original study's because our
+budget is 12k tokens rather than 32k, and that budget hurts this edit most: it is still improving when it hits 12k.
 
 *Experiment 2*
 
 ### Can a Claude agent find its own fix?
 
-Our first agent (a0) only had quick scores. It found a different edit, one that discourages the model from copying
-"Yes", "?" and "Wait" in two attention layers, and it matched the published edit on the second practice set (44% vs
-41%).
-
-Then we added the 6 test runs. **Two agents, working independently, edited overlapping neurons with the same
-two-part recipe (suppress "Wait", strengthen `</think>`), and it is much stronger: 67% and 65% on the practice set.** Four later runs of the same protocol solved 58–65%
-(see "How repeatable is it?").
+**Two agents, working independently, found the same two-part recipe: make "Wait" less likely and `</think>` more
+likely. It solves 67% and 65% of the practice set.** A first agent with only quick scores matched the published edit
+(44% vs 41% on 32 test problems). Adding the 6 test runs made the difference.
 
 | agent | what the edit does (≤ 4 rank-1 edits) | practice set |
 |------|----------------------------------------------|--------------|
-| a1 | weakens the urge to say "Wait" in 3 neurons (L17n1915, L18n881, L22n573) and strengthens the `</think>` signal in the last layer | **67%** (26 rescued, 1 lost) |
-| a2 | flips what 4 neurons write along "Wait" (L16n998, L16n3422, and a1's L17n1915 and L22n573) and strengthens `</think>` in layer 22 | **65%** (24 rescued, 0 lost) |
+| a1 | strengthens the brake on "Wait" in 3 neurons (L17n1915, L18n881, L22n573) and the `</think>` signal in the last layer | **67%** (26 rescued, 1 lost) |
+| a2 | flips what 4 neurons write along "Wait" (L16n998, L16n3422, L17n1915, L22n573) and strengthens `</think>` in layer 22 | **65%** (24 rescued, 0 lost) |
 
-**Which a1 edit we report.** The a1 agent ranked two variants of the same edit: the same neurons, with strengths −9
-and −1.1 (its first pick) or −6 and −0.8 (its second). We carried the milder, second-ranked variant through every
-comparison because it scored higher on the practice set (67% vs 65%). That was our choice, not the agent's. On the
-locked test the two are indistinguishable (61.5% vs 62.0%), and the agent's first pick writes less than half as many
-tokens. "a1" below means the milder variant unless we say otherwise.
+**How they did it:** both agents read the weights "through the vocabulary", asking which word each neuron pushes the
+model to say. Their notes show them learning from failure. Deleting the "Wait" neurons outright made the model say
+"wait wait wait…" and solve nothing, which told them the neurons work the opposite way from what they had assumed.
 
-**How does it do it:** both agents read the weights "through the vocabulary". For each neuron, they asked which word
-it pushes the model to say. That is how they found neurons that push "Wait". Their notes show they learned from their
-failures. Negating those neurons outright made the model say "wait wait wait…" and solve nothing, which told them the
-neurons work in the opposite way from what they had first assumed.
+**A loop needs two doors changed.** It needs a way back in ("Wait, let me check") and no way out. In test runs, the
+`</think>` boost alone solves 19%, the "Wait" suppression alone 44–50%, and both together 69%.
 
-The two parts only work together. Our ablations, each a test run on 16 problems:
-- the `</think>` boost alone solves 19%;
-- the "Wait" suppression alone solves 44–50%;
-- both together solve 69%, and almost nothing runs out of space.
+**Same circuit, different levers.** On 12 looping transcripts of the original model, with the text held fixed:
+- **a1 strengthens a brake.** Neuron L22n573 fires negative before every "Wait" (52 of 52) and writes against the
+  word; a1 makes that push 7× stronger.
+- **a2 removes the push upstream.** Almost all of its effect on "Wait" comes from one neuron, L16n998, which promotes
+  "Wait" in the original model and suppresses it after the edit. With that push gone, the brake in layer 22 goes quiet.
+- **So a2 needs only 2 edits.** Keeping just L16n998 and the `</think>` edit solves 69% of the practice set, and 67.5%
+  of the second locked test (full a2: 64.0%). This is the version we release. L16n998 alone is not enough: 25 of 48
+  answers still run out of space.
 
-A loop needs a way back in ("Wait, let me check") and no way out. The edit closes the first and opens the second.
-
-**Shared neurons, different levers.** a1 and a2 share two neurons and the same "Wait" direction, but a1 makes their
-writing 7× stronger and a2 flips it to −9×. We checked what the neurons do on 12 looping transcripts of the original
-model:
-- **a1 strengthens a brake.** Neuron L22n573 has a negative activation at every position just before a "Wait" (52 of
-  52), and its output weights point towards "Wait", so it pushes *against* the word. a1 amplifies that push. With the
-  text held fixed, a1's three neurons lower the log-probability of "Wait" at those positions by 16.6 nats, and its
-  last-layer edit alone raises `</think>` by 1.5 nats. The two parts are separable. L18n881 contributes almost nothing.
-- **a2 works through one upstream neuron.** It also lowers "Wait" there (by 26 nats), and editing L16n998 alone
-  gives all of it (−26.2 nats). In the original model that neuron promotes "Wait"; after the edit it suppresses it.
-  The other three neuron edits change almost nothing: L16n3422 and L17n1915 move "Wait" by less than 0.3 nats, and
-  the flip of L22n573 alone *raises* it by 1.6.
-- **With a2's layer-16 edit, the brake goes quiet.** Inside the a2-edited model (and with only its two layer-16
-  neurons edited), the activation of L22n573 before a "Wait" falls from −3.73 to −0.04, so a2's flip of that neuron has almost nothing left to act on. The brake seems
-  to respond to an upstream push towards "Wait"; when that push is gone, it stops firing.
-
-So the two agents intervene on the same circuit at different points: a1 strengthens the brake in layer 22, and a2
-removes the push in layer 16. Those were log-probabilities on fixed text, so we then checked them with test runs on
-the 48 practice problems (predictions written down first):
-- **a2 works as a 2-edit fix.** Keeping only L16n998 and the `</think>` edit solves 69% (33 of 48), against 65% for
-  the full a2 (6 rescued, 4 lost, p = 0.75), with longer answers (4,797 tokens against 3,910; 6 cut off against 4).
-  The other three neurons (L16n3422, L17n1915, L22n573) made no measurable difference on 48 problems. On the second
-  locked test the 2-edit version solves 67.5%, against 64.0% for the full a2 (28 rescued, 21 lost; p = 0.39), and
-  on harder math 47.3% against 48.6% (12 rescued, 14 lost).
-- **Lowering "Wait" is not enough to stop.** L16n998 alone, which gave all 26 nats on fixed text, solves 48% (23 of
-  48), and 25 of 48 answers run out of space. Against the 2-edit version it rescues 3 and loses 13 (p = 0.02). This
-  matches a1's ablations above: a loop needs both doors changed.
-
-Figure 3 describes a1.
+(Which a1 variant we report, and why, is in Appendix A.)
 
 ![Figure 3](figures/edit-anatomy.png)
 
@@ -187,34 +128,312 @@ chosen direction. (B) a1 strengthens three neurons' brake on “Wait” and the 
 
 ![Figure 4](figures/why.png)
 
-**Figure 4:** Across 25 models and methods we ran on the practice set (the exploratory Fable runs left out), the fewer answers that run out of space, the more are correct
-(r = −0.98).
+**Figure 4:** Across 25 models and methods we ran on the practice set, the fewer answers that run out of space, the
+more are correct (r = −0.98).
 
 *Experiment 3*
 
 ### Does it hold on problems it never saw?
 
-**On harder competition math, which was never used in any search, the edit solves 47%, against 21% for the
-published edit at the same 12k budget.** Compared problem by problem with the published edit, it rescued 44 problems
-and lost 6. The second agent's edit, run later on the same problems, solves 49% (43 rescued and 2 lost against the
-published edit; 18 and 15 against a1). On the second practice set a1 solves 56% (the original: 13%; the published
-edit: 41%).
-
-Two caveats on the MATH numbers. First, the published edit still runs out of space on 78% of these problems, so its
-21% is limited by our budget (the original study reports 48% at 32k). Second, our answer checker is strict and misses
-some equivalent forms. Correcting the false negatives we found raises every method a little and keeps the order (a1
-49%, a1 + time limit 55%, time limit 38%, published edit 22%). The tables use the uncorrected numbers.
+**On harder competition math, never used in any search, the edit solves 47%, against 21% for the published edit at
+the same budget** (44 problems rescued, 6 lost). The second agent's edit solves 49%.
 
 ![Figure 5](figures/difficulty.png)
 
 **Figure 5:** The agent's edit (alone or with a thinking time limit) stays ahead at every difficulty level.
 
-**The locked test.** We opened 200 locked problems once, after writing down our predictions. At the full 12,288-token
-budget, a1 solves 61.5% (original 15.5%, published edit 53.5%). Problem by problem, it beats the published edit by
-**8.0 ± 3.4 points** (32 rescues, 16 losses; p = 0.03, uncorrected).
+**On the locked tests, the edits solve 61.5–68%, against 15.5% for the original model.** The first locked test had
+some arms added after opening, so we opened a second one with every arm and prediction fixed in advance.
 
-**But the budget decides that comparison.** The table shows the share solved if we stop every answer at a smaller
-budget. Arms marked † were run after the test was opened.
+| method | locked test 1 | locked test 2 | tokens per answer |
+|---|---|---|---|
+| original model | 15.5% | — | 11,142 |
+| published edit (Astra) | 53.5% | — | 8,877 |
+| original model, thinking off | 58.5% | 58.0% | about 1,300 |
+| agent's edit (a1) | 61.5% | 68.0% | about 4,800 |
+| second agent's edit (a2) | 67.5% | 64.0% | about 4,500 |
+| a2 reduced to 2 edits (released) | — | 67.5% | 4,217 |
+
+Each test has 200 problems, so single results move by ±3–4 points. Pooled over both tests, the edits are 6.5–9 points
+above thinking off. Appendix A has the paired comparisons and their p-values.
+
+### With a longer budget, the published edit catches up
+
+At 12k tokens, the published edit is still climbing: 42.5% of its answers are still running at the cap. So we ran it,
+a1 and a2 again with a 20,480-token cap.
+
+**At 20k the three tie: 65.0% for the published edit, 68.0% for a1 and 63.5% for a2.** But the agents' edits get
+there early. They gain almost nothing after 12k, and at 8k they already solve 61–63.5%, where the published edit
+solves 40%. At the same cap they use 1.7–1.9× fewer tokens.
+
+![Figure 6](figures/frontier.png)
+
+**Figure 6:** Accuracy against tokens per answer on the first locked test. The dashed line joins the methods that no
+other method beats on both axes. The agents were never asked to save tokens, yet their edits sit near this line. The
+a1 agent's first pick is on the line because it thinks less, and more of its finished answers are wrong.
+
+**One run is not enough to rank two good edits.** Rerunning the same edit with the same seeds moved it by up to 5.5
+points, because the server batched requests differently. a2 was ahead of a1 in one run and behind in the next, so we
+do not rank them.
+
+### How repeatable is it?
+
+**We ran the winning protocol four more times, and every run repaired the defect.**
+
+| run | editor | what its pick does | practice set |
+|-----|------|--------------------------------------------|----------|
+| a1 | Opus | strengthens 3 "Wait"-brake neurons, plus `</think>` | 67% |
+| a2 | Opus | flips L16n998 (and 3 other neurons), plus `</think>` | 65% |
+| a3 | Opus | flips a "hesitation" direction ("Wait", "Hmm", "Actually"…) in four whole layers | 58% |
+| a4 | Opus | strengthens 3 "Wait"-brake neurons (L18n881, L20n405, L22n573), plus `</think>` | 58% |
+| f1 | Fable | whole-layer edits along "Wait" in the last layers | 65% |
+| f2 | Fable | whole-layer edits along "Wait" in the last layers | 60% |
+
+All six land between 58% and 67% (mean 62%), so a1 and a2 are the top of the range, not its center. a4 rediscovered
+a1's mechanism on its own: it first flipped the brake neurons, got "wait wait wait…", and then strengthened them
+instead. The Fable runs (Claude Fable 5.2) were exploratory: paused, resumed and given a longer budget. They show that
+another editor can repair the defect by another route, not which editor is better.
+
+## Is it just a trick?
+
+A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, each
+tuned on 48 problems, three times what the agents saw.
+
+![Figure 7](figures/headline.png)
+
+**Figure 7:** Share of problems solved by each method on the four problem sets (error bars: ±1 standard error). The
+full table is in Appendix A.
+
+*Experiment 4*
+
+### Could a decoding setting do the same?
+
+**Setup**
+- **Word ban:** while the model writes, make "Wait" and its variants nearly impossible and nudge `</think>`.
+- **Time limit** ("budget forcing"; Muennighoff et al., 2025): after 4,096 tokens of thinking, cut it off and force an
+  answer.
+- **Thinking off:** let the unedited model answer directly.
+
+**On grade-school math, the simple tricks come close.** On the first locked test, the word ban (60.0%), the time limit
+(60–61%) and thinking off (58.5%) all tie a1 (61.5%). Over both locked tests, the edits pull ahead by 5–9 points, but
+thinking off uses only a third of their tokens.
+
+**On harder math, the edit does better than forcing an answer.** It beats the time limit by 9.5 points (23 rescued,
+9 lost). Forcing an answer works when the answer was already computed before the loop began, which is common in
+grade-school problems and rarer in longer ones. Thinking off (44%) ties the edits alone; only the edit combined with
+the time limit (53%) is above it.
+
+**The edit and the time limit add up.** The edit removes most loops and the limit catches what is left. On harder math
+the combination gains 6 points over the edit alone; an independent replication reports the same on MATH subsets
+(tdotlab, 2026). On grade-school math the gain was not established.
+
+![Figure 8](figures/paired.png)
+
+**Figure 8:** Problem by problem, same problems and seeds: problems only the agent's edit solved (right) against
+problems only the other method solved (left).
+
+*Experiment 5*
+
+### Could ordinary fine-tuning do the same?
+
+**Setup**
+- **Data:** the model's own reasoning on 600 other GSM8K problems. Only 57 attempts finished cleanly and correctly; for
+  279 that looped we cut the reasoning where the loop began and let the model answer, keeping 118 correct ones.
+- **Training:** LoRA (Hu et al., 2022), rank 16, all layers, 3 rounds, best round picked on the agents' 16 problems.
+
+**Fine-tuning reached 29% of the practice set, using 13× the GPU time of an agent run.** Problem by problem, the
+agent's edit rescued 18 problems it missed and lost none. The fine-tuned model still ran out of space on 71% of its
+answers: it learned what to write *after* a cut, not *when* to stop. This is one cheap recipe; more data or
+reinforcement learning might do better, at more cost.
+
+*Experiment 6*
+
+### Is the agent needed, or just its tools?
+
+**A script with the agents' toolbox and budget, but no reasoning, reached 27% of the practice set, 40 points below
+the agents.** It tried random edits along the directions of the 300 most common words. Stronger searches without an
+LLM exist, though: our own mean-difference edits recover about two thirds of the published edit's gain, and concurrent
+work recovers 79–93% (Zhang, 2026; nathanrs, 2026); a blind repair with a weaker editor and no description of
+the defect found nothing (WKJBryan, 2026). So we do not claim an agent is necessary, only that ours beat every
+no-agent search we ran, with a brief that named the defect.
+
+![Figure 9](figures/search.png)
+
+**Figure 9:** Each searcher's 6 test runs (16 problems each). The two agents without the atlas reached 11 of 16; the
+agents with the atlas 5–7; the script 3.
+
+## What we learned about the process
+
+*Experiment 7*
+
+### Can a cheap score stand in for real tests?
+
+**No. Every shortcut score we tried broke once a strong optimizer pushed on it.** Agent r1 drove the quick score to
+20× the published edit's value, and its edit solved 4% of problems, worse than doing nothing: it blocked word-for-word
+copying, and the model simply looped in other ways. Another edit with no word-for-word loops still ran out of space
+77% of the time. Six real test runs fixed this; under that protocol, both agents dropped early ideas that scored well
+but solved 0 of 16. **An agent's objective must come from real behavior, even a small sample of it.**
+
+![Figure 10](figures/goodhart.png)
+
+**Figure 10:** The quick score each agent's chosen edit achieved (left = looked better) against how often it actually
+solved problems.
+
+*Experiment 8*
+
+### Does more interpretability data help?
+
+**In all three pairs of agents with identical instructions, the one without the atlas found the better edit** (38% vs
+4%, 67% vs 35%, 65% vs 40%). With the atlas, agents chased intricate mechanisms, such as a "re-checking" state in the
+middle layers, that looked convincing but did not stop the loops. Without it, they went for the direct levers. Three
+pairs make this suggestive, not proven, and we had predicted the opposite.
+
+![Figure 11](figures/atlas.png)
+
+**Figure 11:** Each pair of agents had identical instructions; the agent without the atlas did better every time.
+
+## What did it cost?
+
+| | practice set | GPU-hours (1660 SUPER) | agent usage |
+|---------------------|---------|----------|-------------------------------|
+| **agent's edit (one run)** | **67%** | **1.3** | 5.4 M tokens read, 48 k written (≈ $5–7 at API prices) |
+| scripted search | 27% | 1.6 | — |
+| tuning the decoding tricks | 48–52% | 4.4 | — |
+| fine-tuning (LoRA) | 29% | 17.1 | — |
+
+- **Making the fix is cheap.** One agent run is about the electricity of a microwave running for 15 minutes. The
+  original Astra run used 16× more tokens read and 60× more written, over 20 hours (different tools, so not a
+  controlled comparison).
+- **Using it saves tokens on every answer,** but only against thinking on. The edited model's answers are 55% shorter
+  on the locked test; with thinking off, the unedited model is shorter still.
+- **One successful run is not the whole bill.** We made ten runs on this defect; the three with the atlas did worse.
+
+![Figure 12](figures/cost.png)
+
+**Figure 12:** Left: GPU-hours to produce each fix. Right: average answer length, which sets the cost of every future
+answer.
+
+## Did the surgery break anything?
+
+**Nothing we could detect.** With thinking off, none of the edits changes math accuracy (200 problems) or tool-calling
+accuracy (300 requests) by more than about two standard errors; the released 2-edit version stays within one. These
+panels only detect changes of about 5–7 points.
+
+**One cost: finished answers are wrong more often.** On the locked test, 74% of a1's finished answers are correct,
+against 92% for the time limit. Part of this is selection, since the edits also finish the hard problems. But on
+problems that both finish, the edits with the strongest `</think>` push still lose, and an edit without a `</think>`
+lever does not. They make the model conclude before it is ready (post hoc analysis, Appendix A).
+
+![Figure 13](figures/side-effects.png)
+
+**Figure 13:** Accuracy on unrelated tasks for the original model, the published edit and the agent's edit.
+
+## Does it work on a second defect?
+
+**No, and the way it fails is informative.** We chose instruction following (IFEval; Zhou et al., 2023: "no commas",
+"all lowercase"…), where the model with thinking off follows every instruction in only about 55% of prompts, with
+failures spread over many instruction types. Same protocol: an agent with 40 quick scores and 6 test runs, against a
+system prompt and fine-tuning.
+
+**Every method looked better in its practice check (+5 to +12 points) and lost 3–7 points on fresh prompts.** The
+reason is sampling noise: two runs of the *unchanged* model disagree on 23% of prompts, so a 48-prompt check has a
+margin of error of 8–9 points, larger than any plausible gain. On the loops, the effect was +46 points and 16 problems
+were enough to see it. **The method's reach is set by the signal-to-noise ratio of the real test, not only by the
+agent.** This does not contradict the IFEval gain reported for Astra, which was measured with thinking on, where the
+loops again dominate. Along the way, the second IFEval agent found, from the weights alone, a global "forgetting"
+channel that 99.7% of the decay-gate rows of all 288 DeltaNet heads read with the same sign (Gated DeltaNet; Yang et
+al., 2025). Editing it changes the model, but not its instruction following.
+
+## Background and related work
+
+**Weight-space programming.** Takehi et al. (2026) showed that frontier models can read and write network weights
+directly, including the loop-fixing edit we reproduce.
+
+**Model editing and steering.** Rank-one edits change facts stored in a model (ROME, Meng et al., 2022; MEMIT, Meng
+et al., 2023), deleting a single direction can remove refusal (Arditi et al., 2024), and adding vectors at run time
+steers behavior (Turner et al., 2023; Zou et al., 2023). Our edits belong to this family, but an agent chooses them by
+reasoning about behavior.
+
+**Overthinking.** Reasoning models often re-check more than they need to (Chen et al., 2025). Suppressing "Wait"
+(Wang et al., 2025) and capping thinking time (Muennighoff et al., 2025) are our baselines.
+
+**Agents and Goodhart.** Agents already run interpretability experiments (Rott Shaham et al., 2024), and strong
+optimizers game proxy objectives (Gao et al., 2023; Skalse et al., 2022). We see the same with interpretability
+proxies.
+
+**Concurrent work.** Hu et al. (2026) run 16 Astra editing trajectories and report large held-out gains, without
+decoding or fine-tuning baselines. Independent reruns find that thinking off and a long budget reach much of Astra's
+gain without editing (exp8-loop-controls, 2026; Zhang, 2026). A home replication with a Claude editor found the same
+brake neuron, L22n573 (tdotlab, 2026); other replications found different edits (MatinKhajavi, 2026; ajaygrover,
+2026), consistent with our finding that several edits remove the loops. IWIBench (von Csefalvay et al., 2026)
+benchmarks editor models. Our contribution is the controlled comparison: agent edits against decoding, thinking-off
+and fine-tuning baselines on locked tests, with accuracy by token budget, cost accounting, evidence that agents game
+interpretability proxies, and a measured boundary where the method stops working.
+
+## Limitations and what comes next
+
+- **Small tests.** The main comparisons rest on two locked tests of 200 problems (±3–4 points each); practice and MATH
+  numbers rest on 48–148. Reruns of one arm vary by up to 5.5 points.
+- **Thinking off is a strong, cheap alternative.** The edits are 6.5–9 points above it over 400 locked problems, at 2.4–3.6×
+  its tokens, and tie it on harder math.
+- **One model, one working defect.** "Wait" is an easy word to target, and the diffuse defect failed. Next: a
+  concentrated defect without a keyword, and a second model.
+- **The agent may not be necessary.** Concurrent no-LLM searches get most of the published edit's gain. Next: a
+  targeted script with the same budget, and a ladder of editor models with several runs each.
+- **Late arms and an honor system.** Some first-test arms ran after opening (Appendix A), and the agents' rules were
+  audited, not enforced.
+
+## Data, code and logs
+
+Everything is in the project repository: the lab notebook with dated predictions (`docs/CADERNO.md`), the records of
+every agent run and every edit submitted (310), the notebook that draws every chart (`notebooks/results.ipynb`) and a
+cost study (`docs/cost.md`). Full agent transcripts and raw generations (~210 MB) will be released after review.
+
+## Use of AI tools
+
+The editing agents studied here are Claude Opus 5.5, and Claude Fable 5.2 in two later runs. Claude (Opus 5.5 and
+Fable 5.2, through Claude Code) was also used as a research assistant: it wrote most of the code, ran the experiments,
+kept the lab notebook, drafted this text and reviewed the claims against the raw data. The author designed the study,
+supervised and checked the work, and is responsible for the content.
+
+## Appendix A: Details and statistics
+
+All p-values are exact sign tests on discordant pairs, uncorrected unless we say otherwise.
+
+**Which a1 variant we report.** The a1 agent ranked two variants of the same edit, with strengths −9 and −1.1 (its
+first pick) or −6 and −0.8 (its second). We carried the milder second variant through every comparison because it
+scored higher on the practice set (67% vs 65%); that was our choice, not the agent's. On the locked test the two tie
+(61.5% vs 62.0%), and the first pick writes less than half as many tokens.
+
+**Mechanism numbers.** With the text held fixed, a1's three neurons lower the log-probability of "Wait" by 16.6 nats
+before each "Wait" and its last-layer edit raises `</think>` by 1.5 nats; L18n881 contributes almost nothing. a2
+lowers "Wait" by 26 nats, all of it from L16n998 (−26.2); the flip of L22n573 alone *raises* it by 1.6. In the
+a2-edited model, L22n573's activation before a "Wait" falls from −3.73 to −0.04. In test runs on 48 problems, the
+2-edit a2 rescues 6 and loses 4 against the full a2 (p = 0.75); L16n998 alone rescues 3 and loses 13 against it
+(p = 0.02). On the second locked test the 2-edit version rescues 28 and loses 21 against the full a2 (p = 0.39); on
+harder math, 12 and 14.
+
+**Full results table.**
+
+| method | practice set (48) | second practice set (32) | locked test 1 (200) | harder math (148) |
+|--------------------------------|-----------|-----------|-----------|-----------|
+| original model | 15% | 13% | 15.5% | 8% |
+| original model, thinking off | — | — | 58.5% † | 44% |
+| published edit (Astra) | 46% | 41% | 53.5% | 21% |
+| ban the word "Wait" (best of 3 settings) | 52% | 47% | 60.0% † | 27% (first 48) |
+| thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 61.0% | 37% |
+| time limit, answer capped at 1,024 (best of 3) | 50% | — | 60.0% † | — |
+| mean-difference edit, no agent (best of 6) | — | 31% | — | — |
+| scripted search, no agent | 27% | — | — | — |
+| fine-tuning (LoRA) | 29% | — | 33.0% † | — |
+| **agent's edit (a1)** | **67%** | 56% | 61.5% | **47%** |
+| a1 agent's first pick | 65% | — | 62.0% † | — |
+| second agent's edit (a2) | 65% | — | 67.5% † | 49% |
+| **agent's edit + time limit** | **69%** | **63%** | **69.5%** | **53%** |
+
+† Run after the first locked test was opened; no choice depended on these arms.
+
+**First locked test, by token budget** (share solved if every answer is stopped at that budget).
 
 | method | 2,048 | 4,096 | 6,144 | 8,192 | 12,288 | cut off at 12k | mean tokens |
 |---|---|---|---|---|---|---|---|
@@ -233,58 +452,16 @@ budget. Arms marked † were run after the test was opened.
 
 ‡ With a capped answer, this column counts answers stopped by the answer cap.
 
-- **The published edit has not levelled off at 12k.** It gains 14.5 points between 8k and 12k, and 42.5% of its
-  answers are still running at the cap.
-- **The agents' edits level off early.** The agent's first pick is at 60% by 4,096 tokens, where the published edit is
-  at 19%.
-- **Switching thinking off is the cheapest fix on this benchmark.** The unedited model then solves 58.5% with about
-  1,300 tokens per answer. a1 with thinking on is 3.0 ± 3.5 points above it (p = 0.48): a tie. a2 is 9.0 ± 3.5 above
-  (p = 0.02) and a1 with a time limit is 11.0 ± 3.5 above (p = 0.003). With thinking off, the edits neither help nor
-  hurt (a1 56.0%, published edit 57.5%).
+On this test, a1 beats the published edit by 8.0 ± 3.4 points (32 rescues, 16 losses; p = 0.03) and a2 by 14.0 ± 3.6
+(42/14). a1 ties thinking off (+3.0 ± 3.5, p = 0.48); a2 (+9.0 ± 3.5, p = 0.02) and a1 + time limit (+11.0 ± 3.5,
+p = 0.003) are above it. With Holm correction over these comparisons, a1 against the published edit is no longer
+significant; the other two still are. a1 + capped limit is above a1 alone (26/10, p = 0.01), the capped limit alone
+(33/14, p = 0.008) and thinking off (37/15, p = 0.003). With thinking off, the edits neither help nor hurt (a1 56.0%,
+published edit 57.5%).
 
-All p-values are exact sign tests on discordant pairs, without correction for multiple comparisons. With a Holm
-correction over the comparisons in this section, a1 against the published edit is no longer significant; a2 against
-the published edit (14.0 ± 3.6 points; 42 rescues, 14 losses) and a1 + time limit against thinking off still are.
+**Second locked test** (GSM8K test[400:600]; every arm, comparison and prediction fixed before opening).
 
-### With a longer budget, the published edit catches up
-
-We then ran the published edit, a1 and a2 again on the first locked test with a 20,480-token cap (pre-registered;
-these arms had already been opened, so this is a check, not a fresh test).
-
-| method, 20,480-token cap | 4,096 | 8,192 | 12,288 | 16,384 | 20,480 | cut off at 20k | mean tokens |
-|--------------------------|------|------|------|------|------|--------|--------|
-| published edit (Astra) | 21.5% | 40.0% | 51.0% | 57.5% | 65.0% | 18.0% | 11,213 |
-| agent's edit (a1) | 49.5% | 63.5% | 67.0% | 68.0% | 68.0% | 15.5% | 6,608 |
-| second agent's edit (a2) | 51.5% | 61.0% | 63.0% | 63.5% | 63.5% | 15.0% | 5,891 |
-
-- **At 20k, the three tie.** The published edit reaches 65.0%, 11.5 points above its 12k run (31 rescues, 8 losses).
-  Against a1 and a2 at 20k it is within 3 points (p ≥ 0.46). It gains 7.5 points between 16k and 20k, so it may still
-  rise.
-- **The agents' edits gain almost nothing after 12k** (a2 +0.5 point, a1 +1). The 12k cap did not hold them back.
-- **So the agents' advantage over the published edit is efficiency, not accuracy.** At the same 20k cap they use 1.7–1.9×
-  fewer tokens; at 8k they already solve 61–63.5%, where the published edit solves 40%.
-- **Run-to-run noise is about 5 points, so the agents' edits cannot be ranked against each other.** Cut at 12k, the 20k
-  runs should repeat the 12k runs. They did not exactly: a2 went from 67.5% to 63.0%, a1 from 61.5% to 67.0%, and the
-  published edit from 53.5% to 51.0%. Same edits, same seeds; the server ran 8 requests in parallel instead of 16,
-  which changes the order of floating-point sums and therefore the samples. a2 led a1 by 6 points in the first run and
-  trails it by 4.5 in the second. Pooling both runs cut at 12k (400 answers each), a1 solves 64%, a2 65% and the
-  published edit 52%.
-
-![Figure 6](figures/frontier.png)
-
-**Figure 6:** Accuracy against mean tokens per answer on the first locked test. The dashed line joins the methods
-that no other method beats on both axes. The agents were never asked to save tokens, yet their edits sit near this
-line; the published edit catches up only with a 20k budget, at about twice the tokens. The a1 agent's first pick is
-on the line because it thinks less, and more of its finished answers are wrong (see "Did the surgery break
-anything?").
-
-### A second locked test, pre-registered in full
-
-On the first locked test, eight arms ran after it was opened. So we opened 200 more locked problems (GSM8K
-test[400:600]) with every arm, the comparisons and the predictions written down first, and nothing chosen on them.
-The primary analysis was five paired comparisons with a Holm correction; the secondary one pooled both locked tests.
-
-| method | second locked test (200) | cut off | mean tokens | both locked tests (400) |
+| method | second locked test | cut off | mean tokens | both tests (400) |
 |---|---|---|---|---|
 | original model, thinking off | 58.0% | 7.5% | 1,365 | 58.3% |
 | time limit, answer capped at 1,024 | 59.5% | 34.5% ‡ | 4,620 | 59.8% |
@@ -293,406 +470,54 @@ The primary analysis was five paired comparisons with a Holm correction; the sec
 | a2 reduced to 2 edits | 67.5% | 12.0% | 4,217 | — |
 | agent's edit (a1) | 68.0% | 11.0% | 4,459 | 64.8% |
 
-‡ Counts answers stopped by the answer cap.
-
-- **On its own, the second test confirms none of the five primary comparisons.** Every edited arm is ahead of thinking
-  off in the predicted direction (a2 +6.0 ± 4.0, a1 + capped limit +6.5 ± 4.3), but no comparison survives the
-  correction (all Holm-adjusted p = 0.83). Two hundred problems cannot confirm differences of 5–7 points. Three of our
-  predictions failed here (see the list at the end), and a2 fell 4.0 points behind a1 (p = 0.30) after leading it by
-  6 on the first test, the same reversal we later saw between two runs on the first test.
-- **Pooled over 400 locked problems, the edits are above thinking off.** a2 is 7.5 ± 2.7 points above (74 rescues,
-  44 losses; p = 0.007), a1 + capped limit 8.8 ± 2.8 (p = 0.002) and a1 6.5 ± 2.7 (p = 0.02, not pre-registered).
-  The first two were the pre-registered secondary comparisons; none is corrected for multiple comparisons. Thinking
-  off still uses only 28–42% of their tokens.
-- **The edits are also ahead of the time limit.** Over 400 problems, a1 + capped limit is 7.2 ± 2.4 points above the
-  capped limit alone (p = 0.004, pre-registered secondary), and a1 and a2 are 5.0 and 6.0 points above it (p = 0.047
-  and 0.02, not pre-registered). The tie on the first test now looks like the low end of the range.
-- **Adding the time limit to a1 did not help here.** The combination solved 64.5% against 68.0% for a1 alone (17
-  rescues, 24 losses). Over both tests it is 2.2 ± 2.2 points above a1 (p = 0.36): not established on grade-school
-  math. a1 was unusually low on the first test (61.5%) and high on the second (68.0%).
-
-### How repeatable is it?
-
-*Run after the first locked test was opened. No choice used the locked tests.*
-
-We ran the winning protocol four more times: twice more with Claude Opus 5.5 (a3, a4; the editor of a1 and a2) and
-twice with Claude Fable 5.2 (f1, f2). These four runs had three extra rules (no web access, no reading of this paper's
-repository, no subagents), and the audit of their logs found no violations. The two Fable runs were also paused and
-resumed, and we extended their budget after their first results, so they are an exploratory side check.
-
-| run | editor | what its pick does (≤ 4 rank-1 edits) | practice set |
-|-----|------|--------------------------------------------|----------|
-| a1 | Opus | strengthens 3 "Wait"-brake neurons, plus `</think>` | 67% |
-| a2 | Opus | flips L16n998 (and 3 other neurons), plus `</think>` | 65% |
-| a3 | Opus | flips a "hesitation" direction ("Wait", "Hmm", "Actually"…) in four whole layers | 58% |
-| a4 | Opus | strengthens 3 "Wait"-brake neurons (L18n881, L20n405, L22n573), plus `</think>` | 58% |
-| f1 | Fable | whole-layer edits along "Wait" in the last layers | 65% |
-| f2 | Fable | whole-layer edits along "Wait" in the last layers | 60% |
-
-- **All six runs repair the defect.** They land between 58% and 67% on the practice set (mean 62%), 22–26 problems
-  above the original model and above the published edit (46%). None differs significantly from a1.
-- **a1 and a2 are the top of this range, not its center.** a3 and a4 also leave more answers cut off (25–35%, against
-  8–17%) and write more tokens.
-- **a4 rediscovered a1's mechanism on its own.** It first flipped the brake neurons and got "wait wait wait…", as a1
-  and a2 had, then strengthened them instead, keeping their sign, and added a `</think>` lever. a3 found the same
-  neurons, saw little effect from editing them alone, and kept a family closer in form to the published edit and to
-  the Fable runs.
-- **One prediction failed:** that at least one of a3 and a4 would reach 60% (we gave it 75%). Both solved 58%, one
-  problem short.
-
-Only a1, a2 and f1 ran on a locked test (f1: 66.0%). This shows that the protocol reliably produces a large gain, by
-more than one route. It does not rank editor models; that needs the editor-model ladder planned as a follow-up.
-
-## Is it just a trick?
-
-A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, tuned on
-48 problems (three times what the agents saw), which favors them.
-
-![Figure 7](figures/headline.png)
-
-**Figure 7:** Share of problems solved by each method on the four problem sets (error bars: ±1 standard error).
-
-| method | practice set (48) | second practice set (32) | locked test (200) | harder math (148) |
-|--------------------------------|-----------|-----------|-----------|-----------|
-| original model | 15% | 13% | 15.5% | 8% |
-| original model, thinking off | — | — | 58.5% † | 44% |
-| published edit (Astra) | 46% | 41% | 53.5% | 21% |
-| ban the word "Wait" (best of 3 settings) | 52% | 47% | 60.0% † | 27% (first 48) |
-| thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 61.0% | 37% |
-| time limit, answer capped at 1,024 (best of 3) | 50% | — | 60.0% † | — |
-| mean-difference edit, no agent (best of 6) | — | 31% | — | — |
-| scripted search, no agent | 27% | — | — | — |
-| fine-tuning (LoRA) | 29% | — | 33.0% † | — |
-| **agent's edit (a1)** | **67%** | 56% | 61.5% | **47%** |
-| a1 agent's first pick | 65% | — | 62.0% † | — |
-| second agent's edit (a2) | 65% | — | 67.5% † | 49% |
-| **agent's edit + time limit** | **69%** | **63%** | **69.5%** | **53%** |
-
-† Run after the locked test was opened; no choice depended on these arms.
-
-*Experiment 4*
-
-### Could a decoding setting do the same?
-
-**Setup**
-- **Word ban:** while the model writes, make "Wait" (and variants) nearly impossible and nudge `</think>`. No weight
-  change.
-- **Time limit ("budget forcing", Muennighoff et al., 2025):** after N tokens of thinking, cut it off and force an answer. No weight change.
-
-**Banning the word is worse on the practice sets and on harder math, and ties on the locked test.** There it solves
-60.0%, against 61.5% for a1 (25 rescues against 28), with 7,758 tokens per answer and 35.5% of answers cut off. We had
-predicted 40–52%. The edit is not a global ban. It works through neurons that are
-active when the model is about to restart, so it leaves "Wait" alone elsewhere.
-
-**The time limit ties the edit on the first locked test (61.0% vs 61.5%; +0.5 ± 3.4), but not on the second**
-(a1 68.0% against 59.5% for the capped version of the limit; 33 rescues, 16 losses; p = 0.02, not pre-registered). Our implementation of the limit
-looks more expensive than it is. After the forced `</think>`, some answers keep looping until the 12k cap, which is why
-34% of them are cut off and the mean is 7,012 tokens. If we stop every answer at 6,144 tokens instead, the time limit
-keeps 60.5% at a mean of 4,910 tokens, about the same as a1 (5,049). So we do not claim that the edit is cheaper than
-a well-implemented time limit. We later ran that version, with the answer capped at 1,024 tokens after the forced
-`</think>` (thinking limit chosen among three on the practice set). It solves 60.0% at a mean of 4,596 tokens, the
-same accuracy as the uncapped limit (14 rescues against 16).
-
-On harder math the edit is ahead of the time limit by 9.5 points, rescuing 23 problems and losing 9. Forcing an answer
-early works when the answer was already computed before the loop began, which is common in grade-school problems and
-rarer in longer ones.
-
-**Together they do best on harder math (53%, 6 points above the edit alone, though only 16 rescues against 7;
-p = 0.09) and on the first locked test (69.5%, 8 points above either alone), with few cut-off answers.** The edit removes most loops, and the time limit catches what
-is left. On the second locked test, though, the combination did not beat a1 alone (64.5% against 68.0%), so on
-grade-school math its gain over the edit is not established (+2.2 ± 2.2 over 400 problems). An independent
-replication reports the same additivity on MATH subsets (tdotlab, 2026). With the capped answer, the combination
-keeps 69.5% on the first locked test and drops to 3,172 tokens per answer. There it is above a1 alone (26 rescues,
-10 losses; p = 0.01), the capped limit alone (33 against 14; p = 0.008) and thinking off (37 against 15; p = 0.003).
-
-**Thinking off.** On our MATH subset, with thinking off and an 8,192-token cap, the unedited model solves 43.9%
-(predicted 38–52%) with 3,842 tokens per answer, and 36% of its answers still hit the cap. a1 (46.6%) and a2 (48.6%)
-are 2.7 and 4.7 points above it (21 rescues against 17, p = 0.63; 21 against 14, p = 0.31): ties. Only a1 + time
-limit (52.7%) is above it (23 rescues, 10 losses; p = 0.035, uncorrected). Here thinking off saves less than on
-grade-school math: it uses about half of a1's tokens, not a third. Independent reruns report about 50% on the full
-MATH-500 with thinking off and a 32k budget (exp8-loop-controls, 2026). On this model, edits that repair thinking
-mostly recover what the model can already do without thinking, plus a few points: over the 400 locked problems, the
-edited arms are 6.5–8.8 points above thinking off, at 2.4–3.6× its tokens; on harder math, only the combination with
-a time limit is above it (p = 0.035, uncorrected).
-
-![Figure 8](figures/paired.png)
-
-**Figure 8:** Problem by problem, same problems and seeds: problems only the agent's edit solved (right) against
-problems only the other method solved (left).
-
-*Experiment 5*
-
-### Could ordinary fine-tuning do the same?
-
-**Setup**
-- **Data:** the model's own reasoning on 600 *other* GSM8K problems. Only 57 attempts finished cleanly and correctly.
-  For 279 that looped, we cut the reasoning where the loop began, closed the thinking and let the model answer: 118
-  answers were correct. That gives 175 training examples.
-- **Training:** LoRA (Hu et al., 2022), a standard and cheap fine-tuning method (rank 16, all layers, 3 rounds). We picked the best round
-  on the same 16 problems the agents used for test runs.
-
-**Fine-tuning reached 29% on the practice set. That is better than the original (15%), but problem by problem the
-agent's edit rescued 18 problems that fine-tuning missed and lost 0.** The fine-tuned model still ran out of space on
-71% of its answers (the edit: 17%). It learned what to write *after* a cut, not *when* to stop. This is one cheap
-recipe with 175 examples, and we did not tune it further. More data, a better data recipe or reinforcement learning
-might do better, at more GPU time (see below). The result is "this fine-tuning recipe lost", not "fine-tuning loses".
-
-On the locked test the fine-tuned model solves 33.0% and still runs out of space on 65.5% of its answers. a1 rescues
-69 problems it misses and loses 12.
-
-*Experiment 6*
-
-### Is the agent needed, or just its tools?
-
-We wrote a script that tries edits from the same toolbox the winning agents used: "word directions" for the 300 most
-common words, the neurons most aligned with them, random strengths. It had the same budget, 40 quick scores plus 6
-test runs on the most promising candidates.
-
-**The script's best test run solved 3 of 16, and its pick reached 27% on the practice set, 40 points below the agents.**
-With this toolbox and this budget, random choices were not enough.
-
-This is a weak baseline, and stronger searches without an LLM exist:
-- **Our own mean-difference edits.** We built six edits from the difference between the model's average internal state
-  in looping and non-looping text, with no agent. The best one solved 31% of the second practice set, against 41% for
-  the published edit and 13% for the original: about two thirds of the published edit's gain.
-- **Concurrent work.** A mean-difference direction recovers 79% of the published edit's gain on MATH-500 (Zhang, 2026),
-  and a linear program reaches about 93% (nathanrs, 2026). A blind repair with a weaker editor model and no description
-  of the defect found nothing (WKJBryan, 2026).
-
-So we do not claim that an agent is necessary. Our evidence is narrower: the agents beat every no-agent search *we*
-ran, and our brief told them what the defect was.
-
-![Figure 9](figures/search.png)
-
-**Figure 9:** Each searcher's 6 test runs (16 problems each). The two agents without the atlas reached 11 of 16; the
-agents with the atlas 5–7; the script 3.
-
-## What we learned about the process
-
-*Experiment 7*
-
-### Can a cheap score stand in for real tests?
-
-Real test runs are slow (16 problems take about 10 minutes on our GPU), so the obvious move is a fast proxy. Every proxy
-we tried broke once a strong optimizer pushed on it:
-- an edit that scored better than the published edit on the model's "surprise" at loop words gained 6 points in real
-  use, against 28 for the published edit;
-- an edit with no word-for-word loops at all still ran out of space 77% of the time;
-- **agent r1 drove the quick score to 20× the published edit's value, and its edit solved 4% of problems, worse than
-  doing nothing.** It blocked word-for-word copying, and the model simply looped in other ways (alternating values,
-  growing lists).
-
-![Figure 10](figures/goodhart.png)
-
-**Figure 10:** The quick score each agent's chosen edit achieved (left = looked better) against how often it actually
-solved problems.
-
-Six real test runs fixed this. Under that protocol, both agents' best-scoring early ideas solved 0 of 16 in a test run,
-and the agents dropped them. **Our takeaway: an agent's objective must come from real behavior, even a small sample of
-it. Proxies are useful as guard rails, not as goals.**
-
-*Experiment 8*
-
-### Does more interpretability data help?
-
-We ran three pairs of agents with identical instructions; in each pair, one agent also had the atlas.
-
-**In all three pairs, the agent without the atlas found the better edit (38% vs 4%; 67% vs 35%; 65% vs 40%).** With
-the atlas, agents chased intricate internal mechanisms, such as a "re-checking" state in the middle layers and
-"loop heads". These looked convincing in the data but did not stop the loops. Without it, agents went for the direct
-levers: the word "Wait" and the `</think>` signal. Three pairs make this suggestive, not proven. The first pair also
-ran under the older protocol without test runs, and we had predicted the opposite result for the first two pairs.
-
-![Figure 11](figures/atlas.png)
-
-**Figure 11:** Each pair of agents had identical instructions; the agent without the atlas did better every time.
-
-## What did it cost?
-
-| | practice set | GPU-hours (1660 SUPER) | agent usage |
-|---------------------|---------|----------|-------------------------------|
-| **agent's edit (one run)** | **67%** | **1.3** (search only) | 5.4 M tokens read, 48 k written (≈ $5–7 at API prices) |
-| automated search | 27% | 1.6 | — |
-| tuning the decoding tricks | 48–52% | 4.4 | — |
-| fine-tuning (LoRA) | 29% | 17.1 | — |
-
-- **One-time cost.** One agent run took about 2 hours, which is roughly the electricity of a microwave running for 15
-  minutes. Fine-tuning took 17 GPU-hours, 10 of them just to generate training data from a model that wastes most of its
-  attempts.
-- **Running cost.** Against the original model with thinking on, the edited model's answers are 60% shorter on the
-  practice set, 55% shorter on the locked test and 29% shorter on harder math. The a1 agent's first pick is 80% shorter
-  on the locked test, and a1 with a capped time limit is 72% shorter. This saving repeats on every question. It is a saving only against thinking on: with thinking
-  off, the unedited model writes about 1,300 tokens per answer, less than any edit.
-- **Compared with the original agent.** The published run used 86.8 M tokens read and 2.9 M written over 20 hours
-  (from its public logs). Our agent used 16× and 60× less, in about 2 hours. The tools differ, so this is not a
-  controlled comparison.
-- **What the table leaves out.** The GPU-hours are for the search only. Confirming a pick on the practice set costs
-  about 1 more GPU-hour for any method. The agent row is one successful run. We made ten runs on this defect: the
-  three with the atlas did worse, and the four later replicates of the winning protocol solved 58–65%.
-- **The fine print.** We ran on a subscription, so the dollar figures are list-price estimates. On a very cheap rented
-  GPU, fine-tuning could cost a few dollars less than the agent's usage, for less than half the improvement.
-
-![Figure 12](figures/cost.png)
-
-**Figure 12:** Left: GPU-hours to produce each fix. Right: average answer length, which sets the cost of every future
-answer.
-
-## Did the surgery break anything?
-
-With thinking switched off, none of the edits changes math accuracy (200 problems) or tool-calling accuracy (300
-requests) beyond about two standard errors. We later ran the same panels for a2 and for its released 2-edit version,
-paired with the original model: tool calling 90.3–91.0% against 89.7%, math 46.0–51.0% against 48.5%, and tool
-calling with thinking on 92–94% against 93%, all within one standard error. These panels detect only changes of about
-5–7 points. The edit acts where the loops happen, during thinking, and leaves other skills alone as far as we can
-measure. One side effect is positive: with thinking on, the published edit gets better at declining irrelevant tool
-calls (16 of 16 vs 11 of 16), probably because shorter thinking leaves less room to hallucinate a call. The agents'
-edits do not share it (10–12 of 16).
-
-**One cost: finished answers are wrong more often.** On the locked test, 74% of a1's finished answers are correct,
-against 91% for the published edit, 92% for the time limit and 97% for the original model. For the a1 agent's first
-pick, the strongest edit, it is 66%; for a2, 80%. Part of this is selection: the original model only finishes 31 of
-200 problems, the easy ones, and the edits finish the hard ones too.
-
-To separate the two, we compared methods only on the problems that both finish (post hoc, not pre-registered; Holm
-correction over 8 comparisons):
-- **On the 31 easy problems the original finishes,** it gets 30 right; the a1 agent's first pick gets 26 and a1 27.
-- **The first pick loses on shared finished problems.** Against the capped time limit it rescues 4 and loses 21
-  (p = 0.001, Holm 0.008), and against the published edit 5 and 16 (p = 0.03, uncorrected).
-- **The pattern weakens with the `</think>` push.** a1 shows it less (3 against 13 versus the capped limit; p = 0.02,
-  uncorrected), a2 a little (3 against 10; p = 0.09), and f1, whose edit has no `</think>` lever, not at all (5
-  against 3).
-
-So it is not only selection: the edits that push `</think>` hardest make the model conclude before it is ready. That
-is the price of the first pick's place on the efficiency frontier (Figure 6).
-
-![Figure 13](figures/side-effects.png)
-
-**Figure 13:** Accuracy on unrelated tasks for the original model, the published edit and the agent's edit.
-
-## Does it work on a second defect?
-
-**No, and the way it fails is informative.** We needed a defect with no obvious keyword. Broken JSON and tool calls
-turned out not to be a problem for this model with thinking off: it was near ceiling. So we chose **instruction
-following** (IFEval, Zhou et al., 2023: "no commas", "all lowercase", "end with this exact phrase", "at least 3 highlighted sections").
-With thinking off, the model follows every instruction in only about 55% of prompts. Its failures are spread over many
-instruction types.
-
-**Setup**
-- **Same protocol as for the loops:** an agent with 40 cheap probe scores and 6 real generation checks, at most 4
-  rank-1 edits.
-- **Comparisons:** a system prompt asking for care, and LoRA fine-tuning on 414 of the model's own answers that passed
-  the official checker (same recipe as before).
-- **Confirmation:** on 152–200 IFEval prompts never used in any search.
-
-| arm | change vs original on fresh prompts |
-|---|---|
-| agent, 48-prompt checks (b1) | −3.3 ± 4.1 |
-| the loop edit (a1), not tuned for this | −3.9 ± 4.3 |
-| system prompt | −6.6 ± 4.2 |
-| fine-tuning (epoch chosen on 48 prompts) | −7.2 ± 4.3 |
-| agent, 128-prompt checks (b2) | −6.0 ± 3.7 (200 prompts) |
-
-**Every method looked better in its practice check (+5 to +12 points) and lost on fresh prompts.** The reason is
-sampling noise. Two runs of the *unchanged* model with different random seeds disagree on 23% of prompts. On 48
-prompts, that gives a margin of error of 8–9 points, larger than any plausible gain. A larger, 128-prompt check did
-not rescue the agent either: the best edit's own opposite-sign control also looked slightly positive.
-
-**What this means.** On the loops, the effect was +46 points and 16 problems were enough to see it. On instruction
-following, cheap changes of any kind (weights, prompt, gradient) seem to move the model away from a point that is
-already close to the best nearby, and no check of this size can find the rare changes that help. **The method's reach
-is set by the signal-to-noise ratio of the real test, not only by the agent.** One cheap fine-tuning recipe hits the
-same wall. No arm here differs from the original by more than two standard errors, so the result is "nothing helped",
-not "everything hurt". A second, sealed IFEval test is still unopened.
-
-**This does not contradict the IFEval gain reported for the published edit** (21.0% to 62.3%; Takehi et al., 2026).
-That number is with thinking on, where three quarters of the unedited model's answers never close their thinking and
-score zero: it is the loop defect again. With thinking off, an independent rerun finds that the published edit does not
-help (−2.3 points; exp8-loop-controls, 2026), the same as what we see for a1 (−3.9).
-
-The agent of the second run also found, from the weights alone, a direction in the residual stream that 99.7% of the
-decay-gate rows of all 288 DeltaNet heads (Gated DeltaNet, Yang et al., 2025) read with the same sign: a global "forgetting" control channel. Editing it
-changes the model, but not its instruction following. We leave it for future work.
-
-## Background and related work
-
-**Weight-space programming.** Takehi et al. (2026) showed that frontier models can read and write neural network
-weights directly, including the loop-fixing edit we reproduce. We use their edit as our reference and their public logs
-for the cost comparison.
-
-**Model editing.** Rank-one edits have been used to change facts stored in a model (ROME, Meng et al., 2022; MEMIT,
-Meng et al., 2023). Deleting a single direction can remove a behavior such as refusal (Arditi et al., 2024). Our edits
-belong to this family. The difference is that an agent chooses them by reasoning about behavior, instead of a fixed
-formula.
-
-**Steering.** Adding a vector to the model's internal state at run time can steer its behavior (ActAdd, Turner et al.,
-2023; representation engineering, Zou et al., 2023). Our edits are permanent instead of applied at run time.
-
-**Overthinking.** Reasoning models often re-check more than they need to (Chen et al., 2025). Known fixes
-include suppressing words like "Wait" (Wang et al., 2025) and capping thinking time (Muennighoff et al., 2025).
-We use both as baselines.
-
-**Agents and Goodhart.** Agents already run interpretability experiments (MAIA, Rott Shaham et al., 2024). Strong
-optimizers are known to game proxy objectives (Gao et al., 2023; Skalse et al., 2022). We see the same with proxies
-derived from interpretability.
-
-**Concurrent work.** *Sparks* drew fast follow-up, so far mostly preprints and public repositories without peer
-review. Hu et al. (2026) run 16 Astra editing trajectories on Qwen3.5-0.8B and 9B and report large held-out gains on
-MATH-500 and IFEval, all with thinking on and without decoding or fine-tuning baselines. Independent reruns of the Astra
-edit find that much of its gain is reachable without touching the weights: with thinking off and a long budget, the
-unedited model already scores about 50% on MATH-500 and 53–55% on IFEval (exp8-loop-controls, 2026; Zhang, 2026), and a
-difference-of-means direction found without an LLM recovers 79% of the MATH-500 gain (Zhang, 2026). A home replication
-with a Claude editor on a consumer GPU (tdotlab, 2026) independently located the same "Wait" brake neuron that our
-agents edited (layer 22, neuron 573), and found that its edit and a larger budget add roughly independently. Not every
-replication converges: MatinKhajavi (2026) reruns the experiments with Claude Opus 5.5 and gets edits of another kind
-(zeroing attention heads, plus the same neuron 573), and ajaygrover (2026) finds a Claude direction almost orthogonal to
-Astra's that stacks with it. Three of our four Opus agents edited the same brake neurons, at different points of the
-circuit; the fourth, and both runs with another editor model, used whole-layer edits instead. This fits the picture: several different edits remove the loops. IWIBench
-(von Csefalvay et al., 2026) proposes a benchmark for editor models. Our contribution is the controlled comparison:
-agent edits against decoding, thinking-off and fine-tuning baselines on a locked test, with accuracy reported by token
-budget, compute accounting, evidence that agents game interpretability proxies, and a measured boundary where the
-method stops working.
-
-## What can't we claim yet, and what comes next?
-
-- **Sample sizes:** the main comparisons rest on two 200-problem locked tests (±3–4 points each, ±2.5 pooled), but
-  dev and MATH numbers still rest on 48–148 problems. The second locked test alone confirmed none of its primary
-  comparisons.
-- **One model, one defect that works:** "Wait" is an easy word to target, and the second defect (IFEval) gave a
-  well-controlled negative result. **Next:** a concentrated defect without a keyword, and a second model. Any second
-  defect needs a real test whose noise is well below the expected effect, measured before the search.
-- **Token budget:** most comparisons are at 12,288 tokens. At 20,480 the published edit ties the agents' edits, so
-  their advantage over it is efficiency, not accuracy. Thinking off and the time limit were not rerun at 20k.
-- **Run-to-run noise:** rerunning the same arm with the same seeds moved it by up to 5.5 points when the server's
-  batching changed. Single-run differences of that size between arms, such as a2 against a1, are not reliable.
-- **Thinking off is a strong baseline:** the edits are only 6.5–9 points above it over 400 locked problems, and it
-  uses 28–42% of their tokens. On harder math it ties a1 and a2, at half their tokens.
-- **Late arms:** the a1 agent's first pick, a2, thinking off, the capped time limit, a1 + capped limit, the word ban,
-  fine-tuning and f1 ran on the locked test after it was opened. The word ban and fine-tuning were in the original
-  pre-registration and only ran late. The others were pre-registered, with predictions, after the test was opened,
-  so choosing to run them may reflect what we had seen. The capped limit and f1 were each chosen on the practice set
-  among two or three candidates. The second locked test has no late arms. Every comparison there went in the same
-  direction as on the first, except the two against a1 alone (a2, and a1 + capped limit), where a1 did better.
-- **Editor models:** the two Fable runs were an exploratory side check and say nothing about which editor is
-  better. **Next:** a ladder of editor models, including smaller ones, with several runs each under one protocol.
-- **Noisy test runs:** the agents choose among candidates on 16 problems, which cannot rank close candidates.
-- **The a1 variant was our choice:** the agent ranked it second (see Experiment 2).
-- **Mechanism:** we checked a1's brake and a2's upstream neuron on 52 positions from 12 transcripts, with the text
-  held fixed. The reduced a2 was tested on the 48 practice problems, the second locked test and harder math (148),
-  which detect only large differences.
-- **No-LLM searches:** our scripted search is a weak baseline, and concurrent work gets most of the published edit's
-  gain without an LLM. **Next:** a targeted script (logit-lens directions, the same budget) against the agents.
-- **Finished-but-wrong answers:** the edits lower accuracy among finished answers. A post hoc analysis points to
-  premature conclusion, not only selection, but it was not pre-registered (see side effects).
-- **Replicates:** the winning protocol has six runs (four Opus, two Fable), all at 58–67% on the practice set, but
-  only three ran on a locked test. The atlas comparison still has 3 pairs. **Next:** two more atlas pairs.
-- **One fine-tuning recipe:** a stronger recipe could close part of the gap, at a higher cost.
-- **MATH grading:** our checker has false negatives; the corrected numbers are in the text, not the tables.
-- **Multiple comparisons:** p-values are uncorrected unless we say otherwise.
-- **Honor system:** the agents' restrictions were audited, not enforced.
-- **Different sampler from the original study:** absolute numbers shift, but every comparison here uses the same
-  settings.
-
-**Predictions that failed.** We wrote predictions in the notebook before each result. These were wrong:
+On its own, this test confirms none of the five primary comparisons (all Holm-adjusted p = 0.83): every edited arm is
+ahead of thinking off in the predicted direction (a2 +6.0 ± 4.0, a1 + capped limit +6.5 ± 4.3), but 200 problems
+cannot confirm differences of 5–7 points. Pooled over 400 problems, a2 is 7.5 ± 2.7 points above thinking off (74/44,
+p = 0.007) and a1 + capped limit 8.8 ± 2.8 (p = 0.002), the pre-registered secondary comparisons; a1 is 6.5 ± 2.7
+above (p = 0.02, not pre-registered). a1 + capped limit is 7.2 ± 2.4 above the capped limit alone (p = 0.004,
+pre-registered); a1 and a2 are 5.0 and 6.0 above it (p = 0.047 and 0.02, not pre-registered). The combination is only
+2.2 ± 2.2 above a1 (p = 0.36).
+
+**Long budget (20,480 tokens, first locked test).**
+
+| method | 4,096 | 8,192 | 12,288 | 16,384 | 20,480 | cut off | mean tokens |
+|--------------------------|------|------|------|------|------|--------|--------|
+| published edit (Astra) | 21.5% | 40.0% | 51.0% | 57.5% | 65.0% | 18.0% | 11,213 |
+| agent's edit (a1) | 49.5% | 63.5% | 67.0% | 68.0% | 68.0% | 15.5% | 6,608 |
+| second agent's edit (a2) | 51.5% | 61.0% | 63.0% | 63.5% | 63.5% | 15.0% | 5,891 |
+
+The published edit at 20k is 11.5 points above its 12k run (31/8) and within 3 points of a1 and a2 (p ≥ 0.46). Cut at
+12k, these runs differ from the 12k runs by −4.5 (a2), +5.5 (a1) and −2.5 points (Astra); the server ran 8 requests in
+parallel instead of 16. Pooling both runs cut at 12k (400 answers each): a1 64%, a2 65%, published edit 52%.
+
+**Harder math (MATH-500[0:148]).** a1 vs the published edit: 44 rescues, 6 losses; a2: 43/2; a1 vs a2: 15/18. a1 vs
+time limit +9.5 points (23/9); a1 + time limit vs a1 +6.1 (16/7, p = 0.09). Thinking off (8,192-token cap) solves 43.9%
+with 3,842 tokens; a1 (21/17, p = 0.63) and a2 (21/14, p = 0.31) tie it, a1 + time limit (52.7%) is above it (23/10,
+p = 0.035). Our checker misses some equivalent answers; correcting the false negatives we found keeps the order (a1
+49%, a1 + time limit 55%, time limit 38%, published edit 22%).
+
+**Finished-but-wrong (post hoc, Holm over 8 comparisons).** On the 31 problems the original model finishes, it gets 30
+right; a1's first pick 26 and a1 27. On problems both finish, the first pick against the capped limit: 4 rescues, 21
+losses (p = 0.001, Holm 0.008); against the published edit 5/16 (p = 0.03). a1 against the capped limit 3/13
+(p = 0.02); a2 3/10 (p = 0.09); f1, with no `</think>` lever, 5/3.
+
+**Side effects.** Paired with the original model, thinking off: tool calling (300 requests) 90.3–91.0% for a2 and
+the reduced a2 against 89.7%; math (200 problems) 46.0–51.0% against 48.5%; tool calling with thinking on 92–94%
+against 93%. With thinking on, the published edit declines irrelevant tool calls better (16 of 16 vs 11 of 16); the
+agents' edits do not (10–12 of 16).
+
+**IFEval arms** (change against the original on fresh prompts): agent b1 −3.3 ± 4.1; the loop edit a1 −3.9 ± 4.3;
+system prompt −6.6 ± 4.2; fine-tuning −7.2 ± 4.3; agent b2 with 128-prompt checks −6.0 ± 3.7 (200 prompts). No arm
+differs from the original by more than two standard errors. A second, sealed IFEval test is still unopened.
+
+**Late arms.** The a1 agent's first pick, a2, thinking off, the capped time limit, a1 + capped limit, the word ban,
+fine-tuning and f1 ran on the first locked test after it was opened. The word ban and fine-tuning were in the original
+pre-registration and only ran late; the others were pre-registered after opening, so choosing to run them may reflect
+what we had seen. The second locked test has no late arms.
+
+## Appendix B: Predictions that failed
+
+We wrote predictions in the notebook before each result. These were wrong:
 1. The edit with the best quick score (r1) would beat the published edit. It solved 4%.
 2. A weaker dose of r1's directions would recover the gain. It did not.
 3. The atlas would help. It hurt in all three pairs.
@@ -710,30 +535,6 @@ method stops working.
 12. The reduced a2 would use at least as many tokens as a2 there (60%). It used 10% fewer.
 13. Thinking off on harder math would use less than a third of a1's tokens (85%). It used 46%.
 14. At least one of the two Opus replicates (a3, a4) would reach 60% on the practice set (75%). Both solved 58%.
-
-**The claim, as it stands: for a concentrated behavioral defect with a large effect, an agent editing weights found a
-fix in about 2 hours on one consumer GPU, and six runs of the same protocol all found one. Over 400 locked problems,
-the pre-registered comparisons put the edits 7.5–9 points above thinking off and the edit plus a time limit 7 points
-above the time limit alone (p = 0.002–0.007, uncorrected), though thinking off uses far fewer tokens. The published
-edit reaches the same accuracy only with a 20k budget, using 1.7–1.9× the tokens. The agent's edit adds to a time
-limit on harder math and beat the one fine-tuning recipe we tried. For diffuse defects, such as instruction following in a 0.8B model, neither it nor cheap fine-tuning helped.**
-
-## Data, code and logs
-
-Everything is in the project repository:
-- **Lab notebook:** dated, with predictions written before results (`docs/CADERNO.md`).
-- **Records of every agent run:** briefs, notes, scorer logs, and every edit submitted (310).
-- **Figures:** the notebook that draws every chart here (`notebooks/results.ipynb`).
-- **Cost:** a detailed study (`docs/cost.md`).
-
-The agents' full transcripts and the raw generations (~210 MB) will be released after review.
-
-## Use of AI tools
-
-The editing agents studied here are Claude Opus 5.5, and Claude Fable 5.2 in two later runs. Claude (Opus 5.5 and Fable 5.2, through Claude Code) was also
-used as a research assistant throughout: it wrote most of the code, ran the experiments, kept the lab notebook, drafted
-this text and did an independent review of the claims against the raw data. The author designed the study, supervised
-and checked the work, and is responsible for the content.
 
 ---
 
