@@ -2290,3 +2290,45 @@ Pareado (Astra a 20k × outro braço a 12k gravado):
   the gap. We have not run that." vira um resultado.
 
 a2 e a1 a 20k: em andamento.
+
+### 13/11, 17h45 — a2 e a1 com teto de 20.480 no t200: resultado (pré-registro de 13/11 02h55)
+
+Fila terminada às 17h36. As duas rodaram também com 8 slots (o servidor não subiu com 16 de 21,5k).
+
+| orçamento | 2k | 4k | 6k | 8k | 12k | 16k | 20k | tokens (média) | cortados |
+|---|---|---|---|---|---|---|---|---|---|
+| a2 | 40,5% | 51,5% | 57,5% | 61,0% | 63,0% | 63,5% | **63,5%** | 5.891 | 15% |
+| a1 | 29,0% | 49,5% | 58,0% | 63,5% | 67,0% | 68,0% | **68,0%** | 6.608 | 15,5% |
+| Astra (13h05) | 8,5% | 21,5% | 30,0% | 40,0% | 51,0% | 57,5% | **65,0%** | 11.213 | 18% |
+
+Pareado (sinal exato, sem correção; exploratório):
+
+| comparação | ganhos/perdas | Δ | p |
+|---|---|---|---|
+| a2 a 20k × a2 a 12k gravada (0,675) | 14/22 | −4,0 ± 3,0 | 0,24 |
+| a1 a 20k × a1 a 12k gravada (0,615) | 25/12 | +6,5 ± 3,0 | 0,047 |
+| a2 a 20k × Astra a 20k | 23/26 | −1,5 ± 3,5 | 0,78 |
+| a1 a 20k × Astra a 20k | 26/20 | +3,0 ± 3,4 | 0,46 |
+| a1 a 20k × a2 a 20k | 29/20 | +4,5 ± 3,5 | 0,25 |
+
+Checagem de ruído (esta rodada truncada em 12k × a rodada de 12k gravada, mesmo braço):
+- Astra 0,510 × 0,535 (10/15);
+- a2 0,630 × 0,675 (14/23, p = 0,19);
+- a1 0,670 × 0,615 (24/13, p = 0,10).
+
+**Previsão.** a2 a 20k no máximo 2 pontos acima da a2 a 12k: **acertou** (ficou 4 pontos abaixo). Não havia previsão
+escrita para a a1.
+
+**Leitura.**
+- **As edições dos agentes saturam por volta de 12k.** De 12k para 20k, a a2 ganha 0,5 ponto e a a1, 1 ponto. O teto
+  de 12k não as prejudicava. O Astra precisa dos 20k e ainda sobe.
+- **Com 20k, as três empatam** (0,635 a 0,680; nenhum par significativo). Com o mesmo teto, as edições dos agentes
+  gastam 1,7 a 1,9 vez menos tokens que o Astra. A 8k, elas já estão em 0,61 a 0,635, contra 0,40 do Astra.
+- **Ruído entre rodadas do mesmo braço: uns ±5 pontos.** Isso é do tamanho do erro-padrão pareado, e o +6,5 da a1
+  (p = 0,047, sem correção, uma de cinco comparações) é desse tipo: a mesma edição, mais tokens que ela quase não
+  usa. A causa provável é o lote do servidor (8 contra 16 slots), que muda a ordem das somas em ponto flutuante.
+  Mesmas sementes não garantem a mesma amostra.
+- **Consequência para o paper.** A ordem entre a1 e a2 não está resolvida: a a2 ficou à frente a 12k (0,675 × 0,615)
+  e atrás a 20k (0,635 × 0,680). Juntando as duas rodadas truncadas em 12k (400 respostas por braço): a1 0,643,
+  a2 0,653, Astra 0,523. O paper não deve tratar uma edição de agente como melhor que a outra. A frase sobre o
+  Astra fica: alcança as edições com tempo, mas com 1,7 a 1,9 vez mais tokens no mesmo teto e só depois de 16k.
