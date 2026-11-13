@@ -237,8 +237,8 @@ começar, o que é comum em problemas do ensino fundamental e mais raro nos mais
 empata com as edições sozinhas; só a edição combinada com o limite (53%) fica acima dele.
 
 **A edição e o limite se somam.** A edição tira a maior parte dos loops e o limite pega o que sobra. Na matemática
-mais difícil, a combinação ganha 6 pontos sobre a edição sozinha; uma replicação independente relata o mesmo em
-subconjuntos do MATH (tdotlab, 2026). Na matemática do ensino fundamental, o ganho não ficou estabelecido.
+mais difícil, a combinação ganha 6 pontos sobre a edição sozinha. Na matemática do ensino fundamental, o ganho não ficou
+estabelecido.
 
 ![Figura 8](figures/paired.png)
 
@@ -383,7 +383,8 @@ interpretabilidade.
 **Trabalhos concorrentes.** Hu et al. (2026) rodam 16 trajetórias de edição do Astra e relatam grandes ganhos fora da
 amostra, sem comparações de decodificação ou fine-tuning. Reexecuções independentes acham que o raciocínio desligado
 com orçamento longo alcança boa parte do ganho do Astra sem editar (exp8-loop-controls, 2026; Zhang, 2026). Uma
-replicação caseira com um editor Claude achou o mesmo neurônio-freio, o L22n573 (tdotlab, 2026); outras replicações
+replicação caseira com um editor Claude achou o mesmo neurônio-freio, o L22n573, e viu que a edição dela e um orçamento maior de tokens se somam de forma quase
+independente no MATH-500 (tdotlab, 2026); outras replicações
 acharam edições diferentes (MatinKhajavi, 2026; ajaygrover, 2026), o que combina com o nosso achado de que várias
 edições tiram os loops. O IWIBench (von Csefalvay et al., 2026) avalia modelos editores. Nossa contribuição é a
 comparação controlada: edições de agente contra alternativas de decodificação, de raciocínio desligado e de
@@ -592,7 +593,7 @@ Anotamos previsões no caderno antes de cada resultado. Estas estavam erradas:
 | Execuções exploratórias com outro editor (Claude Fable 5.2) | feito (11 nov.); menção breve |
 | Escada de modelos editores sob um só protocolo | a fazer (estudo seguinte) |
 | Figuras 7 e 8 com os braços novos | feito (11 nov.); as Figuras 5 e 12 não têm braços novos |
-| Conferir as citações | feito (10/11; as 16 existem, 6 corrigidas, 5 acrescentadas) |
+| Conferir as citações | refeito (13/11): as 29 conferidas no arXiv, nos anais e no GitHub; 1 autor acrescentado, 1 atribuição corrigida |
 
 **Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os
 resultados atuais; e uma conferência principal se um segundo defeito concentrado funcionar.
@@ -686,7 +687,7 @@ Linguagem Pequenos*; *Geração no Laço: o que Faz a Programação Agêntica no
   <https://github.com/tdotlab/weight-space-programming>. Accessed Nov. 10, 2026.
 - Turner, A. M., Thiergart, L., Leech, G., Udell, D., Vazquez, J. J., Mini, U., MacDiarmid, M. (2023). Steering
   Language Models With Activation Engineering. arXiv:2308.10248.
-- von Csefalvay, C., Doma, P., Unni Krishnan, A. (2026). IWIBench: Evaluating Gradient-Free Model Driven
+- von Csefalvay, C., Doma, P., Unni Krishnan, A., Földi, T. (2026). IWIBench: Evaluating Gradient-Free Model Driven
   Intra-weight Injection. arXiv:2611.08647.
 - Wang, C., Feng, Y., Chen, D., Chu, Z., Krishna, R., Zhou, T. (2025). Wait, We Don't Need to "Wait"! Removing
   Thinking Tokens Improves Reasoning Efficiency. Findings of EMNLP 2025. arXiv:2506.08343.

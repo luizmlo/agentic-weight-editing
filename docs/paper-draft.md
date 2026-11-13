@@ -226,8 +226,7 @@ grade-school problems and rarer in longer ones. Thinking off (44%) ties the edit
 the time limit (53%) is above it.
 
 **The edit and the time limit add up.** The edit removes most loops and the limit catches what is left. On harder math
-the combination gains 6 points over the edit alone; an independent replication reports the same on MATH subsets
-(tdotlab, 2026). On grade-school math the gain was not established.
+the combination gains 6 points over the edit alone. On grade-school math the gain was not established.
 
 ![Figure 8](figures/paired.png)
 
@@ -366,7 +365,8 @@ proxies.
 **Concurrent work.** Hu et al. (2026) run 16 Astra editing trajectories and report large held-out gains, without
 decoding or fine-tuning baselines. Independent reruns find that thinking off and a long budget reach much of Astra's
 gain without editing (exp8-loop-controls, 2026; Zhang, 2026). A home replication with a Claude editor found the same
-brake neuron, L22n573 (tdotlab, 2026); other replications found different edits (MatinKhajavi, 2026; ajaygrover,
+brake neuron, L22n573, and found that its edit and a larger token budget add up almost independently on MATH-500
+(tdotlab, 2026); other replications found different edits (MatinKhajavi, 2026; ajaygrover,
 2026), consistent with our finding that several edits remove the loops. IWIBench (von Csefalvay et al., 2026)
 benchmarks editor models. Our contribution is the controlled comparison: agent edits against decoding, thinking-off
 and fine-tuning baselines on locked tests, with accuracy by token budget, cost accounting, evidence that agents game
@@ -568,7 +568,7 @@ We wrote predictions in the notebook before each result. These were wrong:
 | Exploratory runs with another editor (Claude Fable 5.2) | done (Nov 11); brief mention |
 | Ladder of editor models under one protocol | to do (follow-up study) |
 | Figures 7 and 8 with the new arms | done (Nov 11); Figures 5 and 12 have no new arms to add |
-| Verify citations | done (Nov 10; all 16 exist, 6 corrected, 5 added) |
+| Verify citations | done again (Nov 13): all 29 checked against arXiv, the proceedings and GitHub; 1 author added, 1 misattribution fixed |
 
 **Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
 main-track conference if a concentrated second defect works.
@@ -661,7 +661,7 @@ main-track conference if a concentrated second defect works.
   <https://github.com/tdotlab/weight-space-programming>. Accessed Nov. 10, 2026.
 - Turner, A. M., Thiergart, L., Leech, G., Udell, D., Vazquez, J. J., Mini, U., MacDiarmid, M. (2023). Steering
   Language Models With Activation Engineering. arXiv:2308.10248.
-- von Csefalvay, C., Doma, P., Unni Krishnan, A. (2026). IWIBench: Evaluating Gradient-Free Model Driven
+- von Csefalvay, C., Doma, P., Unni Krishnan, A., Földi, T. (2026). IWIBench: Evaluating Gradient-Free Model Driven
   Intra-weight Injection. arXiv:2611.08647.
 - Wang, C., Feng, Y., Chen, D., Chu, Z., Krishna, R., Zhou, T. (2025). Wait, We Don't Need to "Wait"! Removing
   Thinking Tokens Improves Reasoning Efficiency. Findings of EMNLP 2025. arXiv:2506.08343.
