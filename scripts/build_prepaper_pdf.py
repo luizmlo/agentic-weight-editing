@@ -157,6 +157,30 @@ with tempfile.TemporaryDirectory() as td:
     tex = tex.replace("\\end{longtable}", "\\bottomrule\n\\end{tabular}\\par\\medskip")
     assert "longtable}" not in tex.split("\\begin{document}")[1]
 
+    # tables: smaller type and tighter columns (footnotesize in the appendices), and keep each table on the same page
+    # as the paragraph or heading that introduces it and the note that follows it
+    app = re.search(r"\\section\{(Appendix|Ap\\^\{e\}ndice|Apêndice)", tex)
+    cut = app.start() if app else len(tex)
+    def tabfont(part, size):
+        part = part.replace("\\par\\medskip\\noindent\\begin{tabular}{",
+                            f"\\par\\medskip\\noindent{{{size}\\setlength{{\\tabcolsep}}{{4pt}}\\begin{{tabular}}{{")
+        return part.replace("\\end{tabular}\\par\\medskip", "\\end{tabular}}\\par\\medskip")
+    tex = tabfont(tex[:cut], "\\small") + tabfont(tex[cut:], "\\footnotesize")
+    blocks = tex.split("\n\n")
+    for i in range(1, len(blocks)):
+        if "\\begin{tabular}" not in blocks[i]:
+            continue
+        body = blocks[i][blocks[i].index("\\begin{tabular}"):]
+        rows = body.count("\\\\")
+        wrap = 1.6 if "p{" in body else 1.1
+        lead = max(1, len(re.sub(r"\\[a-zA-Z]+|[{}]", "", blocks[i - 1])) // 85 + 1)
+        need = int(rows * wrap + lead + 3)
+        j = i - 1  # start the reserved space at the heading(s) right above the lead-in, so no heading is left behind
+        while j > 0 and re.search(r"\\(sub)?section\{", blocks[j - 1]):
+            j -= 1; need += 3
+        blocks[j] = f"\\needspace{{{need}\\baselineskip}}\n" + blocks[j]
+    tex = "\n\n".join(blocks)
+
     # a section followed directly by a subsection: reserve room for both headings plus a few lines, once
     blocks = tex.split("\n\n")
     for i in range(len(blocks) - 1):

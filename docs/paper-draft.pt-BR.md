@@ -9,8 +9,9 @@
 Modelos pequenos que "pensam" antes de responder costumam ficar presos repetindo a mesma coisa: *"Espera, deixa eu
 conferir… Sim… Espera…"*. Demos a agentes Claude os pesos do Qwen3.5-0.8B e um pequeno orçamento de testes, e pedimos
 que resolvessem isso editando os pesos diretamente, sem treinamento. **Com no máximo quatro edições de posto 1, o
-modelo passou de 15,5% para 61,5–68% em problemas trancados de matemática do ensino fundamental.** Isso iguala uma
-edição escrita pelo GPT-6 Astra com cerca de metade dos tokens e supera uma receita barata de fine-tuning. Mas
+modelo passou de 15,5% para 61,5–68% em problemas trancados de matemática do ensino fundamental.** Isso iguala a
+edição que o GPT-6 "Astra", um modelo de fronteira, escreveu no estudo *Sparks of Weight-Space Programming*, do MIT
+CSAIL (Takehi et al., 2026), com cerca de metade dos tokens, e supera uma receita barata de fine-tuning. Mas
 alternativas simples chegam perto: desligar o raciocínio resolve 58% a uma fração do custo. O método funcionou num
 defeito concentrado e falhou num espalhado.
 
@@ -21,8 +22,7 @@ leram os pesos "através do vocabulário", acharam neurônios que empurram o mod
 que eles escrevem. Seis execuções do mesmo protocolo ficaram todas entre 58% e 67% nos problemas de prática, onde o
 modelo original resolve 15%.
 
-**O ganho é de eficiência, não mágica.** A edição publicada em *Sparks of Weight-Space Programming* chega ao mesmo
-acerto quando tem 20 mil tokens para pensar; as edições dos agentes já estão quase lá com 8 mil. Desligar o
+**O ganho é de eficiência, não mágica.** A edição do Astra no *Sparks* (Takehi et al., 2026) chega ao mesmo acerto quando tem 20 mil tokens para pensar; as edições dos agentes já estão quase lá com 8 mil. Desligar o
 raciocínio sai ainda mais barato, e nos 400 problemas trancados as edições ficam só 6,5–9 pontos acima dele.
 
 **Testes reais importaram mais que ferramentas engenhosas.** Toda nota rápida que demos aos agentes acabou sendo
@@ -42,8 +42,10 @@ Um modelo pequeno que entra em loop costuma ser tratado como um problema de trei
 raciocínio e fazer fine-tuning. Para um modelo em loop, até juntar os exemplos é caro, porque a maioria das tentativas
 dele nunca termina.
 
-Takehi et al. (2026) mostraram outro caminho. Um modelo de fronteira, o GPT-6 "Astra", leu os pesos brutos deste
-mesmo modelo, editou 0,016% deles, e o acerto no MATH-500 foi de 7,9% para 48,1%. Fizemos três perguntas. Isso se
+Em *Sparks of Weight-Space Programming*, Takehi et al. (2026), do MIT CSAIL, mostraram outro caminho. O modelo de
+fronteira que eles usaram, o GPT-6 "Astra", leu os pesos brutos deste mesmo modelo Qwen, editou 0,016% deles, e o
+acerto no MATH-500 foi de 7,9% para 48,1%. Neste paper, "edição do Astra" ou "edição publicada" sempre quer dizer
+essa edição, que recuperamos com exatidão (Experimento 1). Fizemos três perguntas. Isso se
 reproduz numa montagem barata, com um agente Claude como editor? É mais que um truque que um ajuste de decodificação
 ou um fine-tuning comum igualaria? E o que, no processo do agente, realmente importa?
 
@@ -87,9 +89,9 @@ sentido; os dois até *aumentam* um pouco a taxa de loop. O loop mora nos hábit
 
 *Experimento 1*
 
-### Conseguimos reproduzir a edição publicada?
+### Conseguimos reproduzir a edição do Astra?
 
-**Sim, com exatidão.** A edição publicada muda duas matrizes, nas camadas 15 e 19. Em cada uma, pega o que 64
+**Sim, com exatidão.** A edição publicada por Takehi et al. (2026) muda duas matrizes, nas camadas 15 e 19. Em cada uma, pega o que 64
 neurônios escrevem ao longo de uma "direção de repetição" e inverte, deixando em −5× o tamanho original. Na nossa
 montagem, ela leva o conjunto de prática de 15% para 46% e a matemática mais difícil de 8% para 21%. Nossos números
 absolutos no MATH são menores que os do estudo original porque o nosso orçamento é de 12 mil tokens, e não 32 mil, e
@@ -155,7 +157,7 @@ dificuldade.
 teve braços acrescentados depois da abertura, então abrimos um segundo com todos os braços e previsões fixados antes.
 
 | método | teste trancado 1 | teste trancado 2 | tokens por resposta |
-|---|---|---|---|
+|----------------------------------|------------|------------|--------------|
 | modelo original | 15,5% | — | 11.142 |
 | edição publicada (Astra) | 53,5% | — | 8.877 |
 | modelo original, raciocínio desligado | 58,5% | 58,0% | cerca de 1.300 |
@@ -435,7 +437,7 @@ contra ela (p = 0,02). No segundo teste trancado, a versão de 2 edições resga
 **Tabela completa de resultados.**
 
 | método | conjunto de prática (48) | segundo conjunto de prática (32) | teste trancado 1 (200) | matemática mais difícil (148) |
-|--------------------------------|-----------|-----------|-----------|-----------|
+|------------------------------------------------|----------|------------|----------|---------------|
 | modelo original | 15% | 13% | 15,5% | 8% |
 | modelo original, raciocínio desligado | — | — | 58,5% † | 44% |
 | edição publicada (Astra) | 46% | 41% | 53,5% | 21% |
@@ -455,7 +457,7 @@ contra ela (p = 0,02). No segundo teste trancado, a versão de 2 edições resga
 **Primeiro teste trancado, por orçamento de tokens** (parcela resolvida se toda resposta for cortada nesse orçamento).
 
 | método | 2.048 | 4.096 | 6.144 | 8.192 | 12.288 | cortadas em 12k | tokens (média) |
-|---|---|---|---|---|---|---|---|
+|----------------------------------|-------|-------|-------|-------|-------|---------|--------|
 | modelo original | 3,5% | 6,5% | 10,5% | 12,0% | 15,5% | 84,5% | 11.142 |
 | edição publicada (Astra) | 10,0% | 19,0% | 24,5% | 39,0% | 53,5% | 42,5% | 8.877 |
 | fine-tuning (LoRA) † | 12,5% | 20,5% | 26,0% | 30,0% | 33,0% | 65,5% | 9.354 |
@@ -481,7 +483,7 @@ p = 0,003). Com o raciocínio desligado, as edições não ajudam nem atrapalham
 **Segundo teste trancado** (GSM8K test[400:600]; todos os braços, comparações e previsões fixados antes da abertura).
 
 | método | segundo teste trancado | cortadas | tokens (média) | os dois testes (400) |
-|---|---|---|---|---|
+|----------------------------------|------------|---------|---------|------------|
 | modelo original, raciocínio desligado | 58,0% | 7,5% | 1.365 | 58,3% |
 | limite, resposta com teto de 1.024 | 59,5% | 34,5% ‡ | 4.620 | 59,8% |
 | edição do segundo agente (a2) | 64,0% | 15,5% | 4.701 | 65,8% |
@@ -500,7 +502,7 @@ teto fica 7,2 ± 2,4 acima do limite com teto sozinho (p = 0,004, pré-registrad
 **Orçamento longo (20.480 tokens, primeiro teste trancado).**
 
 | método | 4.096 | 8.192 | 12.288 | 16.384 | 20.480 | cortadas | tokens (média) |
-|--------------------------|------|------|------|------|------|--------|--------|
+|------------------------------|-------|-------|-------|-------|-------|--------|--------|
 | edição publicada (Astra) | 21,5% | 40,0% | 51,0% | 57,5% | 65,0% | 18,0% | 11.213 |
 | edição do agente (a1) | 49,5% | 63,5% | 67,0% | 68,0% | 68,0% | 15,5% | 6.608 |
 | edição do segundo agente (a2) | 51,5% | 61,0% | 63,0% | 63,5% | 63,5% | 15,0% | 5.891 |

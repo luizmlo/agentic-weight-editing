@@ -9,8 +9,9 @@
 Small "thinking" models often get stuck repeating themselves: *"Wait, let me check… Yes… Wait…"*. We gave Claude
 agents the weights of Qwen3.5-0.8B and a small testing budget, and asked them to fix this by editing the weights
 directly, with no training. **With at most four rank-1 edits, the model went from 15.5% to 61.5–68% on locked
-grade-school math problems.** That matches an edit written by GPT-6 Astra with about half the tokens, and beats a
-cheap fine-tuning recipe. Simple alternatives come close, though: switching thinking off solves 58% at a fraction of
+grade-school math problems.** That matches the edit that GPT-6 "Astra", a frontier model, wrote in the MIT CSAIL
+study *Sparks of Weight-Space Programming* (Takehi et al., 2026), with about half the tokens, and beats a cheap
+fine-tuning recipe. Simple alternatives come close, though: switching thinking off solves 58% at a fraction of
 the cost. The method worked on a concentrated defect and failed on a diffuse one.
 
 Everything ran on one gaming graphics card (GTX 1660 SUPER, 6 GB).
@@ -19,8 +20,7 @@ Everything ran on one gaming graphics card (GTX 1660 SUPER, 6 GB).
 "through the vocabulary", found neurons that push the model to say "Wait", and changed how strongly they write. Six
 runs of the same protocol all landed between 58% and 67% on practice problems, where the original model solves 15%.
 
-**The gain is efficiency, not magic.** The edit published in *Sparks of Weight-Space Programming* reaches the same
-accuracy once it gets 20k tokens to think; the agents' edits are nearly there by 8k. Switching thinking off is cheaper
+**The gain is efficiency, not magic.** Astra's edit from *Sparks* (Takehi et al., 2026) reaches the same accuracy once it gets 20k tokens to think; the agents' edits are nearly there by 8k. Switching thinking off is cheaper
 still, and over 400 locked problems the edits are only 6.5–9 points above it.
 
 **Real tests mattered more than clever tools.** Every cheap shortcut score we gave the agents was eventually gamed,
@@ -39,8 +39,10 @@ unedited model with thinking off on the second.
 A small model that loops is usually treated as a training problem: collect examples of good reasoning and fine-tune.
 For a looping model, even collecting the examples is expensive, because most of its attempts never end.
 
-Takehi et al. (2026) showed another way. A frontier model, GPT-6 "Astra", read the raw weights of this same model,
-edited 0.016% of them, and its MATH-500 accuracy went from 7.9% to 48.1%. We asked three questions. Does it
+In *Sparks of Weight-Space Programming*, Takehi et al. (2026) at MIT CSAIL showed another way. The frontier model they
+used, GPT-6 "Astra", read the raw weights of this same Qwen model, edited 0.016% of them, and its MATH-500 accuracy
+went from 7.9% to 48.1%. In this paper, "Astra's edit" or "the published edit" always means that edit, which we
+recovered exactly (Experiment 1). We asked three questions. Does it
 reproduce on a cheap setup, with a Claude agent as the editor? Is it more than a trick that a decoding setting or
 ordinary fine-tuning could match? And what in the agent's process actually matters?
 
@@ -83,9 +85,9 @@ placebo prompt; both slightly *raise* the loop rate. The loop lives in the model
 
 *Experiment 1*
 
-### Can we reproduce the published edit?
+### Can we reproduce Astra's edit?
 
-**Yes, exactly.** The published edit changes two matrices, in layers 15 and 19. In each, it takes what 64 neurons
+**Yes, exactly.** The edit published by Takehi et al. (2026) changes two matrices, in layers 15 and 19. In each, it takes what 64 neurons
 write along one "repetition direction" and flips it to −5× its size. On our setup it lifts the practice set from 15%
 to 46% and harder math from 8% to 21%. Our absolute MATH numbers are lower than the original study's because our
 budget is 12k tokens rather than 32k, and that budget hurts this edit most: it is still improving when it hits 12k.
@@ -146,7 +148,7 @@ the same budget** (44 problems rescued, 6 lost). The second agent's edit solves 
 some arms added after opening, so we opened a second one with every arm and prediction fixed in advance.
 
 | method | locked test 1 | locked test 2 | tokens per answer |
-|---|---|---|---|
+|----------------------------------|------------|------------|--------------|
 | original model | 15.5% | — | 11,142 |
 | published edit (Astra) | 53.5% | — | 8,877 |
 | original model, thinking off | 58.5% | 58.0% | about 1,300 |
@@ -416,7 +418,7 @@ harder math, 12 and 14.
 **Full results table.**
 
 | method | practice set (48) | second practice set (32) | locked test 1 (200) | harder math (148) |
-|--------------------------------|-----------|-----------|-----------|-----------|
+|------------------------------------------------|----------|------------|----------|---------------|
 | original model | 15% | 13% | 15.5% | 8% |
 | original model, thinking off | — | — | 58.5% † | 44% |
 | published edit (Astra) | 46% | 41% | 53.5% | 21% |
@@ -436,7 +438,7 @@ harder math, 12 and 14.
 **First locked test, by token budget** (share solved if every answer is stopped at that budget).
 
 | method | 2,048 | 4,096 | 6,144 | 8,192 | 12,288 | cut off at 12k | mean tokens |
-|---|---|---|---|---|---|---|---|
+|----------------------------------|-------|-------|-------|-------|-------|---------|--------|
 | original model | 3.5% | 6.5% | 10.5% | 12.0% | 15.5% | 84.5% | 11,142 |
 | published edit (Astra) | 10.0% | 19.0% | 24.5% | 39.0% | 53.5% | 42.5% | 8,877 |
 | fine-tuning (LoRA) † | 12.5% | 20.5% | 26.0% | 30.0% | 33.0% | 65.5% | 9,354 |
@@ -462,7 +464,7 @@ published edit 57.5%).
 **Second locked test** (GSM8K test[400:600]; every arm, comparison and prediction fixed before opening).
 
 | method | second locked test | cut off | mean tokens | both tests (400) |
-|---|---|---|---|---|
+|----------------------------------|------------|---------|---------|------------|
 | original model, thinking off | 58.0% | 7.5% | 1,365 | 58.3% |
 | time limit, answer capped at 1,024 | 59.5% | 34.5% ‡ | 4,620 | 59.8% |
 | second agent's edit (a2) | 64.0% | 15.5% | 4,701 | 65.8% |
@@ -481,7 +483,7 @@ pre-registered); a1 and a2 are 5.0 and 6.0 above it (p = 0.047 and 0.02, not pre
 **Long budget (20,480 tokens, first locked test).**
 
 | method | 4,096 | 8,192 | 12,288 | 16,384 | 20,480 | cut off | mean tokens |
-|--------------------------|------|------|------|------|------|--------|--------|
+|------------------------------|-------|-------|-------|-------|-------|--------|--------|
 | published edit (Astra) | 21.5% | 40.0% | 51.0% | 57.5% | 65.0% | 18.0% | 11,213 |
 | agent's edit (a1) | 49.5% | 63.5% | 67.0% | 68.0% | 68.0% | 15.5% | 6,608 |
 | second agent's edit (a2) | 51.5% | 61.0% | 63.0% | 63.5% | 63.5% | 15.0% | 5,891 |
