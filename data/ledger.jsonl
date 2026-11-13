@@ -93,3 +93,5 @@
 {"ts": "2026-11-13 07:45:37", "kind": "gen_eval", "tag": "nothink_n200", "split": "gsm8k_test[0:200]", "arms": ["base", "m2a_a2_red", "m2a_a2"], "max_new": 1024}
 {"ts": "2026-11-13 07:45:42", "kind": "tool_eval", "tag": "think_dev100", "split": "dev", "n": 100, "arms": ["base", "m2a_a2_red", "m2a_a2"], "think": true}
 {"ts": "2026-11-13 07:45:49", "kind": "gen_eval", "tag": "t200L", "split": "gsm8k_test[200:400]", "arms": ["astra"], "max_new": 20480}
+{"ts": "2026-11-13 12:13:55", "kind": "gen_eval", "tag": "t200L", "split": "gsm8k_test[200:400]", "arms": ["m2a_a2"], "max_new": 20480}
+{"ts": "2026-11-13 14:47:38", "kind": "gen_eval", "tag": "t200L", "split": "gsm8k_test[200:400]", "arms": ["m2a_a1_062959_102"], "max_new": 20480}

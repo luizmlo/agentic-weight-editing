@@ -2251,3 +2251,42 @@ a1 de forma significativa.
 
 No paper: "few replicates" passa a 6 runs; a frase sobre o protocolo cita a faixa e a média, não só a1/a2. As
 réplicas não vão ao t200: o pré-registro previa só o dev48.
+
+### 13/11, 13h05 — Astra com teto de 20.480 no t200: resultado (pré-registro de 13/11 02h55)
+
+O servidor não subiu com 16 slots de 21,5k tokens; o script caiu para 8 slots sozinho. Foram 4,5 h.
+
+| orçamento | 2k | 4k | 6k | 8k | 12k | 16k | 20k |
+|---|---|---|---|---|---|---|---|
+| Astra (esta rodada) | 8,5% | 21,5% | 30,0% | 40,0% | 51,0% | 57,5% | **65,0%** |
+
+- Cortados a 20k: 18%. Média de 11.213 tokens.
+- Entre as respostas terminadas, 129 de 164 estão certas (79%).
+
+Pareado (Astra a 20k × outro braço a 12k gravado):
+
+| contra | acerto | ganhos/perdas | Δ | p | tokens do outro |
+|---|---|---|---|---|---|
+| Astra a 12k | 0,535 | 31/8 | +11,5 ± 3,0 | < 0,001 | 8.877 |
+| a1 | 0,615 | 24/17 | +3,5 ± 3,2 | 0,35 | 5.049 |
+| a2 | 0,675 | 25/30 | −2,5 ± 3,7 | 0,59 | 4.387 |
+| limite com teto | 0,600 | 26/16 | +5,0 ± 3,2 | 0,16 | 4.596 |
+| a1 + limite com teto | 0,695 | 17/26 | −4,5 ± 3,3 | 0,22 | 3.172 |
+
+**Previsões.**
+- Acerto entre 0,58 e 0,68: **acertou** (0,650).
+- Pelo menos o da a1 a 12k: **acertou** (55%).
+- Pelo menos o da a2 a 12k: não chegou, como eu esperava (dava 15%).
+- Cortados entre 15% e 30%: **acertou** (18%).
+- Mais que o dobro dos tokens da a2: **acertou** (11.213 contra 8.774).
+- Astra truncado em 12k nesta rodada a até 6 pontos de 0,535: **acertou** (0,510; 10/15, p = 0,42).
+
+**Leitura.**
+- Com tempo suficiente, a edição publicada alcança as edições dos agentes. Não há diferença significativa contra a
+  a1 nem contra a a2, e ela ainda sobe: 7,5 pontos entre 16k e 20k.
+- A vantagem dos agentes sobre o Astra é de **eficiência**: o mesmo acerto com 2,2 a 2,6 vezes menos tokens. Não é
+  de capacidade.
+- O paper já enquadra assim desde 10/11. Agora a frase "with a longer budget it would probably close some or all of
+  the gap. We have not run that." vira um resultado.
+
+a2 e a1 a 20k: em andamento.
