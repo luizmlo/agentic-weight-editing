@@ -181,6 +181,18 @@ with tempfile.TemporaryDirectory() as td:
         blocks[j] = f"\\needspace{{{need}\\baselineskip}}\n" + blocks[j]
     tex = "\n\n".join(blocks)
 
+    # a short section (heading plus up to ~14 lines of text, e.g. "Data, code and logs"): never split it across pages
+    secs = re.split(r"(?=\\section\{)", tex)
+    for k in range(1, len(secs)):
+        body = secs[k].split("\\end{document}")[0]
+        if "\\subsection{" in body or "\\begin{tabular}" in body or "includegraphics" in body:
+            continue
+        paras = [b for b in body.split("\n\n")[1:] if b.strip()]
+        lines = sum(len(re.sub(r"\\[a-zA-Z]+|[{}]", "", b)) // 85 + 1 for b in paras)
+        if lines <= 14:
+            secs[k] = f"\\needspace{{{lines + 4}\\baselineskip}}\n" + secs[k]
+    tex = "".join(secs)
+
     # a section followed directly by a subsection: reserve room for both headings plus a few lines, once
     blocks = tex.split("\n\n")
     for i in range(len(blocks) - 1):

@@ -437,14 +437,14 @@ contra ela (p = 0,02). No segundo teste trancado, a versão de 2 edições resga
 **Tabela completa de resultados.**
 
 | método | conjunto de prática (48) | segundo conjunto de prática (32) | teste trancado 1 (200) | matemática mais difícil (148) |
-|------------------------------------------------|----------|------------|----------|---------------|
+|--------------------------------------------|---------|-----------|---------|-------------------|
 | modelo original | 15% | 13% | 15,5% | 8% |
 | modelo original, raciocínio desligado | — | — | 58,5% † | 44% |
 | edição publicada (Astra) | 46% | 41% | 53,5% | 21% |
-| proibir a palavra "Wait" (melhor de 3 ajustes) | 52% | 47% | 60,0% † | 27% (primeiros 48) |
+| proibir a palavra "Wait" (melhor de 3) | 52% | 47% | 60,0% † | 27% (primeiros 48) |
 | limite de raciocínio, 4.096 tokens (melhor de 2) | 48% | **63%** | 61,0% | 37% |
 | limite, resposta com teto de 1.024 (melhor de 3) | 50% | — | 60,0% † | — |
-| edição por diferença de médias, sem agente (melhor de 6) | — | 31% | — | — |
+| diferença de médias, sem agente (melhor de 6) | — | 31% | — | — |
 | busca por script, sem agente | 27% | — | — | — |
 | fine-tuning (LoRA) | 29% | — | 33,0% † | — |
 | **edição do agente (a1)** | **67%** | 56% | 61,5% | **47%** |

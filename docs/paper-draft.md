@@ -418,11 +418,11 @@ harder math, 12 and 14.
 **Full results table.**
 
 | method | practice set (48) | second practice set (32) | locked test 1 (200) | harder math (148) |
-|------------------------------------------------|----------|------------|----------|---------------|
+|--------------------------------------------|---------|-----------|---------|-------------------|
 | original model | 15% | 13% | 15.5% | 8% |
 | original model, thinking off | — | — | 58.5% † | 44% |
 | published edit (Astra) | 46% | 41% | 53.5% | 21% |
-| ban the word "Wait" (best of 3 settings) | 52% | 47% | 60.0% † | 27% (first 48) |
+| ban the word "Wait" (best of 3) | 52% | 47% | 60.0% † | 27% (first 48) |
 | thinking time limit, 4,096 tokens (best of 2) | 48% | **63%** | 61.0% | 37% |
 | time limit, answer capped at 1,024 (best of 3) | 50% | — | 60.0% † | — |
 | mean-difference edit, no agent (best of 6) | — | 31% | — | — |
