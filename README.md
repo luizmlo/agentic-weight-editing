@@ -92,7 +92,8 @@ What we have learned so far:
    edited overlapping "Wait" neurons (L17n1915, L22n573) with the same two-part recipe (suppress "Wait", strengthen
    `</think>`) and reached 0.667 / 0.646 on dev48. They act at different points of the circuit: a1 strengthens a brake
    neuron (L22n573); a2 works through one upstream neuron (L16n998) plus its `</think>` edit, and a 2-edit version of
-   a2 matches the full edit on dev48 (0.688).
+   a2 matches the full edit on dev48 (0.688). Four later runs of the same protocol (a3, a4 on Opus; f1, f2 on Fable)
+   reached 0.58–0.65: all six runs land at 0.58–0.67 (mean 0.62), and a4 rediscovered a1's brake mechanism on its own.
 2. **It is not just a decoding trick.** It beats a tuned logit bias on the practice sets and MATH, and ties it on the
    t200 locked test. Over 400 locked problems, a1 and a2 are +5.0 / +6.0 pp above capped budget forcing and +6.5 /
    +7.5 pp above thinking off (which uses far fewer tokens; p = 0.007–0.047, uncorrected, partly not pre-registered).
@@ -110,7 +111,11 @@ What we have learned so far:
 7. **It holds on larger locked tests.** On 200 more locked GSM8K problems, a1 beats the Astra edit by 8.0 ± 3.4 pp
    and ties budget forcing with half the cut-off answers. A further 200, fully pre-registered, replicate the
    direction against thinking off and budget forcing, but not the combination's lead over a1.
-8. **It does not work on a diffuse defect.** On instruction following (IFEval, thinking off), two agent runs, a
+8. **Against the Astra edit, the advantage is efficiency, not accuracy.** With a 20,480-token cap on t200, Astra
+   reaches 0.650, tying a1 (0.680) and a2 (0.635), which barely move after 12k. At the same cap the agent edits use
+   1.7–1.9× fewer tokens. Rerunning the same arm with different server batching moved it by up to 5.5 pp, so a1 and
+   a2 cannot be ranked against each other.
+9. **It does not work on a diffuse defect.** On instruction following (IFEval, thinking off), two agent runs, a
    system prompt and LoRA fine-tuning all lost 3–7 pp on fresh prompts after looking better on their practice
    checks. Sampling noise (23% of prompts flip between two runs of the unchanged model) swamps any plausible gain.
    The method's reach is set by the signal-to-noise ratio of the real test. See `docs/CADERNO.md` (2026-11-08/09).

@@ -94,6 +94,15 @@ All t200 arms below were run after the locked test was opened (late arms).
 |---|---|---|---|---|
 | math148nt, math148 | MATH-500[0:148]: base with thinking off (8k cap, new `math_eval.py --nothink`), a2 and reduced a2 (thinking on, 12k) | nt .38–.52, a2 .38–.54, a2_red .38–.54; combo > nt at p < .05 (30%); a1 > nt at p < .05 (15%); a2 within 5 pp of a1 (55%); a2_red within 5 pp of a2 (60%); nt < 1/3 of a1's tokens (85%) | nt .439 (3,842 tok, 36% cut), a2 .486, a2_red .473 (all in range); combo − nt +8.8 ± 3.8, p = .035; a1 − nt +2.7 (tie); a2 − a1 +2.0; a2_red − a2 −1.4; nt used 46% of a1's tokens (**refuted**) | `queue_math_nt.sh` → `gen_math148nt.json`, `gen_math148.json` |
 
+### Side effects, replicates and a long budget (CADERNO 2026-11-13)
+
+| exp | question | prediction | outcome | data |
+|---|---|---|---|---|
+| side-a2 | Side effects of a2 and reduced a2: tool calling without thinking (dev300), GSM8K without thinking (test[0:200], 1k cap), tool calling with thinking (dev100) | both within 2 SE of base on all three (80%); reduced a2 ≥ 11/16 on irrelevance (60%) | **confirmed**: largest \|Δ\|/SE 0.9; reduced a2 12/16 | `queue_side_long.sh` → `tool_*.json`, `gen_nothink_n200.json` |
+| a3, a4 | Two more Opus 5.5 replicates of protocol v2 (no atlas, f1/f2 prompt rules, audited) | ≥ 1 run ≥ .60 on dev48 (75%); both ≥ .50 (60%); one ≥ a1 + 5 pp (15%); a "Wait"-brake neuron in a pick (55%); a `</think>` lever (70%) | a3 **.583**, a4 **.583**: (1) refuted, (2) confirmed, (3) did not happen, (4) and (5) confirmed (a4). Six v2 runs at .58–.67, mean .62 | `queue_after_reps.sh` → `m2a/runs/a3`, `m2a/runs/a4`, `gen_dev48.json` |
+| fbw | Finished-but-wrong: selection or premature conclusion? (post hoc, CPU only, Holm over 8) | — | a1 #1 vs capped bf on problems both finish: 4/21 (Holm 0.008); weaker for a1, a2; none for f1. Partly premature conclusion | CADERNO 2026-11-13 04h15 |
+| t200L | Astra, a2 and a1 on t200 with a 20,480 cap (check on already-opened arms) | Astra .58–.68 (80%), ≥ a1 at 12k (55%), ≥ a2 at 12k (15%), cut 15–30% (65%), tokens > 2× a2 (90%); a2 at 20k ≤ a2 at 12k + 2 pp (75%) | Astra **.650**, a1 **.680**, a2 **.635**: all as predicted. Agent edits flat after 12k; agents use 1.7–1.9× fewer tokens; reruns of the same arm moved by up to 5.5 pp | `queue_side_long.sh` → `gen_t200L.json` |
+
 ## Deviations from pre-registration
 
 - **2026-11-07, E4.2:** training max_len raised from 4096 (the automatic E4.0 pick) to 8192, *before* training. With

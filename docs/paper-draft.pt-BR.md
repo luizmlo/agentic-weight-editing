@@ -1,6 +1,6 @@
 # Programação Agêntica no Espaço de Pesos como Alternativa ao Fine-Tuning em Modelos de Linguagem Pequenos
 
-**Autores:** Luiz Felipe Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 12 nov. 2026
+**Autores:** Luiz Felipe Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 13 nov. 2026
 
 *Rascunho de trabalho – o estado de cada resultado e o trabalho restante estão listados no final.*
 
@@ -12,20 +12,22 @@
 - **A correção.** Demos a agentes Claude os pesos do modelo e um pequeno orçamento de testes, e pedimos que
   resolvessem isso editando os pesos diretamente, sem treinamento. **Com quatro edições minúsculas, o modelo passou de
   15% para 67% de acerto nos nossos problemas de prática, e de 15,5% para 61,5–67,5% em 200 problemas de um teste
-  trancado (64–68% num segundo teste trancado de 200, com todos os métodos fixados antes da abertura).**
-- **A comparação.** No nosso orçamento de 12 mil tokens, as edições dos agentes ficam à frente da publicada em *Sparks
-  of Weight-Space Programming* (53,5%), mas aquela edição ainda está melhorando quando bate no orçamento. O que os
-  dados sustentam é eficiência: as edições dos agentes chegam ao patamar com cerca de um terço dos tokens. Elas
-  superam uma receita barata de fine-tuning (29% nos problemas de prática, com 13× mais tempo de GPU).
+  trancado (64–68% num segundo teste trancado de 200, com todos os métodos fixados antes da abertura).** Seis
+  execuções de agente sob o mesmo protocolo ficaram todas entre 58% e 67% nos problemas de prática.
+- **A comparação.** No nosso orçamento de 12 mil tokens, a edição publicada em *Sparks of Weight-Space Programming*
+  resolve 53,5%, mas ainda está melhorando. Com 20 mil tokens, chega a 65,0%, o mesmo das edições dos agentes
+  (63,5–68,0%), que param de melhorar por volta de 12 mil. O que os dados sustentam é eficiência: o mesmo acerto com
+  1,7–1,9× menos tokens. As edições dos agentes superam uma receita barata de fine-tuning (29% nos problemas de
+  prática, com 13× mais tempo de GPU).
 - **As alternativas simples são fortes.** Limitar o tempo de raciocínio (60–61%), proibir a palavra "Wait" (60,0%) e
   desligar o raciocínio (58,5%) empatam com a edição do primeiro agente no primeiro teste trancado. O segundo teste
   trancado, sozinho, não conseguiu separar os métodos. Nos 400 problemas trancados somados, as edições ficam 6,5–9
   pontos acima do raciocínio desligado (p = 0,002–0,02, sem correção) e 5–7 pontos acima de um limite de raciocínio, mas usam 2,4–3,6×
   os tokens do raciocínio desligado. Na matemática mais difícil, o raciocínio desligado (44%) empata com as edições
   sozinhas; só uma edição com limite de raciocínio (53%) fica acima dele (p = 0,035, sem correção).
-- **O que importou.** Dois agentes independentes acharam os mesmos neurônios de "Wait" e a mesma alavanca de
-  `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, a outra inverte um neurônio
-  a montante dele. Um script simples com as mesmas
+- **O que importou.** Agentes independentes voltaram aos mesmos neurônios de "Wait" e à mesma alavanca de
+  `</think>`, mas as edições agem em pontos diferentes: uma reforça um neurônio-freio, outra inverte um neurônio a
+  montante dele, e uma réplica posterior redescobriu sozinha o primeiro mecanismo. Um script simples com as mesmas
   ferramentas e o mesmo orçamento, mas sem o raciocínio de um agente, não achou. Toda nota rápida que demos aos
   agentes acabou sendo burlada, e só os testes reais os mantiveram honestos. Em três pares de execuções, os agentes
   que receberam mais dados de interpretabilidade acharam correções piores.
@@ -35,6 +37,14 @@
   grande. Ele não acha efeitos menores que o próprio ruído de amostragem do teste.
 
 Tudo rodou em uma única placa de vídeo de jogos (GTX 1660 SUPER, 6 GB).
+
+![Figura 1](figures/hero.png)
+
+**Figura 1:** Um problema de prática real, mesma semente aleatória. O modelo original chega à resposta cedo e depois
+repete "Wait, 120 / 8 = 15" até ficar sem espaço. A versão de 2 edições da correção do segundo agente, a que
+publicamos (Experimento 2), confere uma vez, fecha o raciocínio e responde. Linha de baixo: o modelo original no
+primeiro teste trancado; o modelo editado e o modelo sem edição com o raciocínio desligado no segundo (200 problemas
+cada).
 
 ---
 
@@ -54,9 +64,9 @@ deste mesmo modelo e editou 0,016% deles, e o acerto no MATH-500 foi de 7,9% par
 O Qwen3.5-0.8B "pensa" num rascunho antes de responder e encerra o raciocínio com um marcador especial, `</think>`.
 Com um orçamento de 12.288 tokens (cerca de 9.000 palavras), a maioria das respostas nunca chega lá.
 
-![Figura 1](figures/defect.png)
+![Figura 2](figures/defect.png)
 
-**Figura 1:** Comprimento de cada uma das 48 respostas de prática. A maioria das respostas do modelo original bate no
+**Figura 2:** Comprimento de cada uma das 48 respostas de prática. A maioria das respostas do modelo original bate no
 limite de espaço; com a edição do agente, a maioria termina cedo.
 
 Mudar o prompt não ajuda. Um prompt de sistema pedindo que o modelo não se repita não faz melhor do que um prompt
@@ -111,7 +121,8 @@ neurônios diferentes.
 **Na nossa montagem, a edição publicada leva o conjunto de prática de 15% para 46%, e a matemática mais difícil de 8%
 para 21%.** Nossos números absolutos no MATH são menores que os do artigo porque o nosso orçamento de tokens é 12k, e
 não 32k. Todos os métodos aqui usam o mesmo orçamento. Isso pesa mais para a edição publicada do que para as outras:
-ela ainda está melhorando quando bate nos 12k (veja o teste trancado abaixo).
+ela ainda está melhorando quando bate nos 12k, e com 20k tokens alcança as edições dos agentes (veja o teste
+trancado abaixo).
 
 *Experimento 2*
 
@@ -123,7 +134,7 @@ copiar "Yes", "?" e "Wait" em duas camadas de atenção, e empatou com a ediçã
 
 Depois acrescentamos os 6 testes reais. **Dois agentes, trabalhando de forma independente, editaram neurônios em comum
 com a mesma receita em duas partes (suprimir "Wait", reforçar `</think>`), e ela é bem mais forte: 67% e 65% no
-conjunto de prática.**
+conjunto de prática.** Quatro execuções posteriores do mesmo protocolo resolveram 58–65% (veja "Quão repetível é?").
 
 | agente | o que a edição faz (≤ 4 edições de posto 1) | conjunto de prática |
 |------|----------------------------------------------|--------------|
@@ -178,16 +189,16 @@ reais nos 48 problemas de prática (com as previsões registradas antes):
   (23 de 48), e 25 de 48 respostas estouram o espaço. Contra a versão de 2 edições, resgata 3 e perde 13 (p = 0,02).
   Isso bate com as ablações da a1 acima: num loop, as duas portas precisam mudar.
 
-A Figura 2 descreve a a1.
+A Figura 3 descreve a a1.
 
-![Figura 2](figures/edit-anatomy.png)
+![Figura 3](figures/edit-anatomy.png)
 
-**Figura 2:** Anatomia da edição a1. (A) Uma edição de posto 1 muda só a parte do que um neurônio escreve numa
+**Figura 3:** Anatomia da edição a1. (A) Uma edição de posto 1 muda só a parte do que um neurônio escreve numa
 direção escolhida. (B) A a1 reforça o freio de três neurônios sobre “Wait” e o sinal de `</think>` na última camada.
 
-![Figura 3](figures/why.png)
+![Figura 4](figures/why.png)
 
-**Figura 3:** Em 25 modelos e métodos que rodamos no conjunto de prática (sem as execuções exploratórias do Fable), quanto menos respostas ficam sem espaço, mais respostas estão
+**Figura 4:** Em 25 modelos e métodos que rodamos no conjunto de prática (sem as execuções exploratórias do Fable), quanto menos respostas ficam sem espaço, mais respostas estão
 certas (r = −0,98).
 
 *Experimento 3*
@@ -206,9 +217,9 @@ de respostas é rígido e deixa passar algumas formas equivalentes. Corrigir os 
 pouco todos os métodos e mantém a ordem (a1 49%, a1 + limite de raciocínio 55%, limite de raciocínio 38%, edição
 publicada 22%). As tabelas usam os números sem correção.
 
-![Figura 4](figures/difficulty.png)
+![Figura 5](figures/difficulty.png)
 
-**Figura 4:** A edição do agente (sozinha ou com o limite de tempo de raciocínio) fica à frente em todos os níveis de
+**Figura 5:** A edição do agente (sozinha ou com o limite de tempo de raciocínio) fica à frente em todos os níveis de
 dificuldade.
 
 **O teste trancado.** Abrimos 200 problemas lacrados uma única vez, depois de anotar as previsões. No orçamento cheio
@@ -235,15 +246,10 @@ orçamento menor. Os braços marcados com † rodaram depois de o teste ter sido
 
 ‡ Com teto para a resposta, esta coluna conta as respostas interrompidas por esse teto.
 
-- **A edição publicada ainda não estabilizou.** Ela ganha 14,5 pontos entre 8k e 12k, e 42,5% das respostas dela
-  ainda estão em andamento no teto. Com um orçamento maior, ela provavelmente fecharia parte ou toda a diferença de 8
-  pontos. Não rodamos isso.
+- **A edição publicada ainda não estabilizou em 12k.** Ela ganha 14,5 pontos entre 8k e 12k, e 42,5% das respostas
+  dela ainda estão em andamento no teto.
 - **As edições dos agentes estabilizam cedo.** A primeira escolha do agente já está em 60% com 4.096 tokens, onde a
-  edição publicada está em 19%. O que os dados sustentam é eficiência: mais ou menos o mesmo acerto com um terço a um
-  quarto dos tokens.
-- **A a2 é a melhor edição isolada (67,5%).** Ela vence a edição publicada por 14,0 ± 3,6 pontos (42 resgates, 14
-  perdas). A vantagem sobre a a1 é de 6 pontos (29 resgates, 17 perdas; p = 0,10), e 15,5% das respostas dela ainda
-  são cortadas.
+  edição publicada está em 19%.
 - **Desligar o raciocínio é a correção mais barata neste benchmark.** O modelo original, assim, resolve 58,5% com
   cerca de 1.300 tokens por resposta. A a1 com raciocínio fica 3,0 ± 3,5 pontos acima (p = 0,48): empate. A a2 fica
   9,0 ± 3,5 acima (p = 0,02), e a a1 com limite de raciocínio, 11,0 ± 3,5 acima (p = 0,003). Com o raciocínio
@@ -251,7 +257,41 @@ orçamento menor. Os braços marcados com † rodaram depois de o teste ter sido
 
 Todos os valores de p são testes do sinal exatos sobre os pares discordantes, sem correção para múltiplas comparações.
 Com a correção de Holm sobre as comparações desta seção, a1 contra a edição publicada deixa de ser significativa; a2
-contra a edição publicada e a1 + limite contra o raciocínio desligado continuam sendo.
+contra a edição publicada (14,0 ± 3,6 pontos; 42 resgates, 14 perdas) e a1 + limite contra o raciocínio desligado
+continuam sendo.
+
+### Com um orçamento maior, a edição publicada alcança
+
+Depois rodamos de novo a edição publicada, a a1 e a a2 no primeiro teste trancado, com teto de 20.480 tokens
+(pré-registrado; esses braços já tinham sido abertos, então é uma checagem, não um teste novo).
+
+| método, teto de 20.480 tokens | 4.096 | 8.192 | 12.288 | 16.384 | 20.480 | cortadas em 20k | tokens (média) |
+|--------------------------|------|------|------|------|------|--------|--------|
+| edição publicada (Astra) | 21,5% | 40,0% | 51,0% | 57,5% | 65,0% | 18,0% | 11.213 |
+| edição do agente (a1) | 49,5% | 63,5% | 67,0% | 68,0% | 68,0% | 15,5% | 6.608 |
+| edição do segundo agente (a2) | 51,5% | 61,0% | 63,0% | 63,5% | 63,5% | 15,0% | 5.891 |
+
+- **Com 20k, as três empatam.** A edição publicada chega a 65,0%, 11,5 pontos acima da rodada de 12k (31 resgates,
+  8 perdas). Contra a a1 e a a2 com 20k, fica a menos de 3 pontos (p ≥ 0,46). Ela ganha 7,5 pontos entre 16k e 20k,
+  então talvez ainda suba.
+- **As edições dos agentes quase não ganham nada depois de 12k** (a2 +0,5 ponto, a1 +1). O teto de 12k não as
+  segurava.
+- **A vantagem dos agentes sobre a edição publicada é, portanto, de eficiência, não de acerto.** No mesmo teto de
+  20k, elas usam 1,7–1,9× menos tokens; com 8k, já resolvem 61–63,5%, onde a edição publicada resolve 40%.
+- **O ruído entre rodadas é de uns 5 pontos, então não dá para ordenar as edições dos agentes entre si.** Cortadas em
+  12k, as rodadas de 20k deveriam repetir as de 12k. Não repetiram exatamente: a a2 foi de 67,5% para 63,0%, a a1 de
+  61,5% para 67,0%, e a edição publicada de 53,5% para 51,0%. Mesmas edições, mesmas sementes; o servidor rodou 8
+  pedidos em paralelo em vez de 16, o que muda a ordem das somas em ponto flutuante e, com ela, as amostras. A a2
+  estava 6 pontos à frente da a1 na primeira rodada e fica 4,5 atrás na segunda. Juntando as duas rodadas cortadas em
+  12k (400 respostas cada), a a1 resolve 64%, a a2 65% e a edição publicada 52%.
+
+![Figura 6](figures/frontier.png)
+
+**Figura 6:** Acerto contra média de tokens por resposta no primeiro teste trancado. A linha tracejada liga os
+métodos que nenhum outro supera nos dois eixos. Nunca pedimos aos agentes que economizassem tokens, e mesmo assim as
+edições deles ficam perto dessa linha; a edição publicada só alcança com orçamento de 20k, com cerca do dobro dos
+tokens. A primeira escolha do agente a1 está na linha porque pensa menos, e mais respostas terminadas dela estão
+erradas (veja "A cirurgia quebrou alguma coisa?").
 
 ### Um segundo teste trancado, todo pré-registrado
 
@@ -274,7 +314,8 @@ análise primária eram cinco comparações pareadas com correção de Holm; a s
   frente do raciocínio desligado na direção prevista (a2 +6,0 ± 4,0, a1 + limite com teto +6,5 ± 4,3), mas nenhuma
   comparação sobrevive à correção (todos os p ajustados por Holm = 0,83). Duzentos problemas não confirmam diferenças
   de 5–7 pontos. Três das nossas previsões falharam aqui (veja a lista no fim), e a a2 ficou 4,0 pontos atrás da a1
-  (p = 0,30) depois de estar 6 à frente no primeiro teste.
+  (p = 0,30) depois de estar 6 à frente no primeiro teste, a mesma inversão que vimos depois entre duas rodadas do
+  primeiro teste.
 - **Somando os 400 problemas trancados, as edições ficam acima do raciocínio desligado.** A a2 fica 7,5 ± 2,7 pontos
   acima (74 resgates, 44 perdas; p = 0,007), a a1 + limite com teto 8,8 ± 2,8 (p = 0,002) e a a1 6,5 ± 2,7 (p = 0,02,
   não pré-registrada). As duas primeiras eram as comparações secundárias pré-registradas; nenhuma tem correção para
@@ -287,19 +328,39 @@ análise primária eram cinco comparações pareadas com correção de Holm; a s
   perdas). Nos dois testes juntos, fica 2,2 ± 2,2 pontos acima da a1 (p = 0,36): não está estabelecido em matemática
   do ensino fundamental. A a1 foi baixa fora do comum no primeiro teste (61,5%) e alta no segundo (68,0%).
 
-### Uma checagem rápida com outro modelo editor
+### Quão repetível é?
 
-*Checagem exploratória, rodada depois de o teste trancado ter sido aberto. Não é comparável com a1 e a2.*
+*Rodado depois de o primeiro teste trancado ter sido aberto. Nenhuma escolha usou os testes trancados.*
 
-Também rodamos o protocolo vencedor com dois agentes no Claude Fable 5.2 (f1, f2), para ver se outro modelo editor
-acharia algo diferente. As condições não foram as mesmas de a1 e a2: o prompt tinha regras a mais (sem acesso à web,
-sem ler o repositório deste paper, sem subagentes), as execuções foram pausadas e retomadas, e estendemos o orçamento
-delas depois de ver os primeiros resultados. As duas acharam os neurônios de "Wait" que a1 e a2 editaram, não os
-mantiveram e terminaram com edições de camada inteira na direção de "Wait" nas últimas camadas, mais parecidas na
-forma com a edição publicada do que com a a1. Resolveram 65% e 60% do conjunto de prática, e a escolha da f1 resolveu
-66,0% no teste trancado. Isso mostra só que outro modelo editor também consegue consertar o defeito, por outro
-caminho. Não diz qual editor é melhor; para isso serve a escada de modelos editores planejada como continuação, com
-várias execuções por modelo sob um só protocolo.
+Rodamos o protocolo vencedor mais quatro vezes: mais duas com o Claude Opus 5.5 (a3, a4; o editor da a1 e da a2) e
+duas com o Claude Fable 5.2 (f1, f2). Essas quatro execuções tinham três regras a mais (sem acesso à web, sem ler o
+repositório deste paper, sem subagentes), e a auditoria dos registros não achou violações. As duas do Fable também
+foram pausadas e retomadas, e estendemos o orçamento delas depois dos primeiros resultados, então são uma checagem
+exploratória.
+
+| execução | editor | o que a escolha faz (≤ 4 edições de posto 1) | conjunto de prática |
+|-----|------|--------------------------------------------|----------|
+| a1 | Opus | reforça 3 neurônios-freio de "Wait", mais `</think>` | 67% |
+| a2 | Opus | inverte o L16n998 (e outros 3 neurônios), mais `</think>` | 65% |
+| a3 | Opus | inverte uma direção de "hesitação" ("Wait", "Hmm", "Actually"…) em quatro camadas inteiras | 58% |
+| a4 | Opus | reforça 3 neurônios-freio de "Wait" (L18n881, L20n405, L22n573), mais `</think>` | 58% |
+| f1 | Fable | edições de camada inteira na direção de "Wait" nas últimas camadas | 65% |
+| f2 | Fable | edições de camada inteira na direção de "Wait" nas últimas camadas | 60% |
+
+- **As seis execuções consertam o defeito.** Ficam entre 58% e 67% no conjunto de prática (média de 62%), 22 a 26
+  problemas acima do modelo original e acima da edição publicada (46%). Nenhuma difere da a1 de forma significativa.
+- **A a1 e a a2 são o topo dessa faixa, não o centro.** A a3 e a a4 também deixam mais respostas cortadas (25–35%,
+  contra 8–17%) e escrevem mais tokens.
+- **A a4 redescobriu sozinha o mecanismo da a1.** Primeiro inverteu os neurônios-freio e obteve "wait wait wait…",
+  como a a1 e a a2, depois passou a reforçá-los, mantendo o sinal, e acrescentou uma alavanca de `</think>`. A a3
+  achou os mesmos neurônios, viu pouco efeito em editá-los sozinhos e ficou com uma família mais parecida na forma com
+  a edição publicada e com as execuções do Fable.
+- **Uma previsão falhou:** a de que pelo menos uma entre a3 e a4 chegaria a 60% (demos 75%). As duas resolveram 58%,
+  um problema abaixo.
+
+Só a a1, a a2 e a f1 rodaram num teste trancado (f1: 66,0%). Isso mostra que o protocolo produz um ganho grande de
+forma confiável, por mais de um caminho. Não ordena modelos editores; para isso serve a escada de modelos editores
+planejada como continuação.
 
 ## É só um truque?
 
@@ -324,9 +385,9 @@ simples, ajustadas em 48 problemas (três vezes o que os agentes viram), o que a
 
 † Rodado depois de o teste trancado ter sido aberto; nenhuma escolha dependeu desses braços.
 
-![Figura 5](figures/headline.png)
+![Figura 7](figures/headline.png)
 
-**Figura 5:** Parcela de problemas resolvidos por cada método nos quatro conjuntos de problemas (barras de erro: ±1 erro
+**Figura 7:** Parcela de problemas resolvidos por cada método nos quatro conjuntos de problemas (barras de erro: ±1 erro
 padrão).
 
 *Experimento 4*
@@ -380,9 +441,9 @@ modelo já faz sem raciocinar, mais alguns pontos: nos 400 problemas trancados, 
 pontos acima do raciocínio desligado, com 2,4–3,6× os tokens dele; na matemática mais difícil, só a combinação com
 o limite fica acima (p = 0,035, sem correção).
 
-![Figura 6](figures/paired.png)
+![Figura 8](figures/paired.png)
 
-**Figura 6:** Problema por problema, com os mesmos problemas e sementes: problemas que só a edição do agente resolveu
+**Figura 8:** Problema por problema, com os mesmos problemas e sementes: problemas que só a edição do agente resolveu
 (direita) contra problemas que só o outro método resolveu (esquerda).
 
 *Experimento 5*
@@ -425,12 +486,12 @@ Esta é uma comparação fraca, e existem buscas sem LLM mais fortes:
   (Zhang, 2026), e um programa linear chega a cerca de 93% (nathanrs, 2026). Um reparo às cegas, com um modelo editor
   mais fraco e sem descrição do defeito, não achou nada (WKJBryan, 2026).
 
-Não afirmamos, então, que um agente é necessário. A nossa evidência é mais estreita: os dois agentes superaram todas
+Não afirmamos, então, que um agente é necessário. A nossa evidência é mais estreita: os agentes superaram todas
 as buscas sem agente que *nós* rodamos, e o nosso briefing dizia a eles qual era o defeito.
 
-![Figura 7](figures/search.png)
+![Figura 9](figures/search.png)
 
-**Figura 7:** Os 6 testes reais de cada buscador (16 problemas cada). Os dois agentes sem o atlas chegaram a 11 de 16;
+**Figura 9:** Os 6 testes reais de cada buscador (16 problemas cada). Os dois agentes sem o atlas chegaram a 11 de 16;
 os agentes com o atlas, a 5–7; o script, a 3.
 
 ## O que aprendemos sobre o processo
@@ -448,9 +509,9 @@ rápido. Todo indicador que tentamos quebrou assim que um otimizador forte o pre
   do que não fazer nada.** Ela bloqueou a cópia palavra por palavra, e o modelo simplesmente entrou em loop de outras
   formas (valores alternados, listas crescentes).
 
-![Figura 8](figures/goodhart.png)
+![Figura 10](figures/goodhart.png)
 
-**Figura 8:** A nota rápida que a edição escolhida por cada agente obteve (à esquerda = parecia melhor) contra o quanto
+**Figura 10:** A nota rápida que a edição escolhida por cada agente obteve (à esquerda = parecia melhor) contra o quanto
 ela de fato resolveu problemas.
 
 Seis testes reais resolveram isso. Nesse protocolo, as primeiras ideias de melhor nota dos dois agentes resolveram 0 de
@@ -469,9 +530,9 @@ meio e "cabeças de loop". Pareciam convincentes nos dados, mas não paravam os 
 alavancas: a palavra "Wait" e o sinal de `</think>`. Três pares tornam isso sugestivo, não comprovado. O primeiro par
 também rodou no protocolo antigo, sem testes reais, e nos dois primeiros pares tínhamos previsto o resultado oposto.
 
-![Figura 9](figures/atlas.png)
+![Figura 11](figures/atlas.png)
 
-**Figura 9:** Cada par de agentes teve instruções idênticas; o agente sem o atlas foi melhor todas as vezes.
+**Figura 11:** Cada par de agentes teve instruções idênticas; o agente sem o atlas foi melhor todas as vezes.
 
 ## Quanto custou?
 
@@ -494,35 +555,51 @@ também rodou no protocolo antigo, sem testes reais, e nos dois primeiros pares 
   horas (segundo os registros públicos). Nosso agente usou 16× e 60× menos, em cerca de 2 horas. As ferramentas são
   diferentes, então esta não é uma comparação controlada.
 - **O que a tabela deixa de fora.** As horas de GPU são só as da busca. Confirmar uma escolha no conjunto de prática
-  custa cerca de 1 hora de GPU a mais, para qualquer método. A linha do agente é uma execução que deu certo; fizemos
-  seis execuções ao todo, e as três com o atlas foram piores.
+  custa cerca de 1 hora de GPU a mais, para qualquer método. A linha do agente é uma execução que deu certo. Fizemos
+  dez execuções neste defeito: as três com o atlas foram piores, e as quatro réplicas posteriores do protocolo
+  vencedor resolveram 58–65%.
 - **As letras miúdas.** Rodamos com uma assinatura, então os valores em dólar são estimativas a preço de tabela. Numa
   GPU alugada muito barata, o fine-tuning poderia custar alguns dólares a menos que o uso do agente, entregando menos
   da metade da melhoria.
 
-![Figura 10](figures/cost.png)
+![Figura 12](figures/cost.png)
 
-**Figura 10:** À esquerda, horas de GPU para produzir cada correção. À direita, o comprimento médio das respostas, que
+**Figura 12:** À esquerda, horas de GPU para produzir cada correção. À direita, o comprimento médio das respostas, que
 define o custo de cada resposta futura.
 
 ## A cirurgia quebrou alguma coisa?
 
 Com o raciocínio desligado, nenhuma das edições muda o acerto em matemática (200 problemas) ou em chamada de
-ferramentas (300 pedidos) além de cerca de dois erros padrão. A edição age onde os loops acontecem, durante o
-raciocínio, e deixa as outras habilidades em paz. Há um efeito colateral positivo: com o raciocínio ligado, a edição
-publicada fica melhor em recusar chamadas de ferramenta irrelevantes (16 de 16 contra 11 de 16), provavelmente porque um
-raciocínio mais curto deixa menos espaço para inventar uma chamada.
+ferramentas (300 pedidos) além de cerca de dois erros padrão. Depois rodamos os mesmos painéis para a a2 e para a
+versão de 2 edições que publicamos, pareadas com o modelo original: chamada de ferramentas 90,3–91,0% contra 89,7%,
+matemática 46,0–51,0% contra 48,5%, e chamada de ferramentas com raciocínio 92–94% contra 93%, tudo a menos de um erro
+padrão. Esses painéis só detectam mudanças de uns 5 a 7 pontos. A edição age onde os loops acontecem, durante o
+raciocínio, e deixa as outras habilidades em paz até onde conseguimos medir. Há um efeito colateral positivo: com o
+raciocínio ligado, a edição publicada fica melhor em recusar chamadas de ferramenta irrelevantes (16 de 16 contra 11
+de 16), provavelmente porque um raciocínio mais curto deixa menos espaço para inventar uma chamada. As edições dos
+agentes não têm esse efeito (10–12 de 16).
 
-**Um custo possível: as respostas que terminam erram mais.** No teste trancado, 74% das respostas terminadas da a1
-estão certas, contra 91% da edição publicada, 92% do limite de raciocínio e 97% do modelo original. Na primeira
-escolha do agente a1, a edição mais forte, são 66%; na a2, 80%. Parte disso é seleção: o modelo original só termina 31
-dos 200 problemas, os fáceis, e as edições terminam também os difíceis. Mas a ordem (quanto mais forte o empurrão de
-`</think>`, menor o acerto entre as terminadas) sugere que as edições também fazem o modelo concluir antes da hora.
-Não separamos as duas coisas.
+**Um custo: as respostas que terminam erram mais.** No teste trancado, 74% das respostas terminadas da a1 estão
+certas, contra 91% da edição publicada, 92% do limite de raciocínio e 97% do modelo original. Na primeira escolha do
+agente a1, a edição mais forte, são 66%; na a2, 80%. Parte disso é seleção: o modelo original só termina 31 dos 200
+problemas, os fáceis, e as edições terminam também os difíceis.
 
-![Figura 11](figures/side-effects.png)
+Para separar as duas coisas, comparamos os métodos só nos problemas que os dois terminam (análise post hoc, não
+pré-registrada; correção de Holm sobre 8 comparações):
+- **Nos 31 problemas fáceis que o original termina,** ele acerta 30; a primeira escolha do agente a1 acerta 26, e a
+  a1, 27.
+- **A primeira escolha perde nos problemas terminados em comum.** Contra o limite com teto, resgata 4 e perde 21
+  (p = 0,001; Holm 0,008), e contra a edição publicada, 5 e 16 (p = 0,03, sem correção).
+- **O padrão enfraquece junto com o empurrão de `</think>`.** A a1 mostra menos (3 contra 13 diante do limite com
+  teto; p = 0,02, sem correção), a a2 um pouco (3 contra 10; p = 0,09), e a f1, cuja edição não tem alavanca de
+  `</think>`, nada (5 contra 3).
 
-**Figura 11:** Acerto em tarefas não relacionadas para o modelo original, a edição publicada e a edição do agente.
+Então não é só seleção: as edições que empurram `</think>` com mais força fazem o modelo concluir antes da hora. É o
+preço do lugar da primeira escolha na fronteira de eficiência (Figura 6).
+
+![Figura 13](figures/side-effects.png)
+
+**Figura 13:** Acerto em tarefas não relacionadas para o modelo original, a edição publicada e a edição do agente.
 
 ## Funciona num segundo defeito?
 
@@ -603,8 +680,8 @@ sem mexer nos pesos: com o raciocínio desligado e orçamento longo, o modelo or
 573), e viu que a edição e um orçamento maior se somam de forma quase independente. Nem toda replicação converge:
 MatinKhajavi (2026) refaz os experimentos com o Claude Opus 5.5 e obtém edições de outro tipo (zerar cabeças de
 atenção, além do mesmo neurônio 573), e ajaygrover (2026) acha uma direção do Claude quase ortogonal à do Astra, que
-se soma a ela. Os nossos dois agentes Opus editam neurônios em comum, mas agem em pontos diferentes do circuito, e duas execuções
-posteriores com outro modelo editor deixaram esses neurônios de lado. Isso combina com o quadro: várias edições
+se soma a ela. Três dos nossos quatro agentes Opus editaram os mesmos neurônios-freio, em pontos diferentes do
+circuito; o quarto, e as duas execuções com outro modelo editor, usaram edições de camada inteira. Isso combina com o quadro: várias edições
 diferentes tiram os loops. O IWIBench (von Csefalvay et al., 2026) propõe um benchmark para modelos
 editores. Nossa contribuição é a comparação controlada: edições de agente contra alternativas de decodificação, de
 raciocínio desligado e de fine-tuning num teste trancado, com o acerto relatado por orçamento de tokens, contabilidade
@@ -619,9 +696,12 @@ para de funcionar.
 - **Um modelo, um defeito que funciona:** "Wait" é uma palavra fácil de mirar, e o segundo defeito (IFEval) deu um
   resultado negativo bem controlado. **Próximo passo:** um defeito concentrado sem palavra-chave e um segundo modelo.
   Qualquer segundo defeito precisa de um teste real com ruído bem abaixo do efeito esperado, medido antes da busca.
-- **Um único orçamento de tokens:** toda comparação é com 12.288 tokens. A edição publicada ainda está melhorando
-  ali, então "a a1 vence a edição publicada" vale para esse orçamento. **Próximo passo:** as duas com orçamento longo
-  no teste trancado.
+- **Orçamento de tokens:** a maioria das comparações é com 12.288 tokens. Com 20.480, a edição publicada empata com
+  as edições dos agentes, então a vantagem delas sobre ela é de eficiência, não de acerto. O raciocínio desligado e o
+  limite de raciocínio não foram rodados de novo com 20k.
+- **Ruído entre rodadas:** rodar de novo o mesmo braço, com as mesmas sementes, o moveu em até 5,5 pontos quando o
+  lote do servidor mudou. Diferenças desse tamanho entre braços numa única rodada, como a2 contra a1, não são
+  confiáveis.
 - **Desligar o raciocínio é uma alternativa forte:** as edições ficam só 6,5–9 pontos acima dela nos 400 problemas
   trancados, e ela usa 28–42% dos tokens delas. Na matemática mais difícil, ela empata com a a1 e a a2,
   com metade dos tokens.
@@ -644,11 +724,11 @@ para de funcionar.
 - **Buscas sem LLM:** a nossa busca por script é uma comparação fraca, e trabalhos concorrentes obtêm a maior parte
   do ganho da edição publicada sem LLM. **Próximo passo:** um script dirigido (direções lidas pelo vocabulário, o
   mesmo orçamento) contra os agentes.
-- **Respostas terminadas e erradas:** as edições baixam o acerto entre as respostas terminadas (veja os efeitos
-  colaterais).
-- **Poucas réplicas:** o protocolo vencedor tem 2 agentes (mais duas execuções exploratórias do Fable), e a
-  comparação com e sem atlas tem 3 pares. **Próximo
-  passo:** mais dois de cada.
+- **Respostas terminadas e erradas:** as edições baixam o acerto entre as respostas terminadas. Uma análise post hoc
+  aponta conclusão precipitada, não só seleção, mas não foi pré-registrada (veja os efeitos colaterais).
+- **Réplicas:** o protocolo vencedor tem seis execuções (quatro do Opus, duas do Fable), todas em 58–67% no conjunto
+  de prática, mas só três rodaram num teste trancado. A comparação com e sem atlas continua com 3 pares. **Próximo
+  passo:** mais dois pares com e sem atlas.
 - **Uma receita de fine-tuning:** uma receita mais forte poderia fechar parte da diferença, a um custo maior.
 - **Correção do MATH:** o nosso corretor tem falsos negativos; os números corrigidos estão no texto, não nas tabelas.
 - **Múltiplas comparações:** os valores de p não têm correção, salvo aviso.
@@ -673,19 +753,23 @@ para de funcionar.
 11. A a1 faria 55–67% no segundo teste trancado. Fez 68,0%.
 12. A a2 reduzida usaria pelo menos tantos tokens quanto a a2 ali (60%). Usou 10% menos.
 13. Com o raciocínio desligado, a matemática mais difícil usaria menos de um terço dos tokens da a1 (85%). Usou 46%.
+14. Pelo menos uma das duas réplicas do Opus (a3, a4) chegaria a 60% no conjunto de prática (75%). As duas resolveram
+    58%.
 
 **A afirmação, como está hoje: para um defeito de comportamento concentrado e de efeito grande, um agente editando
-pesos achou uma correção em cerca de 2 horas numa GPU de consumo. Nos 400 problemas trancados, as comparações
-pré-registradas põem as edições 7,5–9 pontos acima do raciocínio desligado, e a edição com limite 7 pontos acima do
-limite sozinho (p = 0,002–0,007, sem correção), embora o raciocínio desligado use muito menos tokens. Ela usa um terço dos tokens da edição publicada para chegar lá, soma-se a um limite
-de raciocínio na matemática mais difícil e superou a única receita de fine-tuning que testamos. Para defeitos espalhados, como seguir instruções num
+pesos achou uma correção em cerca de 2 horas numa GPU de consumo, e seis execuções do mesmo protocolo acharam uma.
+Nos 400 problemas trancados, as comparações pré-registradas põem as edições 7,5–9 pontos acima do raciocínio
+desligado, e a edição com limite 7 pontos acima do limite sozinho (p = 0,002–0,007, sem correção), embora o
+raciocínio desligado use muito menos tokens. A edição publicada só chega ao mesmo acerto com orçamento de 20k, usando
+1,7–1,9× os tokens. A edição do agente soma-se a um limite de raciocínio na matemática mais difícil e superou a única
+receita de fine-tuning que testamos. Para defeitos espalhados, como seguir instruções num
 modelo de 0,8B, nem ela nem um fine-tuning barato ajudaram.**
 
 ## Dados, código e registros
 
 Está tudo no repositório do projeto:
 - **Caderno de laboratório:** datado, com as previsões escritas antes dos resultados (`docs/CADERNO.md`).
-- **Registros de cada execução de agente:** briefings, anotações, registros do avaliador e cada edição submetida (267).
+- **Registros de cada execução de agente:** briefings, anotações, registros do avaliador e cada edição submetida (310).
 - **Figuras:** `notebooks/results.ipynb`, o notebook que desenha cada gráfico deste texto.
 - **Custo:** um estudo detalhado (`docs/cost.md`).
 
@@ -711,20 +795,24 @@ brutos. O autor desenhou o estudo, supervisionou e conferiu o trabalho, e é res
 | Transferência para matemática mais difícil, efeitos colaterais, custo | feito |
 | Teste trancado com ≥ 200 problemas | feito (7 braços pré-registrados antes da abertura, 2 rodados tarde; 6 acrescentados e pré-registrados depois) |
 | Segundo teste trancado, todos os braços pré-registrados (GSM8K test[400:600]) | feito (12 nov.): 6 braços; a direção se repete em 3 das 4 comparações primárias que também rodaram no primeiro teste (a2 × a1 se inverteu); nenhuma significativa sozinha |
-| Mais réplicas (2 + 2 agentes) | a fazer |
+| Mais réplicas do protocolo vencedor | feito (13 nov.): a3 e a4 (Opus), 58% cada; seis execuções em 58–67% |
+| Efeitos colaterais da a2 e da a2 reduzida | feito (13 nov.): nenhum detectado |
+| Terminadas e erradas: seleção ou conclusão precipitada? | feito post hoc (13 nov.): em parte, conclusão precipitada |
+| Figura de abertura e fronteira de eficiência | feito (13 nov.): Figuras 1 e 6 |
+| Mais pares com e sem atlas | a fazer |
 | Segundo defeito sem palavra-chave (IFEval) | feito: negativo, com comparações de fine-tuning e de prompt |
 | Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
 | Recorrigir o MATH com um verificador simbólico | em parte (falsos negativos corrigidos à mão; números no texto) |
-| Diagrama da anatomia da edição | feito (Figura 2) |
+| Diagrama da anatomia da edição | feito (Figura 3) |
 | Raciocínio desligado no teste trancado (teto de 8k) | feito (10/11): 58,5%, empata com a a1 |
 | Raciocínio desligado, a2 e a2 reduzida na matemática mais difícil (148) | feito (12/11): 43,9%, 48,6%, 47,3%; só a a1 + limite fica acima do raciocínio desligado (p = 0,035, sem correção) |
 | Revisão independente de cada afirmação contra os dados | feito (10/11); este rascunho a aplica |
 | Conferência do mecanismo nas ativações | feito para a a1 e a a2 (11 nov.) |
-| Edição publicada contra a1 com orçamento longo | a fazer (5–8 GPU-h) |
+| Edição publicada, a1 e a2 com orçamento longo (20k) | feito (13 nov.): 65,0%, 68,0%, 63,5%; empate |
 | Limite de raciocínio com teto para a resposta | feito (11 nov.): 60,0% sozinho, 69,5% com a a1 |
 | Execuções exploratórias com outro editor (Claude Fable 5.2) | feito (11 nov.); menção breve |
 | Escada de modelos editores sob um só protocolo | a fazer (estudo seguinte) |
-| Figuras 5 e 6 com os braços novos | feito (11 nov.); as Figuras 4 e 10 não têm braços novos |
+| Figuras 7 e 8 com os braços novos | feito (11 nov.); as Figuras 5 e 12 não têm braços novos |
 | Conferir as citações | feito (10/11; as 16 existem, 6 corrigidas, 5 acrescentadas) |
 
 **Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os

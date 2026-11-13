@@ -67,7 +67,8 @@ llama.cpp (F16). Accuracy is exact match on the final answer; "cut off" = still 
   pre-registered) and +3.4 on MATH (a tie).
 - On MATH-500 with the same budget, the edit published in *Sparks of Weight-Space Programming* solves 20.9%; the full
   a2 beats it on 43 problems and loses 2. That edit is still improving at 12k tokens, so this comparison is about
-  efficiency at this budget, not a ceiling.
+  efficiency at this budget, not a ceiling. On the first locked GSM8K slice with a 20,480-token budget, it catches up
+  (65.0%, against 63.5% for the full a2), using about twice the tokens.
 
 ## How to use
 
@@ -97,7 +98,9 @@ model = AutoModelForCausalLM.from_pretrained(repo, dtype="bfloat16", device_map=
 - **Small evaluations.** 48–200 problems per set (±3–4 points). The locked test above is a single run.
 - **Thinking off is cheaper.** See the first section. On MATH it ties this edit at about half the tokens.
 - **Finished-but-wrong answers.** Among answers that finish, the edited models are somewhat less accurate than the
-  rare original answers that finish; the gain comes from finishing far more often.
+  rare original answers that finish; the gain comes from finishing far more often. A post hoc analysis suggests this
+  is partly premature conclusion, strongest for edits with a large `</think>` push; for the full a2 the effect was
+  small and not significant.
 - **Side effects: none detected, on small panels.** Paired with the original model on the same items and seeds:
   - tool calling with thinking off, 300 requests: 90.3% vs 89.7%;
   - grade-school math with thinking off, 200 problems: 46.0% vs 48.5% (17 gained, 22 lost; p = 0.52);
