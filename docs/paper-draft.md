@@ -2,8 +2,6 @@
 
 **Authors:** Luiz Felipe Melo · **Affiliation:** Universidade do Sul de Santa Catarina (Unisul) · **Draft:** November 13, 2026 · **DOI:** [10.5281/zenodo.24208535](https://doi.org/10.5281/zenodo.24208535)
 
-*Working draft – status of each result and remaining work are listed at the end.*
-
 **TL;DR**
 
 Small "thinking" models often get stuck repeating themselves: *"Wait, let me check… Yes… Wait…"*. We gave Claude
@@ -20,7 +18,7 @@ Everything ran on one gaming graphics card (GTX 1660 SUPER, 6 GB).
 "through the vocabulary", found neurons that push the model to say "Wait", and changed how strongly they write. Six
 runs of the same protocol all landed between 58% and 67% on practice problems, where the original model solves 15%.
 
-**The gain is efficiency, not magic.** Astra's edit from *Sparks* (Takehi et al., 2026) reaches the same accuracy once it gets 20k tokens to think; the agents' edits are nearly there by 8k. Switching thinking off is cheaper
+**The agents' edits need fewer tokens.** Astra's edit from *Sparks* (Takehi et al., 2026) reaches the same accuracy once it gets 20k tokens to think; the agents' edits are nearly there by 8k. Switching thinking off is cheaper
 still, and over 400 locked problems the edits are only 6.5–9 points above it.
 
 **Real tests mattered more than clever tools.** Every cheap shortcut score we gave the agents was eventually gamed,
@@ -57,7 +55,7 @@ of 12,288 tokens (about 9,000 words), most of its answers never get there.
 the agent's edit, most finish early.
 
 Prompting does not help. A system prompt telling the model not to repeat itself does no better than a meaningless
-placebo prompt; both slightly *raise* the loop rate. The loop lives in the model's habits, not in its instructions.
+placebo prompt; both slightly *raise* the loop rate. Whatever keeps the model looping, instructions do not reach it.
 
 ## The rules of the game
 
@@ -191,14 +189,14 @@ do not rank them.
 | f1 | Fable | whole-layer edits along "Wait" in the last layers | 65% |
 | f2 | Fable | whole-layer edits along "Wait" in the last layers | 60% |
 
-All six land between 58% and 67% (mean 62%), so a1 and a2 are the top of the range, not its center. a4 rediscovered
+All six land between 58% and 67% (mean 62%), so a1 and a2 sit at the top of the range. a4 rediscovered
 a1's mechanism on its own: it first flipped the brake neurons, got "wait wait wait…", and then strengthened them
 instead. The Fable runs (Claude Fable 5.2) were exploratory: paused, resumed and given a longer budget. They show that
-another editor can repair the defect by another route, not which editor is better.
+another editor can repair the defect by another route; they cannot tell us which editor is better.
 
 ## Is it just a trick?
 
-A skeptic would ask whether the edit is a fancy way of doing something simpler. We tried the simpler things, each
+Maybe the edit is a roundabout way of doing something simpler. We tried the simpler things, each
 tuned on 48 problems, three times what the agents saw.
 
 ![Figure 7](figures/headline.png)
@@ -244,7 +242,7 @@ problems only the other method solved (left).
 
 **Fine-tuning reached 29% of the practice set, using 13× the GPU time of an agent run.** Problem by problem, the
 agent's edit rescued 18 problems it missed and lost none. The fine-tuned model still ran out of space on 71% of its
-answers: it learned what to write *after* a cut, not *when* to stop. This is one cheap recipe; more data or
+answers: it learned to answer well once its thinking was cut, but never learned to stop on its own. This is one cheap recipe; more data or
 reinforcement learning might do better, at more cost.
 
 *Experiment 6*
@@ -255,8 +253,8 @@ reinforcement learning might do better, at more cost.
 the agents.** It tried random edits along the directions of the 300 most common words. Stronger searches without an
 LLM exist, though: our own mean-difference edits recover about two thirds of the published edit's gain, and concurrent
 work recovers 79–93% (Zhang, 2026; nathanrs, 2026); a blind repair with a weaker editor and no description of
-the defect found nothing (WKJBryan, 2026). So we do not claim an agent is necessary, only that ours beat every
-no-agent search we ran, with a brief that named the defect.
+the defect found nothing (WKJBryan, 2026). What we can say is narrower: our agents beat every
+no-agent search we ran, and their brief named the defect.
 
 ![Figure 9](figures/search.png)
 
@@ -287,7 +285,7 @@ solved problems.
 **In all three pairs of agents with identical instructions, the one without the atlas found the better edit** (38% vs
 4%, 67% vs 35%, 65% vs 40%). With the atlas, agents chased intricate mechanisms, such as a "re-checking" state in the
 middle layers, that looked convincing but did not stop the loops. Without it, they went for the direct levers. Three
-pairs make this suggestive, not proven, and we had predicted the opposite.
+pairs are too few to prove it, and we had predicted the opposite.
 
 ![Figure 11](figures/atlas.png)
 
@@ -331,7 +329,7 @@ lever does not. They make the model conclude before it is ready (post hoc analys
 
 ## Does it work on a second defect?
 
-**No, and the way it fails is informative.** We chose instruction following (IFEval; Zhou et al., 2023: "no commas",
+**No.** We chose instruction following (IFEval; Zhou et al., 2023: "no commas",
 "all lowercase"…), where the model with thinking off follows every instruction in only about 55% of prompts, with
 failures spread over many instruction types. Same protocol: an agent with 40 quick scores and 6 test runs, against a
 system prompt and fine-tuning.
@@ -339,8 +337,8 @@ system prompt and fine-tuning.
 **Every method looked better in its practice check (+5 to +12 points) and lost 3–7 points on fresh prompts.** The
 reason is sampling noise: two runs of the *unchanged* model disagree on 23% of prompts, so a 48-prompt check has a
 margin of error of 8–9 points, larger than any plausible gain. On the loops, the effect was +46 points and 16 problems
-were enough to see it. **The method's reach is set by the signal-to-noise ratio of the real test, not only by the
-agent.** This does not contradict the IFEval gain reported for Astra, which was measured with thinking on, where the
+were enough to see it. **When the real test is this noisy, the agent cannot tell a good edit from a lucky
+one.** This does not contradict the IFEval gain reported for Astra, which was measured with thinking on, where the
 loops again dominate. Along the way, the second IFEval agent found, from the weights alone, a global "forgetting"
 channel that 99.7% of the decay-gate rows of all 288 DeltaNet heads read with the same sign (Gated DeltaNet; Yang et
 al., 2025). Editing it changes the model, but not its instruction following.
@@ -372,24 +370,24 @@ benchmarks editor models. Our contribution is the controlled comparison: agent e
 and fine-tuning baselines on locked tests, with accuracy by token budget, cost accounting, evidence that agents game
 interpretability proxies, and a measured boundary where the method stops working.
 
-## Limitations and what comes next
+## Limitations
 
 - **Small tests.** The main comparisons rest on two locked tests of 200 problems (±3–4 points each); practice and MATH
   numbers rest on 48–148. Reruns of one arm vary by up to 5.5 points.
 - **Thinking off is a strong, cheap alternative.** The edits are 6.5–9 points above it over 400 locked problems, at 2.4–3.6×
   its tokens, and tie it on harder math.
-- **One model, one working defect.** "Wait" is an easy word to target, and the diffuse defect failed. Next: a
-  concentrated defect without a keyword, and a second model.
-- **The agent may not be necessary.** Concurrent no-LLM searches get most of the published edit's gain. Next: a
-  targeted script with the same budget, and a ladder of editor models with several runs each.
+- **One model, one working defect.** "Wait" is an easy word to target, and the diffuse defect failed. We have
+  not tested a concentrated defect without a keyword, or a second model.
+- **The agent may not be necessary.** Concurrent no-LLM searches get most of the published edit's gain. We did not
+  run a targeted script with the same budget, or compare editor models with several runs each.
 - **Late arms and an honor system.** Some first-test arms ran after opening (Appendix A), and the agents' rules were
-  audited, not enforced.
+  enforced only by auditing their logs afterwards.
 
 ## Data, code and logs
 
 Everything is in the project repository, <https://github.com/luizmlo/agentic-weight-editing>: the lab notebook with dated predictions (`docs/CADERNO.md`), the records of
 every agent run and every edit submitted (310), the notebook that draws every chart (`notebooks/results.ipynb`) and a
-cost study (`docs/cost.md`). Full agent transcripts and raw generations (~210 MB) will be released after review.
+cost study (`docs/cost.md`). Full agent transcripts and raw generations (~210 MB) will be released separately.
 
 ## Use of AI tools
 
@@ -404,7 +402,7 @@ All p-values are exact sign tests on discordant pairs, uncorrected unless we say
 
 **Which a1 variant we report.** The a1 agent ranked two variants of the same edit, with strengths −9 and −1.1 (its
 first pick) or −6 and −0.8 (its second). We carried the milder second variant through every comparison because it
-scored higher on the practice set (67% vs 65%); that was our choice, not the agent's. On the locked test the two tie
+scored higher on the practice set (67% vs 65%); the agent had ranked it second, so the choice was ours. On the locked test the two tie
 (61.5% vs 62.0%), and the first pick writes less than half as many tokens.
 
 **Mechanism numbers.** With the text held fixed, a1's three neurons lower the log-probability of "Wait" by 16.6 nats
@@ -537,44 +535,6 @@ We wrote predictions in the notebook before each result. These were wrong:
 12. The reduced a2 would use at least as many tokens as a2 there (60%). It used 10% fewer.
 13. Thinking off on harder math would use less than a third of a1's tokens (85%). It used 46%.
 14. At least one of the two Opus replicates (a3, a4) would reach 60% on the practice set (75%). Both solved 58%.
-
----
-
-## Status of this draft and plan to submission
-
-| | status |
-|------------------------------------------------|----------------------------|
-| Reproduction and dissection of the published edit | done |
-| 6 agent runs (2 protocols, 3 with/without-atlas pairs) | done |
-| Decoding baselines, naive search, fine-tuning baseline | done |
-| Transfer to harder math, side effects, cost | done |
-| Locked test with ≥ 200 problems | done (7 arms pre-registered before opening, 2 run late; 6 added and pre-registered after) |
-| Second locked test, every arm pre-registered (GSM8K test[400:600]) | done (Nov 12): 6 arms; direction replicates in 3 of the 4 primary comparisons also run on the first test (a2 × a1 reversed); none significant alone |
-| More replicates of the winning protocol | done (Nov 13): a3 and a4 (Opus), 58% each; six runs at 58–67% |
-| Side effects of a2 and the reduced a2 | done (Nov 13): none detected |
-| Finished-but-wrong: selection or premature conclusion? | done post hoc (Nov 13): partly premature conclusion |
-| Opening figure and efficiency frontier | done (Nov 13): Figures 1 and 6 |
-| More atlas pairs | to do |
-| Second defect without a keyword (IFEval) | done: negative, with fine-tuning and prompt baselines |
-| Concentrated second defect; second model | to do (needed for a main-track venue) |
-| Re-grade MATH with a symbolic checker | partly (false negatives corrected by hand; numbers in the text) |
-| Edit-anatomy diagram | done (Figure 3) |
-| Thinking-off baseline on the locked test (8k cap) | done (Nov 10): 58.5%, ties a1 |
-| Thinking off, a2 and reduced a2 on harder math (148) | done (Nov 12): 43.9%, 48.6%, 47.3%; only a1 + time limit is above thinking off (p = 0.035, uncorrected) |
-| Independent review of every claim against the data | done (Nov 10); this draft applies it |
-| Mechanism check on activations | done for a1 and a2 (Nov 11) |
-| Published edit, a1 and a2 at a long budget (20k) | done (Nov 13): 65.0%, 68.0%, 63.5%; a tie |
-| Time limit with a cap on the answer | done (Nov 11): 60.0% alone, 69.5% with a1 |
-| Exploratory runs with another editor (Claude Fable 5.2) | done (Nov 11); brief mention |
-| Ladder of editor models under one protocol | to do (follow-up study) |
-| Figures 7 and 8 with the new arms | done (Nov 11); Figures 5 and 12 have no new arms to add |
-| Verify citations | done again (Nov 13): all 29 checked against arXiv, the proceedings and GitHub; 1 author added, 1 misattribution fixed |
-
-**Venue:** arXiv preprint first, then an interpretability or LLM-agents workshop with the current results, and a
-main-track conference if a concentrated second defect works.
-
-**Alternative titles:** *Agents as Weight-Space Programmers: Fixing Reasoning Loops in Small Language Models*;
-*Generation in the Loop: What Makes Agentic Weight-Space Programming Work*.
 
 ## Glossary
 

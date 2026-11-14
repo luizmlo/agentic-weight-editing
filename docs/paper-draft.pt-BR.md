@@ -2,8 +2,6 @@
 
 **Autores:** Luiz Felipe Melo · **Afiliação:** Universidade do Sul de Santa Catarina (Unisul) · **Rascunho:** 13 nov. 2026 · **DOI:** [10.5281/zenodo.24208535](https://doi.org/10.5281/zenodo.24208535)
 
-*Rascunho de trabalho – o estado de cada resultado e o trabalho restante estão listados no final.*
-
 **TL;DR**
 
 Modelos pequenos que "pensam" antes de responder costumam ficar presos repetindo a mesma coisa: *"Espera, deixa eu
@@ -22,7 +20,7 @@ leram os pesos "através do vocabulário", acharam neurônios que empurram o mod
 que eles escrevem. Seis execuções do mesmo protocolo ficaram todas entre 58% e 67% nos problemas de prática, onde o
 modelo original resolve 15%.
 
-**O ganho é de eficiência, não mágica.** A edição do Astra no *Sparks* (Takehi et al., 2026) chega ao mesmo acerto quando tem 20 mil tokens para pensar; as edições dos agentes já estão quase lá com 8 mil. Desligar o
+**As edições dos agentes precisam de menos tokens.** A edição do Astra no *Sparks* (Takehi et al., 2026) chega ao mesmo acerto quando tem 20 mil tokens para pensar; as edições dos agentes já estão quase lá com 8 mil. Desligar o
 raciocínio sai ainda mais barato, e nos 400 problemas trancados as edições ficam só 6,5–9 pontos acima dele.
 
 **Testes reais importaram mais que ferramentas engenhosas.** Toda nota rápida que demos aos agentes acabou sendo
@@ -60,7 +58,7 @@ orçamento de 12.288 tokens (cerca de 9.000 palavras), a maioria das respostas n
 limite de espaço; com a edição do agente, a maioria termina cedo.
 
 Prompts não ajudam. Um system prompt mandando o modelo não se repetir não faz melhor que um prompt placebo sem
-sentido; os dois até *aumentam* um pouco a taxa de loop. O loop mora nos hábitos do modelo, não nas instruções.
+sentido; os dois até *aumentam* um pouco a taxa de loop. Seja o que for que mantém o modelo em loop, as instruções não chegam até lá.
 
 ## As regras do jogo
 
@@ -201,14 +199,14 @@ atrás na seguinte, então não as ordenamos.
 | f1 | Fable | edições de camada inteira na direção de "Wait" nas últimas camadas | 65% |
 | f2 | Fable | edições de camada inteira na direção de "Wait" nas últimas camadas | 60% |
 
-As seis ficam entre 58% e 67% (média de 62%), então a a1 e a a2 são o topo da faixa, não o centro. A a4 redescobriu
+As seis ficam entre 58% e 67% (média de 62%), então a a1 e a a2 estão no topo da faixa. A a4 redescobriu
 sozinha o mecanismo da a1: primeiro inverteu os neurônios-freio, obteve "wait wait wait…" e depois passou a
 reforçá-los. As execuções do Fable (Claude Fable 5.2) foram exploratórias: pausadas, retomadas e com orçamento
-estendido. Mostram que outro editor consegue consertar o defeito por outro caminho, não qual editor é melhor.
+estendido. Mostram que outro editor consegue consertar o defeito por outro caminho; não dizem qual editor é melhor.
 
 ## É só um truque?
 
-Um cético perguntaria se a edição é um jeito sofisticado de fazer algo mais simples. Testamos as coisas mais simples,
+Talvez a edição seja um jeito indireto de fazer algo mais simples. Testamos as coisas mais simples,
 cada uma ajustada em 48 problemas, três vezes o que os agentes viram.
 
 ![Figura 7](figures/headline.png)
@@ -258,7 +256,7 @@ direita) contra problemas que só o outro método resolveu (à esquerda).
 
 **O fine-tuning chegou a 29% do conjunto de prática, com 13× o tempo de GPU de uma execução de agente.** Problema por
 problema, a edição do agente resgatou 18 problemas que ele errou e não perdeu nenhum. O modelo com fine-tuning ainda
-ficou sem espaço em 71% das respostas: aprendeu o que escrever *depois* de um corte, não *quando* parar. É uma
+ficou sem espaço em 71% das respostas: aprendeu a responder bem depois que o raciocínio é cortado, mas nunca aprendeu a parar sozinho. É uma
 receita barata; mais dados ou aprendizado por reforço talvez façam melhor, a um custo maior.
 
 *Experimento 6*
@@ -269,9 +267,9 @@ receita barata; mais dados ou aprendizado por reforço talvez façam melhor, a u
 prática, 40 pontos abaixo dos agentes.** Ele testava edições aleatórias nas direções das 300 palavras mais comuns.
 Mas existem buscas sem LLM mais fortes: as nossas próprias edições por diferença de médias recuperam cerca de dois
 terços do ganho da edição publicada, e trabalhos concorrentes recuperam 79–93% (Zhang, 2026; nathanrs, 2026); um
-conserto às cegas, com um editor mais fraco e sem descrição do defeito, não achou nada (WKJBryan, 2026). Por isso não
-afirmamos que um agente é necessário, só que os nossos superaram todas as buscas sem agente que rodamos, com um
-briefing que dizia qual era o defeito.
+conserto às cegas, com um editor mais fraco e sem descrição do defeito, não achou nada (WKJBryan, 2026). O que dá para
+afirmar é mais estreito: os nossos agentes superaram todas as buscas sem agente que rodamos, e o briefing deles
+dizia qual era o defeito.
 
 ![Figura 9](figures/search.png)
 
@@ -303,7 +301,7 @@ frequência com que ela de fato resolveu problemas.
 **Nos três pares de agentes com instruções idênticas, o que não tinha o atlas achou a edição melhor** (38% contra 4%,
 67% contra 35%, 65% contra 40%). Com o atlas, os agentes perseguiram mecanismos intrincados, como um estado de
 "reconferência" nas camadas do meio, que pareciam convincentes mas não paravam os loops. Sem ele, foram direto às
-alavancas. Três pares tornam isso sugestivo, não provado, e tínhamos previsto o contrário.
+alavancas. Três pares são poucos para provar isso, e tínhamos previsto o contrário.
 
 ![Figura 11](figures/atlas.png)
 
@@ -349,7 +347,7 @@ hoc, Apêndice A).
 
 ## Funciona num segundo defeito?
 
-**Não, e o jeito como falha é informativo.** Escolhemos seguir instruções (IFEval; Zhou et al., 2023: "sem
+**Não.** Escolhemos seguir instruções (IFEval; Zhou et al., 2023: "sem
 vírgulas", "tudo em minúsculas"…), em que o modelo com raciocínio desligado segue todas as instruções em só cerca de
 55% dos prompts, com falhas espalhadas por muitos tipos de instrução. Mesmo protocolo: um agente com 40 notas rápidas
 e 6 testes reais, contra um system prompt e fine-tuning.
@@ -357,8 +355,8 @@ e 6 testes reais, contra um system prompt e fine-tuning.
 **Todo método pareceu melhor no próprio teste de prática (+5 a +12 pontos) e perdeu 3–7 pontos em prompts novos.** O
 motivo é o ruído de amostragem: duas rodadas do modelo *sem mudança* discordam em 23% dos prompts, então um teste de
 48 prompts tem margem de erro de 8–9 pontos, maior que qualquer ganho plausível. Nos loops, o efeito era de +46
-pontos e 16 problemas bastavam para vê-lo. **O alcance do método é definido pela relação sinal-ruído do teste real,
-não só pelo agente.** Isso não contradiz o ganho no IFEval relatado para o Astra, medido com raciocínio ligado, onde
+pontos e 16 problemas bastavam para vê-lo. **Com um teste real tão ruidoso, o agente não consegue distinguir uma edição boa de
+uma que teve sorte.** Isso não contradiz o ganho no IFEval relatado para o Astra, medido com raciocínio ligado, onde
 os loops voltam a dominar. No caminho, o segundo agente do IFEval achou, só pelos pesos, um canal global de
 "esquecimento" que 99,7% das linhas de portão de decaimento de todas as 288 cabeças DeltaNet leem com o mesmo sinal
 (Gated DeltaNet; Yang et al., 2025). Editá-lo muda o modelo, mas não o seguimento de instruções.
@@ -391,25 +389,25 @@ comparação controlada: edições de agente contra alternativas de decodificaç
 fine-tuning em testes trancados, com o acerto por orçamento de tokens, contabilidade de custo, a evidência de que
 agentes burlam indicadores de interpretabilidade e uma fronteira medida de onde o método para de funcionar.
 
-## Limitações e próximos passos
+## Limitações
 
 - **Testes pequenos.** As comparações principais se apoiam em dois testes trancados de 200 problemas (±3–4 pontos
   cada); os números de prática e do MATH, em 48–148. Rodadas repetidas de um mesmo braço variam até 5,5 pontos.
 - **Desligar o raciocínio é uma alternativa forte e barata.** As edições ficam 6,5–9 pontos acima dele nos 400
   problemas trancados, com 2,4–3,6× os tokens, e empatam com ele na matemática mais difícil.
-- **Um modelo, um defeito que funciona.** "Wait" é uma palavra fácil de mirar, e o defeito espalhado falhou. Próximo
-  passo: um defeito concentrado sem palavra-chave, e um segundo modelo.
+- **Um modelo, um defeito que funciona.** "Wait" é uma palavra fácil de mirar, e o defeito espalhado falhou. Não
+  testamos um defeito concentrado sem palavra-chave, nem um segundo modelo.
 - **O agente pode não ser necessário.** Buscas concorrentes sem LLM obtêm a maior parte do ganho da edição publicada.
-  Próximo passo: um script dirigido com o mesmo orçamento, e uma escada de modelos editores com várias execuções cada.
+  Não rodamos um script dirigido com o mesmo orçamento, nem comparamos modelos editores com várias execuções cada.
 - **Braços tardios e regras por honra.** Alguns braços do primeiro teste rodaram depois da abertura (Apêndice A), e
-  as regras dos agentes foram auditadas, não impostas.
+  as regras dos agentes só foram verificadas depois, auditando os registros.
 
 ## Dados, código e registros
 
 Tudo está no repositório do projeto, <https://github.com/luizmlo/agentic-weight-editing>: o caderno de laboratório com previsões datadas (`docs/CADERNO.md`), os registros
 de cada execução de agente e de cada edição submetida (310), o notebook que desenha cada gráfico
 (`notebooks/results.ipynb`) e um estudo de custo (`docs/cost.md`). As transcrições completas dos agentes e as gerações
-brutas (~210 MB) serão publicadas depois da revisão.
+brutas (~210 MB) serão publicadas à parte.
 
 ## Uso de ferramentas de IA
 
@@ -424,7 +422,7 @@ Todos os valores de p são testes do sinal exatos sobre os pares discordantes, s
 
 **Qual variante da a1 relatamos.** O agente a1 ordenou duas variantes da mesma edição, com intensidades −9 e −1,1 (a
 primeira escolha dele) ou −6 e −0,8 (a segunda). Levamos a segunda, mais branda, a todas as comparações porque ela foi
-melhor no conjunto de prática (67% contra 65%); a escolha foi nossa, não do agente. No teste trancado as duas empatam
+melhor no conjunto de prática (67% contra 65%); o agente a tinha posto em segundo, então a escolha foi nossa. No teste trancado as duas empatam
 (61,5% contra 62,0%), e a primeira escolha escreve menos da metade dos tokens.
 
 **Números do mecanismo.** Com o texto fixo, os três neurônios da a1 baixam a log-probabilidade de "Wait" em 16,6 nats
@@ -562,44 +560,6 @@ Anotamos previsões no caderno antes de cada resultado. Estas estavam erradas:
 13. Com o raciocínio desligado, a matemática mais difícil usaria menos de um terço dos tokens da a1 (85%). Usou 46%.
 14. Pelo menos uma das duas réplicas do Opus (a3, a4) chegaria a 60% no conjunto de prática (75%). As duas resolveram
     58%.
-
----
-
-## Estado deste rascunho e plano até a submissão
-
-| | estado |
-|------------------------------------------------|----------------------------|
-| Reprodução e dissecação da edição publicada | feito |
-| 6 execuções de agente (2 protocolos, 3 pares com e sem atlas) | feito |
-| Alternativas de decodificação, busca ingênua, fine-tuning | feito |
-| Transferência para matemática mais difícil, efeitos colaterais, custo | feito |
-| Teste trancado com ≥ 200 problemas | feito (7 braços pré-registrados antes da abertura, 2 rodados tarde; 6 acrescentados e pré-registrados depois) |
-| Segundo teste trancado, todos os braços pré-registrados (GSM8K test[400:600]) | feito (12 nov.): 6 braços; a direção se repete em 3 das 4 comparações primárias que também rodaram no primeiro teste (a2 × a1 se inverteu); nenhuma significativa sozinha |
-| Mais réplicas do protocolo vencedor | feito (13 nov.): a3 e a4 (Opus), 58% cada; seis execuções em 58–67% |
-| Efeitos colaterais da a2 e da a2 reduzida | feito (13 nov.): nenhum detectado |
-| Terminadas e erradas: seleção ou conclusão precipitada? | feito post hoc (13 nov.): em parte, conclusão precipitada |
-| Figura de abertura e fronteira de eficiência | feito (13 nov.): Figuras 1 e 6 |
-| Mais pares com e sem atlas | a fazer |
-| Segundo defeito sem palavra-chave (IFEval) | feito: negativo, com comparações de fine-tuning e de prompt |
-| Segundo defeito concentrado; segundo modelo | a fazer (necessário para uma conferência principal) |
-| Recorrigir o MATH com um verificador simbólico | em parte (falsos negativos corrigidos à mão; números no texto) |
-| Diagrama da anatomia da edição | feito (Figura 3) |
-| Raciocínio desligado no teste trancado (teto de 8k) | feito (10/11): 58,5%, empata com a a1 |
-| Raciocínio desligado, a2 e a2 reduzida na matemática mais difícil (148) | feito (12/11): 43,9%, 48,6%, 47,3%; só a a1 + limite fica acima do raciocínio desligado (p = 0,035, sem correção) |
-| Revisão independente de cada afirmação contra os dados | feito (10/11); este rascunho a aplica |
-| Conferência do mecanismo nas ativações | feito para a a1 e a a2 (11 nov.) |
-| Edição publicada, a1 e a2 com orçamento longo (20k) | feito (13 nov.): 65,0%, 68,0%, 63,5%; empate |
-| Limite de raciocínio com teto para a resposta | feito (11 nov.): 60,0% sozinho, 69,5% com a a1 |
-| Execuções exploratórias com outro editor (Claude Fable 5.2) | feito (11 nov.); menção breve |
-| Escada de modelos editores sob um só protocolo | a fazer (estudo seguinte) |
-| Figuras 7 e 8 com os braços novos | feito (11 nov.); as Figuras 5 e 12 não têm braços novos |
-| Conferir as citações | refeito (13/11): as 29 conferidas no arXiv, nos anais e no GitHub; 1 autor acrescentado, 1 atribuição corrigida |
-
-**Onde publicar:** primeiro um preprint no arXiv; depois um workshop de interpretabilidade ou de agentes de LLM com os
-resultados atuais; e uma conferência principal se um segundo defeito concentrado funcionar.
-
-**Títulos alternativos:** *Agentes como Programadores do Espaço de Pesos: Corrigindo Loops de Raciocínio em Modelos de
-Linguagem Pequenos*; *Geração no Laço: o que Faz a Programação Agêntica no Espaço de Pesos Funcionar*.
 
 ## Glossário
 

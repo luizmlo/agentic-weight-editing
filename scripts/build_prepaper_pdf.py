@@ -44,7 +44,8 @@ md = (ROOT / "docs" / L["src"]).read_text()
 # --- title block: taken out of the body, typeset by hand
 title = re.search(r"^# (.+)$", md, re.M).group(1)
 authors = re.search(rf"^\*\*{L['authors']}\*\* (.+)$", md, re.M).group(1)
-note = re.search(rf"^\*({L['note']}.+?)\*$", md, re.M | re.S).group(1).replace("\n", " ")
+note = re.search(rf"^\*({L['note']}.+?)\*$", md, re.M | re.S)
+note = note.group(1).replace("\n", " ") if note else ""
 md = md[md.index("**TL;DR**"):]
 
 # --- figures: image + "**Figure N:** caption" paragraph -> one captioned float
@@ -132,12 +133,13 @@ def tex_escape(s):
         s = s.replace("@L", rf"\href{{{url}}}{{{text}}}", 1)
     return s.replace("@B{", r"\textbf{")
 
+note_tex = rf"{{\small\itshape\color{{ink2}} {tex_escape(note)}\par}}" if note else ""
 BEFORE = rf"""
 \thispagestyle{{plain}}
 {{\sffamily\scriptsize\bfseries\color{{accent}}{L['kicker']}}}\par\medskip
 {{\raggedright\fontsize{{20}}{{25}}\selectfont\bfseries {tex_escape(title)}\par}}\medskip
 {{\sffamily\small\color{{ink2}} \textbf{{{L['authors']}}} {tex_escape(authors)}\par}}\smallskip
-{{\small\itshape\color{{ink2}} {tex_escape(note)}\par}}
+{note_tex}
 \medskip\noindent{{\color{{ink2!30}}\rule{{\linewidth}}{{0.4pt}}}}\par
 """
 
